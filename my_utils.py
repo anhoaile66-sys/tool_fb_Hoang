@@ -5,7 +5,6 @@ from selenium.webdriver.common.actions.action_builder import ActionBuilder
 from selenium.webdriver.common.actions.pointer_input import PointerInput
 from selenium.webdriver.common.actions.interaction import POINTER_TOUCH
 from appium.webdriver.common.appiumby import AppiumBy
-from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -32,11 +31,11 @@ if not logger.handlers:
     logger.addHandler(file_handler)
 
     # Handler in log ra console (terminal)
-    # console_handler = logging.StreamHandler()
-    # console_handler.setLevel(logging.DEBUG)
-    # console_format = logging.Formatter('\033[1;32m%(asctime)s\033[0m - \033[1;34m%(levelname)s\033[0m - %(message)s')
-    # console_handler.setFormatter(console_format)
-    # logger.addHandler(console_handler)
+    console_handler = logging.StreamHandler()
+    console_handler.setLevel(logging.DEBUG)
+    console_format = logging.Formatter('\033[1;32m%(asctime)s\033[0m - \033[1;34m%(levelname)s\033[0m - %(message)s')
+    console_handler.setFormatter(console_format)
+    logger.addHandler(console_handler)
 
 def log_message(message, level=logging.INFO):
     """Ghi log ra file và terminal với định dạng chuẩn và màu sắc."""
@@ -135,7 +134,7 @@ async def scroll_up(driver, max_roll=1, duration=0.5, isFast=False):
 
         if isFast:
             duration = 0.02
-            end_y = int(height * 0.2)
+            start_y = int(height * 0.2)
             sleep = 3
 
         for i in range(max_roll):

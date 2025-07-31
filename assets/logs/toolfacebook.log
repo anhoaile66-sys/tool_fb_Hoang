@@ -1,117 +1,346 @@
-2025-07-30 16:52:32,340 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')
-2025-07-30 16:52:32,340 - ERROR - Không tìm thấy element trong danh sách locator
-2025-07-30 16:52:33,976 - INFO - Đẫ cuộn +1 lần
-2025-07-30 16:52:33,977 - INFO - Đã cuộn 1 lần
-2025-07-30 16:52:35,182 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')
-2025-07-30 16:52:35,785 - INFO - Đã thả cảm xúc Thích
-2025-07-30 16:52:38,483 - INFO - Đẫ cuộn +1 lần
-2025-07-30 16:52:40,088 - INFO - Đẫ cuộn +1 lần
-2025-07-30 16:52:41,686 - INFO - Đẫ cuộn +1 lần
-2025-07-30 16:52:43,346 - INFO - Đẫ cuộn +1 lần
-2025-07-30 16:52:43,346 - INFO - Đã cuộn 4 lần
-2025-07-30 16:52:44,360 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')
-2025-07-30 16:52:46,824 - INFO - Tìm thấy element với locator: ('xpath', '//com.facebook.feedback.sharedcomponents.reactions.dock.RopeStyleUFIDockView[@content-desc="Yêu thích"]')
-2025-07-30 16:52:46,883 - INFO - Đã thả cảm xúc Yêu thích
-2025-07-30 16:52:49,567 - INFO - Đẫ cuộn +1 lần
-2025-07-30 16:52:51,186 - INFO - Đẫ cuộn +1 lần
-2025-07-30 16:52:51,186 - INFO - Đã cuộn 2 lần
-2025-07-30 16:52:52,249 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Bình luận")]')
-2025-07-30 16:52:55,255 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.AutoCompleteTextView')
-2025-07-30 16:53:00,104 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Gửi")]')
-2025-07-30 16:53:01,468 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Đóng")]')
-2025-07-30 16:53:06,484 - INFO - Đẫ cuộn +1 lần
-2025-07-30 16:53:08,100 - INFO - Đẫ cuộn +1 lần
-2025-07-30 16:53:09,684 - INFO - Đẫ cuộn +1 lần
-2025-07-30 16:53:09,684 - INFO - Đã cuộn 3 lần
-2025-07-30 16:53:10,746 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Chia sẻ")]')
-2025-07-30 16:53:15,875 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[contains(@content-desc, "Chia sẻ ngay")]')
-2025-07-30 16:53:15,876 - ERROR - Không tìm thấy element trong danh sách locator
-2025-07-30 16:53:15,876 - ERROR - Không thể tìm được nút share
-2025-07-30 16:53:15,947 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đóng"]')
-2025-07-30 16:53:16,029 - ERROR - Chia sẻ thất bại, thoát chia sẻ
-2025-07-30 16:53:20,691 - INFO - Đẫ cuộn +1 lần
-2025-07-30 16:53:20,691 - INFO - Đã cuộn 1 lần
-2025-07-30 16:53:36,177 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
-2025-07-30 16:53:36,177 - ERROR - Không tìm thấy element trong danh sách locator
-2025-07-30 16:53:39,878 - INFO - Cuộn ngược +1 lần
-2025-07-30 16:53:39,878 - INFO - Cuộn ngược 1 lần
-2025-07-30 16:53:46,084 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
-2025-07-30 16:53:46,084 - ERROR - Không tìm thấy element trong danh sách locator
-2025-07-30 16:53:49,725 - INFO - Cuộn ngược +1 lần
-2025-07-30 16:53:49,725 - INFO - Cuộn ngược 1 lần
-2025-07-30 16:53:56,241 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
-2025-07-30 16:53:56,241 - ERROR - Không tìm thấy element trong danh sách locator
-2025-07-30 16:53:59,886 - INFO - Cuộn ngược +1 lần
-2025-07-30 16:53:59,886 - INFO - Cuộn ngược 1 lần
-2025-07-30 16:54:06,509 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
-2025-07-30 16:54:06,509 - ERROR - Không tìm thấy element trong danh sách locator
-2025-07-30 16:54:10,149 - INFO - Cuộn ngược +1 lần
-2025-07-30 16:54:10,149 - INFO - Cuộn ngược 1 lần
-2025-07-30 16:54:16,261 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
-2025-07-30 16:54:16,261 - ERROR - Không tìm thấy element trong danh sách locator
-2025-07-30 16:54:19,932 - INFO - Cuộn ngược +1 lần
-2025-07-30 16:54:19,932 - INFO - Cuộn ngược 1 lần
-2025-07-30 16:54:26,219 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
-2025-07-30 16:54:26,219 - ERROR - Không tìm thấy element trong danh sách locator
-2025-07-30 16:54:29,873 - INFO - Cuộn ngược +1 lần
-2025-07-30 16:54:29,873 - INFO - Cuộn ngược 1 lần
-2025-07-30 16:54:36,376 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
-2025-07-30 16:54:36,376 - ERROR - Không tìm thấy element trong danh sách locator
-2025-07-30 16:54:40,017 - INFO - Cuộn ngược +1 lần
-2025-07-30 16:54:40,017 - INFO - Cuộn ngược 1 lần
-2025-07-30 16:54:46,455 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
-2025-07-30 16:54:46,455 - ERROR - Không tìm thấy element trong danh sách locator
-2025-07-30 16:54:50,086 - INFO - Cuộn ngược +1 lần
-2025-07-30 16:54:50,086 - INFO - Cuộn ngược 1 lần
-2025-07-30 16:54:56,364 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
-2025-07-30 16:54:56,364 - ERROR - Không tìm thấy element trong danh sách locator
-2025-07-30 16:54:59,998 - INFO - Cuộn ngược +1 lần
-2025-07-30 16:54:59,998 - INFO - Cuộn ngược 1 lần
-2025-07-30 16:55:06,212 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
-2025-07-30 16:55:06,213 - ERROR - Không tìm thấy element trong danh sách locator
-2025-07-30 16:55:09,836 - INFO - Cuộn ngược +1 lần
-2025-07-30 16:55:09,836 - INFO - Cuộn ngược 1 lần
-2025-07-30 16:55:10,847 - ERROR - Không tìm được đầu trang sau 10 roll
-2025-07-30 16:55:10,847 - ERROR - Không ở trang chủ hoặc không thể về trang chủ
-2025-07-30 16:55:25,895 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
-2025-07-30 16:55:25,895 - ERROR - Không tìm thấy element trong danh sách locator
-2025-07-30 16:55:29,534 - INFO - Cuộn ngược +1 lần
-2025-07-30 16:55:29,534 - INFO - Cuộn ngược 1 lần
-2025-07-30 16:55:35,590 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
-2025-07-30 16:55:35,592 - ERROR - Không tìm thấy element trong danh sách locator
-2025-07-30 16:55:39,198 - INFO - Cuộn ngược +1 lần
-2025-07-30 16:55:39,198 - INFO - Cuộn ngược 1 lần
-2025-07-30 16:55:45,299 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
-2025-07-30 16:55:45,299 - ERROR - Không tìm thấy element trong danh sách locator
-2025-07-30 16:55:48,946 - INFO - Cuộn ngược +1 lần
-2025-07-30 16:55:48,946 - INFO - Cuộn ngược 1 lần
-2025-07-30 16:55:55,311 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
-2025-07-30 16:55:55,311 - ERROR - Không tìm thấy element trong danh sách locator
-2025-07-30 16:55:58,945 - INFO - Cuộn ngược +1 lần
-2025-07-30 16:55:58,945 - INFO - Cuộn ngược 1 lần
-2025-07-30 16:56:05,365 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
-2025-07-30 16:56:05,365 - ERROR - Không tìm thấy element trong danh sách locator
-2025-07-30 16:56:08,992 - INFO - Cuộn ngược +1 lần
-2025-07-30 16:56:08,992 - INFO - Cuộn ngược 1 lần
-2025-07-30 16:56:15,446 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
-2025-07-30 16:56:15,446 - ERROR - Không tìm thấy element trong danh sách locator
-2025-07-30 16:56:19,051 - INFO - Cuộn ngược +1 lần
-2025-07-30 16:56:19,051 - INFO - Cuộn ngược 1 lần
-2025-07-30 16:56:25,617 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
-2025-07-30 16:56:25,617 - ERROR - Không tìm thấy element trong danh sách locator
-2025-07-30 16:56:29,269 - INFO - Cuộn ngược +1 lần
-2025-07-30 16:56:29,269 - INFO - Cuộn ngược 1 lần
-2025-07-30 16:56:35,295 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
-2025-07-30 16:56:35,295 - ERROR - Không tìm thấy element trong danh sách locator
-2025-07-30 16:56:38,926 - INFO - Cuộn ngược +1 lần
-2025-07-30 16:56:38,926 - INFO - Cuộn ngược 1 lần
-2025-07-30 16:56:45,207 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
-2025-07-30 16:56:45,207 - ERROR - Không tìm thấy element trong danh sách locator
-2025-07-30 16:56:48,822 - INFO - Cuộn ngược +1 lần
-2025-07-30 16:56:48,822 - INFO - Cuộn ngược 1 lần
-2025-07-30 16:56:55,543 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
-2025-07-30 16:56:55,543 - ERROR - Không tìm thấy element trong danh sách locator
-2025-07-30 16:56:59,185 - INFO - Cuộn ngược +1 lần
-2025-07-30 16:56:59,185 - INFO - Cuộn ngược 1 lần
-2025-07-30 16:57:00,193 - ERROR - Không tìm được đầu trang sau 10 roll
-2025-07-30 16:57:00,193 - ERROR - Không ở trang chủ hoặc không thể về trang chủ
+2025-07-31 08:03:16,762 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')
+2025-07-31 08:03:16,770 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 08:03:18,389 - INFO - Đẫ cuộn +1 lần
+2025-07-31 08:03:18,392 - INFO - Đã cuộn 1 lần
+2025-07-31 08:03:19,582 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')
+2025-07-31 08:03:19,665 - INFO - Đã thả cảm xúc Thích
+2025-07-31 08:03:22,335 - INFO - Đẫ cuộn +1 lần
+2025-07-31 08:03:23,950 - INFO - Đẫ cuộn +1 lần
+2025-07-31 08:03:25,533 - INFO - Đẫ cuộn +1 lần
+2025-07-31 08:03:27,101 - INFO - Đẫ cuộn +1 lần
+2025-07-31 08:03:27,101 - INFO - Đã cuộn 4 lần
+2025-07-31 08:03:27,991 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')
+2025-07-31 08:03:30,817 - INFO - Tìm thấy element với locator: ('xpath', '//com.facebook.feedback.sharedcomponents.reactions.dock.RopeStyleUFIDockView[@content-desc="Yêu thích"]')
+2025-07-31 08:03:30,897 - INFO - Đã thả cảm xúc Yêu thích
+2025-07-31 08:03:33,500 - INFO - Đẫ cuộn +1 lần
+2025-07-31 08:03:35,083 - INFO - Đẫ cuộn +1 lần
+2025-07-31 08:03:35,083 - INFO - Đã cuộn 2 lần
+2025-07-31 08:03:36,237 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Bình luận")]')
+2025-07-31 08:03:38,418 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.AutoCompleteTextView')
+2025-07-31 08:03:43,078 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Gửi")]')
+2025-07-31 08:03:44,157 - INFO - Đã comment
+2025-07-31 08:03:44,423 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Đóng")]')
+2025-07-31 08:03:45,445 - INFO - Đã thoát giao diện comment
+2025-07-31 08:03:48,121 - INFO - Đẫ cuộn +1 lần
+2025-07-31 08:03:49,721 - INFO - Đẫ cuộn +1 lần
+2025-07-31 08:03:51,320 - INFO - Đẫ cuộn +1 lần
+2025-07-31 08:03:51,324 - INFO - Đã cuộn 3 lần
+2025-07-31 08:03:52,051 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Chia sẻ")]')
+2025-07-31 08:03:57,534 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[contains(@content-desc, "Chia sẻ ngay")]')
+2025-07-31 08:03:57,536 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 08:03:57,536 - ERROR - Không thể tìm được nút share
+2025-07-31 08:03:57,622 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đóng"]')
+2025-07-31 08:03:57,706 - ERROR - Chia sẻ thất bại, thoát chia sẻ
+2025-07-31 08:04:02,387 - INFO - Đẫ cuộn +1 lần
+2025-07-31 08:04:02,387 - INFO - Đã cuộn 1 lần
+2025-07-31 08:04:17,725 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-07-31 08:04:17,727 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 08:04:21,346 - INFO - Cuộn ngược +1 lần
+2025-07-31 08:04:21,348 - INFO - Cuộn ngược 1 lần
+2025-07-31 08:04:27,497 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-07-31 08:04:27,497 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 08:04:31,122 - INFO - Cuộn ngược +1 lần
+2025-07-31 08:04:31,124 - INFO - Cuộn ngược 1 lần
+2025-07-31 08:04:37,937 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-07-31 08:04:37,937 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 08:04:41,562 - INFO - Cuộn ngược +1 lần
+2025-07-31 08:04:41,562 - INFO - Cuộn ngược 1 lần
+2025-07-31 08:04:47,608 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-07-31 08:04:47,608 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 08:04:51,225 - INFO - Cuộn ngược +1 lần
+2025-07-31 08:04:51,225 - INFO - Cuộn ngược 1 lần
+2025-07-31 08:04:57,928 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-07-31 08:04:57,928 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 08:05:01,552 - INFO - Cuộn ngược +1 lần
+2025-07-31 08:05:01,552 - INFO - Cuộn ngược 1 lần
+2025-07-31 08:05:02,805 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-07-31 08:05:02,805 - INFO - Đã về đầu trang
+2025-07-31 08:05:08,035 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Tin của ")]')
+2025-07-31 08:05:18,221 - INFO - Bắt đầu xem story
+2025-07-31 08:05:33,228 - INFO - Xem story chán rồi, té thôi
+2025-07-31 08:05:37,133 - INFO - Cuộn ngược +1 lần
+2025-07-31 08:05:37,133 - INFO - Cuộn ngược 1 lần
+2025-07-31 08:05:37,133 - INFO - Đã thoát trang story
+2025-07-31 08:05:47,450 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-07-31 08:05:47,450 - INFO - Đã về đầu trang
+2025-07-31 08:05:58,110 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[contains(@content-desc, "Xem thước phim")]')
+2025-07-31 08:05:58,112 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 08:05:59,718 - INFO - Đẫ cuộn +1 lần
+2025-07-31 08:05:59,719 - INFO - Đã cuộn 1 lần
+2025-07-31 08:06:04,879 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[contains(@content-desc, "Xem thước phim")]')
+2025-07-31 08:06:04,879 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 08:06:06,473 - INFO - Đẫ cuộn +1 lần
+2025-07-31 08:06:06,473 - INFO - Đã cuộn 1 lần
+2025-07-31 08:06:07,462 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Xem thước phim")]')
+2025-07-31 08:06:07,522 - INFO - Lướt trên mặt nước anh như cơn sóng
+2025-07-31 08:06:23,863 - INFO - Đẫ cuộn +1 lần
+2025-07-31 08:06:23,863 - INFO - Đã cuộn 1 lần
+2025-07-31 08:06:23,863 - INFO - Chán vl, lướt
+2025-07-31 08:07:46,876 - ERROR - Không tìm thấy do lỗi: InvalidSessionIdException - Message: A session is either terminated or not started; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+NoSuchDriverError: A session is either terminated or not started
+    at asyncHandler (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\@appium\base-driver\lib\protocol\protocol.js:311:15)
+    at C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\@appium\base-driver\lib\protocol\protocol.js:514:15
+    at Layer.handle [as handle_request] (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\index.js:284:15
+    at param (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\index.js:365:14)
+    at param (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\index.js:376:14)
+    at router.process_params (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\index.js:421:3)
+    at next (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\index.js:286:9
+    at router.process_params (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\index.js:280:10)
+    at C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\body-parser\lib\read.js:137:5
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+    at invokeCallback (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\raw-body\index.js:238:16)
+    at done (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\raw-body\index.js:227:7)
+    at IncomingMessage.onEnd (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\raw-body\index.js:287:7)
+2025-07-31 08:07:46,876 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 08:07:46,876 - ERROR - Không lối thoát muahahaha
+2025-07-31 08:16:21,790 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Chia sẻ")]')
+2025-07-31 08:16:30,015 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[contains(@content-desc, "Chia sẻ ngay")]')
+2025-07-31 08:16:30,015 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 08:16:30,016 - ERROR - Không thể tìm được nút share
+2025-07-31 08:16:36,033 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đóng"]')
+2025-07-31 08:16:36,036 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 08:16:36,036 - ERROR - Không thể tìm được nút đóng
+ Bất lực :)))
+2025-07-31 08:16:48,379 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-07-31 08:16:48,379 - INFO - Đã về đầu trang
+2025-07-31 08:16:58,958 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[contains(@content-desc, "Xem thước phim")]')
+2025-07-31 08:16:58,958 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 08:17:00,563 - INFO - Đẫ cuộn +1 lần
+2025-07-31 08:17:00,565 - INFO - Đã cuộn 1 lần
+2025-07-31 08:17:05,713 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[contains(@content-desc, "Xem thước phim")]')
+2025-07-31 08:17:05,716 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 08:17:07,317 - INFO - Đẫ cuộn +1 lần
+2025-07-31 08:17:07,317 - INFO - Đã cuộn 1 lần
+2025-07-31 08:17:12,732 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[contains(@content-desc, "Xem thước phim")]')
+2025-07-31 08:17:12,732 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 08:17:14,363 - INFO - Đẫ cuộn +1 lần
+2025-07-31 08:17:14,366 - INFO - Đã cuộn 1 lần
+2025-07-31 08:17:15,147 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Xem thước phim")]')
+2025-07-31 08:17:15,216 - INFO - Lướt trên mặt nước anh như cơn sóng
+2025-07-31 08:17:29,520 - INFO - Đẫ cuộn +1 lần
+2025-07-31 08:17:29,520 - INFO - Đã cuộn 1 lần
+2025-07-31 08:17:29,520 - INFO - Content nhảm vl, lướt
+2025-07-31 08:18:50,538 - ERROR - Không tìm thấy do lỗi: InvalidSessionIdException - Message: A session is either terminated or not started; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+NoSuchDriverError: A session is either terminated or not started
+    at asyncHandler (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\@appium\base-driver\lib\protocol\protocol.js:311:15)
+    at C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\@appium\base-driver\lib\protocol\protocol.js:514:15
+    at Layer.handle [as handle_request] (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\index.js:284:15
+    at param (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\index.js:365:14)
+    at param (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\index.js:376:14)
+    at router.process_params (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\index.js:421:3)
+    at next (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\index.js:286:9
+    at router.process_params (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\express\lib\router\index.js:280:10)
+    at C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\body-parser\lib\read.js:137:5
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+    at invokeCallback (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\raw-body\index.js:238:16)
+    at done (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\raw-body\index.js:227:7)
+    at IncomingMessage.onEnd (C:\Users\vuman\AppData\Roaming\npm\node_modules\appium\node_modules\raw-body\index.js:287:7)
+2025-07-31 08:18:50,538 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 08:18:50,541 - ERROR - Không lối thoát muahahaha
+2025-07-31 08:33:03,613 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-07-31 08:33:03,613 - INFO - Đã về đầu trang
+2025-07-31 08:33:14,001 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[contains(@content-desc, "Xem thước phim")]')
+2025-07-31 08:33:14,001 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 08:33:15,627 - INFO - Đẫ cuộn +1 lần
+2025-07-31 08:33:15,627 - INFO - Đã cuộn 1 lần
+2025-07-31 08:33:21,131 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[contains(@content-desc, "Xem thước phim")]')
+2025-07-31 08:33:21,132 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 08:33:22,739 - INFO - Đẫ cuộn +1 lần
+2025-07-31 08:33:22,740 - INFO - Đã cuộn 1 lần
+2025-07-31 08:33:28,007 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[contains(@content-desc, "Xem thước phim")]')
+2025-07-31 08:33:28,007 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 08:33:29,620 - INFO - Đẫ cuộn +1 lần
+2025-07-31 08:33:29,620 - INFO - Đã cuộn 1 lần
+2025-07-31 08:33:30,830 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Xem thước phim")]')
+2025-07-31 08:33:30,903 - INFO - Lướt trên mặt nước anh như cơn sóng
+2025-07-31 08:33:50,231 - INFO - Đẫ cuộn +1 lần
+2025-07-31 08:33:50,231 - INFO - Đã cuộn 1 lần
+2025-07-31 08:33:50,233 - INFO - Content nhảm vl, lướt
+2025-07-31 08:34:32,437 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Quay lại")]')
+2025-07-31 08:34:34,807 - INFO - Thoát về màn hình chính
+2025-07-31 08:35:36,690 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[contains(@content-desc, "Chia sẻ")]')
+2025-07-31 08:35:36,690 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 08:35:38,290 - INFO - Đẫ cuộn +1 lần
+2025-07-31 08:35:38,290 - INFO - Đã cuộn 1 lần
+2025-07-31 08:35:43,472 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[contains(@content-desc, "Chia sẻ")]')
+2025-07-31 08:35:43,474 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 08:35:45,095 - INFO - Đẫ cuộn +1 lần
+2025-07-31 08:35:45,100 - INFO - Đã cuộn 1 lần
+2025-07-31 08:35:45,853 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Chia sẻ")]')
+2025-07-31 08:35:52,834 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[contains(@content-desc, "Chia sẻ ngay")]')
+2025-07-31 08:35:52,834 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 08:35:52,837 - ERROR - Không thể tìm được nút share
+2025-07-31 08:35:52,931 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đóng"]')
+2025-07-31 08:35:52,992 - ERROR - Chia sẻ thất bại, thoát chia sẻ
+2025-07-31 08:44:02,958 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Chia sẻ")]')
+2025-07-31 08:44:09,807 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[contains(@content-desc, "Chia sẻ ngay")]')
+2025-07-31 08:44:09,808 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 08:44:09,808 - ERROR - Không thể tìm được nút share
+2025-07-31 08:44:09,902 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đóng"]')
+2025-07-31 08:44:09,983 - ERROR - Chia sẻ thất bại, thoát chia sẻ
+2025-07-31 08:45:22,903 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Chia sẻ")]')
+2025-07-31 08:45:24,408 - INFO - Click vào để lấy elment
+2025-07-31 08:45:24,496 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Chia sẻ ngay")]')
+2025-07-31 08:45:25,717 - INFO - Đã chia sẻ
+2025-07-31 08:46:50,230 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Chia sẻ")]')
+2025-07-31 08:46:51,989 - INFO - Click vào để lấy elment
+2025-07-31 08:46:57,553 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.AutoCompleteTextView')
+2025-07-31 08:46:57,553 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 08:46:57,560 - ERROR - Không thể tìm được ô text
+2025-07-31 08:48:51,697 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Chia sẻ")]')
+2025-07-31 08:48:54,566 - INFO - Click vào để lấy elment
+2025-07-31 08:48:55,314 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.AutoCompleteTextView')
+2025-07-31 08:48:55,388 - INFO - Đã nhập nội dung chia sẻ
+2025-07-31 08:48:56,107 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Chia sẻ ngay")]')
+2025-07-31 08:48:57,265 - INFO - Đã chia sẻ
+2025-07-31 11:29:05,443 - INFO - Bắt đầu tạo bài đăng mới
+2025-07-31 11:29:06,233 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-07-31 11:29:06,234 - INFO - Đã về đầu trang
+2025-07-31 11:29:48,617 - INFO - Bắt đầu tạo bài đăng mới
+2025-07-31 11:29:53,820 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-07-31 11:29:53,822 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 11:29:57,462 - INFO - Cuộn ngược +1 lần
+2025-07-31 11:29:57,462 - INFO - Cuộn ngược 1 lần
+2025-07-31 11:30:03,860 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-07-31 11:30:03,861 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 11:30:07,507 - INFO - Cuộn ngược +1 lần
+2025-07-31 11:30:07,507 - INFO - Cuộn ngược 1 lần
+2025-07-31 11:30:08,747 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-07-31 11:30:08,747 - INFO - Đã về đầu trang
+2025-07-31 11:30:14,494 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.ViewGroup[@content-desc="Viết bài trên Facebook"]')
+2025-07-31 11:30:15,978 - INFO - Vào giao diện tạo bài đăng
+2025-07-31 11:30:16,992 - INFO - Về giao diện nhập text
+2025-07-31 11:30:17,842 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.AutoCompleteTextView')
+2025-07-31 11:30:19,595 - INFO - Nhập xong text
+2025-07-31 11:30:20,901 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="ĐĂNG"]')
+2025-07-31 11:30:21,746 - INFO - Đăng thành công
+2025-07-31 11:38:55,882 - INFO - Bắt đầu tạo bài đăng mới
+2025-07-31 11:38:56,858 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-07-31 11:38:56,858 - INFO - Đã về đầu trang
+2025-07-31 11:39:02,297 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.ViewGroup[@content-desc="Viết bài trên Facebook"]')
+2025-07-31 11:39:02,440 - INFO - Vào giao diện tạo bài đăng
+2025-07-31 11:39:04,494 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Ảnh/video"]')
+2025-07-31 11:39:06,322 - INFO - Vào giao diện chọn ảnh
+2025-07-31 11:39:07,611 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Chọn nhiều file"]')
+2025-07-31 11:39:08,324 - INFO - Giao diện thêm ảnh
+2025-07-31 11:39:15,473 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="chừa nhé 3"]')
+2025-07-31 11:39:15,473 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 11:39:15,473 - ERROR - Không tìm được hình ảnh: fchừa nhé 3
+2025-07-31 11:39:15,873 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Hủy"]')
+2025-07-31 11:39:17,423 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.ImageView[@content-desc="Quay lại"]')
+2025-07-31 11:44:18,834 - INFO - Bắt đầu tạo bài đăng mới
+2025-07-31 11:44:23,873 - WARNING - Không tìm thấy element bằng ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-07-31 11:44:23,873 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 11:44:27,530 - INFO - Cuộn ngược +1 lần
+2025-07-31 11:44:27,530 - INFO - Cuộn ngược 1 lần
+2025-07-31 11:44:33,467 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-07-31 11:44:33,467 - INFO - Đã về đầu trang
+2025-07-31 11:44:38,738 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.ViewGroup[@content-desc="Viết bài trên Facebook"]')
+2025-07-31 11:44:40,166 - INFO - Vào giao diện tạo bài đăng
+2025-07-31 11:44:41,457 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Ảnh/video"]')
+2025-07-31 11:44:42,686 - INFO - Vào giao diện chọn ảnh
+2025-07-31 11:44:44,483 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Chọn nhiều file"]')
+2025-07-31 11:44:45,180 - INFO - Giao diện thêm ảnh
+2025-07-31 11:44:46,291 - ERROR - Không tìm thấy do lỗi: WebDriverException - Message: An unknown server-side error occurred while processing the command. Original error: org.eclipse.wst.xml.xpath2.processor.internal.StaticFunctNameError: Function does not exist: contains arity: 1
+Stacktrace:
+org.eclipse.wst.xml.xpath2.processor.internal.StaticFunctNameError: Function does not exist: contains arity: 1
+	at org.eclipse.wst.xml.xpath2.processor.StaticNameResolver.visit(StaticNameResolver.java:849)
+	at org.eclipse.wst.xml.xpath2.processor.internal.ast.FunctionCall.accept(FunctionCall.java:57)
+	at org.eclipse.wst.xml.xpath2.processor.StaticNameResolver.visit(StaticNameResolver.java:1103)
+	at org.eclipse.wst.xml.xpath2.processor.internal.ast.FilterExpr.accept(FilterExpr.java:53)
+	at org.eclipse.wst.xml.xpath2.processor.StaticNameResolver.visit(StaticNameResolver.java:682)
+	at org.eclipse.wst.xml.xpath2.processor.internal.ast.XPathExpr.accept(XPathExpr.java:45)
+	at org.eclipse.wst.xml.xpath2.processor.StaticNameResolver.visitExprs(StaticNameResolver.java:363)
+	at org.eclipse.wst.xml.xpath2.processor.StaticNameResolver.visitCollExprs(StaticNameResolver.java:1076)
+	at org.eclipse.wst.xml.xpath2.processor.StaticNameResolver.visit(StaticNameResolver.java:1091)
+	at org.eclipse.wst.xml.xpath2.processor.internal.ast.AxisStep.accept(AxisStep.java:47)
+	at org.eclipse.wst.xml.xpath2.processor.StaticNameResolver.visit(StaticNameResolver.java:682)
+	at org.eclipse.wst.xml.xpath2.processor.internal.ast.XPathExpr.accept(XPathExpr.java:45)
+	at org.eclipse.wst.xml.xpath2.processor.StaticNameResolver.visit(StaticNameResolver.java:297)
+	at org.eclipse.wst.xml.xpath2.processor.ast.XPath.accept(XPath.java:60)
+	at org.eclipse.wst.xml.xpath2.processor.StaticNameResolver.check(StaticNameResolver.java:280)
+	at org.eclipse.wst.xml.xpath2.processor.Engine.parseExpression(Engine.java:32)
+	at io.appium.uiautomator2.core.AccessibilityNodeInfoDumper.findNodesUsingXpath2(AccessibilityNodeInfoDumper.java:327)
+	at io.appium.uiautomator2.core.AccessibilityNodeInfoDumper.findNodes(AccessibilityNodeInfoDumper.java:388)
+	at io.appium.uiautomator2.utils.ElementLocationHelpers.getXPathNodeMatch(ElementLocationHelpers.java:127)
+	at io.appium.uiautomator2.utils.ElementLocationHelpers.findElement(ElementLocationHelpers.java:154)
+	at io.appium.uiautomator2.handler.FindElement.safeHandle(FindElement.java:60)
+	at io.appium.uiautomator2.handler.request.SafeRequestHandler.handle(SafeRequestHandler.java:59)
+	at io.appium.uiautomator2.server.AppiumServlet.handleRequest(AppiumServlet.java:259)
+	at io.appium.uiautomator2.server.AppiumServlet.handleHttpRequest(AppiumServlet.java:253)
+	at io.appium.uiautomator2.http.ServerHandler.channelRead(ServerHandler.java:77)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:352)
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:102)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:352)
+	at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:438)
+	at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:328)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:302)
+	at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:253)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:352)
+	at io.netty.handler.timeout.IdleStateHandler.channelRead(IdleStateHandler.java:287)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:352)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1422)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:931)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:163)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:700)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:635)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:552)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:514)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:1012)
+
+2025-07-31 11:44:46,291 - ERROR - Không tìm thấy element trong danh sách locator
+2025-07-31 11:44:46,291 - ERROR - Không tìm được hình ảnh: Ảnh chụp vào ngày thg 7 31, 2025 11:36
+2025-07-31 11:44:46,603 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Hủy"]')
+2025-07-31 11:44:48,595 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.ImageView[@content-desc="Quay lại"]')
+2025-07-31 11:47:50,213 - INFO - Bắt đầu tạo bài đăng mới
+2025-07-31 11:47:51,017 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-07-31 11:47:51,019 - INFO - Đã về đầu trang
+2025-07-31 11:47:56,381 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.ViewGroup[@content-desc="Viết bài trên Facebook"]')
+2025-07-31 11:47:56,809 - INFO - Vào giao diện tạo bài đăng
+2025-07-31 11:47:58,269 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Ảnh/video"]')
+2025-07-31 11:47:59,483 - INFO - Vào giao diện chọn ảnh
+2025-07-31 11:48:01,012 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Chọn nhiều file"]')
+2025-07-31 11:48:02,322 - INFO - Giao diện thêm ảnh
+2025-07-31 11:48:03,738 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Ảnh chụp vào ngày thg 7 31, 2025 11:36")]')
+2025-07-31 11:48:03,738 - INFO - Tìm được ảnh: Ảnh chụp vào ngày thg 7 31, 2025 11:36
+2025-07-31 11:48:03,826 - INFO - Đã thêm toàn bộ ảnh
+2025-07-31 11:48:05,005 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Tiếp"]')
+2025-07-31 11:48:05,005 - INFO - Trở về nhập text
+2025-07-31 11:48:07,444 - INFO - Về giao diện nhập text
+2025-07-31 11:48:07,804 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.AutoCompleteTextView')
+2025-07-31 11:48:09,596 - INFO - Nhập xong text
+2025-07-31 11:48:10,847 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="ĐĂNG"]')
+2025-07-31 11:48:16,824 - INFO - Đăng thành công

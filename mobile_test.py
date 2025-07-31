@@ -47,6 +47,7 @@ async def swap_account(driver, name):
     Đăng nhập vào tài khoản facebook đã lưu sẵn
     
     """
+    log_message("Bắt đầu đăng nhập vào tài khoản đã lưu")
     await asyncio.sleep(5)
     try:
         account = WebDriverWait(driver, 10).until(
@@ -68,7 +69,7 @@ async def search(driver, text):
     Tìm nút tìm kiếm, nhập text vào ô tìm kiếm và tìm
     
     """
-
+    
     locators = [
         (AppiumBy.ACCESSIBILITY_ID, "Tìm kiếm"),
         (AppiumBy.ACCESSIBILITY_ID, "Tìm kiếm Facebook")
@@ -97,6 +98,7 @@ async def like_post(driver, emotion="like"):
     Nhấn giữ để hiện bảng emote, kéo thả vào emote tương ứng:
     'Thích', 'Yêu thích', 'Thương Thương', 'Haha', 'Wow', 'Phẫn nộ'
     """
+    log_message("Bắt đầu like post")
     # Tìm nút like
     like_button = await scroll_until_element_visible(driver, {(AppiumBy.XPATH, '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')})
     if like_button == None:
@@ -130,6 +132,7 @@ async def like_post(driver, emotion="like"):
 async def comment_post(driver, text):
     """
     Tìm nút comment phía dưới, nhấn vào và comment đoạn comment cho trước"""
+    log_message("Bắt đầu comment post")
     # Tìm nút comment
     comment_button = await scroll_until_element_visible(driver, {(AppiumBy.XPATH, '//android.widget.Button[contains(@content-desc, "Bình luận")]')})
     if comment_button == None:
@@ -173,28 +176,40 @@ async def share_post(driver, text=""):
     """
     Chia sẻ bài viết lụm được đầu tiên về trang cá nhân
     """
+    log_message("Bắt đầu chia sẻ")
     # Tìm nút share
     share_button = await scroll_until_element_visible(driver, {(AppiumBy.XPATH, '//android.widget.Button[contains(@content-desc, "Chia sẻ")]')})
     if share_button == None:
         log_message("Không thể tìm được nút share", logging.ERROR)
         return
     share_button.click()
+    await asyncio.sleep(1)
+    # Phải click vào 1 lần nữa mới có thể tìm element
+    pointer = PointerInput(POINTER_TOUCH, "finger")
+    actions = ActionBuilder(driver, mouse=pointer)
+    
+    actions.pointer_action.move_to_location(532, 1791)
+    actions.pointer_action.pointer_down()
+    actions.pointer_action.pause(0.1)
+    actions.pointer_action.release()
+    actions.perform()
+    await asyncio.sleep(1)
+    log_message("Click vào để lấy elment")
 
     if text != "":
-        # Phải click vào 1 lần nữa mới có thể tìm element
-        pointer = PointerInput(POINTER_TOUCH, "finger")
-        actions = ActionBuilder(driver, mouse=pointer)
-        
-        actions.pointer_action.move_to_location(532, 1791)
-        actions.pointer_action.click()
-        actions.perform()
-
         text_box = my_find_element(driver, {(AppiumBy.XPATH, '//android.widget.AutoCompleteTextView')})
         if text_box == None:
             log_message("Không thể tìm được ô text", logging.ERROR)
+            exit = my_find_element(driver, {(AppiumBy.XPATH, '//android.widget.Button[@content-desc="Đóng"]')})
+            if exit == None:
+                log_message("Không thể tìm được nút đóng\n Bất lực :)))", logging.ERROR)
+                return
+            exit.click()
+            log_message("Chia sẻ thất bại, thoát chia sẻ", logging.ERROR)
             return
         text_box.send_keys(text)
-        log_message("Đã nhập nội dung chia sẻ")
+        await asyncio.sleep(1)
+        log_message(f"Đã nhập nội dung chia sẻ: {text}")
     
     # Tìm nút chia sẻ ngay
     share_now = my_find_element(driver, {(AppiumBy.XPATH, '//android.widget.Button[contains(@content-desc, "Chia sẻ ngay")]')})
@@ -220,6 +235,7 @@ async def watch_story(driver, react=0.3, comment=0.05, skip=0.1, back=0.05, dura
     Tỉ lệ xem lại story trước là 5%\n
     Thời gian gian mặc định là 1p
     """
+    log_message("Bắt đầu watch story")
     # Về đầu trang
     top_page = await scroll_to_top_page(driver)
     if top_page == None:
@@ -232,7 +248,7 @@ async def watch_story(driver, react=0.3, comment=0.05, skip=0.1, back=0.05, dura
         log_message("Không thể tìm được story", logging.ERROR)
         return
     story_item.click()
-    log_message("Bắt đầu xem story")
+    log_message("Xem story")
     await asyncio.sleep(duration)
 
     # react, gửi tin nhắn,... sẽ mở rộng sau
@@ -252,6 +268,7 @@ async def watch_reels(driver, duration=120):
     """
     Lướt để tìm reels rồi bấm xem
     """
+    log_message("Bắt đầu watch reels")
     # Về đầu trang
     top_page = await scroll_to_top_page(driver)
     if top_page == None:
@@ -269,8 +286,8 @@ async def watch_reels(driver, duration=120):
     time=random.randint(10,20)
     await asyncio.sleep(time)
     while time<duration:
-        await nature_scroll(driver, duration=0.2)
-        log_message("Chán vl, lướt")
+        await nature_scroll(driver, isFast=True)
+        log_message("Content nhảm vl, lướt")
         i=random.randint(20,90)
         time+=i
         await asyncio.sleep(i)
@@ -284,8 +301,126 @@ async def watch_reels(driver, duration=120):
 
 
 # Tạo bài post mới
+async def new_post(driver, text, images={}):
+    """
+    Tạo bài đăng mới, bài đăng bao gồm text, ảnh(nếu có)
 
+    image: truyền vào {"","",...} tên ảnh/video (không có đuôi định dạng)
+    """
 
+    # Hàm tìm nút hủy
+    def huy():
+        huy = my_find_element(driver, {(AppiumBy.XPATH, '//android.widget.Button[@content-desc="Hủy"]')})
+        if huy == None:
+            log_message("Không tìm được nút hủy\n Bất lực", logging.ERROR)
+            return
+        huy.click()
+    # Hàm tìm nút back
+    def back():
+        back = my_find_element(driver, {(AppiumBy.XPATH, '//android.widget.ImageView[@content-desc="Quay lại"]')})
+        if back == None:
+            log_message("Không tìm được nút quay lại\n Bất lực", logging.ERROR)
+            return
+        back.click()
+    # Hàm tìm nút bỏ bài viết
+    def bo():
+        bo = my_find_element(driver, {(AppiumBy.XPATH, '//android.widget.Button[@content-desc="Bỏ bài viết"]')})
+        if bo == None:
+            log_message("Không tìm được nút bỏ\n Bất lực", logging.ERROR)
+            return
+        bo.click()
+
+    log_message("Bắt đầu tạo bài đăng mới")
+    # Về đầu trang
+    top_page = await scroll_to_top_page(driver)
+    if top_page == None:
+        log_message("Không ở trang chủ hoặc không thể về trang chủ", logging.ERROR)
+        return
+    await asyncio.sleep(5)
+
+    # Tìm ô tạo bài đăng
+    make_post = my_find_element(driver, {(AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Viết bài trên Facebook"]')})
+    if make_post == None:
+        log_message("Không tìm được ô tạo bài đăng", logging.ERROR)
+        return
+    make_post.click()
+    log_message("Vào giao diện tạo bài đăng")
+    await asyncio.sleep(1)
+
+    # Nếu có ảnh thì chọn ảnh theo tên
+    if images:
+        add_image = my_find_element(driver, {(AppiumBy.XPATH, '//android.widget.Button[@content-desc="Ảnh/video"]')})
+        if add_image == None:
+            log_message("Không thêm được ảnh")
+            back()
+            return
+        add_image.click()
+        log_message("Vào giao diện chọn ảnh")
+        await asyncio.sleep(1)
+
+        # Tìm nút thêm nhiều (dù chỉ có 1 ảnh cũng chọn)
+        multi_choice = my_find_element(driver, {(AppiumBy.XPATH, '//android.widget.Button[@content-desc="Chọn nhiều file"]')})
+        if multi_choice == None:
+            log_message("Không tìm được nút multichoice", logging.ERROR)
+            huy()
+            back()
+            return
+        multi_choice.click()
+        log_message("Giao diện thêm ảnh")
+        await asyncio.sleep(1)
+
+        # Vòng lặp
+        first = True
+        for image_path in images:
+            image = my_find_element(driver, {(AppiumBy.XPATH, f'//android.widget.Button[contains(@content-desc, "{image_path}")]')})
+            if image == None:
+                log_message(f"Không tìm được hình ảnh: {image_path}", logging.ERROR)
+                huy()
+                back()
+                if not first:
+                    bo()
+                return
+            log_message(f"Tìm được ảnh: {image_path}")
+            image.click()
+            first = False
+        log_message("Đã thêm toàn bộ ảnh")
+
+        # Tìm nút tiếp để chuyển về nhập text
+        tiep = my_find_element(driver, {(AppiumBy.XPATH, '//android.widget.Button[@content-desc="Tiếp"]')})
+        if tiep == None:
+            log_message("Không tìm thấy nút tiếp tục", logging.ERROR)
+            huy()
+            back()
+            bo()
+            return
+        log_message("Trở về nhập text")
+        tiep.click()
+        await asyncio.sleep(1)
+
+    # Nhập text
+    log_message("Về giao diện nhập text")
+    text_input = my_find_element(driver, {(AppiumBy.XPATH, '//android.widget.AutoCompleteTextView')})
+    if text_input == None:
+        log_message("Không tìm được ô nhập text", logging.ERROR)
+        back()
+        if images:
+            bo()
+        return
+    await asyncio.sleep(1)
+    text_input.send_keys(text)
+    log_message("Nhập xong text")
+    await asyncio.sleep(1)
+
+    # Đăng
+    dang = my_find_element(driver, {(AppiumBy.XPATH, '//android.widget.Button[@content-desc="ĐĂNG"]')})
+    if dang == None:
+        log_message("Không tìm được nút đăng", logging.ERROR)
+        back()
+        if images:
+            bo()
+        return
+    dang.click()
+    log_message("Đăng thành công")
 async def main():
 
     options = UiAutomator2Options().load_capabilities({
@@ -294,53 +429,45 @@ async def main():
     "udid": "c7326412",  # ID cụ thể của thiết bị (nếu có nhiều thiết bị)
     "appPackage": "com.facebook.katana",  # Package app Facebook
     "appActivity": ".LoginActivity",  # Màn hình đăng nhập
+    "newCommandTimeout": 300, # Tăng thời gian chờ lệnh lên 300s
     "noReset": True,  # Không reset app
     "autoLaunch": False,
     "automationName": "UiAutomator2"
     })
 
-    options2 = UiAutomator2Options().load_capabilities({
-    "platformName": "Android",  # Bắt buộc: Hệ điều hành Android
-    "deviceName": "Android Emulator",  # Tên thiết bị (xem qua `adb devices`)
-    "udid": "c7326412",  # ID cụ thể của thiết bị (nếu có nhiều thiết bị)
-    "appPackage": "com.facebook.katana",  # Package app Facebook
-    "appActivity": ".LoginActivity",  # Màn hình đăng nhập
-    "noReset": True,  # Không reset app
-    # "autoLaunch": False,
-    "automationName": "UiAutomator2"
-    })
-
     # Khởi tạo driver
     driver = webdriver.Remote('http://localhost:4723', options=options)
-    # driver = webdriver.Remote('http://localhost:4723', options=options2)
 
-
-    text = "Vũ Đức Mạnh"
+    text = "Trời ơi nó đãaaa"
     account = "0344331495"
     password = "Hhp123456"
 
     name = "Linh Lê"
+
+    images = {
+        "Ảnh chụp vào ngày thg 7 31, 2025 11:36"
+    }
     # await search(text)
 
     # login_facebook(account, password)
     # await swap_account(driver2, name)
 
-    await like_post(driver)
-    await asyncio.sleep(1)
-    await nature_scroll(driver, max_roll=4)
-    await like_post(driver, "Yêu thích")
-    await asyncio.sleep(1)
-    await nature_scroll(driver, max_roll=2)
-    await comment_post(driver, "ultr")
-    await asyncio.sleep(1)
-    await nature_scroll(driver, max_roll=3)
-    await share_post(driver)
-    await asyncio.sleep(1)
-    await nature_scroll(driver, isFast=True)
-    await asyncio.sleep(10)
-    await watch_story(driver, duration=15)
-    await asyncio.sleep(10)
-    await watch_reels(driver, duration=30)
-    
+    # await like_post(driver)
+    # await asyncio.sleep(1)
+    # await nature_scroll(driver, max_roll=4)
+    # await like_post(driver, "Yêu thích")
+    # await asyncio.sleep(1)
+    # await nature_scroll(driver, max_roll=2)
+    # await comment_post(driver, "ultr")
+    # await asyncio.sleep(1)
+    # await nature_scroll(driver, max_roll=3)
+    # await share_post(driver, "Muốn làm vợ rồi")
+    # await asyncio.sleep(1)
+    # await nature_scroll(driver, isFast=True)
+    # await asyncio.sleep(10)
+    # await watch_story(driver, duration=15)
+    # await asyncio.sleep(10)
+    # await watch_reels(driver, duration=30)
+    await new_post(driver, text, images)
 
 asyncio.run(main())
