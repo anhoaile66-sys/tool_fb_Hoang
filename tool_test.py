@@ -18,7 +18,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 
-from utils import log_message, smooth_scroll, type_text_input
+from util.my_utils import log_message, smooth_scroll, type_text_input
 
 # Constants
 COOKIE_FILE = "fb_cookies.json"

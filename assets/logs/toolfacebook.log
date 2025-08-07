@@ -344,3 +344,1106 @@ org.eclipse.wst.xml.xpath2.processor.internal.StaticFunctNameError: Function doe
 2025-07-31 11:48:09,596 - INFO - Nhập xong text
 2025-07-31 11:48:10,847 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="ĐĂNG"]')
 2025-07-31 11:48:16,824 - INFO - Đăng thành công
+2025-07-31 16:42:43,564 - ERROR - Lỗi XPathError: ('Invalid xpath', '//android.widget.Button[@content-desc, "Tin của ")]')
+2025-07-31 16:42:43,564 - ERROR - Không tìm thấy element trong danh sách
+2025-07-31 16:43:17,579 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Tin của ")]')
+2025-07-31 16:56:53,979 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Tin của ")]')
+2025-07-31 16:56:57,010 - INFO - Đã cuộn +1 lần
+2025-07-31 16:56:57,517 - INFO - Đã cuộn 1 lần
+2025-07-31 16:56:58,363 - INFO - Đã cuộn +1 lần
+2025-07-31 16:57:00,375 - INFO - Đã cuộn 1 lần
+2025-07-31 16:57:03,625 - INFO - Cuộn ngược +1 lần
+2025-07-31 16:57:04,138 - INFO - Cuộn ngược 1 lần
+2025-07-31 16:57:04,897 - INFO - Cuộn ngược +1 lần
+2025-07-31 16:57:06,904 - INFO - Cuộn ngược 1 lần
+2025-07-31 16:59:15,498 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Tin của ")]')
+2025-07-31 16:59:17,788 - INFO - Đã cuộn +1 lần
+2025-07-31 16:59:18,306 - INFO - Đã cuộn 1 lần
+2025-07-31 16:59:18,919 - INFO - Đã cuộn +1 lần
+2025-07-31 16:59:20,920 - INFO - Đã cuộn 1 lần
+2025-07-31 16:59:23,865 - INFO - Cuộn ngược +1 lần
+2025-07-31 16:59:24,367 - INFO - Cuộn ngược 1 lần
+2025-07-31 16:59:24,868 - INFO - Cuộn ngược +1 lần
+2025-07-31 16:59:26,884 - INFO - Cuộn ngược 1 lần
+2025-07-31 16:59:53,329 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Tin của ")]')
+2025-07-31 16:59:55,928 - INFO - Đã cuộn +1 lần
+2025-07-31 16:59:56,448 - INFO - Đã cuộn 1 lần
+2025-07-31 16:59:56,963 - INFO - Đã cuộn +1 lần
+2025-07-31 16:59:58,968 - INFO - Đã cuộn 1 lần
+2025-07-31 17:00:37,358 - ERROR - Không tìm thấy element trong danh sách
+2025-07-31 17:00:40,657 - INFO - Đã cuộn +1 lần
+2025-07-31 17:00:41,168 - INFO - Đã cuộn 1 lần
+2025-07-31 17:00:47,828 - INFO - Đã cuộn +1 lần
+2025-07-31 17:00:49,841 - INFO - Đã cuộn 1 lần
+2025-08-05 13:41:25,154 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Tin của ")]')
+2025-08-05 13:41:28,130 - INFO - Đã cuộn +1 lần
+2025-08-05 13:41:28,644 - INFO - Đã cuộn 1 lần
+2025-08-05 13:41:28,905 - INFO - Đã cuộn +1 lần
+2025-08-05 13:41:30,922 - INFO - Đã cuộn 1 lần
+2025-08-05 13:42:54,648 - ERROR - Không tìm thấy element trong danh sách
+2025-08-05 13:42:56,619 - INFO - Đã cuộn +1 lần
+2025-08-05 13:42:57,136 - INFO - Đã cuộn 1 lần
+2025-08-05 13:42:57,542 - INFO - Đã cuộn +1 lần
+2025-08-05 13:42:59,546 - INFO - Đã cuộn 1 lần
+2025-08-05 13:43:01,485 - INFO - Cuộn ngược +1 lần
+2025-08-05 13:43:01,993 - INFO - Cuộn ngược 1 lần
+2025-08-05 13:43:02,297 - INFO - Cuộn ngược +1 lần
+2025-08-05 13:43:04,305 - INFO - Cuộn ngược 1 lần
+2025-08-05 13:43:31,684 - ERROR - Không tìm thấy element trong danh sách
+2025-08-05 13:43:33,680 - INFO - Đã cuộn +1 lần
+2025-08-05 13:43:34,191 - INFO - Đã cuộn 1 lần
+2025-08-05 13:43:40,617 - ERROR - Không tìm thấy element trong danh sách
+2025-08-05 13:43:42,608 - INFO - Đã cuộn +1 lần
+2025-08-05 13:43:43,113 - INFO - Đã cuộn 1 lần
+2025-08-05 13:44:43,595 - ERROR - Không tìm thấy element trong danh sách
+2025-08-05 13:44:45,243 - INFO - Đã cuộn +1 lần
+2025-08-05 13:44:45,749 - INFO - Đã cuộn 1 lần
+2025-08-05 13:45:19,120 - ERROR - Không tìm thấy element trong danh sách
+2025-08-05 13:45:20,110 - INFO - Đã cuộn +1 lần
+2025-08-05 13:45:20,618 - INFO - Đã cuộn 1 lần
+2025-08-05 13:45:37,464 - ERROR - Không tìm thấy element trong danh sách
+2025-08-05 13:45:37,862 - INFO - Đã cuộn +1 lần
+2025-08-05 13:45:39,870 - INFO - Đã cuộn 1 lần
+2025-08-05 13:46:07,560 - ERROR - Không tìm thấy element trong danh sách
+2025-08-05 13:46:07,964 - INFO - Đã cuộn +1 lần
+2025-08-05 13:46:09,973 - INFO - Đã cuộn 1 lần
+2025-08-05 13:46:16,363 - ERROR - Không tìm thấy element trong danh sách
+2025-08-05 13:46:16,975 - INFO - Đã cuộn +1 lần
+2025-08-05 13:46:17,484 - INFO - Đã cuộn 1 lần
+2025-08-05 13:46:39,234 - ERROR - Không tìm thấy element trong danh sách
+2025-08-05 13:46:39,857 - INFO - Đã cuộn +1 lần
+2025-08-05 13:46:40,864 - INFO - Đã cuộn 1 lần
+2025-08-05 13:46:49,034 - ERROR - Không tìm thấy element trong danh sách
+2025-08-05 13:46:49,656 - INFO - Đã cuộn +1 lần
+2025-08-05 13:46:50,661 - INFO - Đã cuộn 1 lần
+2025-08-05 13:47:06,416 - ERROR - Không tìm thấy element trong danh sách
+2025-08-05 13:47:06,832 - INFO - Cuộn ngược +1 lần
+2025-08-05 13:47:08,838 - INFO - Cuộn ngược 1 lần
+2025-08-05 13:48:55,994 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Tin của ")]')
+2025-08-05 13:48:56,632 - INFO - Đã cuộn +1 lần
+2025-08-05 13:48:57,638 - INFO - Đã cuộn 1 lần
+2025-08-05 13:49:15,551 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Tin của ")]')
+2025-08-05 13:49:16,220 - INFO - Đã cuộn +1 lần
+2025-08-05 13:49:17,228 - INFO - Đã cuộn 1 lần
+2025-08-05 13:49:45,426 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Tin của ")]')
+2025-08-05 13:49:46,095 - INFO - Đã cuộn +1 lần
+2025-08-05 13:49:46,608 - INFO - Đã cuộn 1 lần
+2025-08-05 13:50:11,193 - ERROR - Không tìm thấy element trong danh sách
+2025-08-05 13:50:12,178 - INFO - Đã cuộn +1 lần
+2025-08-05 13:50:12,682 - INFO - Đã cuộn 1 lần
+2025-08-05 13:50:17,466 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Tin của ")]')
+2025-08-05 13:50:18,419 - INFO - Đã cuộn +1 lần
+2025-08-05 13:50:18,934 - INFO - Đã cuộn 1 lần
+2025-08-05 13:55:58,788 - INFO - Đã cuộn +1 lần
+2025-08-05 13:55:59,304 - INFO - Đã cuộn 1 lần
+2025-08-05 13:55:59,716 - INFO - Đã cuộn +1 lần
+2025-08-05 13:56:01,726 - INFO - Đã cuộn 1 lần
+2025-08-05 13:56:02,102 - INFO - Đã cuộn +1 lần
+2025-08-05 13:56:04,110 - INFO - Đã cuộn 1 lần
+2025-08-05 13:56:04,872 - ERROR - Không tìm thấy element trong danh sách
+2025-08-05 13:56:05,234 - INFO - Cuộn ngược +1 lần
+2025-08-05 13:56:07,250 - INFO - Cuộn ngược 1 lần
+2025-08-05 13:56:08,518 - ERROR - Không tìm thấy element trong danh sách
+2025-08-05 13:56:08,951 - INFO - Cuộn ngược +1 lần
+2025-08-05 13:56:10,954 - INFO - Cuộn ngược 1 lần
+2025-08-05 13:56:12,120 - ERROR - Không tìm thấy element trong danh sách
+2025-08-05 13:56:12,539 - INFO - Cuộn ngược +1 lần
+2025-08-05 13:56:14,545 - INFO - Cuộn ngược 1 lần
+2025-08-05 13:56:15,739 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-05 13:56:15,739 - INFO - Đã về đầu trang
+2025-08-05 14:02:37,700 - INFO - Bắt đầu đăng nhập vào tài khoản đã lưu
+2025-08-05 14:02:42,712 - ERROR - Không thể đăng nhập AttributeError - 'Device' object has no attribute 'find_element'
+2025-08-05 14:13:08,922 - INFO - Bắt đầu đăng nhập vào tài khoản đã lưu
+2025-08-05 14:13:14,065 - ERROR - Không tìm thấy element trong danh sách
+2025-08-05 14:13:14,071 - ERROR - Không thể đăng nhập
+2025-08-05 14:50:46,880 - ERROR - Không tìm thấy element trong danh sách
+2025-08-05 14:50:46,881 - ERROR - Không tìm thấy cài đặt
+2025-08-05 14:52:04,613 - ERROR - Không tìm thấy element trong danh sách
+2025-08-05 14:52:04,616 - ERROR - Không tìm thấy cài đặt
+2025-08-05 14:56:16,065 - INFO - Tới cuối trang
+2025-08-05 14:56:16,557 - ERROR - Không tìm thấy element trong danh sách
+2025-08-05 14:56:16,559 - ERROR - Không tìm thấy nút đăng xuất
+2025-08-05 14:58:02,386 - INFO - Tới cuối trang
+2025-08-05 14:58:02,731 - ERROR - Không tìm thấy element trong danh sách
+2025-08-05 14:58:02,732 - ERROR - Không tìm thấy nút đăng xuất
+2025-08-05 14:58:36,947 - INFO - Đã cuộn +1 lần
+2025-08-05 14:58:38,964 - INFO - Đã cuộn 1 lần
+2025-08-05 14:58:38,965 - INFO - Tới cuối trang
+2025-08-05 14:58:39,211 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-05 14:58:41,659 - INFO - Đang đăng xuất
+2025-08-05 14:58:41,782 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-05 14:58:44,169 - INFO - Đăng xuất thành công
+2025-08-05 14:58:50,178 - INFO - Bắt đầu đăng nhập vào tài khoản Linh Lê
+2025-08-05 14:58:55,441 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[@content-desc="Linh Lê"]')
+2025-08-05 14:58:55,442 - INFO - Đăng nhập thành công vào tài khoản Linh Lê
+2025-08-05 15:13:34,667 - INFO - Bắt đầu like post
+2025-08-05 15:13:34,990 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')
+2025-08-05 15:13:35,447 - INFO - Đã thả cảm xúc Thích
+2025-08-05 15:13:58,641 - INFO - Bắt đầu like post
+2025-08-05 15:13:58,950 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')
+2025-08-05 15:14:00,926 - INFO - Tìm thấy element với locator: ('xpath', '//com.facebook.feedback.sharedcomponents.reactions.dock.RopeStyleUFIDockView[@content-desc="Yêu thích"]')
+2025-08-05 15:14:01,239 - INFO - Đã thả cảm xúc Yêu thích
+2025-08-05 15:14:38,852 - INFO - Bắt đầu like post
+2025-08-05 15:14:39,128 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')
+2025-08-05 15:14:41,107 - INFO - Tìm thấy element với locator: ('xpath', '//com.facebook.feedback.sharedcomponents.reactions.dock.RopeStyleUFIDockView[@content-desc="Phẫn nộ"]')
+2025-08-05 15:14:41,455 - INFO - Đã thả cảm xúc Phẫn nộ
+2025-08-05 15:17:28,172 - INFO - Bắt đầu like post
+2025-08-05 15:17:28,437 - ERROR - Không tìm thấy element trong danh sách
+2025-08-05 15:17:29,448 - INFO - Đã cuộn +1 lần
+2025-08-05 15:17:29,952 - INFO - Đã cuộn 1 lần
+2025-08-05 15:17:30,189 - ERROR - Không tìm thấy element trong danh sách
+2025-08-05 15:17:31,168 - INFO - Đã cuộn +1 lần
+2025-08-05 15:17:31,681 - INFO - Đã cuộn 1 lần
+2025-08-05 15:17:31,924 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')
+2025-08-05 15:17:33,898 - INFO - Tìm thấy element với locator: ('xpath', '//com.facebook.feedback.sharedcomponents.reactions.dock.RopeStyleUFIDockView[@content-desc="Thương thương"]')
+2025-08-05 15:17:34,195 - INFO - Đã thả cảm xúc Thương thương
+2025-08-05 15:18:02,134 - INFO - Bắt đầu like post
+2025-08-05 15:18:02,387 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')
+2025-08-05 15:18:04,381 - ERROR - Không tìm thấy element trong danh sách
+2025-08-05 15:18:04,383 - ERROR - Không tìm được emotion: Ha ha
+2025-08-05 15:18:17,515 - INFO - Bắt đầu like post
+2025-08-05 15:18:17,837 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')
+2025-08-05 15:18:19,786 - INFO - Tìm thấy element với locator: ('xpath', '//com.facebook.feedback.sharedcomponents.reactions.dock.RopeStyleUFIDockView[@content-desc="Haha"]')
+2025-08-05 15:18:20,107 - INFO - Đã thả cảm xúc Haha
+2025-08-05 15:18:35,171 - INFO - Bắt đầu like post
+2025-08-05 15:18:35,497 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')
+2025-08-05 15:18:37,478 - INFO - Tìm thấy element với locator: ('xpath', '//com.facebook.feedback.sharedcomponents.reactions.dock.RopeStyleUFIDockView[@content-desc="Wow"]')
+2025-08-05 15:18:37,784 - INFO - Đã thả cảm xúc Wow
+2025-08-05 15:18:49,913 - INFO - Bắt đầu like post
+2025-08-05 15:18:50,255 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')
+2025-08-05 15:18:52,311 - INFO - Tìm thấy element với locator: ('xpath', '//com.facebook.feedback.sharedcomponents.reactions.dock.RopeStyleUFIDockView[@content-desc="Buồn"]')
+2025-08-05 15:18:52,609 - INFO - Đã thả cảm xúc Buồn
+2025-08-05 15:19:10,843 - INFO - Bắt đầu like post
+2025-08-05 15:19:11,180 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')
+2025-08-05 15:19:13,215 - INFO - Tìm thấy element với locator: ('xpath', '//com.facebook.feedback.sharedcomponents.reactions.dock.RopeStyleUFIDockView[@content-desc="Phẫn nộ"]')
+2025-08-05 15:19:13,571 - INFO - Đã thả cảm xúc Phẫn nộ
+2025-08-05 15:23:21,663 - INFO - Bắt đầu watch story
+2025-08-05 15:23:21,829 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-05 15:23:21,831 - INFO - Đã về đầu trang
+2025-08-05 15:23:27,082 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Tin của ")]')
+2025-08-05 15:23:27,442 - INFO - Xem story
+2025-08-05 15:23:42,446 - INFO - Xem story chán rồi, té thôi
+2025-08-05 15:23:43,117 - INFO - Cuộn ngược +1 lần
+2025-08-05 15:23:45,132 - INFO - Cuộn ngược 1 lần
+2025-08-05 15:23:45,135 - ERROR - Không lối thoát hẹ hẹ
+2025-08-05 15:25:30,728 - INFO - Bắt đầu watch reels
+2025-08-05 15:25:31,001 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-05 15:25:31,002 - INFO - Đã về đầu trang
+2025-08-05 15:25:36,217 - ERROR - Không tìm thấy element trong danh sách
+2025-08-05 15:25:37,157 - INFO - Đã cuộn +1 lần
+2025-08-05 15:25:37,663 - INFO - Đã cuộn 1 lần
+2025-08-05 15:25:37,840 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Xem thước phim")]')
+2025-08-05 15:25:38,142 - INFO - Lướt trên mặt nước anh như cơn sóng
+2025-08-05 15:25:51,453 - INFO - Đã cuộn +1 lần
+2025-08-05 15:25:53,468 - INFO - Đã cuộn 1 lần
+2025-08-05 15:25:53,471 - INFO - Content nhảm vl, lướt
+2025-08-05 15:26:35,619 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Quay lại")]')
+2025-08-05 15:26:35,945 - INFO - Thoát về màn hình chính
+2025-08-06 11:23:35,624 - INFO - Đã cuộn +1 lần
+2025-08-06 11:23:37,633 - INFO - Đã cuộn 1 lần
+2025-08-06 11:23:37,634 - INFO - Tới cuối trang
+2025-08-06 11:23:38,008 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-06 11:23:40,460 - INFO - Đang đăng xuất
+2025-08-06 11:23:40,554 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-06 11:23:42,943 - INFO - Đăng xuất thành công
+2025-08-06 11:23:48,946 - INFO - Bắt đầu đăng nhập vào tài khoản Linh Lê
+2025-08-06 11:23:54,227 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[@content-desc="Linh Lê"]')
+2025-08-06 11:23:54,228 - INFO - Đăng nhập thành công vào tài khoản Linh Lê
+2025-08-06 11:24:00,817 - INFO - Bắt đầu tạo bài đăng mới
+2025-08-06 11:24:01,041 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-06 11:24:01,042 - INFO - Đã về đầu trang
+2025-08-06 11:24:06,205 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.ViewGroup[@content-desc="Viết bài trên Facebook"]')
+2025-08-06 11:24:06,543 - INFO - Vào giao diện tạo bài đăng
+2025-08-06 11:24:07,760 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Ảnh/video"]')
+2025-08-06 11:24:08,164 - INFO - Vào giao diện chọn ảnh
+2025-08-06 11:24:09,385 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Chọn nhiều file"]')
+2025-08-06 11:24:09,775 - INFO - Giao diện thêm ảnh
+2025-08-06 11:24:11,009 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Ảnh chụp vào ngày thg 7 31, 2025 11:36")]')
+2025-08-06 11:24:11,009 - INFO - Tìm được ảnh: Ảnh chụp vào ngày thg 7 31, 2025 11:36
+2025-08-06 11:24:11,475 - INFO - Đã thêm toàn bộ ảnh
+2025-08-06 11:24:11,653 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Tiếp"]')
+2025-08-06 11:24:11,654 - INFO - Trở về nhập text
+2025-08-06 11:24:13,110 - INFO - Về giao diện nhập text
+2025-08-06 11:24:13,273 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.AutoCompleteTextView')
+2025-08-06 11:26:30,164 - INFO - Bắt đầu tạo bài đăng mới
+2025-08-06 11:26:30,393 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-06 11:26:30,393 - INFO - Đã về đầu trang
+2025-08-06 11:26:35,655 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.ViewGroup[@content-desc="Viết bài trên Facebook"]')
+2025-08-06 11:26:36,074 - INFO - Vào giao diện tạo bài đăng
+2025-08-06 11:26:37,289 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Ảnh/video"]')
+2025-08-06 11:26:37,701 - INFO - Vào giao diện chọn ảnh
+2025-08-06 11:26:38,916 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Chọn nhiều file"]')
+2025-08-06 11:26:39,337 - INFO - Giao diện thêm ảnh
+2025-08-06 11:26:40,562 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Ảnh chụp vào ngày thg 7 31, 2025 11:36")]')
+2025-08-06 11:26:40,563 - INFO - Tìm được ảnh: Ảnh chụp vào ngày thg 7 31, 2025 11:36
+2025-08-06 11:26:40,939 - INFO - Đã thêm toàn bộ ảnh
+2025-08-06 11:26:41,142 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Tiếp"]')
+2025-08-06 11:26:41,143 - INFO - Trở về nhập text
+2025-08-06 11:26:42,576 - INFO - Về giao diện nhập text
+2025-08-06 11:26:42,729 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.AutoCompleteTextView')
+2025-08-06 11:26:49,459 - INFO - Nhập xong text
+2025-08-06 11:26:50,616 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="ĐĂNG"]')
+2025-08-06 11:26:51,017 - INFO - Đăng thành công
+2025-08-06 16:47:52,766 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.EditText')
+2025-08-06 16:47:52,767 - ERROR - Không tìm thấy element trong danh sách
+2025-08-06 16:51:47,619 - INFO - Tìm thấy 2 element với locator: ('xpath', '//android.widget.EditText')
+2025-08-06 16:55:50,523 - ERROR - Lỗi AttributeError khi xử lý locator ('className', 'android.widget.EditText'): 'UiObject' object has no attribute 'all'
+2025-08-06 16:55:50,523 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-06 16:57:56,662 - ERROR - Lỗi AttributeError khi xử lý locator ('className', 'android.widget.EditText'): 'UiObject' object has no attribute 'all'
+2025-08-06 16:57:56,664 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-06 17:03:25,374 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-06 17:03:25,375 - ERROR - Lỗi AttributeError khi xử lý locator ('className', 'android.widget.EditText'): 'UiObject' object has no attribute 'at'
+2025-08-06 17:03:25,375 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-06 17:05:38,876 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-06 17:05:39,489 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-06 17:05:40,069 - INFO - Đăng đăng nhập
+2025-08-07 07:59:25,914 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 07:59:26,590 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 07:59:27,201 - INFO - Đăng đăng nhập
+2025-08-07 08:19:52,267 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 08:19:52,946 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 08:19:53,612 - INFO - Đăng đăng nhập
+2025-08-07 08:19:56,029 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 08:20:38,364 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 08:20:38,931 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 08:20:39,522 - INFO - Đăng đăng nhập
+2025-08-07 08:20:41,847 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 08:56:19,457 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 08:56:19,662 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 08:56:20,706 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 08:56:20,801 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-07 08:56:20,801 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-07 09:05:42,970 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:05:43,109 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 09:05:43,761 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 09:05:44,417 - INFO - Đăng đăng nhập
+2025-08-07 09:05:53,426 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:05:53,749 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:05:53,844 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-07 09:05:53,845 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-07 09:21:28,908 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:21:29,060 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 09:21:29,748 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 09:21:30,406 - INFO - Đăng đăng nhập
+2025-08-07 09:21:38,926 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:21:39,046 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:21:39,181 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-07 09:21:39,182 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-07 09:22:58,691 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:22:58,826 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 09:22:59,464 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 09:23:00,130 - INFO - Đăng đăng nhập
+2025-08-07 09:23:07,756 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:23:07,756 - INFO - Đăng xuất
+2025-08-07 09:23:10,735 - INFO - Đã cuộn +1 lần
+2025-08-07 09:23:12,740 - INFO - Đã cuộn 1 lần
+2025-08-07 09:23:12,740 - INFO - Tới cuối trang
+2025-08-07 09:23:13,099 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:23:13,100 - ERROR - Không tìm thấy nút đăng xuất
+2025-08-07 09:23:13,230 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:23:13,316 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-07 09:23:13,316 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-07 09:26:41,418 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:26:41,507 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 09:26:42,162 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 09:26:42,885 - INFO - Đăng đăng nhập
+2025-08-07 09:26:50,370 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:26:50,371 - INFO - Đăng nhập thành công
+2025-08-07 09:26:50,371 - INFO - Đăng xuất
+2025-08-07 09:26:55,236 - INFO - Đã cuộn +1 lần
+2025-08-07 09:26:57,248 - INFO - Đã cuộn 1 lần
+2025-08-07 09:26:57,249 - INFO - Tới cuối trang
+2025-08-07 09:26:57,500 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:26:57,501 - ERROR - Không tìm thấy nút đăng xuất
+2025-08-07 09:26:57,577 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:26:57,657 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-07 09:26:57,657 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-07 09:42:22,853 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:42:22,999 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 09:42:23,802 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 09:42:24,542 - INFO - Đăng đăng nhập
+2025-08-07 09:42:33,383 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:42:33,384 - INFO - Đăng nhập thành công
+2025-08-07 09:42:43,395 - INFO - Đăng xuất
+2025-08-07 09:42:49,817 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-07 09:42:50,579 - INFO - Vào menu
+2025-08-07 09:42:51,107 - INFO - Đã cuộn +1 lần
+2025-08-07 09:42:53,115 - INFO - Đã cuộn 1 lần
+2025-08-07 09:42:53,116 - INFO - Tới cuối trang
+2025-08-07 09:42:53,699 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-07 09:42:56,427 - INFO - Đang đăng xuất
+2025-08-07 09:42:56,642 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:42:56,736 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:42:56,736 - ERROR - Không thấy box xác nhận
+2025-08-07 09:42:56,843 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:42:56,910 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-07 09:42:56,911 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-07 09:50:10,301 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:50:10,437 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 09:50:11,099 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 09:50:11,809 - INFO - Đăng đăng nhập
+2025-08-07 09:50:18,606 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:50:18,607 - INFO - Đăng nhập thành công
+2025-08-07 09:50:28,614 - INFO - Đăng xuất
+2025-08-07 09:50:34,940 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-07 09:50:35,614 - INFO - Vào menu
+2025-08-07 09:50:38,227 - INFO - Đã cuộn +1 lần
+2025-08-07 09:50:40,241 - INFO - Đã cuộn 1 lần
+2025-08-07 09:50:40,241 - INFO - Tới cuối trang
+2025-08-07 09:50:40,769 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:50:40,770 - ERROR - Không tìm thấy nút đăng xuất
+2025-08-07 09:50:40,901 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:50:40,977 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-07 09:50:40,978 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-07 09:52:22,725 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:52:22,858 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 09:52:23,460 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 09:52:24,254 - INFO - Đăng đăng nhập
+2025-08-07 09:52:30,781 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:52:30,782 - INFO - Đăng nhập thành công
+2025-08-07 09:52:40,794 - INFO - Đăng xuất
+2025-08-07 09:52:47,136 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-07 09:52:47,825 - INFO - Vào menu
+2025-08-07 09:52:54,432 - INFO - Đã cuộn +1 lần
+2025-08-07 09:52:56,447 - INFO - Đã cuộn 1 lần
+2025-08-07 09:52:56,448 - INFO - Tới cuối trang
+2025-08-07 09:52:56,904 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:52:56,905 - ERROR - Không tìm thấy nút đăng xuất
+2025-08-07 09:52:57,032 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 09:52:57,392 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-07 09:52:57,392 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-07 09:54:40,010 - INFO - Cuộn ngược +1 lần
+2025-08-07 09:54:42,018 - INFO - Cuộn ngược 1 lần
+2025-08-07 09:55:01,268 - INFO - Cuộn ngược +1 lần
+2025-08-07 09:55:03,281 - INFO - Cuộn ngược 1 lần
+2025-08-07 09:55:14,902 - INFO - Cuộn ngược +1 lần
+2025-08-07 09:55:16,916 - INFO - Cuộn ngược 1 lần
+2025-08-07 09:55:46,556 - INFO - Đã cuộn +1 lần
+2025-08-07 09:55:48,568 - INFO - Đã cuộn 1 lần
+2025-08-07 09:56:02,589 - INFO - Đã cuộn +1 lần
+2025-08-07 09:56:04,598 - INFO - Đã cuộn 1 lần
+2025-08-07 09:57:55,729 - INFO - Đã cuộn +1 lần
+2025-08-07 09:57:57,744 - INFO - Đã cuộn 1 lần
+2025-08-07 10:01:34,191 - INFO - Đã cuộn +1 lần
+2025-08-07 10:01:36,207 - INFO - Đã cuộn 1 lần
+2025-08-07 10:02:11,343 - INFO - Đã cuộn +1 lần
+2025-08-07 10:02:13,354 - INFO - Đã cuộn 1 lần
+2025-08-07 10:02:58,325 - INFO - Đã cuộn +1 lần
+2025-08-07 10:03:00,333 - INFO - Đã cuộn 1 lần
+2025-08-07 10:04:54,067 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:04:54,180 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 10:04:54,819 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 10:04:55,485 - INFO - Đang đăng nhập
+2025-08-07 10:05:02,498 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:05:02,500 - INFO - Đăng nhập thành công
+2025-08-07 10:05:12,503 - INFO - Đăng xuất
+2025-08-07 10:05:18,909 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-07 10:05:19,574 - INFO - Vào menu
+2025-08-07 10:05:26,333 - INFO - Đã cuộn +1 lần
+2025-08-07 10:05:28,613 - INFO - Đã cuộn +1 lần
+2025-08-07 10:05:30,618 - INFO - Đã cuộn 2 lần
+2025-08-07 10:05:30,619 - INFO - Tới cuối trang
+2025-08-07 10:05:30,982 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-07 10:05:31,574 - INFO - Đang đăng xuất
+2025-08-07 10:05:33,757 - INFO - Tìm thấy element với locator: ('text', 'LƯU')
+2025-08-07 10:05:34,303 - INFO - Lưu tài khoản
+2025-08-07 10:05:36,604 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-07 10:05:39,204 - INFO - Đăng xuất thành công
+2025-08-07 10:05:47,383 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 10:05:47,616 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 10:05:54,273 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:05:54,341 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-07 10:05:54,342 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-07 10:17:56,926 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:17:57,065 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 10:17:57,834 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 10:17:58,493 - INFO - Đang đăng nhập
+2025-08-07 10:18:08,309 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:18:08,309 - INFO - Đăng nhập thành công
+2025-08-07 10:18:18,313 - INFO - Đăng xuất
+2025-08-07 10:18:24,659 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-07 10:18:25,363 - INFO - Vào menu
+2025-08-07 10:18:32,104 - INFO - Đã cuộn +1 lần
+2025-08-07 10:18:34,368 - INFO - Đã cuộn +1 lần
+2025-08-07 10:18:36,381 - INFO - Đã cuộn 2 lần
+2025-08-07 10:18:36,382 - INFO - Tới cuối trang
+2025-08-07 10:18:36,878 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-07 10:18:37,533 - INFO - Đang đăng xuất
+2025-08-07 10:18:39,755 - INFO - Tìm thấy element với locator: ('text', 'LƯU')
+2025-08-07 10:18:40,346 - INFO - Lưu tài khoản
+2025-08-07 10:18:42,562 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-07 10:18:45,033 - INFO - Đăng xuất thành công
+2025-08-07 10:18:53,147 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 10:18:53,358 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 10:19:00,272 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:19:00,392 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 10:19:01,110 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 10:19:01,722 - INFO - Đang đăng nhập
+2025-08-07 10:19:07,995 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:19:07,996 - INFO - Đăng nhập thành công
+2025-08-07 10:19:17,998 - INFO - Đăng xuất
+2025-08-07 10:33:21,877 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:33:21,980 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 10:33:22,485 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 10:33:23,157 - INFO - Đang đăng nhập
+2025-08-07 10:33:30,078 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:33:32,478 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:33:32,480 - INFO - Đăng nhập thành công
+2025-08-07 10:33:42,492 - INFO - Đăng xuất
+2025-08-07 10:33:48,932 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-07 10:33:49,693 - INFO - Vào menu
+2025-08-07 10:33:56,413 - INFO - Đã cuộn +1 lần
+2025-08-07 10:33:58,680 - INFO - Đã cuộn +1 lần
+2025-08-07 10:34:00,685 - INFO - Đã cuộn 2 lần
+2025-08-07 10:34:00,686 - INFO - Tới cuối trang
+2025-08-07 10:34:01,087 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-07 10:34:01,641 - INFO - Đang đăng xuất
+2025-08-07 10:34:03,856 - INFO - Tìm thấy element với locator: ('text', 'LƯU')
+2025-08-07 10:34:04,392 - INFO - Lưu tài khoản
+2025-08-07 10:34:06,569 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-07 10:34:09,087 - INFO - Đăng xuất thành công
+2025-08-07 10:34:17,265 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 10:34:17,459 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 10:34:24,299 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:34:24,422 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 10:34:25,163 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 10:34:25,750 - INFO - Đang đăng nhập
+2025-08-07 10:34:32,168 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:34:32,254 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:34:32,256 - INFO - Đăng nhập thành công
+2025-08-07 10:34:42,273 - INFO - Đăng xuất
+2025-08-07 10:34:48,576 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-07 10:34:49,142 - INFO - Vào menu
+2025-08-07 10:34:55,865 - INFO - Đã cuộn +1 lần
+2025-08-07 10:34:58,109 - INFO - Đã cuộn +1 lần
+2025-08-07 10:35:00,119 - INFO - Đã cuộn 2 lần
+2025-08-07 10:35:00,121 - INFO - Tới cuối trang
+2025-08-07 10:35:00,501 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-07 10:35:01,109 - INFO - Đang đăng xuất
+2025-08-07 10:35:03,184 - INFO - Tìm thấy element với locator: ('text', 'LƯU')
+2025-08-07 10:35:03,627 - INFO - Lưu tài khoản
+2025-08-07 10:35:05,704 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-07 10:35:08,190 - INFO - Đăng xuất thành công
+2025-08-07 10:35:16,336 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 10:35:16,527 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 10:35:23,343 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:35:23,442 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 10:35:24,061 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 10:35:24,747 - INFO - Đang đăng nhập
+2025-08-07 10:35:31,032 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:35:31,164 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:35:31,165 - INFO - Đăng nhập thành công
+2025-08-07 10:35:41,179 - INFO - Đăng xuất
+2025-08-07 10:35:47,429 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:35:47,430 - WARNING - Không tìm được theo xpath, thử tọa độ cứng
+2025-08-07 10:35:49,639 - INFO - Vào menu
+2025-08-07 10:35:56,224 - INFO - Đã cuộn +1 lần
+2025-08-07 10:35:58,324 - INFO - Đã cuộn +1 lần
+2025-08-07 10:36:00,329 - INFO - Đã cuộn 2 lần
+2025-08-07 10:36:00,330 - INFO - Tới cuối trang
+2025-08-07 10:36:00,663 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:36:00,663 - ERROR - Không tìm thấy nút đăng xuất
+2025-08-07 10:40:16,311 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:40:16,451 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 10:40:17,087 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 10:40:17,785 - INFO - Đang đăng nhập
+2025-08-07 10:40:24,611 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:40:24,611 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 10:40:27,215 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:40:27,215 - INFO - Đăng nhập thành công
+2025-08-07 10:40:37,224 - INFO - Đăng xuất
+2025-08-07 10:40:43,561 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-07 10:40:44,271 - INFO - Vào menu
+2025-08-07 10:40:51,044 - INFO - Đã cuộn +1 lần
+2025-08-07 10:40:53,307 - INFO - Đã cuộn +1 lần
+2025-08-07 10:40:55,309 - INFO - Đã cuộn 2 lần
+2025-08-07 10:40:55,309 - INFO - Tới cuối trang
+2025-08-07 10:40:55,718 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-07 10:40:56,353 - INFO - Đang đăng xuất
+2025-08-07 10:40:58,521 - INFO - Tìm thấy element với locator: ('text', 'LƯU')
+2025-08-07 10:40:59,087 - INFO - Lưu tài khoản
+2025-08-07 10:41:01,237 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-07 10:41:03,876 - INFO - Đăng xuất thành công
+2025-08-07 10:41:11,998 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 10:41:12,200 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 10:41:19,099 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:41:19,236 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 10:41:20,000 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 10:41:20,644 - INFO - Đang đăng nhập
+2025-08-07 10:41:27,143 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:41:27,143 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 10:41:27,272 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:41:27,273 - INFO - Đăng nhập thành công
+2025-08-07 10:41:37,273 - INFO - Đăng xuất
+2025-08-07 10:41:43,580 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-07 10:41:44,282 - INFO - Vào menu
+2025-08-07 10:41:51,041 - INFO - Đã cuộn +1 lần
+2025-08-07 10:41:53,302 - INFO - Đã cuộn +1 lần
+2025-08-07 10:41:55,307 - INFO - Đã cuộn 2 lần
+2025-08-07 10:41:55,308 - INFO - Tới cuối trang
+2025-08-07 10:41:55,712 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-07 10:41:56,335 - INFO - Đang đăng xuất
+2025-08-07 10:41:58,423 - INFO - Tìm thấy element với locator: ('text', 'LƯU')
+2025-08-07 10:41:58,945 - INFO - Lưu tài khoản
+2025-08-07 10:42:01,039 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-07 10:42:03,545 - INFO - Đăng xuất thành công
+2025-08-07 10:42:11,711 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 10:42:11,919 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 10:42:18,802 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:42:18,918 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 10:42:19,659 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 10:42:20,341 - INFO - Đang đăng nhập
+2025-08-07 10:42:26,885 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:42:26,886 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 10:42:27,015 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:42:27,016 - INFO - Đăng nhập thành công
+2025-08-07 10:42:37,025 - INFO - Đăng xuất
+2025-08-07 10:42:43,437 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-07 10:42:44,196 - INFO - Vào menu
+2025-08-07 10:42:50,783 - INFO - Đã cuộn +1 lần
+2025-08-07 10:42:52,997 - INFO - Đã cuộn +1 lần
+2025-08-07 10:42:55,003 - INFO - Đã cuộn 2 lần
+2025-08-07 10:42:55,003 - INFO - Tới cuối trang
+2025-08-07 10:42:55,204 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 10:42:55,204 - ERROR - Không tìm thấy nút đăng xuất
+2025-08-07 11:40:15,307 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 11:40:15,392 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-07 11:40:15,392 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-07 11:40:56,949 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 11:40:57,039 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 11:40:57,671 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 11:40:58,378 - INFO - Đang đăng nhập
+2025-08-07 11:41:04,890 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 11:41:04,891 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 11:41:05,037 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 11:41:05,038 - INFO - Đăng nhập thành công
+2025-08-07 11:41:15,041 - INFO - Đăng xuất
+2025-08-07 14:17:55,466 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:17:55,602 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 14:17:56,468 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 14:17:57,253 - INFO - Đang đăng nhập
+2025-08-07 14:18:04,085 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:18:04,085 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 14:18:04,228 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:18:04,228 - INFO - Đăng nhập thành công
+2025-08-07 14:18:10,238 - INFO - Đăng xuất
+2025-08-07 14:19:23,694 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:19:25,532 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-07 14:19:25,533 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-07 14:20:53,148 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:20:53,295 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 14:20:53,996 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 14:20:54,626 - INFO - Đang đăng nhập
+2025-08-07 14:21:04,840 - INFO - Tìm thấy element với locator: ('text', 'Lưu')
+2025-08-07 14:21:05,634 - INFO - Lưu tài khoản
+2025-08-07 14:21:09,007 - INFO - Tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-07 14:21:09,274 - INFO - Tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-07 14:21:10,046 - INFO - Bỏ qua
+2025-08-07 14:21:13,307 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:21:13,307 - INFO - Đăng nhập thành công
+2025-08-07 14:21:19,322 - INFO - Đăng xuất
+2025-08-07 14:24:11,906 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:24:11,981 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-07 14:24:11,982 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-07 14:27:18,917 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:27:19,021 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 14:27:19,658 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 14:27:20,338 - INFO - Đang đăng nhập
+2025-08-07 14:27:31,086 - INFO - Tìm thấy element với locator: ('text', 'Lưu')
+2025-08-07 14:27:32,348 - INFO - Lưu tài khoản
+2025-08-07 14:27:35,555 - INFO - Tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-07 14:27:35,752 - INFO - Tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-07 14:27:36,404 - INFO - Bỏ qua
+2025-08-07 14:27:39,584 - INFO - Tìm thấy element với locator: ('text', 'BỎ QUA')
+2025-08-07 14:27:43,199 - INFO - Tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-07 14:27:43,408 - INFO - Tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-07 14:27:43,879 - INFO - Bỏ qua
+2025-08-07 14:27:47,661 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:27:49,555 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:27:49,556 - INFO - Đăng nhập thành công
+2025-08-07 14:27:55,563 - INFO - Đăng xuất
+2025-08-07 14:28:01,961 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-07 14:28:02,856 - INFO - Vào menu
+2025-08-07 14:28:09,621 - INFO - Đã cuộn +1 lần
+2025-08-07 14:28:11,902 - INFO - Đã cuộn +1 lần
+2025-08-07 14:28:13,918 - INFO - Đã cuộn 2 lần
+2025-08-07 14:28:13,918 - INFO - Tới cuối trang
+2025-08-07 14:28:14,386 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-07 14:28:15,058 - INFO - Đang đăng xuất
+2025-08-07 14:28:17,279 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:28:17,280 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 14:28:19,367 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-07 14:28:21,820 - INFO - Đăng xuất thành công
+2025-08-07 14:28:29,924 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 14:28:30,102 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 14:28:36,990 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:28:37,112 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 14:28:37,759 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 14:28:38,381 - INFO - Đang đăng nhập
+2025-08-07 14:28:48,488 - INFO - Tìm thấy element với locator: ('text', 'Lưu')
+2025-08-07 14:28:49,256 - INFO - Lưu tài khoản
+2025-08-07 14:28:52,643 - INFO - Tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-07 14:28:52,850 - INFO - Tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-07 14:28:53,498 - INFO - Bỏ qua
+2025-08-07 14:28:56,653 - INFO - Tìm thấy element với locator: ('text', 'BỎ QUA')
+2025-08-07 14:29:00,264 - INFO - Tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-07 14:29:02,640 - INFO - Tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-07 14:29:03,351 - INFO - Bỏ qua
+2025-08-07 14:29:07,221 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:29:07,365 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:29:07,365 - INFO - Đăng nhập thành công
+2025-08-07 14:29:13,379 - INFO - Đăng xuất
+2025-08-07 14:29:20,164 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-07 14:29:20,848 - INFO - Vào menu
+2025-08-07 14:29:27,551 - INFO - Đã cuộn +1 lần
+2025-08-07 14:29:29,819 - INFO - Đã cuộn +1 lần
+2025-08-07 14:29:31,824 - INFO - Đã cuộn 2 lần
+2025-08-07 14:29:31,824 - INFO - Tới cuối trang
+2025-08-07 14:29:32,215 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-07 14:29:32,836 - INFO - Đang đăng xuất
+2025-08-07 14:29:35,048 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:29:35,048 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 14:29:37,244 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-07 14:29:39,716 - INFO - Đăng xuất thành công
+2025-08-07 14:29:47,934 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 14:29:48,120 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 14:29:54,890 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:29:54,982 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 14:29:55,585 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 14:29:56,290 - INFO - Đang đăng nhập
+2025-08-07 14:30:06,393 - INFO - Tìm thấy element với locator: ('text', 'Lưu')
+2025-08-07 14:30:07,926 - INFO - Lưu tài khoản
+2025-08-07 14:30:12,703 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:30:12,705 - INFO - Đăng nhập thành công
+2025-08-07 14:30:27,927 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:30:28,045 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 14:30:28,757 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 14:30:29,502 - INFO - Đang đăng nhập
+2025-08-07 14:30:39,762 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:30:39,762 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 14:30:39,844 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:30:39,845 - INFO - Đăng nhập thành công
+2025-08-07 14:30:45,850 - INFO - Đăng xuất
+2025-08-07 14:35:54,634 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:35:54,770 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 14:35:55,384 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 14:35:55,934 - INFO - Đang đăng nhập
+2025-08-07 14:36:06,062 - INFO - Tìm thấy element với locator: ('text', 'Lưu')
+2025-08-07 14:36:06,798 - INFO - Lưu tài khoản
+2025-08-07 14:36:09,932 - INFO - Tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-07 14:36:10,306 - INFO - Tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-07 14:36:10,852 - INFO - Bỏ qua
+2025-08-07 14:36:14,163 - INFO - Tìm thấy element với locator: ('text', 'BỎ QUA')
+2025-08-07 14:36:18,212 - INFO - Tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-07 14:36:18,375 - INFO - Tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-07 14:36:18,892 - INFO - Bỏ qua
+2025-08-07 14:36:22,066 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:36:22,127 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:36:22,128 - INFO - Đăng nhập thành công
+2025-08-07 14:36:28,138 - INFO - Đăng xuất
+2025-08-07 14:36:34,549 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-07 14:36:35,158 - INFO - Vào menu
+2025-08-07 14:36:41,864 - INFO - Đã cuộn +1 lần
+2025-08-07 14:36:44,094 - INFO - Đã cuộn +1 lần
+2025-08-07 14:36:46,109 - INFO - Đã cuộn 2 lần
+2025-08-07 14:36:46,109 - INFO - Tới cuối trang
+2025-08-07 14:36:46,591 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-07 14:36:47,242 - INFO - Đang đăng xuất
+2025-08-07 14:36:49,535 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:36:49,536 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 14:36:51,636 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-07 14:36:54,118 - INFO - Đăng xuất thành công
+2025-08-07 14:37:02,327 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 14:37:02,465 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 14:37:09,301 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:37:09,413 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 14:37:10,133 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 14:37:10,799 - INFO - Đang đăng nhập
+2025-08-07 14:37:21,318 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:37:21,319 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 14:37:21,433 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:37:21,433 - INFO - Đăng nhập thành công
+2025-08-07 14:37:27,449 - INFO - Đăng xuất
+2025-08-07 14:37:33,821 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:37:33,822 - WARNING - Không tìm được theo xpath, thử tọa độ cứng
+2025-08-07 14:37:36,031 - INFO - Vào menu
+2025-08-07 14:37:42,577 - INFO - Đã cuộn +1 lần
+2025-08-07 14:37:44,775 - INFO - Đã cuộn +1 lần
+2025-08-07 14:37:46,785 - INFO - Đã cuộn 2 lần
+2025-08-07 14:37:46,785 - INFO - Tới cuối trang
+2025-08-07 14:37:47,038 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:37:47,039 - ERROR - Không tìm thấy nút đăng xuất
+2025-08-07 14:37:47,127 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:37:47,189 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-07 14:37:47,190 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-07 14:38:52,195 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:38:52,329 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 14:38:52,913 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 14:38:53,593 - INFO - Đang đăng nhập
+2025-08-07 14:39:03,985 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:39:03,986 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 14:39:04,109 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:39:04,109 - INFO - Đăng nhập thành công
+2025-08-07 14:39:10,114 - INFO - Đăng xuất
+2025-08-07 14:39:16,568 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:39:16,569 - WARNING - Không tìm được theo xpath, thử tọa độ cứng
+2025-08-07 14:39:18,798 - INFO - Vào menu
+2025-08-07 14:39:25,338 - INFO - Đã cuộn +1 lần
+2025-08-07 14:39:27,567 - INFO - Đã cuộn +1 lần
+2025-08-07 14:39:29,583 - INFO - Đã cuộn 2 lần
+2025-08-07 14:39:29,584 - INFO - Tới cuối trang
+2025-08-07 14:39:29,984 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:39:29,985 - ERROR - Không tìm thấy nút đăng xuất
+2025-08-07 14:39:30,102 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:39:30,223 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 14:39:30,910 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:39:30,911 - ERROR - Không tìm được nút login
+2025-08-07 14:40:18,331 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 14:40:18,556 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 14:40:25,380 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:40:25,522 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 14:40:26,324 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 14:40:27,085 - INFO - Đang đăng nhập
+2025-08-07 14:40:37,537 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:40:37,538 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 14:40:37,631 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:40:37,632 - INFO - Đăng nhập thành công
+2025-08-07 14:40:43,646 - INFO - Đăng xuất
+2025-08-07 14:40:50,043 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-07 14:40:50,573 - INFO - Vào menu
+2025-08-07 14:40:57,212 - INFO - Đã cuộn +1 lần
+2025-08-07 14:40:59,429 - INFO - Đã cuộn +1 lần
+2025-08-07 14:41:01,439 - INFO - Đã cuộn 2 lần
+2025-08-07 14:41:01,439 - INFO - Tới cuối trang
+2025-08-07 14:41:01,954 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-07 14:41:02,591 - INFO - Đang đăng xuất
+2025-08-07 14:41:04,809 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:41:04,809 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 14:41:06,947 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-07 14:41:09,459 - INFO - Đăng xuất thành công
+2025-08-07 14:41:17,569 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 14:41:17,755 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 14:41:24,683 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:41:24,794 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 14:41:25,481 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 14:41:26,095 - INFO - Đang đăng nhập
+2025-08-07 14:41:36,193 - INFO - Tìm thấy element với locator: ('text', 'Lưu')
+2025-08-07 14:41:37,039 - INFO - Lưu tài khoản
+2025-08-07 14:41:40,548 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:41:40,550 - INFO - Đăng nhập thành công
+2025-08-07 14:53:55,078 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 14:53:55,286 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 14:54:02,176 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:54:02,252 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-07 14:54:02,253 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-07 14:54:39,647 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:54:39,763 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 14:54:40,452 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 14:54:41,115 - INFO - Đang đăng nhập
+2025-08-07 14:54:51,755 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:54:51,756 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 14:54:52,193 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:54:52,194 - INFO - Đăng nhập thành công
+2025-08-07 14:54:58,199 - INFO - Đăng xuất
+2025-08-07 14:55:04,414 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:55:04,415 - WARNING - Không tìm được theo xpath, thử tọa độ cứng
+2025-08-07 14:55:06,631 - INFO - Vào menu
+2025-08-07 14:57:29,141 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:57:29,236 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-07 14:57:29,237 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-07 14:58:02,110 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 14:58:02,188 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-07 14:58:02,188 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-07 15:01:37,094 - INFO - Tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-07 15:01:37,414 - INFO - Tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-07 15:01:44,425 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 15:01:44,538 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 15:01:45,357 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 15:01:46,045 - INFO - Đang đăng nhập
+2025-08-07 15:01:56,615 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 15:01:56,616 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 15:01:56,780 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 15:01:56,781 - INFO - Đăng nhập thành công
+2025-08-07 15:02:02,788 - INFO - Đăng xuất
+2025-08-07 15:02:09,010 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 15:02:09,011 - WARNING - Không tìm được theo xpath, thử tọa độ cứng
+2025-08-07 15:02:11,229 - INFO - Vào menu
+2025-08-07 15:02:17,838 - INFO - Đã cuộn +1 lần
+2025-08-07 15:02:20,068 - INFO - Đã cuộn +1 lần
+2025-08-07 15:02:22,073 - INFO - Đã cuộn 2 lần
+2025-08-07 15:02:22,073 - INFO - Tới cuối trang
+2025-08-07 15:02:22,326 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 15:02:22,327 - ERROR - Không tìm thấy nút đăng xuất
+2025-08-07 15:02:22,517 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 15:02:22,580 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-07 15:02:22,580 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-07 15:03:31,717 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 15:03:32,041 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 15:03:39,129 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 15:03:39,259 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 15:03:40,060 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 15:03:40,744 - INFO - Đang đăng nhập
+2025-08-07 15:03:56,143 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 15:03:56,144 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 15:03:56,268 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 15:03:56,268 - INFO - Đăng nhập thành công
+2025-08-07 15:04:02,274 - INFO - Đăng xuất
+2025-08-07 15:04:08,679 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 15:04:08,680 - WARNING - Không tìm được theo xpath, thử tọa độ cứng
+2025-08-07 15:04:10,874 - INFO - Vào menu
+2025-08-07 15:04:17,496 - INFO - Đã cuộn +1 lần
+2025-08-07 15:04:20,547 - INFO - Đã cuộn +1 lần
+2025-08-07 15:04:22,551 - INFO - Đã cuộn 2 lần
+2025-08-07 15:04:22,552 - INFO - Tới cuối trang
+2025-08-07 15:04:23,008 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 15:04:23,009 - ERROR - Không tìm thấy nút đăng xuất
+2025-08-07 15:04:23,223 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 15:04:23,288 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-07 15:04:23,289 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-07 15:09:11,492 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 15:09:11,746 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 15:09:18,744 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 15:09:18,804 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-07 15:09:18,804 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-07 15:10:09,421 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 15:10:09,545 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 15:10:10,319 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 15:10:10,981 - INFO - Đang đăng nhập
+2025-08-07 15:10:31,434 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 15:10:31,434 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 15:10:31,563 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 15:10:31,563 - INFO - Đăng nhập thành công
+2025-08-07 15:10:37,568 - INFO - Đăng xuất
+2025-08-07 15:10:43,904 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 15:10:43,905 - WARNING - Không tìm được theo xpath, thử tọa độ cứng
+2025-08-07 15:10:46,108 - INFO - Vào menu
+2025-08-07 15:10:52,781 - INFO - Đã cuộn +1 lần
+2025-08-07 15:10:55,463 - INFO - Đã cuộn +1 lần
+2025-08-07 15:10:57,477 - INFO - Đã cuộn 2 lần
+2025-08-07 15:10:57,477 - INFO - Tới cuối trang
+2025-08-07 15:10:57,912 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 15:10:57,913 - ERROR - Không tìm thấy nút đăng xuất
+2025-08-07 15:10:58,162 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 15:10:58,265 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-07 15:10:58,265 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-07 15:11:42,582 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 15:11:42,833 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 15:11:49,893 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 15:11:50,006 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 15:11:50,666 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 15:11:51,344 - INFO - Đang đăng nhập
+2025-08-07 15:12:01,669 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 15:12:01,670 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 15:12:01,789 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 15:12:01,790 - INFO - Đăng nhập thành công
+2025-08-07 15:12:07,806 - INFO - Đăng xuất
+2025-08-07 15:12:14,304 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-07 15:12:14,986 - INFO - Vào menu
+2025-08-07 15:12:21,676 - INFO - Đã cuộn +1 lần
+2025-08-07 15:12:23,907 - INFO - Đã cuộn +1 lần
+2025-08-07 15:12:25,912 - INFO - Đã cuộn 2 lần
+2025-08-07 15:12:25,912 - INFO - Tới cuối trang
+2025-08-07 15:12:26,364 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-07 15:12:27,004 - INFO - Đang đăng xuất
+2025-08-07 15:12:29,230 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 15:12:29,231 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 15:12:31,328 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-07 15:12:33,890 - INFO - Đăng xuất thành công
+2025-08-07 15:12:42,229 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 15:12:42,433 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 15:12:49,263 - ERROR - Không tìm thấy element trong danh sách
+2025-08-07 15:12:49,319 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-07 15:12:49,319 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-07 15:14:37,933 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:14:38,074 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 15:14:38,721 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 15:14:39,365 - INFO - Đang đăng nhập
+2025-08-07 15:14:49,829 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:14:49,829 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 15:14:49,937 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:14:49,938 - INFO - Đăng nhập thành công
+2025-08-07 15:14:55,948 - INFO - Đăng xuất
+2025-08-07 15:15:03,558 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-07 15:15:04,403 - INFO - Vào menu
+2025-08-07 15:15:11,210 - INFO - Đã cuộn +1 lần
+2025-08-07 15:15:13,423 - INFO - Đã cuộn +1 lần
+2025-08-07 15:15:15,433 - INFO - Đã cuộn 2 lần
+2025-08-07 15:15:15,433 - INFO - Tới cuối trang
+2025-08-07 15:15:15,983 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-07 15:15:16,653 - INFO - Đang đăng xuất
+2025-08-07 15:15:18,867 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:15:18,868 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 15:15:20,999 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-07 15:15:23,559 - INFO - Đăng xuất thành công
+2025-08-07 15:15:34,089 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 15:15:34,349 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 15:15:41,390 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:15:41,516 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 15:15:42,176 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 15:15:42,861 - INFO - Đang đăng nhập
+2025-08-07 15:15:53,329 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:15:53,330 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 15:15:53,452 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:15:53,452 - INFO - Đăng nhập thành công
+2025-08-07 15:15:59,457 - INFO - Đăng xuất
+2025-08-07 15:16:05,841 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:16:05,841 - WARNING - Không tìm được theo xpath, thử tọa độ cứng
+2025-08-07 15:16:08,689 - INFO - Vào menu
+2025-08-07 15:16:15,318 - INFO - Đã cuộn +1 lần
+2025-08-07 15:16:17,532 - INFO - Đã cuộn +1 lần
+2025-08-07 15:16:19,538 - INFO - Đã cuộn 2 lần
+2025-08-07 15:16:19,539 - INFO - Tới cuối trang
+2025-08-07 15:16:20,089 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-07 15:16:20,829 - INFO - Đang đăng xuất
+2025-08-07 15:16:23,050 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:16:23,051 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 15:16:25,120 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-07 15:16:27,601 - INFO - Đăng xuất thành công
+2025-08-07 15:16:38,037 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 15:16:38,362 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 15:16:45,490 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:16:45,607 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 15:16:46,220 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 15:16:46,850 - INFO - Đang đăng nhập
+2025-08-07 15:16:57,280 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:16:57,281 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 15:16:57,386 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:16:57,386 - INFO - Đăng nhập thành công
+2025-08-07 15:24:40,353 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:24:50,472 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 15:24:51,072 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 15:24:51,731 - INFO - Đang đăng nhập
+2025-08-07 15:25:02,097 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:25:02,097 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 15:25:02,191 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:25:02,192 - INFO - Đăng nhập thành công
+2025-08-07 15:25:23,217 - INFO - Đăng xuất
+2025-08-07 15:25:23,507 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-07 15:25:24,188 - INFO - Vào menu
+2025-08-07 15:25:30,898 - INFO - Đã cuộn +1 lần
+2025-08-07 15:25:33,146 - INFO - Đã cuộn +1 lần
+2025-08-07 15:25:35,163 - INFO - Đã cuộn 2 lần
+2025-08-07 15:25:35,164 - INFO - Tới cuối trang
+2025-08-07 15:25:35,610 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-07 15:25:36,256 - INFO - Đang đăng xuất
+2025-08-07 15:25:38,568 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:25:38,568 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 15:25:40,695 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-07 15:25:43,263 - INFO - Đăng xuất thành công
+2025-08-07 15:25:53,580 - INFO - Tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-07 15:25:53,892 - INFO - Tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-07 15:25:54,859 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:26:05,129 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 15:26:05,789 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 15:26:06,527 - INFO - Đang đăng nhập
+2025-08-07 15:26:16,996 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:26:16,997 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 15:26:17,120 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:26:17,121 - INFO - Đăng nhập thành công
+2025-08-07 15:26:38,127 - INFO - Đăng xuất
+2025-08-07 15:26:38,531 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-07 15:26:39,300 - INFO - Vào menu
+2025-08-07 15:26:45,875 - INFO - Đã cuộn +1 lần
+2025-08-07 15:26:48,141 - INFO - Đã cuộn +1 lần
+2025-08-07 15:26:50,156 - INFO - Đã cuộn 2 lần
+2025-08-07 15:26:50,156 - INFO - Tới cuối trang
+2025-08-07 15:26:50,658 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-07 15:26:51,388 - INFO - Đang đăng xuất
+2025-08-07 15:26:53,629 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:26:53,629 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 15:26:55,731 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-07 15:26:58,233 - INFO - Đăng xuất thành công
+2025-08-07 15:27:08,385 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 15:27:08,586 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 15:27:09,866 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:27:20,128 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 15:27:20,718 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 15:27:21,523 - INFO - Đang đăng nhập
+2025-08-07 15:27:31,702 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:27:31,703 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 15:27:31,833 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:27:31,833 - INFO - Đăng nhập thành công
+2025-08-07 15:41:06,291 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 15:41:06,417 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-07 15:41:06,417 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:41:21,558 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 15:41:22,369 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 15:41:23,076 - INFO - Đang đăng nhập
+2025-08-07 15:41:35,711 - WARNING - Không tìm thấy element với locator: ('text', 'Lưu')
+2025-08-07 15:41:35,711 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:41:35,712 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 15:41:35,831 - WARNING - Không tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-07 15:41:35,832 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:41:35,832 - INFO - Đăng nhập thành công
+2025-08-07 15:43:15,143 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-07 15:43:15,294 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 15:43:15,514 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-07 15:43:15,626 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 15:43:16,686 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-07 15:43:16,823 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 15:43:16,824 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:43:32,030 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 15:43:32,662 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 15:43:33,241 - INFO - Đang đăng nhập
+2025-08-07 15:43:43,632 - WARNING - Không tìm thấy element với locator: ('text', 'Lưu')
+2025-08-07 15:43:43,632 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:43:43,634 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 15:43:43,781 - WARNING - Không tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-07 15:43:43,781 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:43:43,781 - INFO - Đăng nhập thành công
+2025-08-07 15:44:04,794 - INFO - Đăng xuất
+2025-08-07 15:44:05,194 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-07 15:44:05,821 - INFO - Vào menu
+2025-08-07 15:44:12,442 - INFO - Đã cuộn +1 lần
+2025-08-07 15:44:14,674 - INFO - Đã cuộn +1 lần
+2025-08-07 15:44:16,688 - INFO - Đã cuộn 2 lần
+2025-08-07 15:44:16,689 - INFO - Tới cuối trang
+2025-08-07 15:44:17,118 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-07 15:44:17,752 - INFO - Đang đăng xuất
+2025-08-07 15:44:19,871 - INFO - Tìm thấy element với locator: ('text', 'LƯU')
+2025-08-07 15:44:20,384 - INFO - Lưu tài khoản
+2025-08-07 15:44:22,527 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-07 15:44:25,175 - INFO - Đăng xuất thành công
+2025-08-07 15:44:35,429 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-07 15:44:35,546 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 15:44:35,765 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-07 15:44:35,864 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 15:44:36,854 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-07 15:44:36,982 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 15:44:36,983 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:44:52,260 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 15:44:53,051 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 15:44:53,761 - INFO - Đang đăng nhập
+2025-08-07 15:45:04,210 - WARNING - Không tìm thấy element với locator: ('text', 'Lưu')
+2025-08-07 15:45:04,210 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:45:04,210 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 15:45:04,411 - WARNING - Không tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-07 15:45:04,412 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:45:04,412 - INFO - Đăng nhập thành công
+2025-08-07 15:45:25,433 - INFO - Đăng xuất
+2025-08-07 15:45:25,825 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-07 15:45:26,656 - INFO - Vào menu
+2025-08-07 15:45:33,279 - INFO - Đã cuộn +1 lần
+2025-08-07 15:45:35,528 - INFO - Đã cuộn +1 lần
+2025-08-07 15:45:37,531 - INFO - Đã cuộn 2 lần
+2025-08-07 15:45:37,531 - INFO - Tới cuối trang
+2025-08-07 15:45:37,973 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-07 15:45:38,672 - INFO - Đang đăng xuất
+2025-08-07 15:45:40,996 - INFO - Tìm thấy element với locator: ('text', 'LƯU')
+2025-08-07 15:45:41,521 - INFO - Lưu tài khoản
+2025-08-07 15:45:43,804 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-07 15:45:46,293 - INFO - Đăng xuất thành công
+2025-08-07 15:45:56,420 - INFO - Tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-07 15:45:56,603 - INFO - Tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-07 15:45:57,544 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-07 15:45:57,647 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-07 15:45:57,647 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:46:12,953 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-07 15:46:13,622 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-07 15:46:14,372 - INFO - Đang đăng nhập
+2025-08-07 15:46:25,070 - WARNING - Không tìm thấy element với locator: ('text', 'Lưu')
+2025-08-07 15:46:25,071 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:46:25,071 - WARNING - Không thấy box lưu tài khoản
+2025-08-07 15:46:25,187 - WARNING - Không tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-07 15:46:25,187 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-07 15:46:25,187 - INFO - Đăng nhập thành công
