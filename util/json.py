@@ -1,28 +1,30 @@
 import json
+import os
 
-def load_accounts_from_json(file_path):
+def load_device_account(device_id, folder="devices"):
     """
-    Đọc file JSON và trả về danh sách tài khoản (dạng list các dict)
+    Đọc file JSON của từng thiết bị, trả về dict tài khoản của thiết bị đó.
     """
+    file_path = os.path.join(folder, f"device_{device_id}.json")
     try:
         with open(file_path, "r", encoding="utf-8") as f:
-            accounts = json.load(f)
-        return accounts
+            account = json.load(f)
+        return account
     except Exception as e:
-        print(f"Lỗi khi đọc file JSON: {e}")
-        return []
-    
-def update_current_account(json_path, device_id, account_name):
-    """Cập nhật current_account cho thiết bị trong file JSON"""
-    with open(json_path, "r", encoding="utf-8") as f:
-        devices = json.load(f)
+        print(f"Lỗi khi đọc file {file_path}: {e}")
+        return {}
 
-    for dev in devices:
-        if dev["device"] == device_id:
-            dev["current_account"] = account_name
-            break
-
-    with open(json_path, "w", encoding="utf-8") as f:
-        json.dump(devices, f, indent=4, ensure_ascii=False)
-
-    print(f"Đã cập nhật current_account cho {device_id} → {account_name}")
+def update_current_account(device_id, account_name, folder="devices"):
+    """
+    Cập nhật current_account cho thiết bị trong file riêng.
+    """
+    file_path = os.path.join(folder, f"device_{device_id}.json")
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            device = json.load(f)
+        device["current_account"] = account_name
+        with open(file_path, "w", encoding="utf-8") as f:
+            json.dump(device, f, indent=4, ensure_ascii=False)
+        print(f"Đã cập nhật current_account cho {device_id} → {account_name}")
+    except Exception as e:
+        print(f"Lỗi khi cập nhật file {file_path}: {e}")

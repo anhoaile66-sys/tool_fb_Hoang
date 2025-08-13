@@ -148,7 +148,7 @@ async def go_to_home_page(driver):
     """
     log_message("Đang về trang chủ")
     while element := my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')}) == None:
-        driver.back()
+        driver.press("back")
         await asyncio.sleep(1)
         log_message("Không tìm được trang chủ", logging.WARNING)
     log_message("Đã về trang chủ")

@@ -116,7 +116,7 @@ async def swap_account(driver, acc):
     name = acc['name']
     password = acc['password']
     # Đăng xuất
-    log_out(driver)
+    await log_out(driver)
 
     # Đăng nhập
     log_message(f"Bắt đầu đăng nhập vào tài khoản {name}")

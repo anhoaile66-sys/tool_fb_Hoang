@@ -1447,3 +1447,667 @@ org.eclipse.wst.xml.xpath2.processor.internal.StaticFunctNameError: Function doe
 2025-08-07 15:46:25,187 - WARNING - Không tìm thấy element với locator: ('text', 'Bỏ qua')
 2025-08-07 15:46:25,187 - ERROR - Không tìm thấy element trong tất cả locators
 2025-08-07 15:46:25,187 - INFO - Đăng nhập thành công
+2025-08-13 11:37:04,594 - INFO - Đang đăng nhập vào tài khoản Phương Nhi trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-13 11:37:04,613 - INFO - Bắt đầu đăng nhập vào tài khoản Phương Nhi
+2025-08-13 11:37:10,094 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.view.View[@content-desc="Phương Nhi"]')
+2025-08-13 11:37:10,094 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 11:37:10,095 - ERROR - Không thể đăng nhập
+2025-08-13 11:37:45,207 - INFO - Đang đăng nhập vào tài khoản Phương Nhi trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-13 11:37:45,207 - INFO - Đăng xuất
+2025-08-13 11:37:45,740 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-13 11:37:52,480 - INFO - Vào menu
+2025-08-13 11:37:53,219 - INFO - Đã cuộn +1 lần
+2025-08-13 11:37:55,445 - INFO - Đã cuộn +1 lần
+2025-08-13 11:37:57,446 - INFO - Đã cuộn 2 lần
+2025-08-13 11:37:57,448 - INFO - Tới cuối trang
+2025-08-13 11:37:57,874 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-13 11:37:58,567 - INFO - Đang đăng xuất
+2025-08-13 11:38:04,924 - WARNING - Không tìm thấy element với locator: ('text', 'LƯU')
+2025-08-13 11:38:04,924 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 11:38:04,925 - WARNING - Không thấy box lưu tài khoản
+2025-08-13 11:38:05,021 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-13 11:38:15,542 - INFO - Đăng xuất thành công
+2025-08-13 11:38:15,545 - INFO - Bắt đầu đăng nhập vào tài khoản Phương Nhi
+2025-08-13 11:38:21,020 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[@content-desc="Phương Nhi"]')
+2025-08-13 11:38:22,116 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-13 11:38:22,117 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 11:38:22,201 - WARNING - Không tìm thấy element với locator: ('text', 'Lưu')
+2025-08-13 11:38:22,202 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 11:38:22,202 - WARNING - Không thấy box lưu tài khoản
+2025-08-13 11:38:22,309 - WARNING - Không tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-13 11:38:22,309 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 11:38:28,324 - INFO - Đăng nhập thành công vào tài khoản Phương Nhi
+2025-08-13 11:39:19,970 - INFO - Đang đăng nhập vào tài khoản Phương Nhi trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-13 11:39:19,970 - INFO - Đăng xuất
+2025-08-13 11:39:20,609 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-13 11:39:27,370 - INFO - Vào menu
+2025-08-13 11:39:28,074 - INFO - Đã cuộn +1 lần
+2025-08-13 11:39:30,323 - INFO - Đã cuộn +1 lần
+2025-08-13 11:39:32,326 - INFO - Đã cuộn 2 lần
+2025-08-13 11:39:32,327 - INFO - Tới cuối trang
+2025-08-13 11:39:32,797 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-13 11:39:33,506 - INFO - Đang đăng xuất
+2025-08-13 11:39:39,827 - WARNING - Không tìm thấy element với locator: ('text', 'LƯU')
+2025-08-13 11:39:39,827 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 11:39:39,828 - WARNING - Không thấy box lưu tài khoản
+2025-08-13 11:39:39,948 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-13 11:39:50,454 - INFO - Đăng xuất thành công
+2025-08-13 11:39:50,456 - INFO - Bắt đầu đăng nhập vào tài khoản Phương Nhi
+2025-08-13 11:39:56,002 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[@content-desc="Phương Nhi"]')
+2025-08-13 11:39:57,044 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-13 11:39:57,046 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 11:39:57,124 - WARNING - Không tìm thấy element với locator: ('text', 'Lưu')
+2025-08-13 11:39:57,124 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 11:39:57,124 - WARNING - Không thấy box lưu tài khoản
+2025-08-13 11:39:57,185 - WARNING - Không tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-13 11:39:57,186 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 11:40:03,200 - INFO - Đăng nhập thành công vào tài khoản Phương Nhi
+2025-08-13 11:42:50,549 - INFO - Bắt đầu kết bạn
+2025-08-13 11:42:51,089 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-13 11:42:51,089 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 11:42:51,090 - WARNING - Không tìm được theo xpath, thử tọa độ cứng
+2025-08-13 11:42:57,379 - INFO - Vào menu
+2025-08-13 11:42:57,872 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.view.ViewGroup[@content-desc="Nhóm"]')
+2025-08-13 11:42:57,873 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 11:42:57,874 - ERROR - Không tìm thấy nhóm
+2025-08-13 11:45:03,496 - INFO - Bắt đầu kết bạn
+2025-08-13 11:45:03,497 - INFO - Đang về trang chủ
+2025-08-13 11:45:04,176 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 11:45:04,177 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 11:46:18,161 - INFO - Bắt đầu kết bạn
+2025-08-13 11:46:18,161 - INFO - Đang về trang chủ
+2025-08-13 11:46:18,756 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 11:46:18,756 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 11:46:20,066 - WARNING - Không tìm được trang chủ
+2025-08-13 11:46:20,530 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 11:46:20,531 - INFO - Đã về trang chủ
+2025-08-13 11:46:21,159 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-13 11:46:21,161 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 11:46:21,163 - WARNING - Không tìm được theo xpath, thử tọa độ cứng
+2025-08-13 11:46:27,391 - INFO - Vào menu
+2025-08-13 11:46:27,946 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.ViewGroup[@content-desc="Nhóm"]')
+2025-08-13 11:46:31,745 - INFO - Mở giao diện nhóm
+2025-08-13 11:46:32,069 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Tìm kiếm nhóm"]')
+2025-08-13 11:46:35,665 - INFO - Mở giao diện tìm kiếm nhóm
+2025-08-13 11:46:37,022 - INFO - Tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-13 11:46:40,491 - INFO - Đã nhập từ khóa tìm kiếm
+2025-08-13 13:30:42,293 - INFO - Bắt đầu kết bạn
+2025-08-13 13:30:42,295 - INFO - Đang về trang chủ
+2025-08-13 13:30:42,870 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:30:42,871 - INFO - Đã về trang chủ
+2025-08-13 13:30:43,256 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-13 13:30:43,257 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:30:43,259 - WARNING - Không tìm được theo xpath, thử tọa độ cứng
+2025-08-13 13:30:49,579 - INFO - Vào menu
+2025-08-13 13:30:50,139 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.ViewGroup[@content-desc="Nhóm"]')
+2025-08-13 13:30:53,932 - INFO - Mở giao diện nhóm
+2025-08-13 13:30:54,350 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Tìm kiếm nhóm"]')
+2025-08-13 13:30:57,949 - INFO - Mở giao diện tìm kiếm nhóm
+2025-08-13 13:30:58,672 - INFO - Tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-13 13:31:02,036 - INFO - Đã nhập từ khóa tìm kiếm
+2025-08-13 13:32:44,876 - INFO - Bắt đầu kết bạn
+2025-08-13 13:32:44,877 - INFO - Đang về trang chủ
+2025-08-13 13:32:45,607 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:32:45,608 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:32:46,774 - WARNING - Không tìm được trang chủ
+2025-08-13 13:32:47,525 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:32:47,526 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:32:48,670 - WARNING - Không tìm được trang chủ
+2025-08-13 13:32:48,995 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:32:48,996 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:32:50,239 - WARNING - Không tìm được trang chủ
+2025-08-13 13:32:50,563 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:32:50,563 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:32:52,543 - WARNING - Không tìm được trang chủ
+2025-08-13 13:32:52,969 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:32:52,969 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:32:54,288 - WARNING - Không tìm được trang chủ
+2025-08-13 13:32:54,650 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:32:54,650 - INFO - Đã về trang chủ
+2025-08-13 13:32:55,085 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-13 13:33:01,742 - INFO - Vào menu
+2025-08-13 13:33:02,251 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.ViewGroup[@content-desc="Nhóm"]')
+2025-08-13 13:33:05,951 - INFO - Mở giao diện nhóm
+2025-08-13 13:33:06,413 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Tìm kiếm nhóm"]')
+2025-08-13 13:33:10,099 - INFO - Mở giao diện tìm kiếm nhóm
+2025-08-13 13:33:10,252 - INFO - Tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-13 13:33:13,565 - INFO - Đã nhập từ khóa tìm kiếm
+2025-08-13 13:33:17,497 - INFO - Đã cuộn +1 lần
+2025-08-13 13:33:19,808 - INFO - Đã cuộn +1 lần
+2025-08-13 13:33:22,090 - INFO - Đã cuộn +1 lần
+2025-08-13 13:33:24,423 - INFO - Đã cuộn +1 lần
+2025-08-13 13:33:26,428 - INFO - Đã cuộn 4 lần
+2025-08-13 13:33:26,977 - INFO - Tìm thấy 21 element với locator: ('className', 'android.widget.Button')
+2025-08-13 13:33:30,483 - INFO - Đã vào nhóm
+2025-08-13 13:33:31,270 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "thành viên")]')
+2025-08-13 13:33:35,187 - INFO - Đã mở danh sách thành viên
+2025-08-13 13:33:35,484 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.view.View[@content-desc="Xem tất cả"]')
+2025-08-13 13:33:35,485 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:33:35,485 - ERROR - Không tìm thấy nút xem tất cả thành viên
+2025-08-13 13:33:35,486 - INFO - Đang về trang chủ
+2025-08-13 13:33:35,813 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:33:35,813 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:33:37,508 - WARNING - Không tìm được trang chủ
+2025-08-13 13:33:37,959 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:33:37,960 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:33:39,122 - WARNING - Không tìm được trang chủ
+2025-08-13 13:33:39,829 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:33:39,829 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:33:40,963 - WARNING - Không tìm được trang chủ
+2025-08-13 13:33:41,255 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:33:41,256 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:33:42,851 - WARNING - Không tìm được trang chủ
+2025-08-13 13:33:43,179 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:33:43,180 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:33:44,975 - WARNING - Không tìm được trang chủ
+2025-08-13 13:33:45,451 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:33:45,452 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:33:46,631 - WARNING - Không tìm được trang chủ
+2025-08-13 13:33:46,967 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:33:46,968 - INFO - Đã về trang chủ
+2025-08-13 13:36:30,579 - INFO - Bắt đầu kết bạn
+2025-08-13 13:36:30,580 - INFO - Đang về trang chủ
+2025-08-13 13:36:31,064 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:36:31,065 - INFO - Đã về trang chủ
+2025-08-13 13:36:31,495 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-13 13:36:38,386 - INFO - Vào menu
+2025-08-13 13:36:38,981 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.ViewGroup[@content-desc="Nhóm"]')
+2025-08-13 13:36:42,792 - INFO - Mở giao diện nhóm
+2025-08-13 13:36:43,138 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Tìm kiếm nhóm"]')
+2025-08-13 13:36:46,816 - INFO - Mở giao diện tìm kiếm nhóm
+2025-08-13 13:36:46,986 - INFO - Tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-13 13:36:50,325 - INFO - Đã nhập từ khóa tìm kiếm
+2025-08-13 13:36:54,274 - INFO - Đã cuộn +1 lần
+2025-08-13 13:36:56,285 - INFO - Đã cuộn 1 lần
+2025-08-13 13:36:56,795 - INFO - Tìm thấy 14 element với locator: ('className', 'android.widget.Button')
+2025-08-13 13:37:00,319 - INFO - Đã vào nhóm
+2025-08-13 13:37:00,942 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "thành viên")]')
+2025-08-13 13:37:07,650 - INFO - Đã mở danh sách thành viên
+2025-08-13 13:37:08,189 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[@content-desc="Xem tất cả"]')
+2025-08-13 13:37:30,152 - ERROR - Không tìm thấy nút xem tất cả thành viên
+2025-08-13 13:37:30,153 - INFO - Đang về trang chủ
+2025-08-13 13:37:30,545 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:37:30,546 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:37:32,171 - WARNING - Không tìm được trang chủ
+2025-08-13 13:37:32,633 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:37:32,634 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:37:34,222 - WARNING - Không tìm được trang chủ
+2025-08-13 13:37:34,542 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:37:34,542 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:37:36,190 - WARNING - Không tìm được trang chủ
+2025-08-13 13:37:36,712 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:37:36,712 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:37:37,897 - WARNING - Không tìm được trang chủ
+2025-08-13 13:37:38,570 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:37:38,571 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:37:39,729 - WARNING - Không tìm được trang chủ
+2025-08-13 13:37:40,086 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:37:40,087 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:37:41,711 - WARNING - Không tìm được trang chủ
+2025-08-13 13:37:42,021 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:37:42,022 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:37:43,647 - WARNING - Không tìm được trang chủ
+2025-08-13 13:37:44,016 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:37:44,017 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:37:45,164 - WARNING - Không tìm được trang chủ
+2025-08-13 13:37:45,517 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:37:45,518 - INFO - Đã về trang chủ
+2025-08-13 13:38:24,736 - INFO - Bắt đầu kết bạn
+2025-08-13 13:38:24,737 - INFO - Đang về trang chủ
+2025-08-13 13:38:25,141 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:38:25,142 - INFO - Đã về trang chủ
+2025-08-13 13:38:25,561 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-13 13:38:32,348 - INFO - Vào menu
+2025-08-13 13:38:32,840 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.ViewGroup[@content-desc="Nhóm"]')
+2025-08-13 13:38:36,715 - INFO - Mở giao diện nhóm
+2025-08-13 13:38:36,921 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Tìm kiếm nhóm"]')
+2025-08-13 13:38:40,508 - INFO - Mở giao diện tìm kiếm nhóm
+2025-08-13 13:38:41,291 - INFO - Tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-13 13:38:45,298 - INFO - Đã nhập từ khóa tìm kiếm
+2025-08-13 13:38:49,060 - INFO - Đã cuộn +1 lần
+2025-08-13 13:38:51,354 - INFO - Đã cuộn +1 lần
+2025-08-13 13:38:53,699 - INFO - Đã cuộn +1 lần
+2025-08-13 13:38:56,000 - INFO - Đã cuộn +1 lần
+2025-08-13 13:38:58,004 - INFO - Đã cuộn 4 lần
+2025-08-13 13:38:58,522 - INFO - Tìm thấy 20 element với locator: ('className', 'android.widget.Button')
+2025-08-13 13:39:02,000 - INFO - Đã vào nhóm
+2025-08-13 13:39:02,680 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "thành viên")]')
+2025-08-13 13:39:08,544 - INFO - Đã mở danh sách thành viên
+2025-08-13 13:39:08,744 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.view.View[@content-desc="Xem tất cả"]')
+2025-08-13 13:39:08,745 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:39:08,746 - ERROR - Không tìm thấy nút xem tất cả thành viên
+2025-08-13 13:39:08,746 - INFO - Đang về trang chủ
+2025-08-13 13:39:08,962 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:39:08,962 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:39:10,087 - WARNING - Không tìm được trang chủ
+2025-08-13 13:39:10,485 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:39:10,485 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:39:12,163 - WARNING - Không tìm được trang chủ
+2025-08-13 13:39:12,637 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:39:12,638 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:39:13,808 - WARNING - Không tìm được trang chủ
+2025-08-13 13:39:14,476 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:39:14,476 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:39:15,607 - WARNING - Không tìm được trang chủ
+2025-08-13 13:39:15,895 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:39:15,896 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:39:17,527 - WARNING - Không tìm được trang chủ
+2025-08-13 13:39:17,885 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:39:17,886 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:39:19,561 - WARNING - Không tìm được trang chủ
+2025-08-13 13:39:19,889 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:39:19,890 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:39:21,115 - WARNING - Không tìm được trang chủ
+2025-08-13 13:39:21,452 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:39:21,455 - INFO - Đã về trang chủ
+2025-08-13 13:46:50,878 - INFO - Bắt đầu kết bạn
+2025-08-13 13:46:50,881 - INFO - Đang về trang chủ
+2025-08-13 13:46:51,277 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:46:51,278 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:46:53,041 - WARNING - Không tìm được trang chủ
+2025-08-13 13:46:53,682 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:46:53,683 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:46:54,900 - WARNING - Không tìm được trang chủ
+2025-08-13 13:46:55,126 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:46:55,127 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:46:57,032 - WARNING - Không tìm được trang chủ
+2025-08-13 13:46:57,260 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:46:57,261 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:46:59,284 - WARNING - Không tìm được trang chủ
+2025-08-13 13:46:59,753 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:46:59,754 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:47:00,968 - WARNING - Không tìm được trang chủ
+2025-08-13 13:47:01,453 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:47:01,455 - INFO - Đã về trang chủ
+2025-08-13 13:47:01,790 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-13 13:47:08,299 - INFO - Vào menu
+2025-08-13 13:47:08,775 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.ViewGroup[@content-desc="Nhóm"]')
+2025-08-13 13:47:12,526 - INFO - Mở giao diện nhóm
+2025-08-13 13:47:12,955 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Tìm kiếm nhóm"]')
+2025-08-13 13:47:16,533 - INFO - Mở giao diện tìm kiếm nhóm
+2025-08-13 13:47:17,418 - INFO - Tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-13 13:47:20,801 - INFO - Đã nhập từ khóa tìm kiếm
+2025-08-13 13:47:24,681 - INFO - Đã cuộn +1 lần
+2025-08-13 13:47:26,696 - INFO - Đã cuộn 1 lần
+2025-08-13 13:47:27,016 - INFO - Tìm thấy 19 element với locator: ('className', 'android.widget.Button')
+2025-08-13 13:47:30,441 - INFO - Đã vào nhóm
+2025-08-13 13:47:30,866 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "thành viên")]')
+2025-08-13 13:47:30,867 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:47:30,868 - ERROR - Không tìm thấy tên nhóm
+2025-08-13 13:47:30,869 - INFO - Đang về trang chủ
+2025-08-13 13:47:31,190 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:47:31,192 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:47:32,295 - WARNING - Không tìm được trang chủ
+2025-08-13 13:47:32,662 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:47:32,662 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:47:33,828 - WARNING - Không tìm được trang chủ
+2025-08-13 13:47:34,556 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:47:34,556 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:49:05,450 - INFO - Bắt đầu kết bạn
+2025-08-13 13:49:05,452 - INFO - Đang về trang chủ
+2025-08-13 13:49:06,149 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:49:06,150 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:49:07,313 - WARNING - Không tìm được trang chủ
+2025-08-13 13:49:07,551 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:49:07,552 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:49:09,441 - WARNING - Không tìm được trang chủ
+2025-08-13 13:49:09,755 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:49:09,757 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:49:11,651 - WARNING - Không tìm được trang chủ
+2025-08-13 13:49:12,134 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:49:12,135 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:49:13,375 - WARNING - Không tìm được trang chủ
+2025-08-13 13:49:13,911 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:49:13,914 - INFO - Đã về trang chủ
+2025-08-13 13:49:14,389 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-13 13:49:21,251 - INFO - Vào menu
+2025-08-13 13:49:21,826 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.ViewGroup[@content-desc="Nhóm"]')
+2025-08-13 13:49:25,638 - INFO - Mở giao diện nhóm
+2025-08-13 13:49:25,937 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Tìm kiếm nhóm"]')
+2025-08-13 13:49:29,519 - INFO - Mở giao diện tìm kiếm nhóm
+2025-08-13 13:49:29,904 - INFO - Tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-13 13:49:33,215 - INFO - Đã nhập từ khóa tìm kiếm
+2025-08-13 13:49:36,797 - INFO - Đã cuộn 0 lần
+2025-08-13 13:49:37,172 - INFO - Tìm thấy 14 element với locator: ('className', 'android.widget.Button')
+2025-08-13 13:49:40,685 - INFO - Đã vào nhóm
+2025-08-13 13:49:41,188 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "thành viên")]')
+2025-08-13 13:49:45,104 - INFO - Đã mở danh sách thành viên
+2025-08-13 13:49:45,452 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.view.View[@content-desc="Xem tất cả"]')
+2025-08-13 13:49:45,452 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:49:45,453 - ERROR - Không tìm thấy nút xem tất cả thành viên
+2025-08-13 13:50:40,532 - INFO - Bắt đầu kết bạn
+2025-08-13 13:50:40,533 - INFO - Đang về trang chủ
+2025-08-13 13:50:40,953 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:50:40,954 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:50:42,686 - WARNING - Không tìm được trang chủ
+2025-08-13 13:50:43,197 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:50:43,198 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:50:44,869 - WARNING - Không tìm được trang chủ
+2025-08-13 13:50:45,543 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:50:45,544 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:50:46,804 - WARNING - Không tìm được trang chủ
+2025-08-13 13:50:47,632 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:50:47,634 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:50:48,768 - WARNING - Không tìm được trang chủ
+2025-08-13 13:50:49,061 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:50:49,062 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:50:50,954 - WARNING - Không tìm được trang chủ
+2025-08-13 13:50:51,256 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:50:51,257 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:50:53,214 - WARNING - Không tìm được trang chủ
+2025-08-13 13:50:53,658 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:50:53,658 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:50:54,912 - WARNING - Không tìm được trang chủ
+2025-08-13 13:50:55,329 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:50:55,331 - INFO - Đã về trang chủ
+2025-08-13 13:50:55,805 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-13 13:51:02,296 - INFO - Vào menu
+2025-08-13 13:51:02,849 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.ViewGroup[@content-desc="Nhóm"]')
+2025-08-13 13:51:06,510 - INFO - Mở giao diện nhóm
+2025-08-13 13:51:06,894 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Tìm kiếm nhóm"]')
+2025-08-13 13:51:10,401 - INFO - Mở giao diện tìm kiếm nhóm
+2025-08-13 13:51:11,369 - INFO - Tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-13 13:51:14,670 - INFO - Đã nhập từ khóa tìm kiếm
+2025-08-13 13:51:19,205 - INFO - Đã cuộn +1 lần
+2025-08-13 13:51:20,667 - INFO - Đã cuộn +1 lần
+2025-08-13 13:51:22,185 - INFO - Đã cuộn +1 lần
+2025-08-13 13:51:23,631 - INFO - Đã cuộn +1 lần
+2025-08-13 13:51:24,137 - INFO - Đã cuộn 4 lần
+2025-08-13 13:51:24,501 - INFO - Tìm thấy 19 element với locator: ('className', 'android.widget.Button')
+2025-08-13 13:51:28,018 - INFO - Đã vào nhóm
+2025-08-13 13:51:28,565 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "thành viên")]')
+2025-08-13 13:51:35,800 - INFO - Đã mở danh sách thành viên
+2025-08-13 13:51:36,123 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[@content-desc="Xem tất cả"]')
+2025-08-13 13:51:40,787 - INFO - Đã mở danh sách thành viên
+2025-08-13 13:51:41,361 - INFO - Đã cuộn +1 lần
+2025-08-13 13:51:43,673 - INFO - Đã cuộn +1 lần
+2025-08-13 13:51:45,675 - INFO - Đã cuộn 2 lần
+2025-08-13 13:51:46,265 - INFO - Tìm thấy 5 element với locator: ('xpath', '(//android.widget.Button[contains(@content-desc, "Thêm")])')
+2025-08-13 13:51:49,483 - INFO - Đã gửi lời mời kết bạn
+2025-08-13 13:52:41,736 - INFO - Bắt đầu kết bạn
+2025-08-13 13:52:41,737 - INFO - Đang về trang chủ
+2025-08-13 13:52:42,090 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:52:42,091 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:52:43,787 - WARNING - Không tìm được trang chủ
+2025-08-13 13:52:44,202 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:52:44,203 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:52:45,432 - WARNING - Không tìm được trang chủ
+2025-08-13 13:52:45,711 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:52:45,711 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:52:47,401 - WARNING - Không tìm được trang chủ
+2025-08-13 13:52:48,056 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:52:48,057 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:52:49,295 - WARNING - Không tìm được trang chủ
+2025-08-13 13:52:50,092 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:52:50,095 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:52:51,261 - WARNING - Không tìm được trang chủ
+2025-08-13 13:52:51,496 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:52:51,497 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:52:52,727 - WARNING - Không tìm được trang chủ
+2025-08-13 13:52:53,101 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:52:53,102 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:52:55,263 - WARNING - Không tìm được trang chủ
+2025-08-13 13:52:55,688 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:52:55,691 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 13:52:56,954 - WARNING - Không tìm được trang chủ
+2025-08-13 13:52:57,401 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-13 13:52:57,402 - INFO - Đã về trang chủ
+2025-08-13 13:52:57,843 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-13 13:53:04,566 - INFO - Vào menu
+2025-08-13 13:53:05,134 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.ViewGroup[@content-desc="Nhóm"]')
+2025-08-13 13:53:08,983 - INFO - Mở giao diện nhóm
+2025-08-13 13:53:09,362 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Tìm kiếm nhóm"]')
+2025-08-13 13:53:12,873 - INFO - Mở giao diện tìm kiếm nhóm
+2025-08-13 13:53:13,703 - INFO - Tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-13 13:53:17,052 - INFO - Đã nhập từ khóa tìm kiếm
+2025-08-13 13:53:20,944 - INFO - Đã cuộn +1 lần
+2025-08-13 13:53:23,258 - INFO - Đã cuộn +1 lần
+2025-08-13 13:53:25,575 - INFO - Đã cuộn +1 lần
+2025-08-13 13:53:27,869 - INFO - Đã cuộn +1 lần
+2025-08-13 13:53:30,167 - INFO - Đã cuộn +1 lần
+2025-08-13 13:53:32,176 - INFO - Đã cuộn 5 lần
+2025-08-13 13:53:32,586 - INFO - Tìm thấy 20 element với locator: ('className', 'android.widget.Button')
+2025-08-13 13:53:36,034 - INFO - Đã vào nhóm
+2025-08-13 13:53:36,519 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "thành viên")]')
+2025-08-13 13:53:43,648 - INFO - Đã mở danh sách thành viên
+2025-08-13 13:53:44,160 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[@content-desc="Xem tất cả"]')
+2025-08-13 13:53:48,981 - INFO - Đã mở danh sách thành viên
+2025-08-13 13:53:49,610 - INFO - Đã cuộn +1 lần
+2025-08-13 13:53:51,953 - INFO - Đã cuộn +1 lần
+2025-08-13 13:53:53,966 - INFO - Đã cuộn 2 lần
+2025-08-13 13:53:54,456 - INFO - Tìm thấy 6 element với locator: ('xpath', '(//android.widget.Button[contains(@content-desc, "Thêm")])')
+2025-08-13 13:53:57,686 - INFO - Đã gửi lời mời kết bạn
+2025-08-13 13:54:08,474 - INFO - Đã quay lại danh sách nhóm
+2025-08-13 13:54:09,869 - INFO - Đã cuộn +1 lần
+2025-08-13 13:54:10,382 - INFO - Đã cuộn 1 lần
+2025-08-13 13:54:10,836 - INFO - Tìm thấy 21 element với locator: ('className', 'android.widget.Button')
+2025-08-13 13:54:14,290 - INFO - Đã vào nhóm
+2025-08-13 13:54:14,788 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "thành viên")]')
+2025-08-13 13:54:21,848 - INFO - Đã mở danh sách thành viên
+2025-08-13 13:54:22,538 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[@content-desc="Xem tất cả"]')
+2025-08-13 13:54:27,472 - INFO - Đã mở danh sách thành viên
+2025-08-13 13:54:28,113 - INFO - Đã cuộn +1 lần
+2025-08-13 13:54:30,478 - INFO - Đã cuộn +1 lần
+2025-08-13 13:54:32,493 - INFO - Đã cuộn 2 lần
+2025-08-13 13:54:32,962 - INFO - Tìm thấy 8 element với locator: ('xpath', '(//android.widget.Button[contains(@content-desc, "Thêm")])')
+2025-08-13 13:54:36,194 - INFO - Đã gửi lời mời kết bạn
+2025-08-13 13:54:47,127 - INFO - Đã quay lại danh sách nhóm
+2025-08-13 13:54:47,843 - INFO - Đã cuộn +1 lần
+2025-08-13 13:54:50,154 - INFO - Đã cuộn +1 lần
+2025-08-13 13:54:52,162 - INFO - Đã cuộn 2 lần
+2025-08-13 13:54:52,697 - INFO - Tìm thấy 20 element với locator: ('className', 'android.widget.Button')
+2025-08-13 13:54:56,196 - INFO - Đã vào nhóm
+2025-08-13 13:54:56,690 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "thành viên")]')
+2025-08-13 13:55:03,898 - INFO - Đã mở danh sách thành viên
+2025-08-13 13:55:04,551 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[@content-desc="Xem tất cả"]')
+2025-08-13 13:55:09,419 - INFO - Đã mở danh sách thành viên
+2025-08-13 13:55:10,000 - INFO - Đã cuộn +1 lần
+2025-08-13 13:55:12,353 - INFO - Đã cuộn +1 lần
+2025-08-13 13:55:14,359 - INFO - Đã cuộn 2 lần
+2025-08-13 13:55:15,006 - INFO - Tìm thấy 8 element với locator: ('xpath', '(//android.widget.Button[contains(@content-desc, "Thêm")])')
+2025-08-13 13:55:18,249 - INFO - Đã gửi lời mời kết bạn
+2025-08-13 13:55:29,068 - INFO - Đã quay lại danh sách nhóm
+2025-08-13 15:23:05,890 - INFO - Đang đăng nhập tài khoản Phương Bình trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-13 15:23:06,410 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:23:06,530 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:23:06,530 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:23:08,464 - INFO - Đang đăng nhập tài khoản Mai Mei trên thiết bị UWJJOJLB85SO7LIZ
+2025-08-13 15:23:08,981 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:23:09,061 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:23:09,062 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:23:21,913 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-13 15:23:21,916 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-13 15:23:21,916 - INFO - Không tìm được ô text
+2025-08-13 15:23:24,124 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-13 15:23:24,126 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-13 15:23:24,127 - INFO - Không tìm được ô text
+2025-08-13 15:23:24,939 - INFO - Đã tạo file devices\device_7HYP4T4XTS4DXKCY.json cho thiết bị 7HYP4T4XTS4DXKCY
+2025-08-13 15:23:24,941 - INFO - Đang đăng nhập tài khoản Phương Lê trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-13 15:23:25,346 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:23:25,423 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:23:25,423 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:23:27,136 - INFO - Đã tạo file devices\device_UWJJOJLB85SO7LIZ.json cho thiết bị UWJJOJLB85SO7LIZ
+2025-08-13 15:23:27,137 - INFO - Đang đăng nhập tài khoản Linh Lê trên thiết bị UWJJOJLB85SO7LIZ
+2025-08-13 15:23:27,197 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:23:27,273 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:23:27,274 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:23:40,547 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-13 15:23:40,547 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-13 15:23:40,548 - INFO - Không tìm được ô text
+2025-08-13 15:23:42,610 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-13 15:23:42,610 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-13 15:23:42,611 - INFO - Không tìm được ô text
+2025-08-13 15:23:43,560 - INFO - Đã tạo file devices\device_7HYP4T4XTS4DXKCY.json cho thiết bị 7HYP4T4XTS4DXKCY
+2025-08-13 15:23:43,561 - INFO - Đang đăng nhập tài khoản Phương Nhi trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-13 15:23:43,749 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:23:43,809 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:23:43,810 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:23:45,621 - INFO - Đã tạo file devices\device_UWJJOJLB85SO7LIZ.json cho thiết bị UWJJOJLB85SO7LIZ
+2025-08-13 15:23:45,621 - INFO - Đang đăng nhập tài khoản Bảo Nhi trên thiết bị UWJJOJLB85SO7LIZ
+2025-08-13 15:23:45,800 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:23:45,917 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:23:46,862 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:23:46,994 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:23:46,994 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:24:36,805 - INFO - Đang đăng nhập tài khoản Phương Bình trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-13 15:24:37,217 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:24:37,298 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:24:38,262 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:24:38,390 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:24:38,391 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:24:39,016 - INFO - Đang đăng nhập tài khoản Mai Mei trên thiết bị UWJJOJLB85SO7LIZ
+2025-08-13 15:24:39,452 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:24:39,554 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:24:39,554 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:25:15,670 - INFO - Đang đăng nhập tài khoản Phương Bình trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-13 15:25:16,111 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:25:16,212 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:25:16,215 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:25:17,843 - INFO - Đang đăng nhập tài khoản Mai Mei trên thiết bị UWJJOJLB85SO7LIZ
+2025-08-13 15:25:18,254 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:25:18,344 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:25:18,345 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:25:31,468 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-13 15:25:32,164 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-13 15:25:32,798 - INFO - Đang đăng nhập
+2025-08-13 15:25:33,550 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-13 15:25:34,182 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-13 15:25:34,800 - INFO - Đang đăng nhập
+2025-08-13 15:25:43,458 - WARNING - Không tìm thấy element với locator: ('text', 'Lưu')
+2025-08-13 15:25:43,459 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:25:43,459 - WARNING - Không thấy box lưu tài khoản
+2025-08-13 15:25:43,536 - WARNING - Không tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-13 15:25:43,537 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:25:45,099 - WARNING - Không tìm thấy element với locator: ('text', 'Lưu')
+2025-08-13 15:25:45,099 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:25:45,099 - WARNING - Không thấy box lưu tài khoản
+2025-08-13 15:25:45,211 - WARNING - Không tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-13 15:25:45,212 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:25:58,545 - INFO - Đăng nhập thành công
+2025-08-13 15:26:00,230 - INFO - Đăng nhập thành công
+2025-08-13 15:26:01,556 - INFO - Đã tạo file devices\device_7HYP4T4XTS4DXKCY.json cho thiết bị 7HYP4T4XTS4DXKCY
+2025-08-13 15:26:01,557 - INFO - Đang đăng nhập tài khoản Phương Lê trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-13 15:26:01,905 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:26:01,983 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:26:01,984 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:26:03,243 - INFO - Đã tạo file devices\device_UWJJOJLB85SO7LIZ.json cho thiết bị UWJJOJLB85SO7LIZ
+2025-08-13 15:26:03,243 - INFO - Đang đăng nhập tài khoản Linh Lê trên thiết bị UWJJOJLB85SO7LIZ
+2025-08-13 15:26:03,492 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:26:03,581 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:26:03,582 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:55:18,532 - INFO - Đang đăng nhập tài khoản Phương Bình trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-13 15:55:19,123 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:55:19,237 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:55:20,329 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:55:20,425 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:55:20,425 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:55:21,242 - INFO - Đang đăng nhập tài khoản Mai Mei trên thiết bị UWJJOJLB85SO7LIZ
+2025-08-13 15:55:21,852 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:55:21,980 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:55:22,931 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:55:23,130 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:55:23,131 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:55:35,641 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-13 15:55:35,642 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-13 15:55:35,643 - INFO - Không tìm được ô text
+2025-08-13 15:55:38,350 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-13 15:55:38,351 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-13 15:55:38,352 - INFO - Không tìm được ô text
+2025-08-13 15:55:38,645 - INFO - Đã tạo file devices\device_7HYP4T4XTS4DXKCY.json cho thiết bị 7HYP4T4XTS4DXKCY
+2025-08-13 15:55:38,647 - INFO - Đang đăng nhập tài khoản Phương Lê trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-13 15:55:38,848 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:55:38,937 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:55:38,938 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:55:41,372 - INFO - Đã tạo file devices\device_UWJJOJLB85SO7LIZ.json cho thiết bị UWJJOJLB85SO7LIZ
+2025-08-13 15:55:41,373 - INFO - Đang đăng nhập tài khoản Linh Lê trên thiết bị UWJJOJLB85SO7LIZ
+2025-08-13 15:55:41,546 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:55:41,616 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:55:41,616 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:55:54,023 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-13 15:55:54,024 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-13 15:55:54,024 - INFO - Không tìm được ô text
+2025-08-13 15:55:57,025 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-13 15:55:57,025 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-13 15:55:57,026 - INFO - Không tìm được ô text
+2025-08-13 15:55:57,027 - INFO - Đã tạo file devices\device_7HYP4T4XTS4DXKCY.json cho thiết bị 7HYP4T4XTS4DXKCY
+2025-08-13 15:55:57,027 - INFO - Đang đăng nhập tài khoản Phương Nhi trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-13 15:55:57,119 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:55:57,212 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:55:57,213 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:56:00,040 - INFO - Đã tạo file devices\device_UWJJOJLB85SO7LIZ.json cho thiết bị UWJJOJLB85SO7LIZ
+2025-08-13 15:56:00,041 - INFO - Đang đăng nhập tài khoản Bảo Nhi trên thiết bị UWJJOJLB85SO7LIZ
+2025-08-13 15:56:00,790 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:56:00,940 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:56:00,941 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:58:08,841 - INFO - Đang đăng nhập tài khoản Phương Bình trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-13 15:58:09,215 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:58:09,313 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:58:09,314 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:58:11,614 - INFO - Đang đăng nhập tài khoản Mai Mei trên thiết bị UWJJOJLB85SO7LIZ
+2025-08-13 15:58:11,981 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:58:12,082 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:58:12,082 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:58:24,414 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-13 15:58:25,126 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-13 15:58:25,878 - INFO - Đang đăng nhập
+2025-08-13 15:58:27,204 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-13 15:58:27,835 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-13 15:58:28,543 - INFO - Đang đăng nhập
+2025-08-13 15:58:36,548 - WARNING - Không tìm thấy element với locator: ('text', 'Lưu')
+2025-08-13 15:58:36,550 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:58:36,551 - WARNING - Không thấy box lưu tài khoản
+2025-08-13 15:58:37,647 - WARNING - Không tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-13 15:58:37,650 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:58:38,814 - WARNING - Không tìm thấy element với locator: ('text', 'Lưu')
+2025-08-13 15:58:38,814 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:58:38,816 - WARNING - Không thấy box lưu tài khoản
+2025-08-13 15:58:38,907 - WARNING - Không tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-13 15:58:38,907 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:58:52,666 - INFO - Đăng nhập thành công
+2025-08-13 15:58:53,917 - INFO - Đăng nhập thành công
+2025-08-13 15:58:55,686 - INFO - Đã tạo file devices\device_7HYP4T4XTS4DXKCY.json cho thiết bị 7HYP4T4XTS4DXKCY
+2025-08-13 15:58:55,715 - INFO - Đang đăng nhập tài khoản Phương Lê trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-13 15:58:56,132 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:58:56,222 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:58:56,223 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:58:56,924 - INFO - Đã tạo file devices\device_UWJJOJLB85SO7LIZ.json cho thiết bị UWJJOJLB85SO7LIZ
+2025-08-13 15:58:56,925 - INFO - Đang đăng nhập tài khoản Linh Lê trên thiết bị UWJJOJLB85SO7LIZ
+2025-08-13 15:58:57,243 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:58:57,345 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:58:57,345 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:59:11,581 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-13 15:59:11,584 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-13 15:59:11,585 - INFO - Không tìm được ô text
+2025-08-13 15:59:12,541 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-13 15:59:13,171 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-13 15:59:13,855 - INFO - Đang đăng nhập
+2025-08-13 15:59:14,593 - INFO - Đã tạo file devices\device_7HYP4T4XTS4DXKCY.json cho thiết bị 7HYP4T4XTS4DXKCY
+2025-08-13 15:59:14,595 - INFO - Đang đăng nhập tài khoản Phương Nhi trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-13 15:59:14,862 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:59:14,932 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:59:14,934 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:59:24,092 - WARNING - Không tìm thấy element với locator: ('text', 'Lưu')
+2025-08-13 15:59:24,093 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:59:24,094 - WARNING - Không thấy box lưu tài khoản
+2025-08-13 15:59:24,210 - WARNING - Không tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-13 15:59:24,211 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:59:30,287 - WARNING - Không tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-13 15:59:30,287 - ERROR - Không tìm thấy element nào trong tất cả locator
+2025-08-13 15:59:30,288 - INFO - Không tìm được ô text
+2025-08-13 15:59:33,300 - INFO - Đã tạo file devices\device_7HYP4T4XTS4DXKCY.json cho thiết bị 7HYP4T4XTS4DXKCY
+2025-08-13 15:59:39,222 - INFO - Đăng nhập thành công
+2025-08-13 15:59:42,223 - INFO - Đã tạo file devices\device_UWJJOJLB85SO7LIZ.json cho thiết bị UWJJOJLB85SO7LIZ
+2025-08-13 15:59:42,224 - INFO - Đang đăng nhập tài khoản Bảo Nhi trên thiết bị UWJJOJLB85SO7LIZ
+2025-08-13 15:59:42,447 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-13 15:59:42,526 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-13 15:59:42,526 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 15:59:57,705 - INFO - Tìm thấy 2 element với locator: ('className', 'android.widget.EditText')
+2025-08-13 15:59:58,334 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-13 15:59:58,862 - INFO - Đang đăng nhập
+2025-08-13 16:00:09,113 - WARNING - Không tìm thấy element với locator: ('text', 'Lưu')
+2025-08-13 16:00:09,114 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 16:00:09,115 - WARNING - Không thấy box lưu tài khoản
+2025-08-13 16:00:09,204 - WARNING - Không tìm thấy element với locator: ('text', 'Bỏ qua')
+2025-08-13 16:00:09,205 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-13 16:00:24,220 - INFO - Đăng nhập thành công
+2025-08-13 16:00:27,229 - INFO - Đã tạo file devices\device_UWJJOJLB85SO7LIZ.json cho thiết bị UWJJOJLB85SO7LIZ

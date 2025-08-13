@@ -11,7 +11,7 @@ async def add_3friend(driver):
     """
     log_message("Bắt đầu kết bạn")
     # Mở menu
-    go_to_home_page(driver)
+    await go_to_home_page(driver)
     menu = my_find_element(driver, {("xpath", '//android.view.View[contains(@content-desc, "Menu")]')})
     try:
         menu.click()
@@ -31,7 +31,7 @@ async def add_3friend(driver):
         log_message("Mở giao diện nhóm")
     except Exception:
         log_message("Không tìm thấy nhóm", logging.ERROR)
-        go_to_home_page(driver)
+        await go_to_home_page(driver)
         return
     
     # Tìm nút tìm kiếm
@@ -42,7 +42,7 @@ async def add_3friend(driver):
         log_message("Mở giao diện tìm kiếm nhóm")
     except Exception:
         log_message("Không tìm thấy nút tìm kiếm nhóm", logging.ERROR)
-        go_to_home_page(driver)
+        await go_to_home_page(driver)
         return
     
     # Nhập "tuyển dụng"
@@ -55,13 +55,13 @@ async def add_3friend(driver):
         await asyncio.sleep(3)
     except Exception:
         log_message("Không tìm thấy ô nhập từ khóa", logging.ERROR)
-        go_to_home_page(driver)
+        await go_to_home_page(driver)
         return
     
     # Lặp 3 lần
     for _ in range(3):
         # Tìm nhóm bất kì: Cuộn xuống ngẫu nhiên, chọn nhóm ngẫu nhiên xuât hiện
-        nature_scroll(driver, max_roll=random.randint(0, 5, isFast=random.choice([True, False])))
+        await nature_scroll(driver, max_roll=random.randint(0, 5), isFast=random.choice([True, False]))
         group = my_find_elements(driver, {("className", 'android.widget.Button')})
         try:
             group[random.randint(0, len(group) - 1)].click()
@@ -69,7 +69,7 @@ async def add_3friend(driver):
             log_message("Đã vào nhóm")
         except Exception:
             log_message("Không tìm thấy nhóm", logging.ERROR)
-            go_to_home_page(driver)
+            await go_to_home_page(driver)
             return
         
         # click vào tên nhóm để mở tùy chọn
@@ -77,10 +77,12 @@ async def add_3friend(driver):
         try:
             group_name.click()
             await asyncio.sleep(3)
+            group_name.click()
+            await asyncio.sleep(3)
             log_message("Đã mở danh sách thành viên")
         except Exception:
             log_message("Không tìm thấy tên nhóm", logging.ERROR)
-            go_to_home_page(driver)
+            await go_to_home_page(driver)
             return
         
         # Mở xem tất cả thành viên
@@ -91,11 +93,11 @@ async def add_3friend(driver):
             log_message("Đã mở danh sách thành viên")
         except Exception:
             log_message("Không tìm thấy nút xem tất cả thành viên", logging.ERROR)
-            go_to_home_page(driver)
+            await go_to_home_page(driver)
             return
         
         # Tìm thành viên để add
-        nature_scroll(driver, max_roll=2, isFast=True)
+        await nature_scroll(driver, max_roll=2, isFast=True)
         members = my_find_elements(driver, {("xpath", '(//android.widget.Button[contains(@content-desc, "Thêm")])')})
         try:
             members[random.randint(0, len(members) - 1)].click()
@@ -103,13 +105,15 @@ async def add_3friend(driver):
             log_message("Đã gửi lời mời kết bạn")
         except Exception:
             log_message("Không tìm thấy thành viên để kết bạn", logging.ERROR)
-            go_to_home_page(driver)
+            await go_to_home_page(driver)
             return
         
         # Quay lại danh sách nhóm
         for _ in range(3):
-            driver.back()
+            driver.press("back")
             await asyncio.sleep(3)
         log_message("Đã quay lại danh sách nhóm")
-
+    log_message("Đã kết bạn với 3 người trong nhóm tuyển dụng")
+    await go_to_home_page(driver)
+    return
     
