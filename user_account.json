@@ -1,21 +1,44 @@
 [
-
     {
-        "account": "linh61.tv365@gmail.com",
-        "password": "abc13579",
-        "name": "Mai Mei",
-        "device": "UWJJOJLB85SO7LIZ"
+        "device_id": "7HYP4T4XTS4DXKCY",
+        "current_account": "Phương Bình",
+        "accounts": [
+            {
+                "account": "0971335869",
+                "password": "timviec365@",
+                "name": "Phương Bình"
+            },
+            {
+                "account": "leephuongg02@gmail.com",
+                "password": "Hhp123456",
+                "name": "Phương Lê"
+            },
+            {
+                "account": "0983407428",
+                "password": "hhp123988@",
+                "name": "Phương Nhi"
+            }
+        ]
     },
     {
-        "account": "0344331495",
-        "password": "Hhp123456",
-        "name": "Linh Lê",
-        "device": "UWJJOJLB85SO7LIZ"
-    },
-    {
-        "account": "0814280858",
-        "password": "hh123988",
-        "name": "Bảo Nhi",
-        "device": "UWJJOJLB85SO7LIZ"
+        "device_id": "UWJJOJLB85SO7LIZ",
+        "current_account": "Mai Mei",
+        "accounts": [
+            {
+                "account": "linh61.tv365@gmail.com",
+                "password": "abc13579",
+                "name": "Mai Mei"
+            },
+            {
+                "account": "0344331495",
+                "password": "Hhp123456",
+                "name": "Linh Lê"
+            },
+            {
+                "account": "0814280858",
+                "password": "hh123988",
+                "name": "Bảo Nhi"
+            }
+        ]
     }
 ]

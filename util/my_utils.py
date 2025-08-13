@@ -1,9 +1,6 @@
 import random
 import asyncio
-import os
-
-import uiautomator2
-from util.log import log_message
+from .log import log_message
 import logging
     
 # Nhập text
@@ -144,17 +141,15 @@ async def scroll_until_element_visible(driver, locators, max_scrolls=10):
     log_message(f"Không tìm thấy element sau {max_scrolls} roll", logging.ERROR)
     return None
 
-# Tìm về đầu trang
-async def scroll_to_top_page(driver, max_scrolls=10):
+# Tìm về trang chủ
+async def go_to_home_page(driver):
     """
     Trở về đầu trang để tìm các tác vụ khác
     """
-    for _ in range(max_scrolls):
-        element = my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')})
-        if element != None:
-            log_message("Đã về đầu trang")
-            return element
-        await scroll_up(driver, isFast=True)
+    log_message("Đang về trang chủ")
+    while element := my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')}) == None:
+        driver.back()
         await asyncio.sleep(1)
-    log_message(f"Không tìm được đầu trang sau {max_scrolls} roll", logging.ERROR)
-    return None
+        log_message("Không tìm được trang chủ", logging.WARNING)
+    log_message("Đã về trang chủ")
+    return element
