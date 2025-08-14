@@ -2111,3 +2111,71 @@ org.eclipse.wst.xml.xpath2.processor.internal.StaticFunctNameError: Function doe
 2025-08-13 16:00:09,205 - ERROR - Không tìm thấy element trong tất cả locators
 2025-08-13 16:00:24,220 - INFO - Đăng nhập thành công
 2025-08-13 16:00:27,229 - INFO - Đã tạo file devices\device_UWJJOJLB85SO7LIZ.json cho thiết bị UWJJOJLB85SO7LIZ
+2025-08-14 16:52:41,934 - INFO - Xử lý tài khoản 0971335869 trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-14 16:53:20,447 - INFO - Xử lý tài khoản 0971335869 trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-14 16:53:20,959 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-14 16:53:20,962 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-14 16:53:21,325 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-14 16:53:21,326 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-14 16:53:21,327 - INFO - Xử lý tài khoản leephuongg02@gmail.com trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-14 16:53:21,699 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-14 16:53:21,701 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-14 16:53:22,116 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-14 16:53:22,117 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-14 16:53:22,118 - INFO - Xử lý tài khoản 0983407428 trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-14 16:53:22,557 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-14 16:53:22,557 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-14 16:53:22,919 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-14 16:53:22,920 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-14 16:53:22,920 - INFO - Xử lý tài khoản linh61.tv365@gmail.com trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-14 16:53:23,254 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-14 16:53:23,254 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-14 16:53:23,640 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-14 16:53:23,643 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-14 16:53:23,644 - INFO - Xử lý tài khoản 0344331495 trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-14 16:53:24,030 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-14 16:53:24,032 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-14 16:53:24,299 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-14 16:53:24,300 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-14 16:53:24,300 - INFO - Xử lý tài khoản 0814280858 trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-14 16:53:24,608 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-14 16:53:24,608 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-14 16:53:24,991 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-14 16:53:24,992 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-14 16:53:24,993 - INFO - Xử lý tài khoản 0964876703 trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-14 16:53:25,249 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-14 16:53:25,250 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-14 16:53:25,669 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-14 16:53:25,671 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-14 16:53:25,672 - INFO - Xử lý tài khoản 0968581455 trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-14 16:53:25,989 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-14 16:53:25,991 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-14 16:53:26,374 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-14 16:53:26,375 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-14 16:53:26,375 - INFO - Xử lý tài khoản 0972381905 trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-14 16:53:26,682 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-14 16:53:26,683 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-14 16:53:26,949 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng nhập"]')
+2025-08-14 16:53:26,951 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-14 16:53:26,952 - INFO - Hết tài khoản để đăng nhập, kết thúc task
+2025-08-14 16:53:26,953 - INFO - Đã tạo file devices\device_7HYP4T4XTS4DXKCY.json cho thiết bị 7HYP4T4XTS4DXKCY
+2025-08-14 16:53:26,954 - INFO - Hết tài khoản để đăng nhập, kết thúc task
+2025-08-14 16:53:26,955 - INFO - Đã tạo file devices\device_UWJJOJLB85SO7LIZ.json cho thiết bị UWJJOJLB85SO7LIZ
+2025-08-14 17:02:42,897 - INFO - Xử lý tài khoản 0971335869 trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-14 17:02:43,289 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-14 17:02:43,290 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-14 17:02:43,291 - INFO - Đăng nhập vào tài khoản 0971335869 trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-14 17:02:43,465 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-14 17:02:43,592 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-14 17:02:44,618 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-14 17:02:44,847 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-14 17:02:44,848 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-14 17:02:45,052 - INFO - Xử lý tài khoản leephuongg02@gmail.com trên thiết bị UWJJOJLB85SO7LIZ
+2025-08-14 17:02:45,421 - WARNING - Không tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-14 17:02:45,422 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-14 17:02:45,423 - INFO - Đăng nhập vào tài khoản leephuongg02@gmail.com trên thiết bị UWJJOJLB85SO7LIZ
+2025-08-14 17:02:45,583 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-14 17:02:45,682 - INFO - Tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-14 17:02:46,792 - WARNING - Không tìm thấy element với locator: ('text', 'Đăng nhập bằng tài khoản khác')
+2025-08-14 17:02:46,934 - WARNING - Không tìm thấy element với locator: ('text', 'Dùng trang cá nhân khác')
+2025-08-14 17:02:46,934 - ERROR - Không tìm thấy element trong tất cả locators

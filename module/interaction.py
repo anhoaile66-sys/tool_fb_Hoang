@@ -138,3 +138,11 @@ async def share_post(driver, text=""):
     share_now.click()
     log_message("Đã chia sẻ")
 
+# # surf
+# async def surf(driver, duration=60):
+#     """
+#     Lướt Facebook trong một khoảng thời gian nhất định
+#     """
+#     log_message(f"Bắt đầu lướt Facebook trong {duration} giây")
+    
+#     log_message("Đã hoàn thành lướt Facebook")

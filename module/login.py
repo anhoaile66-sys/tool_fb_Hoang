@@ -8,6 +8,8 @@ async def log_out(driver):
     Đăng xuất tài khoản khỏi thiết bị
     """
 
+    await go_to_home_page(driver)
+
     log_message("Đăng xuất")
     menu = my_find_element(driver, {("xpath", '//android.view.View[contains(@content-desc, "Menu")]')})
     try:
@@ -71,9 +73,9 @@ async def login_facebook(driver, acc):
     try:
         input_fields[0].set_text(account)  # Nhập số điện thoại
         input_fields[1].set_text(password)  # Nhập mật khẩu
-    except Exception as e:
+    except Exception:
         log_message("Không tìm được ô text")
-        return
+        return False
     # Tìm nút đăng nhập và click
     login_button = my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đăng nhập"]')})
     try:
@@ -82,7 +84,7 @@ async def login_facebook(driver, acc):
         await asyncio.sleep(10)
     except Exception:
         log_message("Không tìm được nút login", logging.ERROR)
-        return
+        return False
     
     # Kiểm tra có yêu cầu lưu tài khoản không
     save = my_find_element(driver, {("text", "Lưu")})
@@ -106,6 +108,7 @@ async def login_facebook(driver, acc):
     # Đợi load trang chủ
     await asyncio.sleep(15)
     log_message("Đăng nhập thành công")
+    return True
 
 # Hàm đăng nhập vào tài khoản đã lưu
 async def swap_account(driver, acc):

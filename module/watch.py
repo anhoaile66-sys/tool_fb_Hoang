@@ -3,7 +3,7 @@ import logging
 from util import *
 
 # Xem story, còn một role mới cập nhật là ghi chú cũng sẽ lẫn vào story, cần kiểm tra để bỏ qua
-async def watch_story(driver, react=0.3, comment=0.05, skip=0.1, back=0.05, duration=60):
+async def watch_story(driver, duration=60):
     """
     Story mặc định ở trên đầu trang, khi đăng nhập vào sẽ ở trên đầu\n
     Tỉ lệ react mặc định là 30%\n

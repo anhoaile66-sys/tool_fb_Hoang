@@ -1,44 +1,38 @@
 [
     {
-        "device_id": "7HYP4T4XTS4DXKCY",
-        "current_account": null,
-        "accounts": [
-            {
-                "account": "0971335869",
-                "password": "timviec365@",
-                "name": "Phương Bình"
-            },
-            {
-                "account": "leephuongg02@gmail.com",
-                "password": "Hhp123456",
-                "name": "Phương Lê"
-            },
-            {
-                "account": "0983407428",
-                "password": "hhp123988@",
-                "name": "Phương Nhi"
-            }
-        ]
+        "account": "0971335869",
+        "password": "timviec365@"
     },
     {
-        "device_id": "UWJJOJLB85SO7LIZ",
-        "current_account": null,
-        "accounts": [
-            {
-                "account": "linh61.tv365@gmail.com",
-                "password": "abc13579",
-                "name": "Mai Mei"
-            },
-            {
-                "account": "0344331495",
-                "password": "Hhp123456",
-                "name": "Linh Lê"
-            },
-            {
-                "account": "0814280858",
-                "password": "hh123988",
-                "name": "Bảo Nhi"
-            }
-        ]
+        "account": "leephuongg02@gmail.com",
+        "password": "Hhp123456"
+    },
+    {
+        "account": "0983407428",
+        "password": "hhp123988@"
+    },
+    {
+        "account": "linh61.tv365@gmail.com",
+        "password": "abc13579"
+    },
+    {
+        "account": "0344331495",
+        "password": "Hhp123456"
+    },
+    {
+        "account": "0814280858",
+        "password": "hh123988"
+    },
+    {
+        "account": "0964876703",
+        "password": "Thanhtu1"
+    },
+    {
+        "account": "0968581455",
+        "password": "hhp882025"
+    },
+    {
+        "account": "0972381905",
+        "password": "Hhp123456"
     }
 ]
