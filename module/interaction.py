@@ -12,6 +12,9 @@ async def like_post(driver, emotion="like"):
     log_message("Bắt đầu like post")
     # Tìm nút like
     like_button = await scroll_until_element_visible(driver, {("xpath", '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')})
+    # Đọc bài viết 1 tí
+    await asyncio.sleep(random.uniform(5,15))
+
     if like_button == None:
         log_message("Không thể tìm được nút like", logging.ERROR)
         return
@@ -20,15 +23,15 @@ async def like_post(driver, emotion="like"):
         log_message("Đã thả cảm xúc Thích")
         return
 
-    like_button.long_click()
-    
     # Chờ menu cảm xúc xuất hiện
-    await asyncio.sleep(1)
+    like_button.long_click()
+    await asyncio.sleep(random.uniform(1,2))
     
     # Tìm và chọn cảm xúc mong muốn
     emotion_element = my_find_element(driver, {("xpath", f'//com.facebook.feedback.sharedcomponents.reactions.dock.RopeStyleUFIDockView[@content-desc="{emotion}"]')})
     try:
         emotion_element.click()
+        await asyncio.sleep(random.uniform(2,3))
         log_message(f"Đã thả cảm xúc {emotion}")
         return
     except Exception:
@@ -42,10 +45,11 @@ async def comment_post(driver, text):
     log_message("Bắt đầu comment post")
     # Tìm nút comment
     comment_button = await scroll_until_element_visible(driver, {("xpath", '//android.widget.Button[contains(@content-desc, "Bình luận")]')})
+    # Đọc bài viết một tí
+    await asyncio.sleep(random.uniform(5,15))
     try:
         comment_button.click()
-        # Chờ giao diện comment xuất hiện
-        await asyncio.sleep(2)
+        await asyncio.sleep(random.uniform(2,5))
     except Exception:
         log_message("Không thể tìm được nút comment", logging.ERROR)
         return
@@ -54,9 +58,9 @@ async def comment_post(driver, text):
     binhluan = my_find_element(driver, {("xpath", '//android.widget.AutoCompleteTextView')})
     try:
         # Nhập comment, thay thế bằng hàm input text nếu bị ban, và sửa được hàm input text
-        await asyncio.sleep(2)
+        await asyncio.sleep(random.uniform(2,5))
         binhluan.set_text(text)
-        await asyncio.sleep(2)
+        await asyncio.sleep(random.uniform(2,5))
     except Exception:
         log_message("Không tìm được ô nhập comment", logging.ERROR)
         return
@@ -65,6 +69,7 @@ async def comment_post(driver, text):
     send_comment = my_find_element(driver, {("xpath", '//android.widget.Button[contains(@content-desc, "Gửi")]')})
     try:
         send_comment.click()
+        await asyncio.sleep(random.uniform(3,5))
         log_message("Đã comment")
     except Exception:
         log_message("Không tìm được nút gửi", logging.ERROR)
@@ -91,7 +96,7 @@ async def share_post(driver, text=""):
         log_message("Không thể tìm được nút share", logging.ERROR)
         return
     share_button.click()
-    await asyncio.sleep(1)
+    await asyncio.sleep(random.uniform(1,2))
     # Phải click vào 1 lần nữa mới có thể tìm element
     share_box = my_find_element(driver, {("xpath", '//android.view.ViewGroup[@content-desc="Chia sẻ lên"]')})
     if share_box:
@@ -138,11 +143,11 @@ async def share_post(driver, text=""):
     share_now.click()
     log_message("Đã chia sẻ")
 
-# # surf
-# async def surf(driver, duration=60):
-#     """
-#     Lướt Facebook trong một khoảng thời gian nhất định
-#     """
-#     log_message(f"Bắt đầu lướt Facebook trong {duration} giây")
+# surf
+async def surf(driver, duration=60):
+    """
+    Lướt Facebook trong một khoảng thời gian nhất định
+    """
+    log_message(f"Bắt đầu lướt Facebook trong {duration} giây")
     
-#     log_message("Đã hoàn thành lướt Facebook")
+    log_message("Đã hoàn thành lướt Facebook")

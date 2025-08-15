@@ -10,9 +10,10 @@ from collections import deque
 USER_ACCOUNT_FILE = "user_account.json"
 DEVICES_FOLDER = "devices"
 DEVICES_LIST = [
-    "7HYP4T4XTS4DXKCY",
+    # "7HYP4T4XTS4DXKCY",
     "UWJJOJLB85SO7LIZ",
-    # "2926294610DA007N"  Chưa kiểm soát lỗi nếu thiết bị không được kết nối
+    "2926294610DA007N",
+    "7DXCUKKB6DVWDAQO"
     ]
 
 # Xử lý khi tài khoản không đăng nhập được, đánh dấu tài khoản bị ban, trả về danh sách tài khoản ở thiết bị theo cấu trúc file gốc
@@ -70,26 +71,43 @@ def save_account_list(account_list):
 # Lấy tên tài khoản nếu tên được lưu là null
 async def get_account_name(driver, account):
     if not account['name']:
-        personal_page = go_to_home_page(driver)
+        personal_page = await go_to_home_page(driver)
         try:
             personal_page.click()
             log_message(f"Tới trang cá nhân để lấy tên cho tk {account['account']}")
             await asyncio.sleep(3)
             text_views = my_find_elements(driver, {("className", "android.view.View")})
-            account['name'] = text_views[1].info["text"]
+            try:
+                if "..." in text_views[0].get_text():
+                    account['name'] = text_views[1].get_text()
+                else:
+                    account['name'] = text_views[0].get_text()
+                log_message(f"Lấy được tên tài khoản: {account['name']}")
+            except Exception as err:
+                log_message(f"Lỗi khi lấy text_view: {err}", logging.ERROR)
         except Exception as e:
             log_message(f"Lỗi khi lấy tên tài khoản: {e}", logging.ERROR)
+        # back về trang chủ
+        driver.press("back")
+        await asyncio.sleep(3)
 
 # Các task xử lý riêng biệt cho từng thiết bị
 async def handle_device(device_id, account_list, lock):
     device = create_device_structure(device_id)
-    driver = u2.connect(device_id)
-    driver.app_start("com.facebook.katana", ".LoginActivity")
+    try:
+        driver = u2.connect(device_id)
+        driver.app_start("com.facebook.katana", ".LoginActivity")
+        log_message(f"Kết nốt với thiết bị {device_id}")
+    except Exception as e:
+        log_message(f"Lỗi kết nối thiết bị {device_id}, nguyên nhân: {e}", logging.ERROR)
+        return
     await asyncio.sleep(6)
     while True:
-        if len(device['accounts']) == 3:
+        if (count := len(device['accounts'])) == 3:
             log_message(f"Thiết bị {device_id} đã đủ tài khoản, kết thúc task")
             break
+        log_message(f"Thiết bị {device_id} đã có {count} tài khoản")
+        # Truy cập vào account_list để lấy tk
         async with lock:
             if not account_list:
                 log_message("Hết tài khoản để đăng nhập, kết thúc task")
@@ -101,14 +119,19 @@ async def handle_device(device_id, account_list, lock):
                 break
             log_message(f"Xử lý tài khoản {account['account']} trên thiết bị {device_id}")
         # Kiểm tra tài khoản đã đăng nhập trên thiết bị chưa
+        flag = True
         for acc in device['accounts']:
             if acc['account'] == account['account'] and acc['password'] == account['password']:
-                log_message(f"Tài khoản {account['account']} đã đăng nhập trên thiết bị {device_id}, bỏ qua")
-                continue
+                flag = False
+                break
+        if not flag:
+            log_message(f"Tài khoản {account['account']} đã đăng nhập trên thiết bị {device_id}, bỏ qua")
+            break
         # Kiểm tra thiết bị đang ở giao diện nào(home_page hay login_activity)
         if my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')}):
             log_message("Đang ở trang chủ")
             await log_out(driver)
+        # ERROR: Chưa kiểm soát các trường hợp ở màn hình khác
         log_message(f"Đăng nhập vào tài khoản {account['account']} trên thiết bị {device_id}")
         if await login_facebook(driver, account):
             # Lấy tên cho tài khoản
@@ -119,7 +142,7 @@ async def handle_device(device_id, account_list, lock):
             log_message("login thất bại", logging.ERROR)
             account['status'] = False
             async with lock:
-                account_list.append(account)    
+                account_list.append(account)
     save_device(device) 
 
 # Hàm xử lý luồng chính

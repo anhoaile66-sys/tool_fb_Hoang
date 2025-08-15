@@ -5,20 +5,12 @@ from util import *
 # Xem story, còn một role mới cập nhật là ghi chú cũng sẽ lẫn vào story, cần kiểm tra để bỏ qua
 async def watch_story(driver, duration=60):
     """
-    Story mặc định ở trên đầu trang, khi đăng nhập vào sẽ ở trên đầu\n
-    Tỉ lệ react mặc định là 30%\n
-    Tỉ lệ comment mặc định là 5%\n
-    Tỉ lệ skip story là 10%\n
-    Tỉ lệ xem lại story trước là 5%\n
-    Thời gian gian mặc định là 1p
+    Story mặc định ở trên đầu trang
     """
     log_message("Bắt đầu watch story")
     # Về đầu trang
-    top_page = await go_to_home_page(driver)
-    if top_page == None:
-        log_message("Không ở trang chủ hoặc không thể về trang chủ", logging.ERROR)
-        return
-    await asyncio.sleep(5)
+    await go_to_home_page(driver)
+    await asyncio.sleep(random.uniform(5,7))
     # Tìm story
     story_item = my_find_element(driver, {("xpath", '//android.widget.Button[contains(@content-desc, "Tin của ")]')})
     if story_item == None:
@@ -34,7 +26,7 @@ async def watch_story(driver, duration=60):
     log_message("Xem story chán rồi, té thôi")
 
     # Thoát trang story
-    await scroll_up(driver, isFast=True)
+    driver.press("back")
     log_message("Đã thoát trang story")
 
 # Xem reels
@@ -45,10 +37,7 @@ async def watch_reels(driver, duration=120):
     log_message("Bắt đầu watch reels")
     # Về đầu trang
     top_page = await go_to_home_page(driver)
-    if top_page == None:
-        log_message("Không ở trang chủ hoặc không thể về trang chủ", logging.ERROR)
-        return
-    await asyncio.sleep(5)
+    await asyncio.sleep(random.uniform(5,7))
     # Tìm Reels
     reel_item = await scroll_until_element_visible(driver, {("xpath", '//android.widget.Button[contains(@content-desc, "Xem thước phim")]')})
     if reel_item == None:
@@ -57,18 +46,14 @@ async def watch_reels(driver, duration=120):
     reel_item.click()
     log_message("Lướt trên mặt nước anh như cơn sóng")
     # Lướt
-    time=random.randint(10,20)
+    time=random.uniform(10,20)
     await asyncio.sleep(time)
     while time<duration:
         await nature_scroll(driver, isFast=True)
         log_message("Content nhảm vl, lướt")
-        i=random.randint(20,90)
+        i=random.uniform(10,20)
         time+=i
         await asyncio.sleep(i)
     # Lướt xong thì lướt
-    back = my_find_element(driver, {("xpath", '//android.widget.Button[contains(@content-desc, "Quay lại")]')}, timeout=10)
-    if back == None:
-        log_message("Không lối thoát muahahaha", logging.ERROR)
-        return
-    back.click()
+    driver.press("back")
     log_message("Thoát về màn hình chính")

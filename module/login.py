@@ -51,7 +51,7 @@ async def log_out(driver):
         log_message("Không thấy box xác nhận", logging.ERROR)
         return
     # Đợi load trang chọn tài khoản
-    await asyncio.sleep(10)
+    await asyncio.sleep(15)
     log_message("Đăng xuất thành công")
 
 # Đăng nhập lần đầu
@@ -67,31 +67,50 @@ async def login_facebook(driver, acc):
     # Tìm nút chuyển trang cá nhân
     while swap := my_find_element(driver, {("text", "Dùng trang cá nhân khác"), ("text", "Đăng nhập bằng tài khoản khác")}):
         swap.click()
-    await asyncio.sleep(15)
-    # Tìm tất cả ô nhập text có thể tương tác
-    input_fields = my_find_elements(driver, {("className", 'android.widget.EditText')})
-    try:
-        input_fields[0].set_text(account)  # Nhập số điện thoại
-        input_fields[1].set_text(password)  # Nhập mật khẩu
-    except Exception:
-        log_message("Không tìm được ô text")
-        return False
-    # Tìm nút đăng nhập và click
+    await asyncio.sleep(6)
+    # Tắt box quản lý mật khẩu của google
+    gg_password = my_find_element(driver, {("text", "Trình quản lý mật khẩu của Google")})
+    if gg_password:
+        log_message("Tắt trình quản lý mật khẩu")
+        driver.press("back")
+    await asyncio.sleep(6)
+    # Tìm nút đăng nhập, nếu thấy thì mới có thể tìm được ô nhập text
     login_button = my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đăng nhập"]')})
-    try:
+    if login_button:
+        # Tìm tất cả ô nhập text có thể tương tác
+        input_fields = my_find_elements(driver, {("className", 'android.widget.EditText')})
+        try:
+            input_fields[0].set_text(account)  # Nhập số điện thoại
+            input_fields[1].set_text(password)  # Nhập mật khẩu
+        except Exception:
+            log_message("Không tìm được ô text", logging.ERROR)
+            return False
+        
         login_button.click()
         log_message("Đang đăng nhập")
         await asyncio.sleep(10)
-    except Exception:
+    else:
         log_message("Không tìm được nút login", logging.ERROR)
         return False
-    
+    # Kiểm tra có đăng nhập thành công không
+    cant_login = my_find_element(driver, {("text", "Không thể đăng nhập")})
+    if cant_login:
+        log_message("Đăng nhập thất bại do lỗi không thể đăng nhập", logging.ERROR)
+        driver.press("back")
+        return False
     # Kiểm tra có yêu cầu lưu tài khoản không
     save = my_find_element(driver, {("text", "Lưu")})
     try:
         save.click()
         log_message("Lưu tài khoản")
         await asyncio.sleep(3)
+        # Kiểm tra có yêu cầu lưu mật khẩu vào trình quản lý mật khẩu không
+        gg_save = my_find_element(driver, {("text", "Trình quản lý mật khẩu của Google")})
+        if gg_save:
+            tiep = my_find_element(driver, {("text", "Tiếp tục")})
+            tiep.click()
+            log_message("Đã lưu mk vào tk gg")
+            await asyncio.sleep(6)
     except Exception:
         log_message("Không thấy box lưu tài khoản", logging.WARNING)
     
@@ -106,7 +125,7 @@ async def login_facebook(driver, acc):
             await asyncio.sleep(3)
 
     # Đợi load trang chủ
-    await asyncio.sleep(15)
+    await asyncio.sleep(20)
     log_message("Đăng nhập thành công")
     return True
 

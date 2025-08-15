@@ -1,30 +1,26 @@
-for _ in range(0):
-    print("hello world")
-
-def modify_dict(data):
-    data["value"] = 100
-
-def change_dict(data):
-    data = {"value": 200}
-
-original = {"value": 1}
-modify_dict(original)
-# print(original)  # Kết quả: {'value': 100} (đã bị thay đổi)
-
-hehe = {"value": 2}
-change_dict(hehe)
-# print(hehe)  # Kết quả: {'value': 100} (đã bị thay đổi)
-
 import json
+import asyncio
+import sys
+import uiautomator2 as u2
 
-with open("user_account.json", "r", encoding="utf-8") as f:
-    data = json.load(f)
 
-for acc in data:
-    acc["name"] = None
+from tool_init_device import get_account_name
+from util import *
 
-for acc in data:
-    del acc["account"]
-    del acc["name"]
+device_id = "UWJJOJLB85SO7LIZ"
 
-print(data)
+account = {
+        "account": "0971335869",
+        "password": "timviec365@",
+        "name": None,
+        "status": True
+    }
+
+driver = u2.connect(device_id)
+driver.app_start("com.facebook.katana", ".LoginActivity")
+log_message(f"Kết nốt với thiết bị {device_id}")
+
+
+asyncio.run(get_account_name(driver, account))
+
+print(account['name'])

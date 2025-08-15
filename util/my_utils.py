@@ -37,21 +37,20 @@ def my_find_element(d, locators):
             if element.exists:
                 log_message(f"Tìm thấy element với locator: {locator}")
                 return element
-            else:
-                log_message(f"Không tìm thấy element với locator: {locator}", logging.WARNING)
+            # else:
+                # log_message(f"Không tìm thấy element với locator: {locator}", logging.WARNING)
         except Exception as e:
             log_message(f"Lỗi {type(e).__name__}: {e}", logging.ERROR)
     log_message("Không tìm thấy element trong tất cả locators", logging.ERROR)
     return None
 
 # Tìm nhiều element
-def my_find_elements(d, locators, timeout=10):
+def my_find_elements(d, locators):
     elements = []
     for locator in locators:
         method, value = locator
         try:
             found = []
-
             if method == "xpath":
                 selector = d.xpath(value)
                 if selector.exists:
@@ -73,16 +72,17 @@ def my_find_elements(d, locators, timeout=10):
                 continue
 
             if found:
-                log_message(f"Tìm thấy {len(found)} element với locator: {locator}")
+                # log_message(f"Tìm thấy {len(found)} element với locator: {locator}")
                 elements.extend(found)
-            else:
-                log_message(f"Không tìm thấy element với locator: {locator}", logging.WARNING)
+            # else:
+                # log_message(f"Không tìm thấy element với locator: {locator}", logging.WARNING)
 
         except Exception as e:
             log_message(f"Lỗi {type(e).__name__} khi xử lý locator {locator}: {e}", logging.ERROR)
 
     if not elements:
         log_message("Không tìm thấy element nào trong tất cả locator", logging.ERROR)
+    log_message(f"Đã tìm thấy {len(elements)} element")
     return elements
 
 
@@ -99,7 +99,7 @@ async def nature_scroll(d, max_roll=1, isFast=False):
     start_y = height * 0.8
     end_y = height * 0.2
     duration = 0.04 if isFast else 0.2
-    sleep_time = 2 if isFast else 0.5
+    sleep_time = 3 if isFast else 1
 
     for _ in range(max_roll):
         d.swipe(start_x, start_y, end_x, end_y, duration=duration)
@@ -147,9 +147,14 @@ async def go_to_home_page(driver):
     Trở về đầu trang để tìm các tác vụ khác
     """
     log_message("Đang về trang chủ")
-    while element := my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')}) == None:
+    safe_count = 10
+    while (element := my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')})) == None:
+        if not safe_count:
+            log_message("Không tìm được homepage sau 10 lần thử", logging.ERROR)
+            return None
         driver.press("back")
         await asyncio.sleep(1)
         log_message("Không tìm được trang chủ", logging.WARNING)
+        safe_count -= 1
     log_message("Đã về trang chủ")
     return element

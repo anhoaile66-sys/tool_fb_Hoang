@@ -1,0 +1,24 @@
+{
+    "device_id": "7HYP4T4XTS4DXKCY",
+    "current_account": "Mun'z Nek",
+    "accounts": [
+        {
+            "account": "0865071852",
+            "password": "NQTisme1412",
+            "name": "Mun'z Nek",
+            "status": true
+        },
+        {
+            "account": "0962453658",
+            "password": "Hhp123456",
+            "name": "Nguyễn Tuấn",
+            "status": true
+        },
+        {
+            "account": "0978585641",
+            "password": "hlonghhp1234",
+            "name": "Long Hoang",
+            "status": true
+        }
+    ]
+}
