@@ -4,10 +4,13 @@ import sys
 import uiautomator2 as u2
 
 
-from tool_init_device import get_account_name
+from tool_init_device import *
 from util import *
+from module import *
+from tasks import *
 
-device_id = "UWJJOJLB85SO7LIZ"
+
+device_id = "7HYP4T4XTS4DXKCY"
 
 account = {
         "account": "0971335869",
@@ -20,7 +23,10 @@ driver = u2.connect(device_id)
 driver.app_start("com.facebook.katana", ".LoginActivity")
 log_message(f"Kết nốt với thiết bị {device_id}")
 
+async def main():
+    await comment_post(driver, "hoir cham")
 
-asyncio.run(get_account_name(driver, account))
 
-print(account['name'])
+# asyncio.run(main())
+
+print(random.choice(COMMENTS))

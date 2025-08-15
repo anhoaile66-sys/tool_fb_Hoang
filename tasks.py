@@ -93,18 +93,18 @@ async def surf_fb(driver):
 
         while scroll_count > 0:
             count = random.randint(1,2)
-            await nature_scroll(driver, max_roll=count, isFast=random.choices([True,False]))
+            await nature_scroll(driver, max_roll=count, isFast=random.choice([True,False]))
             
             if scroll_count % 11 == 0:
-                await comment_post(driver, text=random.choices(COMMENTS))
+                await comment_post(driver, text=random.choice(COMMENTS))
                 await asyncio.sleep(random.uniform(3,5))
             if scroll_count % 7 == 0:
-                await like_post(driver, random.choices(EMOTION))
+                await like_post(driver, random.choice(EMOTION))
                 await asyncio.sleep(random.uniform(3,5))
             if scroll_count % 25 == 0:
                 i=random.randint(0,1)
                 if i:
-                    await share_post(driver, text=random.choices(SHARES))
+                    await share_post(driver, text=random.choice(SHARES))
                     await asyncio.sleep(3,5)
                 else:
                     await share_post(driver)
