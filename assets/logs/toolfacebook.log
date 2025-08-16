@@ -6481,3 +6481,112 @@ java.lang.IllegalStateException: UiAutomation not connected, UiAutomation@f78e08
 2025-08-16 08:09:31,053 - INFO - Đã cuộn +1 lần
 2025-08-16 08:09:34,069 - INFO - Đã cuộn 2 lần
 2025-08-16 08:09:36,812 - INFO - Đã hoàn thành lướt facebook
+2025-08-16 09:24:47,243 - INFO - Không tìm thấy dữ liệu cho thiết bị 2926294610DA007N
+2025-08-16 09:24:47,244 - INFO - Không tìm thấy dữ liệu cho thiết bị 7DXCUKKB6DVWDAQO
+2025-08-16 09:24:57,843 - INFO - Đang đăng nhập vào tài khoản Trang Trịnh trên thiết bị UWJJOJLB85SO7LIZ
+2025-08-16 09:24:57,844 - INFO - Đang về trang chủ
+2025-08-16 09:24:58,331 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-16 09:24:58,333 - INFO - Đã về trang chủ
+2025-08-16 09:24:58,334 - INFO - Đăng xuất
+2025-08-16 09:24:58,849 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-16 09:25:05,634 - INFO - Vào menu
+2025-08-16 09:25:06,367 - INFO - Đã cuộn +1 lần
+2025-08-16 09:25:09,690 - INFO - Đã cuộn +1 lần
+2025-08-16 09:25:12,706 - INFO - Đã cuộn 2 lần
+2025-08-16 09:25:12,707 - INFO - Tới cuối trang
+2025-08-16 09:25:13,085 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-16 09:25:13,770 - INFO - Đang đăng xuất
+2025-08-16 09:25:18,028 - INFO - Không tìm thấy dữ liệu cho thiết bị 2926294610DA007N
+2025-08-16 09:25:18,028 - INFO - Không tìm thấy dữ liệu cho thiết bị 7DXCUKKB6DVWDAQO
+2025-08-16 09:25:20,048 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-16 09:25:20,050 - WARNING - Không thấy box lưu tài khoản
+2025-08-16 09:25:20,168 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-16 09:25:30,337 - INFO - Đang đăng nhập vào tài khoản Mun'z Nek trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-16 09:25:30,338 - INFO - Đang về trang chủ
+2025-08-16 09:25:30,821 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-16 09:25:30,822 - INFO - Đã về trang chủ
+2025-08-16 09:25:30,823 - INFO - Đăng xuất
+2025-08-16 09:25:31,238 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-16 09:25:35,734 - INFO - Đăng xuất thành công
+2025-08-16 09:25:35,737 - INFO - Bắt đầu đăng nhập vào tài khoản Trang Trịnh
+2025-08-16 09:25:38,094 - INFO - Vào menu
+2025-08-16 09:25:38,759 - INFO - Đã cuộn +1 lần
+2025-08-16 09:25:41,148 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[@content-desc="Trang Trịnh"]')
+2025-08-16 09:25:41,989 - INFO - Đã cuộn +1 lần
+2025-08-16 09:25:42,191 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-16 09:25:42,284 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-16 09:25:42,284 - WARNING - Không thấy box lưu tài khoản
+2025-08-16 09:25:42,352 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-16 09:25:44,997 - INFO - Đã cuộn 2 lần
+2025-08-16 09:25:44,997 - INFO - Tới cuối trang
+2025-08-16 09:25:45,447 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-16 09:25:46,093 - INFO - Đang đăng xuất
+2025-08-16 09:25:48,364 - INFO - Đăng nhập thành công vào tài khoản Trang Trịnh
+2025-08-16 09:25:48,368 - INFO - Bắt đầu watch story
+2025-08-16 09:25:48,369 - INFO - Đang về trang chủ
+2025-08-16 09:25:48,860 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-16 09:25:48,860 - INFO - Đã về trang chủ
+2025-08-16 09:25:52,270 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-16 09:25:52,271 - WARNING - Không thấy box lưu tài khoản
+2025-08-16 09:25:52,354 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-16 09:25:54,769 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Tin của ")]')
+2025-08-16 09:25:55,388 - INFO - Xem story
+2025-08-16 09:26:07,801 - INFO - Đăng xuất thành công
+2025-08-16 09:26:07,806 - INFO - Bắt đầu đăng nhập vào tài khoản Mun'z Nek
+2025-08-16 09:26:13,243 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[@content-desc="Mun\'z Nek"]')
+2025-08-16 09:26:14,228 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-16 09:26:14,296 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-16 09:26:14,297 - WARNING - Không thấy box lưu tài khoản
+2025-08-16 09:26:14,383 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-16 09:26:20,386 - INFO - Đăng nhập thành công vào tài khoản Mun'z Nek
+2025-08-16 09:26:20,390 - INFO - Bắt đầu watch reels
+2025-08-16 09:26:20,392 - INFO - Đang về trang chủ
+2025-08-16 09:26:21,130 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-16 09:26:21,131 - INFO - Đã về trang chủ
+2025-08-16 09:26:27,643 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-16 09:26:29,441 - INFO - Đã cuộn +1 lần
+2025-08-16 09:26:30,455 - INFO - Đã cuộn 1 lần
+2025-08-16 09:26:30,783 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-16 09:26:32,591 - INFO - Đã cuộn +1 lần
+2025-08-16 09:26:33,602 - INFO - Đã cuộn 1 lần
+2025-08-16 09:26:33,855 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-16 09:26:35,525 - INFO - Đã cuộn +1 lần
+2025-08-16 09:26:36,527 - INFO - Đã cuộn 1 lần
+2025-08-16 09:26:36,875 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-16 09:26:38,492 - INFO - Đã cuộn +1 lần
+2025-08-16 09:26:39,497 - INFO - Đã cuộn 1 lần
+2025-08-16 09:26:39,750 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-16 09:26:41,472 - INFO - Đã cuộn +1 lần
+2025-08-16 09:26:42,478 - INFO - Đã cuộn 1 lần
+2025-08-16 09:26:42,808 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-16 09:26:44,589 - INFO - Đã cuộn +1 lần
+2025-08-16 09:26:45,598 - INFO - Đã cuộn 1 lần
+2025-08-16 09:26:45,972 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Xem thước phim")]')
+2025-08-16 09:26:46,645 - INFO - Lướt trên mặt nước anh như cơn sóng
+2025-08-16 09:26:55,392 - INFO - Xem story chán rồi, té thôi
+2025-08-16 09:26:56,084 - INFO - Đã thoát trang story
+2025-08-16 09:27:05,879 - INFO - Đã cuộn +1 lần
+2025-08-16 09:27:08,892 - INFO - Đã cuộn 1 lần
+2025-08-16 09:27:08,894 - INFO - Content nhảm vl, lướt
+2025-08-16 09:27:23,461 - INFO - Đã cuộn +1 lần
+2025-08-16 09:27:26,467 - INFO - Đã cuộn 1 lần
+2025-08-16 09:27:26,470 - INFO - Content nhảm vl, lướt
+2025-08-16 09:27:41,436 - INFO - Đã cuộn +1 lần
+2025-08-16 09:27:44,444 - INFO - Đã cuộn 1 lần
+2025-08-16 09:27:44,447 - INFO - Content nhảm vl, lướt
+2025-08-16 09:27:59,812 - INFO - Đã cuộn +1 lần
+2025-08-16 09:28:02,827 - INFO - Đã cuộn 1 lần
+2025-08-16 09:28:02,829 - INFO - Content nhảm vl, lướt
+2025-08-16 09:28:13,775 - INFO - Đã cuộn +1 lần
+2025-08-16 09:28:16,788 - INFO - Đã cuộn 1 lần
+2025-08-16 09:28:16,789 - INFO - Content nhảm vl, lướt
+2025-08-16 09:28:35,644 - INFO - Đã cuộn +1 lần
+2025-08-16 09:28:38,646 - INFO - Đã cuộn 1 lần
+2025-08-16 09:28:38,648 - INFO - Content nhảm vl, lướt
+2025-08-16 09:28:50,039 - INFO - Đã cuộn +1 lần
+2025-08-16 09:28:53,055 - INFO - Đã cuộn 1 lần
+2025-08-16 09:28:53,059 - INFO - Content nhảm vl, lướt
+2025-08-16 09:29:10,592 - INFO - Đã cuộn +1 lần
+2025-08-16 09:29:13,596 - INFO - Đã cuộn 1 lần
+2025-08-16 09:29:13,597 - INFO - Content nhảm vl, lướt
+2025-08-16 09:29:29,483 - INFO - Thoát về màn hình chính

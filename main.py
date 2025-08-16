@@ -1,6 +1,5 @@
 import uiautomator2 as u2
 import asyncio
-import aioschedule as schedule
 from util import *
 from module import *
 from tasks import *
@@ -42,14 +41,11 @@ async def run_all_devices():
     tasks = [run_on_device(device_id) for device_id in DEVICES_LIST]
     await asyncio.gather(*tasks)
 
-
 # Đặt lịch chạy task
 async def main():
-    await run_all_devices()
-    schedule.every(1).hours.do(run_all_devices)
     while True:
-        await schedule.run_pending()
-        await asyncio.sleep(1)
+        await run_all_devices
+        await asyncio.sleep(60 * 60)
 
 if __name__ == "__main__":
     asyncio.run(main())
