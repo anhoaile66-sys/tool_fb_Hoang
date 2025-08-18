@@ -43,6 +43,18 @@ async def comment_post(driver, text):
     """
     Tìm nút comment phía dưới, nhấn vào và comment đoạn comment cho trước"""
     log_message("Bắt đầu comment post")
+
+    # Thoát giao diện comment
+    async def exit():
+        exit = my_find_element(driver, {("xpath", '//android.widget.Button[contains(@content-desc, "Đóng")]')})
+        try:
+            exit.click()
+            log_message("Đã thoát giao diện comment")
+        except Exception:
+            log_message("Không tìm được nút thoát", logging.ERROR)
+            await go_to_home_page(driver)
+            return
+
     # Tìm nút comment
     comment_button = await scroll_until_element_visible(driver, {("xpath", '//android.widget.Button[contains(@content-desc, "Bình luận")]')})
     # Đọc bài viết một tí
@@ -63,6 +75,7 @@ async def comment_post(driver, text):
         await asyncio.sleep(random.uniform(2,5))
     except Exception:
         log_message("Không tìm được ô nhập comment", logging.ERROR)
+        await exit()
         return
 
     # Gửi comment
@@ -73,16 +86,8 @@ async def comment_post(driver, text):
         log_message("Đã comment")
     except Exception:
         log_message("Không tìm được nút gửi", logging.ERROR)
-        return
-    
-    # Thoát giao diện comment
-    exit = my_find_element(driver, {("xpath", '//android.widget.Button[contains(@content-desc, "Đóng")]')})
-    try:
-        exit.click()
-        log_message("Đã thoát giao diện comment")
-    except Exception:
-        log_message("Không tìm được nút thoát", logging.ERROR)
-        return
+    await exit()
+    return
 
 # Share bài viết
 async def share_post(driver, text=""):

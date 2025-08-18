@@ -21,20 +21,20 @@ async def log_out(driver):
     # Đợi chuyển sang tab menu
     await asyncio.sleep(6)
     log_message("Vào menu")
-    # Kéo hết xuống dưới
-    await nature_scroll(driver, max_roll=2, isFast=True)
-    log_message("Tới cuối trang")
 
-    # Tìm nút đăng xuất
-    log_out = my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đăng xuất"]')})
-    try:
-        log_out.click()
-        log_message("Đang đăng xuất")
-        # Đợi hiện box lưu
-        await asyncio.sleep(6)
-    except Exception:
-        log_message("Không tìm thấy nút đăng xuất", logging.ERROR)
-        return
+    safe_flag = 10
+    while (log_out := my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đăng xuất"]')})) == None:
+        if not safe_flag:
+            log_message("Không tìm được nút đăng xuất sau 10 lần thử",logging.ERROR)
+            await go_to_home_page(driver)
+            return
+        await nature_scroll(driver, isFast=True)
+        safe_flag-=1
+
+    log_out.click()
+    log_message("Đang đăng xuất")
+    # Đợi hiện box lưu
+    await asyncio.sleep(6)
     # Xác nhận lưu tài khoản(nếu có)
     save = my_find_element(driver, {("text", "LƯU")})
     try:

@@ -6,7 +6,7 @@ from tasks import *
 
 DEVICES_LIST = [
     "7HYP4T4XTS4DXKCY",
-    # "UWJJOJLB85SO7LIZ",
+    "UWJJOJLB85SO7LIZ",
     "2926294610DA007N",
     "7DXCUKKB6DVWDAQO"
     ]
@@ -15,7 +15,7 @@ async def run_on_device(device_id):
     try:
         device = load_device_account(device_id)
         if not device:
-            log_message(f"Không tìm thấy dữ liệu cho thiết bị {device_id}")
+            log_message(f"Không tìm thấy dữ liệu cho thiết bị {device_id}", logging.WARNING)
             return
         driver = u2.connect_usb(device_id)
         driver.app_start("com.facebook.katana", ".LoginActivity")
@@ -30,11 +30,10 @@ async def run_on_device(device_id):
         update_current_account(device_id, account['name'])
         # tasks nuôi fb
         # await fb_natural_task(driver)
-        # await surf_fb(driver)
-        await watch_reels(driver)
         # await watch_story(driver)
+        await add_3friend(driver)
     except Exception as e:
-        log_message(f"Lỗi trên thiết bị {device_id}: {e}")
+        log_message(f"Lỗi trên thiết bị {device_id}: {e}", logging.ERROR)
 
 # Chạy task trên tất cả các máy
 async def run_all_devices():
@@ -44,8 +43,8 @@ async def run_all_devices():
 # Đặt lịch chạy task
 async def main():
     while True:
-        await run_all_devices
-        await asyncio.sleep(60 * 60)
+        await run_all_devices()
+        await asyncio.sleep(20 * 60)
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    asyncio.run(run_all_devices())
