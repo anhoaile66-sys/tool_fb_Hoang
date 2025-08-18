@@ -94,7 +94,7 @@ async def surf_fb(driver):
         while scroll_count > 0:
             count = random.randint(1,2)
             await nature_scroll(driver, max_roll=count, isFast=random.choice([True,False]))
-            
+            await asyncio.sleep(random.uniform(1,10))
             if scroll_count % 11 == 0:
                 await comment_post(driver, text=random.choice(COMMENTS))
                 await asyncio.sleep(random.uniform(3,5))
@@ -120,16 +120,17 @@ async def fb_natural_task(driver):
 
     # Danh sách các hành động tự nhiên
     actions = [
-        lambda: watch_story(driver),
-        lambda: watch_reels(driver),
-        lambda: surf_fb(driver),
-        lambda: add_3friend(driver),
+        ("Xem story", lambda: watch_story(driver)),
+        ("Xem reels", lambda: watch_reels(driver)),
+        ("Lướt fb", lambda: surf_fb(driver)),
+        ("Kết bạn", lambda: add_3friend(driver)),
     ]
 
     # Random hóa thứ tự các hành động
     random.shuffle(actions)
 
-    for action in actions:
+    for name, action in actions:
+        log_message(f"Thực hiện tác vụ: {name}")
         await action()
         await asyncio.sleep(random.uniform(4,6))
 

@@ -18,8 +18,13 @@ async def watch_story(driver, duration=60):
         return
     story_item.click()
     log_message("Xem story")
-    await asyncio.sleep(duration)
 
+    # Kiểm tra có hiện box xác nhận không
+    ok = my_find_element(driver, {("text", "OK")})
+    if ok:
+        ok.click()
+        await asyncio.sleep(random.uniform(3,4))
+    await asyncio.sleep(duration)
     # react, gửi tin nhắn,... sẽ mở rộng sau
     # do somthing stupid
 

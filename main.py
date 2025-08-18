@@ -29,9 +29,7 @@ async def run_on_device(device_id):
         device['current_account'] = account['name']
         update_current_account(device_id, account['name'])
         # tasks nuôi fb
-        # await fb_natural_task(driver)
-        # await watch_story(driver)
-        await add_3friend(driver)
+        await fb_natural_task(driver)
     except Exception as e:
         log_message(f"Lỗi trên thiết bị {device_id}: {e}", logging.ERROR)
 
@@ -44,7 +42,8 @@ async def run_all_devices():
 async def main():
     while True:
         await run_all_devices()
+        log_message("Đợi 20p cho đến khi chạy task tiếp theo")
         await asyncio.sleep(20 * 60)
 
 if __name__ == "__main__":
-    asyncio.run(run_all_devices())
+    asyncio.run(main())
