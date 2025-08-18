@@ -115,6 +115,8 @@ async def surf_fb(driver):
     except Exception as e:
         log_message(f"Error {e}", logging.ERROR)
 
+    await go_to_home_page(driver)
+
 
 async def fb_natural_task(driver):
 
