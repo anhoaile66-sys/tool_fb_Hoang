@@ -8508,3 +8508,57 @@ java.lang.IllegalStateException: UiAutomation not connected, UiAutomation@298558
 2025-08-18 15:42:20,344 - INFO - Đã cuộn 1 lần
 2025-08-18 15:42:25,687 - INFO - Đã hoàn thành lướt facebook
 2025-08-18 15:42:30,637 - INFO - Hoàn thành chuỗi task nuôi Facebook tự nhiên
+2025-08-18 16:00:32,067 - ERROR - Lỗi trên thiết bị 7HYP4T4XTS4DXKCY: device 7HYP4T4XTS4DXKCY not online
+2025-08-18 16:00:34,006 - ERROR - Lỗi trên thiết bị UWJJOJLB85SO7LIZ: [server] INFO: [UiAutomator2Server] Starting Server
+java.lang.IllegalStateException: UiAutomationService android.accessibilityservice.IAccessibilityServiceClient$Stub$Proxy@c50d843already registered!
+	at android.os.Parcel.createExceptionOrNull(Parcel.java:3250)
+	at android.os.Parcel.createException(Parcel.java:3226)
+	at android.os.Parcel.readException(Parcel.java:3209)
+	at android.os.Parcel.readException(Parcel.java:3151)
+	at android.view.accessibility.IAccessibilityManager$Stub$Proxy.registerUiTestAutomationService(IAccessibilityManager.java:1098)
+	at android.app.UiAutomationConnection.registerUiTestAutomationServiceLocked(UiAutomationConnection.java:651)
+	at android.app.UiAutomationConnection.connect(UiAutomationConnection.java:119)
+	at android.app.UiAutomation.connectWithTimeout(UiAutomation.java:385)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at mirror.RefMethod.call(RefMethod.java:63)
+	at uiautomator.InstrumentShellWrapper.getUiAutomation(InstrumentShellWrapper.java:101)
+	at androidx.test.uiautomator.UiDevice$Api24Impl.getUiAutomationWithRetry(UiDevice.java:1545)
+	at androidx.test.uiautomator.UiDevice.getUiAutomation(UiDevice.java:1468)
+	at androidx.test.uiautomator.QueryController.<init>(QueryController.java:95)
+	at androidx.test.uiautomator.UiDevice.<init>(UiDevice.java:115)
+	at androidx.test.uiautomator.UiDevice.getInstance(UiDevice.java:296)
+	at com.wetest.uia2.Main.runServer(Main.java:50)
+	at com.wetest.uia2.Main.main(Main.java:30)
+	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:390)
+Caused by: android.os.RemoteException: Remote stack trace:
+	at com.android.server.accessibility.UiAutomationManager.registerUiTestAutomationServiceLocked(UiAutomationManager.java:109)
+	at com.android.server.accessibility.AccessibilityManagerService.registerUiTestAutomationService(AccessibilityManagerService.java:1489)
+	at android.view.accessibility.IAccessibilityManager$Stub.onTransact(IAccessibilityManager.java:546)
+	at android.os.Binder.execTransactInternal(Binder.java:1500)
+	at android.os.Binder.execTransact(Binder.java:1444)
+
+java.lang.IllegalStateException: UiAutomation not connected, UiAutomation@9d82e3[id=-1, displayId=0, flags=0]
+	at android.app.UiAutomation.throwIfNotConnectedLocked(UiAutomation.java:1781)
+	at android.app.UiAutomation.getServiceInfo(UiAutomation.java:805)
+	at androidx.test.uiautomator.UiDevice.getUiAutomation(UiDevice.java:1482)
+	at androidx.test.uiautomator.QueryController.<init>(QueryController.java:95)
+	at androidx.test.uiautomator.UiDevice.<init>(UiDevice.java:115)
+	at androidx.test.uiautomator.UiDevice.getInstance(UiDevice.java:296)
+	at com.wetest.uia2.Main.runServer(Main.java:50)
+	at com.wetest.uia2.Main.main(Main.java:30)
+	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:390)
+
+2025-08-18 16:00:34,009 - WARNING - Không tìm thấy dữ liệu cho thiết bị 2926294610DA007N
+2025-08-18 16:00:34,010 - WARNING - Không tìm thấy dữ liệu cho thiết bị 7DXCUKKB6DVWDAQO
+2025-08-18 16:00:34,011 - INFO - Đợi 20p cho đến khi chạy task tiếp theo
+2025-08-18 16:01:17,167 - ERROR - Lỗi trên thiết bị 7HYP4T4XTS4DXKCY: device 7HYP4T4XTS4DXKCY not online
+2025-08-18 16:01:19,388 - WARNING - Không tìm thấy dữ liệu cho thiết bị 2926294610DA007N
+2025-08-18 16:01:19,390 - WARNING - Không tìm thấy dữ liệu cho thiết bị 7DXCUKKB6DVWDAQO
+2025-08-18 16:01:31,625 - INFO - Đợi 20p cho đến khi chạy task tiếp theo
+2025-08-18 16:02:11,658 - ERROR - Lỗi trên thiết bị 7HYP4T4XTS4DXKCY: device 7HYP4T4XTS4DXKCY not online
+2025-08-18 16:02:13,880 - WARNING - Không tìm thấy dữ liệu cho thiết bị 2926294610DA007N
+2025-08-18 16:02:13,881 - WARNING - Không tìm thấy dữ liệu cho thiết bị 7DXCUKKB6DVWDAQO
+2025-08-18 16:02:26,967 - INFO - Đã cuộn +1 lần
+2025-08-18 16:02:29,982 - INFO - Đợi 20p cho đến khi chạy task tiếp theo
