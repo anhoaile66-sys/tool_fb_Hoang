@@ -78,7 +78,7 @@ async def get_account_name(driver, account):
             await asyncio.sleep(3)
             text_views = my_find_elements(driver, {("className", "android.view.View")})
             try:
-                if "..." in text_views[0].get_text():
+                if ("..." or "?") in text_views[0].get_text():
                     account['name'] = text_views[1].get_text()
                 else:
                     account['name'] = text_views[0].get_text()

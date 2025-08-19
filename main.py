@@ -28,6 +28,7 @@ async def clear_app(driver):
 
     driver.swipe(start_x, start_y, end_x, end_y, duration=duration)
     await asyncio.sleep(sleep_time)
+    driver.press("home")
 
 async def run_on_device(device_id):
     try:

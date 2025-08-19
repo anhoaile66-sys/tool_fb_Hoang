@@ -8562,3 +8562,573 @@ java.lang.IllegalStateException: UiAutomation not connected, UiAutomation@9d82e3
 2025-08-18 16:02:13,881 - WARNING - Không tìm thấy dữ liệu cho thiết bị 7DXCUKKB6DVWDAQO
 2025-08-18 16:02:26,967 - INFO - Đã cuộn +1 lần
 2025-08-18 16:02:29,982 - INFO - Đợi 20p cho đến khi chạy task tiếp theo
+2025-08-18 16:48:02,455 - ERROR - Lỗi trên thiết bị 7HYP4T4XTS4DXKCY: device 7HYP4T4XTS4DXKCY not online
+2025-08-18 16:48:12,814 - ERROR - Lỗi trên thiết bị UWJJOJLB85SO7LIZ: device UWJJOJLB85SO7LIZ not online
+2025-08-18 16:48:12,816 - WARNING - Không tìm thấy dữ liệu cho thiết bị 2926294610DA007N
+2025-08-18 16:48:12,817 - WARNING - Không tìm thấy dữ liệu cho thiết bị 7DXCUKKB6DVWDAQO
+2025-08-18 16:48:12,817 - INFO - Đợi 20p cho đến khi chạy task tiếp theo
+2025-08-18 16:48:44,434 - ERROR - Lỗi trên thiết bị 7HYP4T4XTS4DXKCY: device 7HYP4T4XTS4DXKCY not online
+2025-08-18 16:48:46,678 - WARNING - Không tìm thấy dữ liệu cho thiết bị 2926294610DA007N
+2025-08-18 16:48:46,679 - WARNING - Không tìm thấy dữ liệu cho thiết bị 7DXCUKKB6DVWDAQO
+2025-08-18 16:48:58,267 - INFO - Đang đăng nhập vào tài khoản Nguyễn Lai trên thiết bị UWJJOJLB85SO7LIZ
+2025-08-18 16:48:58,268 - INFO - Đang về trang chủ
+2025-08-18 16:48:58,769 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-18 16:48:58,770 - INFO - Đã về trang chủ
+2025-08-18 16:48:58,771 - INFO - Đăng xuất
+2025-08-18 16:48:59,203 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-18 16:49:05,976 - INFO - Vào menu
+2025-08-18 16:49:06,426 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 16:49:07,165 - INFO - Đã cuộn +1 lần
+2025-08-18 16:49:10,180 - INFO - Đã cuộn 1 lần
+2025-08-18 16:49:10,720 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 16:49:11,205 - INFO - Đã cuộn +1 lần
+2025-08-18 16:49:14,215 - INFO - Đã cuộn 1 lần
+2025-08-18 16:49:14,751 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-18 16:49:15,527 - INFO - Đang đăng xuất
+2025-08-18 16:49:21,752 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 16:49:21,754 - WARNING - Không thấy box lưu tài khoản
+2025-08-18 16:49:21,845 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-18 16:49:37,349 - INFO - Đăng xuất thành công
+2025-08-18 16:49:37,354 - INFO - Bắt đầu đăng nhập vào tài khoản Nguyễn Lai
+2025-08-18 16:49:42,844 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[@content-desc="Nguyễn Lai"]')
+2025-08-18 16:49:43,931 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 16:49:44,093 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 16:49:44,093 - WARNING - Không thấy box lưu tài khoản
+2025-08-18 16:49:44,216 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 16:49:50,230 - INFO - Đăng nhập thành công vào tài khoản Nguyễn Lai
+2025-08-18 16:49:50,278 - INFO - Thực hiện tác vụ: Lướt fb
+2025-08-18 16:49:50,279 - INFO - Lướt fb
+2025-08-18 16:49:50,279 - INFO - Đang về trang chủ
+2025-08-18 16:49:50,600 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-18 16:49:50,601 - INFO - Đã về trang chủ
+2025-08-18 16:50:04,531 - INFO - Đã cuộn +1 lần
+2025-08-18 16:50:05,534 - INFO - Đã cuộn 1 lần
+2025-08-18 16:50:09,806 - INFO - Đã cuộn +1 lần
+2025-08-18 16:50:12,815 - INFO - Đã cuộn 1 lần
+2025-08-18 16:50:20,016 - INFO - Bắt đầu like post
+2025-08-18 16:50:20,462 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')
+2025-08-18 16:50:37,819 - INFO - Tìm thấy element với locator: ('xpath', '//com.facebook.feedback.sharedcomponents.reactions.dock.RopeStyleUFIDockView[@content-desc="Thương thương"]')
+2025-08-18 16:50:40,798 - INFO - Đã thả cảm xúc Thương thương
+2025-08-18 16:50:47,299 - INFO - Đã cuộn +1 lần
+2025-08-18 16:50:48,307 - INFO - Đã cuộn 1 lần
+2025-08-18 16:50:59,144 - INFO - Đã cuộn +1 lần
+2025-08-18 16:51:00,155 - INFO - Đã cuộn 1 lần
+2025-08-18 16:51:04,160 - INFO - Đã cuộn +1 lần
+2025-08-18 16:51:07,170 - INFO - Đã cuộn 1 lần
+2025-08-18 16:51:09,592 - INFO - Bắt đầu chia sẻ
+2025-08-18 16:51:09,790 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Chia sẻ")]')
+2025-08-18 16:51:12,239 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.ViewGroup[@content-desc="Chia sẻ lên"]')
+2025-08-18 16:51:12,922 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 16:51:12,924 - ERROR - Không thể tìm được ô text
+2025-08-18 16:51:13,196 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đóng"]')
+2025-08-18 16:51:13,635 - ERROR - Chia sẻ thất bại, thoát chia sẻ
+2025-08-18 16:51:18,241 - INFO - Đã cuộn +1 lần
+2025-08-18 16:51:20,591 - INFO - Đã cuộn +1 lần
+2025-08-18 16:51:21,595 - INFO - Đã cuộn 2 lần
+2025-08-18 16:51:29,624 - INFO - Đã cuộn +1 lần
+2025-08-18 16:51:31,875 - INFO - Đã cuộn +1 lần
+2025-08-18 16:51:32,875 - INFO - Đã cuộn 2 lần
+2025-08-18 16:51:35,489 - INFO - Đã cuộn +1 lần
+2025-08-18 16:51:38,493 - INFO - Đã cuộn 1 lần
+2025-08-18 16:51:43,371 - INFO - Bắt đầu comment post
+2025-08-18 16:51:43,708 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Bình luận")]')
+2025-08-18 16:52:01,050 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.AutoCompleteTextView')
+2025-08-18 16:52:10,548 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Gửi")]')
+2025-08-18 16:52:14,641 - INFO - Đã comment
+2025-08-18 16:52:15,013 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Đóng")]')
+2025-08-18 16:52:15,562 - INFO - Đã thoát giao diện comment
+2025-08-18 16:52:20,317 - INFO - Đã cuộn +1 lần
+2025-08-18 16:52:23,666 - INFO - Đã cuộn +1 lần
+2025-08-18 16:52:26,677 - INFO - Đã cuộn 2 lần
+2025-08-18 16:52:29,556 - INFO - Bắt đầu like post
+2025-08-18 16:52:29,935 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')
+2025-08-18 16:52:44,789 - INFO - Tìm thấy element với locator: ('xpath', '//com.facebook.feedback.sharedcomponents.reactions.dock.RopeStyleUFIDockView[@content-desc="Phẫn nộ"]')
+2025-08-18 16:52:48,147 - INFO - Đã thả cảm xúc Phẫn nộ
+2025-08-18 16:52:54,129 - INFO - Đã cuộn +1 lần
+2025-08-18 16:52:55,157 - INFO - Đã cuộn 1 lần
+2025-08-18 16:52:59,537 - INFO - Đã cuộn +1 lần
+2025-08-18 16:53:02,551 - INFO - Đã cuộn 1 lần
+2025-08-18 16:53:10,943 - INFO - Đã cuộn +1 lần
+2025-08-18 16:53:14,324 - INFO - Đã cuộn +1 lần
+2025-08-18 16:53:17,335 - INFO - Đã cuộn 2 lần
+2025-08-18 16:53:23,168 - INFO - Đã cuộn +1 lần
+2025-08-18 16:53:25,425 - INFO - Đã cuộn +1 lần
+2025-08-18 16:53:26,433 - INFO - Đã cuộn 2 lần
+2025-08-18 16:53:36,558 - INFO - Đã cuộn +1 lần
+2025-08-18 16:53:37,568 - INFO - Đã cuộn 1 lần
+2025-08-18 16:53:40,170 - INFO - Đã cuộn +1 lần
+2025-08-18 16:53:41,173 - INFO - Đã cuộn 1 lần
+2025-08-18 16:53:48,549 - INFO - Đã cuộn +1 lần
+2025-08-18 16:53:51,551 - INFO - Đã cuộn 1 lần
+2025-08-18 16:54:01,016 - INFO - Bắt đầu like post
+2025-08-18 16:54:01,382 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')
+2025-08-18 16:54:14,503 - INFO - Tìm thấy element với locator: ('xpath', '//com.facebook.feedback.sharedcomponents.reactions.dock.RopeStyleUFIDockView[@content-desc="Thích"]')
+2025-08-18 16:54:17,845 - INFO - Đã thả cảm xúc Thích
+2025-08-18 16:54:23,241 - INFO - Đã cuộn +1 lần
+2025-08-18 16:54:25,604 - INFO - Đã cuộn +1 lần
+2025-08-18 16:54:26,619 - INFO - Đã cuộn 2 lần
+2025-08-18 16:54:32,430 - INFO - Đã cuộn +1 lần
+2025-08-18 16:54:35,725 - INFO - Đã cuộn +1 lần
+2025-08-18 16:54:38,733 - INFO - Đã cuộn 2 lần
+2025-08-18 16:54:47,960 - INFO - Đã cuộn +1 lần
+2025-08-18 16:54:50,126 - INFO - Đã cuộn +1 lần
+2025-08-18 16:54:51,140 - INFO - Đã cuộn 2 lần
+2025-08-18 16:54:59,010 - INFO - Bắt đầu comment post
+2025-08-18 16:54:59,391 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Bình luận")]')
+2025-08-18 16:55:13,902 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.AutoCompleteTextView')
+2025-08-18 16:55:21,139 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Gửi")]')
+2025-08-18 16:55:25,783 - INFO - Đã comment
+2025-08-18 16:55:26,339 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Đóng")]')
+2025-08-18 16:55:27,082 - INFO - Đã thoát giao diện comment
+2025-08-18 16:55:32,124 - INFO - Đã cuộn +1 lần
+2025-08-18 16:55:35,538 - INFO - Đã cuộn +1 lần
+2025-08-18 16:55:38,545 - INFO - Đã cuộn 2 lần
+2025-08-18 16:55:45,043 - INFO - Đã cuộn +1 lần
+2025-08-18 16:55:48,438 - INFO - Đã cuộn +1 lần
+2025-08-18 16:55:51,446 - INFO - Đã cuộn 2 lần
+2025-08-18 16:55:54,263 - INFO - Đã cuộn +1 lần
+2025-08-18 16:55:55,275 - INFO - Đã cuộn 1 lần
+2025-08-18 16:55:58,311 - INFO - Đã cuộn +1 lần
+2025-08-18 16:56:01,319 - INFO - Đã cuộn 1 lần
+2025-08-18 16:56:10,557 - INFO - Bắt đầu like post
+2025-08-18 16:56:10,934 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')
+2025-08-18 16:56:23,317 - INFO - Tìm thấy element với locator: ('xpath', '//com.facebook.feedback.sharedcomponents.reactions.dock.RopeStyleUFIDockView[@content-desc="Buồn"]')
+2025-08-18 16:56:26,403 - INFO - Đã thả cảm xúc Buồn
+2025-08-18 16:56:30,343 - INFO - Đã cuộn +1 lần
+2025-08-18 16:56:33,359 - INFO - Đã cuộn 1 lần
+2025-08-18 16:56:39,210 - INFO - Đã cuộn +1 lần
+2025-08-18 16:56:42,611 - INFO - Đã cuộn +1 lần
+2025-08-18 16:56:45,618 - INFO - Đã cuộn 2 lần
+2025-08-18 16:56:54,797 - INFO - Đã cuộn +1 lần
+2025-08-18 16:56:57,803 - INFO - Đã cuộn 1 lần
+2025-08-18 16:56:59,437 - INFO - Đã cuộn +1 lần
+2025-08-18 16:57:02,443 - INFO - Đã cuộn 1 lần
+2025-08-18 16:57:12,907 - INFO - Đã cuộn +1 lần
+2025-08-18 16:57:15,930 - INFO - Đã cuộn 1 lần
+2025-08-18 16:57:25,491 - INFO - Đã cuộn +1 lần
+2025-08-18 16:57:28,505 - INFO - Đã cuộn 1 lần
+2025-08-18 16:57:42,880 - INFO - Đã hoàn thành lướt facebook
+2025-08-18 16:57:42,880 - INFO - Đang về trang chủ
+2025-08-18 16:57:43,152 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 16:57:44,338 - WARNING - Không tìm được trang chủ
+2025-08-18 16:57:45,299 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-18 16:57:45,300 - INFO - Đã về trang chủ
+2025-08-18 16:57:50,444 - INFO - Thực hiện tác vụ: Xem reels
+2025-08-18 16:57:50,445 - INFO - Bắt đầu watch reels
+2025-08-18 16:57:50,445 - INFO - Đang về trang chủ
+2025-08-18 16:57:50,885 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-18 16:57:50,886 - INFO - Đã về trang chủ
+2025-08-18 16:57:56,693 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 16:57:58,118 - INFO - Đã cuộn +1 lần
+2025-08-18 16:57:59,128 - INFO - Đã cuộn 1 lần
+2025-08-18 16:57:59,441 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Xem thước phim")]')
+2025-08-18 16:57:59,956 - INFO - Lướt trên mặt nước anh như cơn sóng
+2025-08-18 16:58:15,059 - INFO - Đã cuộn +1 lần
+2025-08-18 16:58:18,066 - INFO - Đã cuộn 1 lần
+2025-08-18 16:58:18,070 - INFO - Content nhảm vl, lướt
+2025-08-18 16:58:36,496 - INFO - Đã cuộn +1 lần
+2025-08-18 16:58:39,502 - INFO - Đã cuộn 1 lần
+2025-08-18 16:58:39,506 - INFO - Content nhảm vl, lướt
+2025-08-18 16:58:52,400 - INFO - Đã cuộn +1 lần
+2025-08-18 16:58:55,405 - INFO - Đã cuộn 1 lần
+2025-08-18 16:58:55,409 - INFO - Content nhảm vl, lướt
+2025-08-18 16:59:13,031 - INFO - Đã cuộn +1 lần
+2025-08-18 16:59:16,033 - INFO - Đã cuộn 1 lần
+2025-08-18 16:59:16,034 - INFO - Content nhảm vl, lướt
+2025-08-18 16:59:27,800 - INFO - Đã cuộn +1 lần
+2025-08-18 16:59:30,805 - INFO - Đã cuộn 1 lần
+2025-08-18 16:59:30,806 - INFO - Content nhảm vl, lướt
+2025-08-18 16:59:48,589 - INFO - Đã cuộn +1 lần
+2025-08-18 16:59:51,594 - INFO - Đã cuộn 1 lần
+2025-08-18 16:59:51,595 - INFO - Content nhảm vl, lướt
+2025-08-18 17:00:07,195 - INFO - Đã cuộn +1 lần
+2025-08-18 17:00:10,198 - INFO - Đã cuộn 1 lần
+2025-08-18 17:00:10,201 - INFO - Content nhảm vl, lướt
+2025-08-18 17:00:24,252 - INFO - Đã cuộn +1 lần
+2025-08-18 17:00:27,256 - INFO - Đã cuộn 1 lần
+2025-08-18 17:00:27,259 - INFO - Content nhảm vl, lướt
+2025-08-18 17:00:43,285 - INFO - Thoát về màn hình chính
+2025-08-18 17:00:48,989 - INFO - Thực hiện tác vụ: Kết bạn
+2025-08-18 17:00:48,991 - INFO - Bắt đầu kết bạn
+2025-08-18 17:00:48,992 - INFO - Đang về trang chủ
+2025-08-18 17:00:49,346 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:00:50,490 - WARNING - Không tìm được trang chủ
+2025-08-18 17:00:50,808 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-18 17:00:50,809 - INFO - Đã về trang chủ
+2025-08-18 17:00:51,260 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-18 17:00:57,823 - INFO - Vào menu
+2025-08-18 17:00:58,371 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.ViewGroup[@content-desc="Nhóm"]')
+2025-08-18 17:01:05,137 - INFO - Mở giao diện nhóm
+2025-08-18 17:01:05,450 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Tìm kiếm nhóm"]')
+2025-08-18 17:01:08,950 - INFO - Mở giao diện tìm kiếm nhóm
+2025-08-18 17:01:09,063 - INFO - Tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-18 17:01:12,336 - INFO - Đã nhập từ khóa tìm kiếm
+2025-08-18 17:01:16,271 - INFO - Đã cuộn +1 lần
+2025-08-18 17:01:19,600 - INFO - Đã cuộn +1 lần
+2025-08-18 17:01:22,939 - INFO - Đã cuộn +1 lần
+2025-08-18 17:01:26,257 - INFO - Đã cuộn +1 lần
+2025-08-18 17:01:29,489 - INFO - Đã cuộn +1 lần
+2025-08-18 17:01:32,500 - INFO - Đã cuộn 5 lần
+2025-08-18 17:01:37,720 - INFO - Đã tìm thấy 11 element
+2025-08-18 17:01:39,945 - INFO - Đã vào nhóm: (Tuyển Dụng Nhân Sự - Tìm Việc Nhanh,Công khai · 49K thành viên · 10+ bài viết/ngày)
+2025-08-18 17:01:43,579 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "thành viên")]')
+2025-08-18 17:01:44,227 - INFO - Tên nhóm: Tìm Việc Làm - Tuyển Dụng - Tại Hà Nội,Công khai · 11K thành viên · 50+ bài viết/ngày
+2025-08-18 17:01:51,650 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:01:52,222 - INFO - Đã mở tùy chọn
+2025-08-18 17:01:52,631 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:01:53,526 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[@content-desc="Xem tất cả"]')
+2025-08-18 17:02:01,385 - INFO - Đã mở danh sách thành viên
+2025-08-18 17:02:01,950 - INFO - Đã cuộn +1 lần
+2025-08-18 17:02:05,321 - INFO - Đã cuộn +1 lần
+2025-08-18 17:02:08,337 - INFO - Đã cuộn 2 lần
+2025-08-18 17:02:09,044 - INFO - Đã tìm thấy 7 element
+2025-08-18 17:02:12,259 - INFO - Đã gửi lời mời kết bạn
+2025-08-18 17:02:22,774 - INFO - Đã quay lại danh sách nhóm
+2025-08-18 17:02:23,857 - INFO - Đã cuộn +1 lần
+2025-08-18 17:02:25,606 - INFO - Đã cuộn +1 lần
+2025-08-18 17:02:27,404 - INFO - Đã cuộn +1 lần
+2025-08-18 17:02:28,416 - INFO - Đã cuộn 3 lần
+2025-08-18 17:02:33,789 - INFO - Đã tìm thấy 12 element
+2025-08-18 17:02:36,012 - INFO - Đã vào nhóm: (Tuyển Dụng - Việc Làm Tại Hà Nội,Công khai · 276K thành viên · 90+ bài viết/ngày)
+2025-08-18 17:02:39,658 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "thành viên")]')
+2025-08-18 17:02:40,401 - INFO - Tên nhóm: Tìm Việc Làm - Tuyển Dụng - Tại Hà Nội,Công khai · 11K thành viên · 50+ bài viết/ngày
+2025-08-18 17:02:47,642 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:02:48,235 - INFO - Đã mở tùy chọn
+2025-08-18 17:02:48,632 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:02:49,575 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[@content-desc="Xem tất cả"]')
+2025-08-18 17:02:57,251 - INFO - Đã mở danh sách thành viên
+2025-08-18 17:02:57,851 - INFO - Đã cuộn +1 lần
+2025-08-18 17:03:01,196 - INFO - Đã cuộn +1 lần
+2025-08-18 17:03:04,204 - INFO - Đã cuộn 2 lần
+2025-08-18 17:03:05,023 - INFO - Đã tìm thấy 7 element
+2025-08-18 17:03:08,251 - INFO - Đã gửi lời mời kết bạn
+2025-08-18 17:03:18,698 - INFO - Đã quay lại danh sách nhóm
+2025-08-18 17:03:18,969 - INFO - Đã cuộn 0 lần
+2025-08-18 17:03:24,208 - INFO - Đã tìm thấy 13 element
+2025-08-18 17:03:26,383 - INFO - Đã vào nhóm: (Tuyển Dụng - Việc Làm Tại Hà Nội,Công khai · 276K thành viên · 90+ bài viết/ngày)
+2025-08-18 17:03:29,624 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "thành viên")]')
+2025-08-18 17:03:29,964 - INFO - Tên nhóm: Tuyển Dụng - Việc Làm Tại Hà Nội, Nhóm Công khai · 276.273 thành viên
+2025-08-18 17:03:36,662 - INFO - Tìm thấy element với locator: ('text', 'Giới thiệu')
+2025-08-18 17:03:36,916 - INFO - Đã mở tùy chọn
+2025-08-18 17:03:37,268 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:03:37,668 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[@content-desc="Xem tất cả"]')
+2025-08-18 17:03:45,500 - INFO - Đã mở danh sách thành viên
+2025-08-18 17:03:46,128 - INFO - Đã cuộn +1 lần
+2025-08-18 17:03:49,425 - INFO - Đã cuộn +1 lần
+2025-08-18 17:03:52,435 - INFO - Đã cuộn 2 lần
+2025-08-18 17:03:53,189 - INFO - Đã tìm thấy 10 element
+2025-08-18 17:03:56,427 - INFO - Đã gửi lời mời kết bạn
+2025-08-18 17:04:07,429 - INFO - Đã quay lại danh sách nhóm
+2025-08-18 17:04:07,431 - INFO - Đã kết bạn với 3 người trong nhóm tuyển dụng
+2025-08-18 17:04:07,431 - INFO - Đang về trang chủ
+2025-08-18 17:04:08,009 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:04:09,276 - WARNING - Không tìm được trang chủ
+2025-08-18 17:04:09,670 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:04:10,794 - WARNING - Không tìm được trang chủ
+2025-08-18 17:04:11,029 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:04:12,355 - WARNING - Không tìm được trang chủ
+2025-08-18 17:04:12,570 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:04:14,265 - WARNING - Không tìm được trang chủ
+2025-08-18 17:04:14,618 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:04:16,001 - WARNING - Không tìm được trang chủ
+2025-08-18 17:04:16,404 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-18 17:04:16,405 - INFO - Đã về trang chủ
+2025-08-18 17:04:22,002 - INFO - Thực hiện tác vụ: Xem story
+2025-08-18 17:04:22,002 - INFO - Bắt đầu watch story
+2025-08-18 17:04:22,003 - INFO - Đang về trang chủ
+2025-08-18 17:04:22,352 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-18 17:04:22,353 - INFO - Đã về trang chủ
+2025-08-18 17:04:29,630 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Tin của ")]')
+2025-08-18 17:04:30,180 - INFO - Xem story
+2025-08-18 17:04:30,910 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:05:30,924 - INFO - Xem story chán rồi, té thôi
+2025-08-18 17:05:31,524 - INFO - Đã thoát trang story
+2025-08-18 17:05:36,544 - INFO - Hoàn thành chuỗi task nuôi Facebook tự nhiên
+2025-08-18 17:05:42,112 - INFO - Đợi 20p cho đến khi chạy task tiếp theo
+2025-08-18 17:26:13,503 - ERROR - Lỗi trên thiết bị 7HYP4T4XTS4DXKCY: device 7HYP4T4XTS4DXKCY not online
+2025-08-18 17:26:13,954 - WARNING - Không tìm thấy dữ liệu cho thiết bị 2926294610DA007N
+2025-08-18 17:26:13,956 - WARNING - Không tìm thấy dữ liệu cho thiết bị 7DXCUKKB6DVWDAQO
+2025-08-18 17:26:25,436 - INFO - Đang đăng nhập vào tài khoản Bùi Nhất trên thiết bị UWJJOJLB85SO7LIZ
+2025-08-18 17:26:25,437 - INFO - Đang về trang chủ
+2025-08-18 17:26:25,924 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-18 17:26:25,926 - INFO - Đã về trang chủ
+2025-08-18 17:26:25,927 - INFO - Đăng xuất
+2025-08-18 17:26:26,364 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-18 17:26:33,178 - INFO - Vào menu
+2025-08-18 17:26:33,582 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:26:34,305 - INFO - Đã cuộn +1 lần
+2025-08-18 17:26:37,310 - INFO - Đã cuộn 1 lần
+2025-08-18 17:26:37,854 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:26:38,378 - INFO - Đã cuộn +1 lần
+2025-08-18 17:26:41,380 - INFO - Đã cuộn 1 lần
+2025-08-18 17:26:41,821 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-18 17:26:42,444 - INFO - Đang đăng xuất
+2025-08-18 17:26:48,722 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:26:48,725 - WARNING - Không thấy box lưu tài khoản
+2025-08-18 17:26:48,770 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-18 17:27:04,249 - INFO - Đăng xuất thành công
+2025-08-18 17:27:04,251 - INFO - Bắt đầu đăng nhập vào tài khoản Bùi Nhất
+2025-08-18 17:27:09,782 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[@content-desc="Bùi Nhất"]')
+2025-08-18 17:27:10,754 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:27:10,838 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:27:10,839 - WARNING - Không thấy box lưu tài khoản
+2025-08-18 17:27:10,927 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:27:16,938 - INFO - Đăng nhập thành công vào tài khoản Bùi Nhất
+2025-08-18 17:27:16,940 - INFO - Thực hiện tác vụ: Lướt fb
+2025-08-18 17:27:16,941 - INFO - Lướt fb
+2025-08-18 17:27:16,942 - INFO - Đang về trang chủ
+2025-08-18 17:27:17,378 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-18 17:27:17,379 - INFO - Đã về trang chủ
+2025-08-18 17:27:31,349 - INFO - Đã cuộn +1 lần
+2025-08-18 17:27:33,649 - INFO - Đã cuộn +1 lần
+2025-08-18 17:27:34,668 - INFO - Đã cuộn 2 lần
+2025-08-18 17:27:43,214 - INFO - Bắt đầu like post
+2025-08-18 17:27:43,609 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:27:45,001 - INFO - Đã cuộn +1 lần
+2025-08-18 17:27:46,010 - INFO - Đã cuộn 1 lần
+2025-08-18 17:27:46,265 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')
+2025-08-18 17:27:55,160 - INFO - Tìm thấy element với locator: ('xpath', '//com.facebook.feedback.sharedcomponents.reactions.dock.RopeStyleUFIDockView[@content-desc="Thích"]')
+2025-08-18 17:27:58,183 - INFO - Đã thả cảm xúc Thích
+2025-08-18 17:28:03,462 - INFO - Đã cuộn +1 lần
+2025-08-18 17:28:05,609 - INFO - Đã cuộn +1 lần
+2025-08-18 17:28:06,624 - INFO - Đã cuộn 2 lần
+2025-08-18 17:28:16,766 - INFO - Đã cuộn +1 lần
+2025-08-18 17:28:19,775 - INFO - Đã cuộn 1 lần
+2025-08-18 17:28:28,270 - INFO - Đã cuộn +1 lần
+2025-08-18 17:28:31,663 - INFO - Đã cuộn +1 lần
+2025-08-18 17:28:34,671 - INFO - Đã cuộn 2 lần
+2025-08-18 17:28:43,413 - INFO - Bắt đầu chia sẻ
+2025-08-18 17:28:43,729 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Chia sẻ")]')
+2025-08-18 17:28:45,853 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:28:45,855 - ERROR - Không tìm thấy nút chia sẻ
+2025-08-18 17:28:46,022 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:28:46,023 - ERROR - Không thể tìm được nút share
+2025-08-18 17:28:46,197 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đóng"]')
+2025-08-18 17:28:46,633 - ERROR - Chia sẻ thất bại, thoát chia sẻ
+2025-08-18 17:28:51,246 - INFO - Đã cuộn +1 lần
+2025-08-18 17:28:53,539 - INFO - Đã cuộn +1 lần
+2025-08-18 17:28:54,550 - INFO - Đã cuộn 2 lần
+2025-08-18 17:29:02,213 - INFO - Đã cuộn +1 lần
+2025-08-18 17:29:04,492 - INFO - Đã cuộn +1 lần
+2025-08-18 17:29:05,508 - INFO - Đã cuộn 2 lần
+2025-08-18 17:29:12,903 - INFO - Đã cuộn +1 lần
+2025-08-18 17:29:15,909 - INFO - Đã cuộn 1 lần
+2025-08-18 17:29:23,530 - INFO - Bắt đầu comment post
+2025-08-18 17:29:23,856 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Bình luận")]')
+2025-08-18 17:29:41,856 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.AutoCompleteTextView')
+2025-08-18 17:29:52,480 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Gửi")]')
+2025-08-18 17:29:57,847 - INFO - Đã comment
+2025-08-18 17:29:58,338 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Đóng")]')
+2025-08-18 17:29:59,002 - INFO - Đã thoát giao diện comment
+2025-08-18 17:30:02,874 - INFO - Đã cuộn +1 lần
+2025-08-18 17:30:06,200 - INFO - Đã cuộn +1 lần
+2025-08-18 17:30:09,213 - INFO - Đã cuộn 2 lần
+2025-08-18 17:30:17,217 - INFO - Bắt đầu like post
+2025-08-18 17:30:17,541 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')
+2025-08-18 17:30:31,042 - INFO - Tìm thấy element với locator: ('xpath', '//com.facebook.feedback.sharedcomponents.reactions.dock.RopeStyleUFIDockView[@content-desc="Wow"]')
+2025-08-18 17:30:34,136 - INFO - Đã thả cảm xúc Wow
+2025-08-18 17:30:38,863 - INFO - Đã cuộn +1 lần
+2025-08-18 17:30:39,867 - INFO - Đã cuộn 1 lần
+2025-08-18 17:30:47,153 - INFO - Đã cuộn +1 lần
+2025-08-18 17:30:49,519 - INFO - Đã cuộn +1 lần
+2025-08-18 17:30:50,527 - INFO - Đã cuộn 2 lần
+2025-08-18 17:30:55,414 - INFO - Đã cuộn +1 lần
+2025-08-18 17:30:58,422 - INFO - Đã cuộn 1 lần
+2025-08-18 17:31:04,650 - INFO - Đã cuộn +1 lần
+2025-08-18 17:31:08,061 - INFO - Đã cuộn +1 lần
+2025-08-18 17:31:11,076 - INFO - Đã cuộn 2 lần
+2025-08-18 17:31:16,372 - INFO - Đã cuộn +1 lần
+2025-08-18 17:31:17,382 - INFO - Đã cuộn 1 lần
+2025-08-18 17:31:26,424 - INFO - Đã cuộn +1 lần
+2025-08-18 17:31:29,802 - INFO - Đã cuộn +1 lần
+2025-08-18 17:31:32,808 - INFO - Đã cuộn 2 lần
+2025-08-18 17:31:35,564 - INFO - Đã cuộn +1 lần
+2025-08-18 17:31:38,997 - INFO - Đã cuộn +1 lần
+2025-08-18 17:31:42,015 - INFO - Đã cuộn 2 lần
+2025-08-18 17:31:46,939 - INFO - Bắt đầu like post
+2025-08-18 17:31:47,258 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')
+2025-08-18 17:31:55,362 - INFO - Tìm thấy element với locator: ('xpath', '//com.facebook.feedback.sharedcomponents.reactions.dock.RopeStyleUFIDockView[@content-desc="Phẫn nộ"]')
+2025-08-18 17:31:58,498 - INFO - Đã thả cảm xúc Phẫn nộ
+2025-08-18 17:32:03,900 - INFO - Đã cuộn +1 lần
+2025-08-18 17:32:06,906 - INFO - Đã cuộn 1 lần
+2025-08-18 17:32:13,803 - INFO - Đã cuộn +1 lần
+2025-08-18 17:32:14,810 - INFO - Đã cuộn 1 lần
+2025-08-18 17:32:23,691 - INFO - Đã cuộn +1 lần
+2025-08-18 17:32:26,702 - INFO - Đã cuộn 1 lần
+2025-08-18 17:32:34,479 - INFO - Bắt đầu comment post
+2025-08-18 17:32:34,742 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Bình luận")]')
+2025-08-18 17:32:50,649 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.AutoCompleteTextView')
+2025-08-18 17:32:58,617 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Gửi")]')
+2025-08-18 17:33:03,400 - INFO - Đã comment
+2025-08-18 17:33:03,690 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Đóng")]')
+2025-08-18 17:33:04,163 - INFO - Đã thoát giao diện comment
+2025-08-18 17:33:09,485 - INFO - Đã cuộn +1 lần
+2025-08-18 17:33:12,498 - INFO - Đã cuộn 1 lần
+2025-08-18 17:33:18,876 - INFO - Đã cuộn +1 lần
+2025-08-18 17:33:21,147 - INFO - Đã cuộn +1 lần
+2025-08-18 17:33:22,161 - INFO - Đã cuộn 2 lần
+2025-08-18 17:33:27,913 - INFO - Đã cuộn +1 lần
+2025-08-18 17:33:29,764 - INFO - Đã cuộn +1 lần
+2025-08-18 17:33:30,781 - INFO - Đã cuộn 2 lần
+2025-08-18 17:33:37,537 - INFO - Đã cuộn +1 lần
+2025-08-18 17:33:40,934 - INFO - Đã cuộn +1 lần
+2025-08-18 17:33:43,937 - INFO - Đã cuộn 2 lần
+2025-08-18 17:33:49,389 - INFO - Bắt đầu like post
+2025-08-18 17:33:49,874 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')
+2025-08-18 17:34:05,600 - INFO - Tìm thấy element với locator: ('xpath', '//com.facebook.feedback.sharedcomponents.reactions.dock.RopeStyleUFIDockView[@content-desc="Phẫn nộ"]')
+2025-08-18 17:34:08,879 - INFO - Đã thả cảm xúc Phẫn nộ
+2025-08-18 17:34:13,645 - INFO - Đã cuộn +1 lần
+2025-08-18 17:34:14,654 - INFO - Đã cuộn 1 lần
+2025-08-18 17:34:18,124 - INFO - Đã cuộn +1 lần
+2025-08-18 17:34:21,131 - INFO - Đã cuộn 1 lần
+2025-08-18 17:34:22,820 - INFO - Đã cuộn +1 lần
+2025-08-18 17:34:25,832 - INFO - Đã cuộn 1 lần
+2025-08-18 17:34:34,254 - INFO - Đã cuộn +1 lần
+2025-08-18 17:34:35,261 - INFO - Đã cuộn 1 lần
+2025-08-18 17:34:44,213 - INFO - Đã cuộn +1 lần
+2025-08-18 17:34:47,504 - INFO - Đã cuộn +1 lần
+2025-08-18 17:34:50,513 - INFO - Đã cuộn 2 lần
+2025-08-18 17:34:54,896 - INFO - Đã cuộn +1 lần
+2025-08-18 17:34:57,127 - INFO - Đã cuộn +1 lần
+2025-08-18 17:34:58,141 - INFO - Đã cuộn 2 lần
+2025-08-18 17:35:09,607 - INFO - Đã hoàn thành lướt facebook
+2025-08-18 17:35:09,608 - INFO - Đang về trang chủ
+2025-08-18 17:35:09,973 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:35:11,083 - WARNING - Không tìm được trang chủ
+2025-08-18 17:35:12,620 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-18 17:35:12,621 - INFO - Đã về trang chủ
+2025-08-18 17:35:17,242 - INFO - Thực hiện tác vụ: Xem story
+2025-08-18 17:35:17,244 - INFO - Bắt đầu watch story
+2025-08-18 17:35:17,245 - INFO - Đang về trang chủ
+2025-08-18 17:35:17,607 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-18 17:35:17,609 - INFO - Đã về trang chủ
+2025-08-18 17:35:24,170 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Tin của ")]')
+2025-08-18 17:35:24,714 - INFO - Xem story
+2025-08-18 17:35:25,600 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:36:25,618 - INFO - Xem story chán rồi, té thôi
+2025-08-18 17:36:25,726 - INFO - Đã thoát trang story
+2025-08-18 17:36:30,806 - INFO - Thực hiện tác vụ: Kết bạn
+2025-08-18 17:36:30,809 - INFO - Bắt đầu kết bạn
+2025-08-18 17:36:30,809 - INFO - Đang về trang chủ
+2025-08-18 17:36:31,517 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:36:33,015 - WARNING - Không tìm được trang chủ
+2025-08-18 17:36:33,438 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-18 17:36:33,439 - INFO - Đã về trang chủ
+2025-08-18 17:36:33,787 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-18 17:36:40,447 - INFO - Vào menu
+2025-08-18 17:36:40,877 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.ViewGroup[@content-desc="Nhóm"]')
+2025-08-18 17:36:47,694 - INFO - Mở giao diện nhóm
+2025-08-18 17:36:48,109 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Tìm kiếm nhóm"]')
+2025-08-18 17:36:51,714 - INFO - Mở giao diện tìm kiếm nhóm
+2025-08-18 17:36:51,836 - INFO - Tìm thấy element với locator: ('className', 'android.widget.EditText')
+2025-08-18 17:36:55,158 - INFO - Đã nhập từ khóa tìm kiếm
+2025-08-18 17:36:59,634 - INFO - Đã cuộn +1 lần
+2025-08-18 17:37:01,813 - INFO - Đã cuộn +1 lần
+2025-08-18 17:37:03,810 - INFO - Đã cuộn +1 lần
+2025-08-18 17:37:05,761 - INFO - Đã cuộn +1 lần
+2025-08-18 17:37:06,772 - INFO - Đã cuộn 4 lần
+2025-08-18 17:37:12,147 - INFO - Đã tìm thấy 11 element
+2025-08-18 17:37:14,355 - INFO - Đã vào nhóm: (Hà Nội tuyển dụng - Tìm việc làm Fulltime-Parttime,Công khai · 307K thành viên · 90+ bài viết/ngày)
+2025-08-18 17:37:17,618 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "thành viên")]')
+2025-08-18 17:37:17,863 - INFO - Tên nhóm: Hà Nội tuyển dụng - Tìm việc làm Fulltime-Parttime, Nhóm Công khai · 307.084 thành viên
+2025-08-18 17:37:24,543 - INFO - Tìm thấy element với locator: ('text', 'Giới thiệu')
+2025-08-18 17:37:24,720 - INFO - Đã mở tùy chọn
+2025-08-18 17:37:25,110 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:37:25,531 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[@content-desc="Xem tất cả"]')
+2025-08-18 17:37:33,283 - INFO - Đã mở danh sách thành viên
+2025-08-18 17:37:33,927 - INFO - Đã cuộn +1 lần
+2025-08-18 17:37:37,254 - INFO - Đã cuộn +1 lần
+2025-08-18 17:37:40,259 - INFO - Đã cuộn 2 lần
+2025-08-18 17:37:40,900 - INFO - Đã tìm thấy 8 element
+2025-08-18 17:37:44,099 - INFO - Đã gửi lời mời kết bạn
+2025-08-18 17:37:54,595 - INFO - Đã quay lại danh sách nhóm
+2025-08-18 17:37:55,154 - INFO - Đã cuộn +1 lần
+2025-08-18 17:37:58,500 - INFO - Đã cuộn +1 lần
+2025-08-18 17:38:01,809 - INFO - Đã cuộn +1 lần
+2025-08-18 17:38:05,141 - INFO - Đã cuộn +1 lần
+2025-08-18 17:38:08,544 - INFO - Đã cuộn +1 lần
+2025-08-18 17:38:11,552 - INFO - Đã cuộn 5 lần
+2025-08-18 17:38:16,855 - INFO - Đã tìm thấy 11 element
+2025-08-18 17:38:19,077 - INFO - Đã vào nhóm: (TUYỂN DỤNG - TÌM VIỆC LÀM TẠI HÀ NỘI,Công khai · 26K thành viên · 90+ bài viết/ngày)
+2025-08-18 17:38:22,380 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "thành viên")]')
+2025-08-18 17:38:22,738 - INFO - Tên nhóm: TUYỂN DỤNG - TÌM VIỆC LÀM TẠI HÀ NỘI, Nhóm Công khai · 26.844 thành viên
+2025-08-18 17:38:29,300 - INFO - Tìm thấy element với locator: ('text', 'Giới thiệu')
+2025-08-18 17:38:29,507 - INFO - Đã mở tùy chọn
+2025-08-18 17:38:29,890 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:38:30,235 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[@content-desc="Xem tất cả"]')
+2025-08-18 17:38:38,032 - INFO - Đã mở danh sách thành viên
+2025-08-18 17:38:38,617 - INFO - Đã cuộn +1 lần
+2025-08-18 17:38:41,964 - INFO - Đã cuộn +1 lần
+2025-08-18 17:38:44,965 - INFO - Đã cuộn 2 lần
+2025-08-18 17:38:45,580 - INFO - Đã tìm thấy 9 element
+2025-08-18 17:38:48,770 - INFO - Đã gửi lời mời kết bạn
+2025-08-18 17:38:58,764 - INFO - Đã quay lại danh sách nhóm
+2025-08-18 17:38:59,035 - INFO - Đã cuộn 0 lần
+2025-08-18 17:39:04,174 - INFO - Đã tìm thấy 11 element
+2025-08-18 17:39:06,389 - INFO - Đã vào nhóm: (CLB TUYỂN DỤNG - VIỆC LÀM HÀ NỘI - HA NOI  JOB RECRUITMENT CLUB,Công khai · 42K thành viên · 7 bài viết/ngày)
+2025-08-18 17:39:09,847 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "thành viên")]')
+2025-08-18 17:39:10,208 - INFO - Tên nhóm: CLB TUYỂN DỤNG - VIỆC LÀM HÀ NỘI - HA NOI  JOB RECRUITMENT CLUB, Nhóm Công khai · 42.935 thành viên
+2025-08-18 17:39:16,899 - INFO - Tìm thấy element với locator: ('text', 'Giới thiệu')
+2025-08-18 17:39:17,060 - INFO - Đã mở tùy chọn
+2025-08-18 17:39:17,472 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:39:17,901 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[@content-desc="Xem tất cả"]')
+2025-08-18 17:39:25,613 - INFO - Đã mở danh sách thành viên
+2025-08-18 17:39:26,178 - INFO - Đã cuộn +1 lần
+2025-08-18 17:39:29,510 - INFO - Đã cuộn +1 lần
+2025-08-18 17:39:32,521 - INFO - Đã cuộn 2 lần
+2025-08-18 17:39:33,335 - INFO - Đã tìm thấy 6 element
+2025-08-18 17:39:36,558 - INFO - Đã gửi lời mời kết bạn
+2025-08-18 17:39:47,070 - INFO - Đã quay lại danh sách nhóm
+2025-08-18 17:39:47,070 - INFO - Đã kết bạn với 3 người trong nhóm tuyển dụng
+2025-08-18 17:39:47,071 - INFO - Đang về trang chủ
+2025-08-18 17:39:47,477 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:39:48,679 - WARNING - Không tìm được trang chủ
+2025-08-18 17:39:48,912 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:39:50,053 - WARNING - Không tìm được trang chủ
+2025-08-18 17:39:50,234 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:39:51,876 - WARNING - Không tìm được trang chủ
+2025-08-18 17:39:52,122 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:39:53,816 - WARNING - Không tìm được trang chủ
+2025-08-18 17:39:54,163 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:39:55,563 - WARNING - Không tìm được trang chủ
+2025-08-18 17:39:56,007 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-18 17:39:56,009 - INFO - Đã về trang chủ
+2025-08-18 17:40:01,491 - INFO - Thực hiện tác vụ: Xem reels
+2025-08-18 17:40:01,492 - INFO - Bắt đầu watch reels
+2025-08-18 17:40:01,493 - INFO - Đang về trang chủ
+2025-08-18 17:40:01,969 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-18 17:40:01,970 - INFO - Đã về trang chủ
+2025-08-18 17:40:09,065 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:40:10,459 - INFO - Đã cuộn +1 lần
+2025-08-18 17:40:11,472 - INFO - Đã cuộn 1 lần
+2025-08-18 17:40:11,740 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:40:13,023 - INFO - Đã cuộn +1 lần
+2025-08-18 17:40:14,039 - INFO - Đã cuộn 1 lần
+2025-08-18 17:40:14,323 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:40:15,626 - INFO - Đã cuộn +1 lần
+2025-08-18 17:40:16,633 - INFO - Đã cuộn 1 lần
+2025-08-18 17:40:16,857 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:40:18,355 - INFO - Đã cuộn +1 lần
+2025-08-18 17:40:19,361 - INFO - Đã cuộn 1 lần
+2025-08-18 17:40:19,706 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:40:21,047 - INFO - Đã cuộn +1 lần
+2025-08-18 17:40:22,062 - INFO - Đã cuộn 1 lần
+2025-08-18 17:40:22,384 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:40:23,800 - INFO - Đã cuộn +1 lần
+2025-08-18 17:40:24,805 - INFO - Đã cuộn 1 lần
+2025-08-18 17:40:25,021 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:40:26,391 - INFO - Đã cuộn +1 lần
+2025-08-18 17:40:27,407 - INFO - Đã cuộn 1 lần
+2025-08-18 17:40:27,786 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:40:28,969 - INFO - Đã cuộn +1 lần
+2025-08-18 17:40:29,977 - INFO - Đã cuộn 1 lần
+2025-08-18 17:40:30,338 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:40:31,684 - INFO - Đã cuộn +1 lần
+2025-08-18 17:40:32,699 - INFO - Đã cuộn 1 lần
+2025-08-18 17:40:33,019 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-18 17:40:34,532 - INFO - Đã cuộn +1 lần
+2025-08-18 17:40:35,541 - INFO - Đã cuộn 1 lần
+2025-08-18 17:40:35,542 - ERROR - Không tìm thấy element sau 10 roll
+2025-08-18 17:40:35,542 - ERROR - Không tìm thấy reels
+2025-08-18 17:40:40,990 - INFO - Hoàn thành chuỗi task nuôi Facebook tự nhiên
+2025-08-18 17:40:46,596 - INFO - Đợi 20p cho đến khi chạy task tiếp theo
