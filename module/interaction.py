@@ -135,7 +135,7 @@ async def share_post(driver, text=""):
         log_message(f"Đã nhập nội dung chia sẻ: {text}")
     
     # Tìm nút chia sẻ ngay
-    share_now = my_find_element(driver, {("xpath", '//android.widget.Button[contains(@content-desc, "Chia sẻ ngay")]')})
+    share_now = my_find_element(driver, {("xpath", '//android.widget.Button[contains(@content-desc, "Chia sẻ ngay")]'), ('xpath', '//android.view.ViewGroup[@content-desc="Gửi bằng Messenger"]')})
     if share_now == None:
         log_message("Không thể tìm được nút share", logging.ERROR)
         exit = my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đóng"]')})

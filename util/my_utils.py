@@ -103,7 +103,7 @@ async def nature_scroll(d, max_roll=1, isFast=False):
 
     for _ in range(max_roll):
         d.swipe(start_x, start_y, end_x, end_y, duration=duration)
-        log_message("Đã cuộn +1 lần")
+
         await asyncio.sleep(sleep_time)
     log_message(f"Đã cuộn {max_roll} lần")
 
@@ -123,7 +123,7 @@ async def scroll_up(d, max_roll=1, isFast=False):
 
     for _ in range(max_roll):
         d.swipe(start_x, start_y, end_x, end_y, duration=duration)
-        log_message("Cuộn ngược +1 lần")
+
         await asyncio.sleep(sleep)
     log_message(f"Cuộn ngược {max_roll} lần")
 
