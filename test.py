@@ -8,9 +8,11 @@ from tool_init_device import *
 from util import *
 from module import *
 from tasks import *
+from main import *
 
 
-device_id = "7HYP4T4XTS4DXKCY"
+# device_id = "7HYP4T4XTS4DXKCY"
+device_id = "UWJJOJLB85SO7LIZ"
 
 account = {
         "account": "0971335869",
@@ -24,9 +26,9 @@ driver.app_start("com.facebook.katana", ".LoginActivity")
 log_message(f"Kết nốt với thiết bị {device_id}")
 
 async def main():
-    await comment_post(driver, "hoir cham")
+    await clear_app(driver)
 
 
-# asyncio.run(main())
+asyncio.run(main())
 
-print(random.choice(COMMENTS))
+# print(random.choice(COMMENTS))

@@ -24,11 +24,11 @@ async def clear_app(driver):
     start_y = height * 0.7
     end_y = height * 0.2
     duration = 0.04
-    sleep_time = 3
 
     driver.swipe(start_x, start_y, end_x, end_y, duration=duration)
-    await asyncio.sleep(sleep_time)
+    await asyncio.sleep(3)
     driver.press("home")
+    driver.press("back")
 
 async def run_on_device(device_id):
     try:
@@ -46,10 +46,12 @@ async def run_on_device(device_id):
         await swap_account(driver, account)
         device['current_account'] = account['name']
         update_current_account(device_id, account['name'])
+        
         # tasks nuôi fb
         await fb_natural_task(driver)
+        # await share_post(driver, text=random.choice(SHARES))
         # clear
-        await clear_app(driver)
+        # await clear_app(driver)
     except Exception as e:
         log_message(f"Lỗi trên thiết bị {device_id}: {e}", logging.ERROR)
 
@@ -62,8 +64,8 @@ async def run_all_devices():
 async def main():
     while True:
         await run_all_devices()
-        log_message("Đợi 20p cho đến khi chạy task tiếp theo")
-        await asyncio.sleep(20 * 60)
+        log_message("Chuyển tài khoản chạy task tiếp theo")
+        await asyncio.sleep(random.uniform(4,6))
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    asyncio.run(run_all_devices())

@@ -35,13 +35,13 @@ async def watch_story(driver, duration=60):
     log_message("Đã thoát trang story")
 
 # Xem reels
-async def watch_reels(driver, duration=120):
+async def watch_reels(driver, duration=random.randint(300,600)):
     """
     Lướt để tìm reels rồi bấm xem
     """
     log_message("Bắt đầu watch reels")
     # Về đầu trang
-    top_page = await go_to_home_page(driver)
+    await go_to_home_page(driver)
     await asyncio.sleep(random.uniform(5,7))
     # Tìm Reels
     reel_item = await scroll_until_element_visible(driver, {("xpath", '//android.widget.Button[contains(@content-desc, "Xem thước phim")]')})
