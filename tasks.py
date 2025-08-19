@@ -128,17 +128,15 @@ async def fb_natural_task(driver):
 
     # Random hóa thứ tự các hành động
     random.shuffle(actions)
-    random_task = random.randint(40,50)
-    while random_task > 0:
-        log_message(f"\n\nThực hiện tác vụ: Xem reels\n")
-        
-        await watch_reels(driver)
+    log_message(f"\n\nThực hiện tác vụ: Xem reels\n")
+    
+    await watch_reels(driver)
+    await asyncio.sleep(random.uniform(4,6))
+    
+    for name, action in actions:
+        log_message(f"\n\nThực hiện tác vụ: {name}\n")
+    
+        await action()
         await asyncio.sleep(random.uniform(4,6))
-        
-        for name, action in actions:
-            log_message(f"\n\nThực hiện tác vụ: {name}\n")
-        
-            await action()
-            await asyncio.sleep(random.uniform(4,6))
 
     log_message("Hoàn thành 1 chuỗi task")
