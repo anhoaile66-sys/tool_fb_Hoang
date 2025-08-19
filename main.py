@@ -37,6 +37,7 @@ async def run_on_device(device_id):
             log_message(f"Không tìm thấy dữ liệu cho thiết bị {device_id}", logging.WARNING)
             return
         driver = u2.connect_usb(device_id)
+        await clear_app(driver)
         driver.app_start("com.facebook.katana", ".LoginActivity")
         await asyncio.sleep(random.uniform(10,15))
 
@@ -50,8 +51,6 @@ async def run_on_device(device_id):
         # tasks nuôi fb
         await fb_natural_task(driver)
         # await share_post(driver, text=random.choice(SHARES))
-        # clear
-        # await clear_app(driver)
     except Exception as e:
         log_message(f"Lỗi trên thiết bị {device_id}: {e}", logging.ERROR)
 
@@ -68,4 +67,4 @@ async def main():
         await asyncio.sleep(random.uniform(4,6))
 
 if __name__ == "__main__":
-    asyncio.run(run_all_devices())
+    asyncio.run(main())

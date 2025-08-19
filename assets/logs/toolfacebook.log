@@ -9476,3 +9476,70 @@ java.lang.IllegalStateException: UiAutomation not connected, UiAutomation@9d82e3
 2025-08-19 09:40:19,371 - ERROR - Không thể tìm được ô text
 2025-08-19 09:40:19,617 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đóng"]')
 2025-08-19 09:40:20,102 - ERROR - Chia sẻ thất bại, thoát chia sẻ
+2025-08-19 10:19:47,184 - ERROR - Lỗi trên thiết bị 7HYP4T4XTS4DXKCY: device 7HYP4T4XTS4DXKCY not online
+2025-08-19 10:19:49,875 - WARNING - Không tìm thấy dữ liệu cho thiết bị 2926294610DA007N
+2025-08-19 10:19:49,875 - WARNING - Không tìm thấy dữ liệu cho thiết bị 7DXCUKKB6DVWDAQO
+2025-08-19 10:20:03,876 - INFO - Đang đăng nhập vào tài khoản Bùi Nhất trên thiết bị UWJJOJLB85SO7LIZ
+2025-08-19 10:20:03,876 - INFO - Đang về trang chủ
+2025-08-19 10:20:04,475 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-19 10:20:04,477 - INFO - Đã về trang chủ
+2025-08-19 10:20:04,477 - INFO - Đăng xuất
+2025-08-19 10:20:04,857 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-19 10:20:11,652 - INFO - Vào menu
+2025-08-19 10:20:12,225 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-19 10:20:15,962 - INFO - Đã cuộn 1 lần
+2025-08-19 10:20:16,592 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-19 10:20:20,217 - INFO - Đã cuộn 1 lần
+2025-08-19 10:20:20,735 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-19 10:20:21,543 - INFO - Đang đăng xuất
+2025-08-19 10:20:27,882 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-19 10:20:27,883 - WARNING - Không thấy box lưu tài khoản
+2025-08-19 10:20:27,999 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-19 10:20:43,501 - INFO - Đăng xuất thành công
+2025-08-19 10:20:43,502 - INFO - Bắt đầu đăng nhập vào tài khoản Bùi Nhất
+2025-08-19 10:20:48,806 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[@content-desc="Bùi Nhất"]')
+2025-08-19 10:20:49,902 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-19 10:20:49,965 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-19 10:20:49,965 - WARNING - Không thấy box lưu tài khoản
+2025-08-19 10:20:50,034 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-19 10:20:56,041 - INFO - Đăng nhập thành công vào tài khoản Bùi Nhất
+2025-08-19 10:20:56,043 - INFO - 
+
+Thực hiện tác vụ: Xem reels
+
+2025-08-19 10:20:56,045 - INFO - Bắt đầu watch reels
+2025-08-19 10:20:56,045 - INFO - Đang về trang chủ
+2025-08-19 10:20:56,440 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-19 10:20:56,442 - INFO - Đã về trang chủ
+2025-08-19 10:21:02,324 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-19 10:21:05,045 - INFO - Đã cuộn 1 lần
+2025-08-19 10:21:05,383 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-19 10:21:07,959 - INFO - Đã cuộn 1 lần
+2025-08-19 10:21:08,305 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-19 10:21:11,085 - INFO - Đã cuộn 1 lần
+2025-08-19 10:21:11,417 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Xem thước phim")]')
+2025-08-19 10:21:12,072 - INFO - Lướt trên mặt nước anh như cơn sóng
+2025-08-19 10:21:29,379 - INFO - Đã cuộn 1 lần
+2025-08-19 10:21:29,379 - INFO - Content nhảm vl, lướt
+2025-08-19 10:21:48,678 - INFO - Đã cuộn 1 lần
+2025-08-19 10:21:48,678 - INFO - Content nhảm vl, lướt
+2025-08-19 10:22:09,594 - INFO - Đã cuộn 1 lần
+2025-08-19 10:22:09,595 - INFO - Content nhảm vl, lướt
+2025-08-19 10:22:26,966 - INFO - Đã cuộn 1 lần
+2025-08-19 10:22:26,967 - INFO - Content nhảm vl, lướt
+2025-08-19 10:22:49,889 - INFO - Đã cuộn 1 lần
+2025-08-19 10:22:49,890 - INFO - Content nhảm vl, lướt
+2025-08-19 10:23:05,009 - INFO - Đã cuộn 1 lần
+2025-08-19 10:23:05,009 - INFO - Content nhảm vl, lướt
+2025-08-19 10:23:28,073 - INFO - Đã cuộn 1 lần
+2025-08-19 10:23:28,073 - INFO - Content nhảm vl, lướt
+2025-08-19 10:23:49,374 - INFO - Đã cuộn 1 lần
+2025-08-19 10:23:49,374 - INFO - Content nhảm vl, lướt
+2025-08-19 10:24:03,836 - INFO - Đã cuộn 1 lần
+2025-08-19 10:24:03,836 - INFO - Content nhảm vl, lướt
+2025-08-19 10:24:20,848 - INFO - Đã cuộn 1 lần
+2025-08-19 10:24:20,848 - INFO - Content nhảm vl, lướt
+2025-08-19 10:24:38,436 - INFO - Đã cuộn 1 lần
+2025-08-19 10:24:38,436 - INFO - Content nhảm vl, lướt
+2025-08-19 10:24:55,100 - INFO - Đã cuộn 1 lần
+2025-08-19 10:24:55,100 - INFO - Content nhảm vl, lướt

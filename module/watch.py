@@ -49,14 +49,14 @@ async def watch_reels(driver, duration=random.randint(300,600)):
         log_message("Không tìm thấy reels", logging.ERROR)
         return
     reel_item.click()
-    log_message("Lướt trên mặt nước anh như cơn sóng")
+    log_message("Lướt reels")
     # Lướt
-    time=random.uniform(10,20)
+    time=random.uniform(10,30)
     await asyncio.sleep(time)
     while time<duration:
         await nature_scroll(driver, isFast=True)
-        log_message("Content nhảm vl, lướt")
-        i=random.uniform(10,20)
+        log_message("Video tiếp theo")
+        i=random.uniform(10,30)
         time+=i
         await asyncio.sleep(i)
     # Lướt xong thì lướt
