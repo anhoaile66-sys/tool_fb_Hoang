@@ -123,7 +123,7 @@ async def fb_natural_task(driver):
     actions = [
         ("Xem story", lambda: watch_story(driver)),
         ("Lướt fb", lambda: surf_fb(driver)),
-        ("Kết bạn", lambda: add_3friend(driver)),
+        ("Kết bạn", lambda: add_friend(driver)),
     ]
 
     # Random hóa thứ tự các hành động

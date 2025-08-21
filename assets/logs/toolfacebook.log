@@ -9543,3 +9543,80 @@ Thực hiện tác vụ: Xem reels
 2025-08-19 10:24:38,436 - INFO - Content nhảm vl, lướt
 2025-08-19 10:24:55,100 - INFO - Đã cuộn 1 lần
 2025-08-19 10:24:55,100 - INFO - Content nhảm vl, lướt
+2025-08-21 14:57:47,399 - INFO - Đang đăng nhập vào tài khoản Nguyễn Tuấn trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-21 14:57:47,400 - INFO - Đang về trang chủ
+2025-08-21 14:57:47,940 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-21 14:57:47,940 - INFO - Đã về trang chủ
+2025-08-21 14:57:47,941 - INFO - Đăng xuất
+2025-08-21 14:57:48,461 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-21 15:04:51,519 - INFO - Đang đăng nhập vào tài khoản Mun'z Nek trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-21 15:04:51,520 - INFO - Đang về trang chủ
+2025-08-21 15:04:52,131 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-21 15:09:33,936 - INFO - Đang đăng nhập vào tài khoản Mun'z Nek trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-21 15:09:33,937 - INFO - Đang về trang chủ
+2025-08-21 15:09:34,633 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-21 15:09:34,634 - INFO - Đã về trang chủ
+2025-08-21 15:09:34,635 - INFO - Đăng xuất
+2025-08-21 15:09:35,135 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-21 15:44:20,772 - INFO - Đang đăng nhập vào tài khoản Nguyễn Tuấn trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-21 15:44:20,774 - INFO - Đang về trang chủ
+2025-08-21 15:44:21,146 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-21 15:48:02,183 - ERROR - Lỗi trên thiết bị UWJJOJLB85SO7LIZ
+2025-08-21 15:48:12,550 - ERROR - Lỗi trên thiết bị 2926294610DA007N
+2025-08-21 15:48:22,940 - ERROR - Lỗi trên thiết bị 7DXCUKKB6DVWDAQO
+2025-08-21 15:48:22,942 - INFO - Đang đăng nhập vào tài khoản Mun'z Nek trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-21 15:48:22,942 - INFO - Đang về trang chủ
+2025-08-21 15:48:23,410 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-21 15:48:23,410 - INFO - Đã về trang chủ
+2025-08-21 15:48:23,412 - INFO - Đăng xuất
+2025-08-21 15:48:23,855 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[contains(@content-desc, "Menu")]')
+2025-08-21 15:48:30,749 - INFO - Vào menu
+2025-08-21 15:48:31,350 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-21 15:48:35,044 - INFO - Đã cuộn 1 lần
+2025-08-21 15:48:35,433 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đăng xuất"]')
+2025-08-21 15:48:36,052 - INFO - Đang đăng xuất
+2025-08-21 15:48:42,334 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-21 15:48:42,335 - WARNING - Không thấy box lưu tài khoản
+2025-08-21 15:48:42,433 - INFO - Tìm thấy element với locator: ('text', 'ĐĂNG XUẤT')
+2025-08-21 15:48:58,008 - INFO - Đăng xuất thành công
+2025-08-21 15:48:58,012 - INFO - Bắt đầu đăng nhập vào tài khoản Mun'z Nek
+2025-08-21 15:49:03,331 - INFO - Tìm thấy element với locator: ('xpath', '//android.view.View[@content-desc="Mun\'z Nek"]')
+2025-08-21 15:49:04,218 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-21 15:49:04,313 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-21 15:49:04,314 - WARNING - Không thấy box lưu tài khoản
+2025-08-21 15:49:04,394 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-21 15:49:10,407 - INFO - Đăng nhập thành công vào tài khoản Mun'z Nek
+2025-08-21 15:49:10,412 - INFO - 
+
+Thực hiện tác vụ: Xem reels
+
+2025-08-21 15:49:10,413 - INFO - Bắt đầu watch reels
+2025-08-21 15:49:10,413 - INFO - Đang về trang chủ
+2025-08-21 15:49:10,814 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')
+2025-08-21 15:49:10,815 - INFO - Đã về trang chủ
+2025-08-21 15:49:16,299 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-21 15:49:18,625 - INFO - Đã cuộn 1 lần
+2025-08-21 15:49:18,913 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-21 15:49:21,382 - INFO - Đã cuộn 1 lần
+2025-08-21 15:49:21,669 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-21 15:49:23,869 - INFO - Đã cuộn 1 lần
+2025-08-21 15:49:24,180 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-21 15:49:26,415 - INFO - Đã cuộn 1 lần
+2025-08-21 15:49:26,780 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-21 15:49:29,105 - INFO - Đã cuộn 1 lần
+2025-08-21 15:49:29,354 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-21 15:49:31,778 - INFO - Đã cuộn 1 lần
+2025-08-21 15:49:32,060 - ERROR - Không tìm thấy element trong tất cả locators
+2025-08-21 15:49:34,470 - INFO - Đã cuộn 1 lần
+2025-08-21 15:49:34,730 - INFO - Tìm thấy element với locator: ('xpath', '//android.widget.Button[contains(@content-desc, "Xem thước phim")]')
+2025-08-21 15:49:35,289 - INFO - Lướt reels
+2025-08-21 15:49:48,695 - ERROR - Lỗi trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-21 15:52:45,688 - ERROR - Lỗi trên thiết bị UWJJOJLB85SO7LIZ
+2025-08-21 15:52:56,102 - ERROR - Lỗi trên thiết bị 2926294610DA007N
+2025-08-21 15:52:56,102 - ERROR - Lỗi trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-21 15:57:05,745 - ERROR - Lỗi trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-21 15:58:01,205 - ERROR - Lỗi trên thiết bị UWJJOJLB85SO7LIZ
+2025-08-21 15:58:11,637 - ERROR - Lỗi trên thiết bị 2926294610DA007N
+2025-08-21 15:58:22,020 - ERROR - Lỗi trên thiết bị 7DXCUKKB6DVWDAQO
+2025-08-21 15:58:51,915 - ERROR - Lỗi trên thiết bị 7HYP4T4XTS4DXKCY
+2025-08-21 16:02:36,450 - ERROR - Lỗi trên thiết bị 7HYP4T4XTS4DXKCY

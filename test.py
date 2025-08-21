@@ -8,7 +8,7 @@ from tool_init_device import *
 from util import *
 from module import *
 from tasks import *
-from main import *
+from fb_task import *
 
 
 # device_id = "7HYP4T4XTS4DXKCY"
