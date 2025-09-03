@@ -2,9 +2,6 @@ import asyncio
 import logging
 from util import *
 
-# Giới hạn đăng nhập
-def check_account
-
 
 # Hàm đăng xuất
 async def log_out(driver):
