@@ -14,14 +14,6 @@ except Exception:
     def log_message(msg: str, level: int = logging.INFO):
         print(msg)
 
-"""
-main.py — Watchdog chuẩn (restart riêng từng thiết bị)
-Yêu cầu: Sau 60 giây mà KHÔNG thấy đang bật Zalo hoặc Facebook
-         -> khởi động lại toàn bộ chương trình CHO THIẾT BỊ ĐÓ
-         (bật Zalo chạy 1 vòng rồi sang Facebook như thường).
-Các tính năng khác giữ nguyên.
-"""
-
 # ======================= CẤU HÌNH =======================
 HOME_PACKAGES = {
     "com.android.launcher",
@@ -32,7 +24,7 @@ HOME_PACKAGES = {
     "com.bbk.launcher2",
     "com.vivo.launcher",
     "com.huawei.android.launcher",
-    "com.teslacoilsw.launcher",  # Nova
+    "com.teslacoilsw.launcher",
 }
 ZALO_PKG = "com.zing.zalo"
 FACEBOOK_PKG = "com.facebook.katana"

@@ -141,11 +141,11 @@ def get_message_template(sender_name):
     return f"Chào bạn, mình là {sender_name}, nhân viên hỗ trợ bạn của trang web tìm việc 365 ạ, vui lòng kết nối để mình có thể hỗ trợ bạn ạ. Mình cảm ơn!"
 
 # ===================== API LẤY SỐ =====================
-def get_phone_numbers_from_api(emp_ids, size=180, get_fb_link=True):
+def get_phone_numbers_from_api(emp_ids, size=1, get_fb_link=True):
     """Lấy danh sách số điện thoại từ API cho nhiều emp_ids"""
     payload = {
         "emp_ids": emp_ids if isinstance(emp_ids, list) else [emp_ids],
-        "size": size,
+        "size": 1,
         "key": API_KEY,
         "getFbLink": get_fb_link
     }
@@ -170,11 +170,11 @@ def get_phone_numbers_from_api(emp_ids, size=180, get_fb_link=True):
         print(f"[❌] Lỗi khi gọi API: {e}")
         return []
 
-def ensure_db_queue_loaded(emp_id, min_batch_size=90):
+def ensure_db_queue_loaded(emp_id, min_batch_size=1):
     """
     Đảm bảo hàng đợi cho emp_id đã được nạp dữ liệu.
-    - Chỉ nạp 1 lần (hoặc khi hàng trống) nhờ db_lock.
-    - Lọc bỏ số đã gửi (LOG_FILE) và số đã enqueue trước đó (db_enqueued_phones[emp_id]).
+    - Chỉ nạp 1 lần (hoặc khi hàng trống) nhờ db_lock[cite: 14].
+    - Lọc bỏ số đã gửi (LOG_FILE) và số đã enqueue trước đó (db_enqueued_phones[emp_id])[cite: 15].
     """
     if not db_queues[emp_id].empty():
         return
@@ -184,7 +184,7 @@ def ensure_db_queue_loaded(emp_id, min_batch_size=90):
             return
 
         print(f"[DB {emp_id}] 🔄 Nạp dữ liệu vào hàng đợi...")
-        data = get_phone_numbers_from_api(emp_id, size=min_batch_size, get_fb_link=True)
+        data = get_phone_numbers_from_api(emp_id, size=1, get_fb_link=True)
         if not data:
             print(f"[DB {emp_id}] ⚠️ Không có dữ liệu để nạp.")
             return
@@ -536,7 +536,6 @@ class DeviceHandler:
             # Kịch bản 3: Chưa kết bạn
             else:
                 print(f"[{self.device_id}][!] {phone_number} -> Xử lý như chưa kết bạn.")
-                # Thử gửi tin nhắn trước
                 if self.d(resourceId="com.zing.zalo:id/btn_send_message").exists:
                     self.d(resourceId="com.zing.zalo:id/btn_send_message").click()
                     random_delay()
@@ -548,7 +547,6 @@ class DeviceHandler:
                             self.d(resourceId="com.zing.zalo:id/new_chat_input_btn_chat_send").click()
                             self.new_messages_count += 1
                     random_delay()
-                # Thử gửi lời mời kết bạn
                 if self.d(resourceId="com.zing.zalo:id/tv_function_privacy").exists:
                     self.d(resourceId="com.zing.zalo:id/tv_function_privacy").click()
                     random_delay()
@@ -676,7 +674,7 @@ class DeviceHandler:
                 found = False
                 for i, p in enumerate(all_profiles):
                     if p.get("phone") == phone:
-                        all_profiles[i] = profile  # cập nhật
+                        all_profiles[i] = profile
                         found = True
                         break
                 if not found:
