@@ -98,17 +98,17 @@ async def surf_fb(driver):
             if scroll_count % 11 == 0:
                 await comment_post(driver, text=random.choice(COMMENTS))
                 await asyncio.sleep(random.uniform(3,5))
-            if scroll_count % 7 == 0:
+            if scroll_count % 21 == 0:
                 await like_post(driver, random.choice(EMOTION))
                 await asyncio.sleep(random.uniform(3,5))
-            if scroll_count % 25 == 0:
-                i=random.randint(0,1)
-                if i:
-                    await share_post(driver, text=random.choice(SHARES))
-                    await asyncio.sleep(3,5)
-                else:
-                    await share_post(driver)
-                    await asyncio.sleep(3,5)
+            # if scroll_count % 25 == 0:
+            #     i=random.randint(0,1)
+            #     if i:
+            #         await share_post(driver, text=random.choice(SHARES))
+            #         await asyncio.sleep(3,5)
+            #     else:
+            #         await share_post(driver)
+            #         await asyncio.sleep(3,5)
             scroll_count -= 1
         await asyncio.sleep(random.uniform(2,5))
         log_message("Đã hoàn thành lướt facebook")

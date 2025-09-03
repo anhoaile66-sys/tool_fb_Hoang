@@ -3,6 +3,7 @@ import asyncio
 from util import *
 from module import *
 from tasks import *
+from datetime import datetime, timedelta
 
 DEVICES_LIST = [
     "7HYP4T4XTS4DXKCY",
@@ -54,12 +55,26 @@ async def run_on_device(driver, device_id):
         driver.press("home")
         driver.app_start("com.facebook.katana", ".LoginActivity")
         await asyncio.sleep(random.uniform(10,15))
-        other_account = [acc for acc in device['accounts'] if acc['name'] != device['current_account']]
-        account = random.choice(other_account)
-        log_message(f"Đang đăng nhập vào tài khoản {account['name']} trên thiết bị {device_id}")
-        await swap_account(driver, account)
-        device['current_account'] = account['name']
-        update_current_account(device_id, account['name'])
+
+        # Chuyển tài khoản
+        last_time = device['time_logged_in']
+        if (datetime.fromisoformat(last_time) + timedelta(hours=random.randint(4,6))) < datetime.now():
+            # Đủ thời gian, chuyển tài khoản
+            i=0
+            for acc in device['accounts']:
+                i+=1
+                if acc['name'] == device['current_account']:
+                    break
+            if i==3: i=0
+            for acc in device['accounts']:
+                if i==0:
+                    account=acc
+                    break
+                i-=1
+            log_message(f"Đang đăng nhập vào tài khoản {account['name']} trên thiết bị {device_id}")
+            await swap_account(driver, account)
+            device['current_account'] = account['name']
+            update_current_account(device_id, account['name'])
         
         # tasks nuôi fb
         await fb_natural_task(driver)

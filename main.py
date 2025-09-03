@@ -11,7 +11,7 @@ from typing import Optional, Callable
 try:
     from util.log import log_message
 except Exception:
-    def log_message(msg: str, level: int = logging.INFO):
+    def log_message(msg: str, level=logging.INFO):
         print(msg)
 
 # ======================= CẤU HÌNH =======================
