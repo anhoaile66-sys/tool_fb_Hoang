@@ -1,0 +1,24 @@
+{
+    "device_id": "8HMN4T9575HAQWLN",
+    "current_account": "Hoàng Yến",
+    "accounts": [
+        {
+            "account": "0978585641",
+            "password": "hhp123456",
+            "name": "Hoàng Yến",
+            "status": true
+        },
+        {
+            "account": "0982305784",
+            "password": "hhp123456",
+            "name": "Yến Timviec",
+            "status": true
+        },
+        {
+            "account": "0973106450",
+            "password": "hhp123456",
+            "name": "Hải Yến Timviec",
+            "status": true
+        }
+    ]
+}

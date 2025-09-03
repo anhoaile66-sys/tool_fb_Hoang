@@ -1,0 +1,24 @@
+{
+    "device_id": "MJZDFY896TMJBUPN",
+    "current_account": "Bảo Chiii",
+    "accounts": [
+        {
+            "account": "0975316627",
+            "password": "Hhp123456@",
+            "name": "Phạm Linh",
+            "status": true
+        },
+        {
+            "account": "0975959814",
+            "password": "Hhp123456@",
+            "name": "Nguyễn Hải",
+            "status": true
+        },
+        {
+            "account": "0976480942",
+            "password": "Hhp123456@",
+            "name": "Bảo Chiii",
+            "status": true
+        }
+    ]
+}

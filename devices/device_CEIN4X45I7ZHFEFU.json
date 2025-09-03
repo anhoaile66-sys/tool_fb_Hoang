@@ -1,0 +1,24 @@
+{
+    "device_id": "CEIN4X45I7ZHFEFU",
+    "current_account": "Tiến Thành",
+    "accounts": [
+        {
+            "account": "0973418952",
+            "password": "Hhp123456@",
+            "name": "Huy Bùi",
+            "status": true
+        },
+        {
+            "account": "0384423560",
+            "password": "hh1234568@",
+            "name": "Hoàng Khoa",
+            "status": true
+        },
+        {
+            "account": "0972381905",
+            "password": "Hhp123456",
+            "name": "Tiến Thành",
+            "status": true
+        }
+    ]
+}

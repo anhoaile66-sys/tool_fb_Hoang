@@ -1,0 +1,24 @@
+{
+    "device_id": "CQIZKJ8P59AY7DHI",
+    "current_account": "Anh Kim",
+    "accounts": [
+        {
+            "account": "0971207216",
+            "password": "timviec365@",
+            "name": "Ánh Tuyết",
+            "status": true
+        },
+        {
+            "account": "0963101851",
+            "password": "timviec365",
+            "name": "Hoa Mai",
+            "status": true
+        },
+        {
+            "account": "0969824937",
+            "password": "timviec365",
+            "name": "Anh Kim",
+            "status": true
+        }
+    ]
+}
