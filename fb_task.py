@@ -58,7 +58,7 @@ async def run_on_device(driver, device_id):
 
         # Chuyển tài khoản
         last_time = device['time_logged_in']
-        if (datetime.fromisoformat(last_time) + timedelta(hours=random.randint(4,6))) < datetime.now():
+        if last_time and (datetime.fromisoformat(last_time) + timedelta(hours=random.randint(4,6))) < datetime.now():
             # Đủ thời gian, chuyển tài khoản
             i=0
             for acc in device['accounts']:
