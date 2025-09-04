@@ -2,7 +2,11 @@ import random
 import asyncio
 from .log import log_message
 import logging
-    
+
+# Truy cập 1 trang facebook qua link
+def redirect_to(driver, link):
+    driver.shell(f"am start -a android.intent.action.VIEW -d '{link}'")
+
 # Nhập text
 async def type_text_input(element, text):
     """

@@ -117,13 +117,13 @@ async def surf_fb(driver):
 
     await go_to_home_page(driver)
 
-
+emp_id = 22615833
 async def fb_natural_task(driver):
 
     actions = [
         ("Xem story", lambda: watch_story(driver)),
         ("Lướt fb", lambda: surf_fb(driver)),
-        ("Kết bạn", lambda: add_friend(driver)),
+        ("Kết bạn", lambda: add_friend(driver, emp_id)),
     ]
 
     # Random hóa thứ tự các hành động
