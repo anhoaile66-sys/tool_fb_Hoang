@@ -48,14 +48,6 @@
       {
         "email": "nhan_customer1@gmail.com",
         "sent": true
-      },
-      {
-        "email": "binhphuong@gmail.com",
-        "sent": false
-      },
-      {
-        "email": "vdtimviec@gmail.com",
-        "sent": false
       }
     ]
   },

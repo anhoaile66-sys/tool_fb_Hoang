@@ -9,11 +9,12 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 LINKS_FILE = os.path.join(BASE_DIR, "business_info.json")
 
 class EmailSender:
-    def __init__(self, emp_id: int, json_file: str, subject: str, content: str):
+    def __init__(self, emp_id: int, json_file: str, subject: str, content: str, name_acc="linhnguyn.timviec365@gmail.com"):
         self.emp_id = str(emp_id)
         self.json_file = json_file
         self.subject = subject
         self.content = content
+        self.name_acc = name_acc
 
         # Load dữ liệu
         with open(self.json_file, "r", encoding="utf-8") as f:
@@ -67,7 +68,40 @@ class EmailSender:
         ).click()
         time.sleep(3)
         print("📩 Đang mở Gmail...")
+        
+    def choose_account(self, name_acc=None):
+        """Chọn tài khoản Gmail nếu có nhiều tài khoản"""
+        if name_acc is None:
+            name_acc = self.name_acc
 
+        # Nhấp vào avatar để mở menu chọn tài khoản
+        self.d(resourceId="com.google.android.gm:id/og_apd_internal_image_view").click()
+        time.sleep(1)
+
+        # Kiểm tra xem tài khoản đang dùng có phải là name_acc không
+        try:
+            current_acc = self.d(resourceId="com.google.android.gm:id/og_secondary_account_information").get_text()
+            if current_acc == name_acc:
+                # print(f"✅ Đang sử dụng tài khoản {name_acc}, chỉ đóng menu")
+                self.d(resourceId="com.google.android.gm:id/og_header_close_button").click()
+                return
+        except Exception:
+            # Nếu không lấy được text thì bỏ qua
+            pass
+
+        # Chọn tài khoản name_acc nếu có
+        try:
+            self.d(resourceId="com.google.android.gm:id/og_secondary_account_information", text=name_acc).click()
+            print(f"📌 Chuyển sang tài khoản {name_acc}")
+        except Exception:
+            # Nếu không thấy tài khoản, click vào account thứ 2 như dự phòng
+            self.d.xpath('//*[@resource-id="com.google.android.gm:id/accounts"]/android.widget.LinearLayout[2]').click()
+            print("📌 Chọn tài khoản thứ 2 (dự phòng)")
+
+        time.sleep(1)
+        self.d.press("back")  # Đóng menu chọn tài khoản nếu vẫn mở
+
+        
     def send_email(self, to_email: str):
         """Soạn & gửi email"""
         self.open_gmail()
@@ -101,8 +135,9 @@ class EmailSender:
         if not customer:
             print("🎉 Không còn khách hàng nào cần gửi")
             return
-
         email = customer["email"]
+        self.open_gmail()
+        self.choose_account(self.name_acc)
         self.send_email(email)
         self.mark_sent(email)
 
