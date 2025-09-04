@@ -3,7 +3,6 @@ import random
 from module import *
 from util import *
 
-
 EMOTION = [
     "Thích",
     "Yêu thích",
@@ -117,25 +116,40 @@ async def surf_fb(driver):
 
     await go_to_home_page(driver)
 
-emp_id = 22615833
-async def fb_natural_task(driver):
+async def get_commands(driver, emp_id):
+    commands = pymongo_management.get_commands(emp_id)
+    for command in commands:
+        if command['type'] == 'post_to_group':
+            params = command.get("params", {})
+            await post_to_group(driver, command['_id'], params.get("group_link", ""), params.get("content", ""), params.get("files", []))
+        if command['type'] == 'join_group':
+            params = command.get("params", {})
+            await join_group(driver, command['user_id'], params.get("group_link", ""))
+        await asyncio.sleep(random.uniform(4, 6))
 
+emp_id = 22615833
+account = "test"
+
+async def fb_natural_task(driver):
     actions = [
-        ("Xem story", lambda: watch_story(driver)),
-        ("Lướt fb", lambda: surf_fb(driver)),
-        ("Kết bạn", lambda: add_friend(driver, emp_id)),
+        # ("Xem story", lambda: watch_story(driver)),
+        # ("Lướt fb", lambda: surf_fb(driver)),
+        # ("Kết bạn", lambda: add_friend(driver, emp_id)),
+        ("Kiểm tra bài đăng", lambda: check_post(driver, account)),
+        ("Kiểm tra nhóm chờ duyệt", lambda: check_unapproved_groups(driver, account)),
+        ("Nhận lệnh từ CRM", lambda: get_commands(driver, account))
     ]
 
     # Random hóa thứ tự các hành động
     random.shuffle(actions)
-    log_message(f"\n\nThực hiện tác vụ: Xem reels\n")
+    # log_message(f"\n\nThực hiện tác vụ: Xem reels\n")
     
-    await watch_reels(driver)
+    # await watch_reels(driver)
     await asyncio.sleep(random.uniform(4,6))
     
     for name, action in actions:
-        log_message(f"\n\nThực hiện tác vụ: {name}\n")
-    
+        log_message(f"\n\n{driver.serial} Thực hiện tác vụ: {name}\n", logging.INFO)
+
         await action()
         await asyncio.sleep(random.uniform(4,6))
 

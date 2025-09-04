@@ -6,6 +6,8 @@ import logging
 import time
 import random
 from typing import Optional, Callable
+import sys
+sys.stdout.reconfigure(encoding='utf-8')
 
 # ====== LOG UTIL (uses util.log if present) ======
 try:
@@ -185,8 +187,8 @@ async def device_once(device_id: str):
     handler = DeviceHandler(driver, device_id)
     await asyncio.to_thread(handler.connect)
 
-    # Bật 1.1.1.1 (một lần)
-    await ensure_1111_vpn_on_once(driver, device_id)
+    # # Bật 1.1.1.1 (một lần)
+    # await ensure_1111_vpn_on_once(driver, device_id)
 
     # Trạng thái pha hiện tại để watchdog biết cần resume app nào khi về HOME
     current_phase = {"value": "zalo"}
@@ -226,15 +228,15 @@ async def device_once(device_id: str):
     await watchdog.start()
 
     try:
-        # ===== PHA ZALO =====
-        current_phase["value"] = "zalo"
-        # Đảm bảo đang mở Zalo trước khi chạy
-        driver.app_start(ZALO_PKG)
-        await asyncio.sleep(2.0)
-        await asyncio.to_thread(handler.run, 1)
+        # # ===== PHA ZALO =====
+        # current_phase["value"] = "zalo"
+        # # Đảm bảo đang mở Zalo trước khi chạy
+        # driver.app_start(ZALO_PKG)
+        # await asyncio.sleep(2.0)
+        # await asyncio.to_thread(handler.run, 1)
 
-        if restart_event.is_set():
-            raise RestartThisDevice("RESTART_THIS_DEVICE (sau pha Zalo)")
+        # if restart_event.is_set():
+        #     raise RestartThisDevice("RESTART_THIS_DEVICE (sau pha Zalo)")
 
         # ===== PHA FACEBOOK =====
         current_phase["value"] = "facebook"

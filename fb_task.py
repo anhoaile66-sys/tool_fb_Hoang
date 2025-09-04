@@ -22,7 +22,8 @@ DEVICES_LIST = [
     "EM4DYTEITCCYJNFU",
     "QK8TEMKZMBYHPV6P",
     "IJP78949G69DKNHM",
-    "PN59BMHYPFXCPN8T"
+    "PN59BMHYPFXCPN8T",
+    "1ac1d26f0507"
     ]
 
 # Thoát app, xóa cache khi chờ task
@@ -57,24 +58,24 @@ async def run_on_device(driver, device_id):
         await asyncio.sleep(random.uniform(10,15))
 
         # Chuyển tài khoản
-        last_time = device['time_logged_in']
-        if last_time and (datetime.fromisoformat(last_time) + timedelta(hours=random.randint(4,6))) < datetime.now():
-            # Đủ thời gian, chuyển tài khoản
-            i=0
-            for acc in device['accounts']:
-                i+=1
-                if acc['name'] == device['current_account']:
-                    break
-            if i==3: i=0
-            for acc in device['accounts']:
-                if i==0:
-                    account=acc
-                    break
-                i-=1
-            log_message(f"Đang đăng nhập vào tài khoản {account['name']} trên thiết bị {device_id}")
-            await swap_account(driver, account)
-            device['current_account'] = account['name']
-            update_current_account(device_id, account['name'])
+        # last_time = device['time_logged_in']
+        # if last_time and (datetime.fromisoformat(last_time) + timedelta(hours=random.randint(4,6))) < datetime.now():
+        #     # Đủ thời gian, chuyển tài khoản
+        #     i=0
+        #     for acc in device['accounts']:
+        #         i+=1
+        #         if acc['name'] == device['current_account']:
+        #             break
+        #     if i==3: i=0
+        #     for acc in device['accounts']:
+        #         if i==0:
+        #             account=acc
+        #             break
+        #         i-=1
+        #     log_message(f"Đang đăng nhập vào tài khoản {account['name']} trên thiết bị {device_id}")
+        #     await swap_account(driver, account)
+        #     device['current_account'] = account['name']
+        #     update_current_account(device_id, account['name'])
         
         # tasks nuôi fb
         await fb_natural_task(driver)
