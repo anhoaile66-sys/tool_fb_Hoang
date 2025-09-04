@@ -51,7 +51,7 @@ class EmailSender:
         """Mở Gmail trên thiết bị"""
         current_app = self.d.app_current()
         if current_app["package"] == "com.google.android.gm":
-            print("✅ Đã ở trong Gmail")
+            # print("✅ Đã ở trong Gmail")
             return
 
         self.d(resourceId="com.android.systemui:id/center_group").click()
@@ -94,7 +94,7 @@ class EmailSender:
         time.sleep(1)
 
         self.d(resourceId="com.google.android.gm:id/send").click()
-        print(f"✅ Đã gửi email tới {to_email}")
+        # print(f"✅ Đã gửi email tới {to_email}")
 
     def run(self):
         customer = self.get_next_customer()
