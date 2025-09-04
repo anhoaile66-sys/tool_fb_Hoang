@@ -63,7 +63,7 @@ async def run_on_device(driver, device_id):
             i=0
             for acc in device['accounts']:
                 i+=1
-                if acc['name'] == device['current_account']:
+                if acc['account'] == device['current_account']:
                     break
             if i==3: i=0
             for acc in device['accounts']:
@@ -73,8 +73,8 @@ async def run_on_device(driver, device_id):
                 i-=1
             log_message(f"Đang đăng nhập vào tài khoản {account['name']} trên thiết bị {device_id}")
             await swap_account(driver, account)
-            device['current_account'] = account['name']
-            update_current_account(device_id, account['name'])
+            device['current_account'] = account['account']
+            update_current_account(device_id, account)
         
         # tasks nuôi fb
         await fb_natural_task(driver)
