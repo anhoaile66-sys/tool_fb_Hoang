@@ -4,6 +4,9 @@
 import uiautomator2 as u2
 import time
 
+# ID_DEVICE = "9PAM7DIFW87DOBEU"
+ID_DEVICE = "F6NZ5LRKWWGACYQ8"
+
 # --- Config ---
 CUSTOMER_EMAIL = "vdtimviec@gmail.com"
 CONTENT = (
@@ -13,21 +16,34 @@ CONTENT = (
     "Bạn có thể xem chi tiết tại đây: https://timviec365.vn/it-cntt-jobs.html.\n\n"
     "Chúc bạn một ngày tốt lành!"
 )
-SUBJECT = "Cơ hội việc làm IT dành cho bạn"
+SUBJECT = "Đây là tin nhắn test. Cơ hội việc làm IT dành cho bạn"
 
 # --- Connect to device ---
-d = u2.connect()
+d = u2.connect(ID_DEVICE)
 
 # --- Pipeline Gmail ---
 def send_email():
     # Nếu chưa ở trong Gmail thì mở Gmail
     current_app = d.app_current()
-    if current_app["package"] != "com.google.android.gm":
-        print("📩 Đang mở Gmail...")
-        d(resourceId="com.gogo.launcher:id/icon", text="Gmail").click()
-        time.sleep(3)
-    else:
+    if current_app["package"] == "com.google.android.gm":
         print("✅ Đã ở trong Gmail, bỏ qua bước mở app")
+        pass
+    else:
+
+        d(resourceId="com.android.systemui:id/center_group").click()
+        # vuốt lên ??
+        d.swipe_ext("up", scale=0.8)  
+        time.sleep(2)
+        d(resourceId="com.gogo.launcher:id/search_container_all_apps").click()
+        time.sleep(2)
+        d.send_keys("Gmail", clear=True)
+        time.sleep(2)
+        d.xpath('//*[@resource-id="com.gogo.launcher:id/branch_suggest_app_list_rv"]/android.view.ViewGroup[1]/android.widget.ImageView[1]').click()
+        time.sleep(3)
+        print("📩 Đang mở Gmail...")
+        # TH2:
+        # d(resourceId="com.gogo.launcher:id/icon", text="Gmail").click()
+        # time.sleep(3)
 
     # Nhấn nút soạn mail mới
     d(resourceId="com.google.android.gm:id/compose_button").click()

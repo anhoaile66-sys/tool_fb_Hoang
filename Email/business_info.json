@@ -1,0 +1,100 @@
+{
+  "22615833": {
+    "name": "Ngô Dung",
+    "device": "9PAM7DIFW87DOBEU",
+    "customers": [
+      {
+        "email": "newcustomer1@gmail.com",
+        "sent": true
+      },
+      {
+        "email": "vdtimviec@gmail.com",
+        "sent": false
+      }
+    ]
+  },
+  "22616467": {
+    "name": "Hoàng Linh",
+    "device": "DEVICE_ID_HOANG_LINH",
+    "customers": [
+      {
+        "email": "newcustomer2@gmail.com",
+        "sent": true
+      },
+      {
+        "email": "vdtimviec@gmail.com",
+        "sent": false
+      }
+    ]
+  },
+  "22636101": {
+    "name": "Lê Thùy",
+    "device": "DEVICE_ID_LE_THUY",
+    "customers": [
+      {
+        "email": "lethuy_customer1@gmail.com",
+        "sent": true
+      },
+      {
+        "email": "vdtimviec@gmail.com",
+        "sent": false
+      }
+    ]
+  },
+  "22789191": {
+    "name": "Nhàn",
+    "device": "DEVICE_ID_NHAN",
+    "customers": [
+      {
+        "email": "nhan_customer1@gmail.com",
+        "sent": true
+      },
+      {
+        "email": "vdtimviec@gmail.com",
+        "sent": false
+      }
+    ]
+  },
+  "22814414": {
+    "name": "Bích Ngọc",
+    "device": "DEVICE_ID_BICH_NGOC",
+    "customers": [
+      {
+        "email": "bichngoc_customer1@gmail.com",
+        "sent": true
+      },
+      {
+        "email": "vdtimviec@gmail.com",
+        "sent": false
+      }
+    ]
+  },
+  "22833463": {
+    "name": "Lưu Thư",
+    "device": "DEVICE_ID_LUU_THU",
+    "customers": [
+      {
+        "email": "luuthu_customer1@gmail.com",
+        "sent": true
+      },
+      {
+        "email": "vdtimviec@gmail.com",
+        "sent": false
+      }
+    ]
+  },
+  "22889226": {
+    "name": "Ngọc Hà",
+    "device": "DEVICE_ID_NGOC_HA",
+    "customers": [
+      {
+        "email": "ngocha_customer1@gmail.com",
+        "sent": true
+      },
+      {
+        "email": "vdtimviec@gmail.com",
+        "sent": false
+      }
+    ]
+  }
+}
