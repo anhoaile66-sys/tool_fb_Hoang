@@ -21,5 +21,9 @@
             "name": " ",
             "status": true
         }
-    ]
+    ],
+    "user": {
+        "name": "Ngô Dung",
+        "emp_id": "22615833"
+    }
 }

@@ -21,5 +21,9 @@
             "name": "Anh Kim",
             "status": true
         }
-    ]
+    ],
+    "user": {
+        "name": "Ngọc Hà",
+        "emp_id": "22889226"
+    }
 }

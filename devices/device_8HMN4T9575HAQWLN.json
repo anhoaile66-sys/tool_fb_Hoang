@@ -21,5 +21,9 @@
             "name": "Hải Yến Timviec",
             "status": true
         }
-    ]
+    ],
+    "user": {
+        "name": "Hải Yến",
+        "emp_id": "22894754"
+    }
 }
