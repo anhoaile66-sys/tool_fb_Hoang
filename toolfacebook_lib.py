@@ -4,6 +4,8 @@ import cv2
 import subprocess
 import easyocr
 import requests
+import os
+import numpy as np
 
 # Truy cập 1 trang facebook qua link
 def redirect_to(driver, link):
@@ -161,7 +163,7 @@ def extract_time_from_image(image):
     return None
 
 # Trích xuất thông tin bình luận
-def extract_comment_info(driver, comment_node, raw_comments):
+def extract_comment_info(driver, comment_node, raw_comments, links):
     # Trích xuất thông tin từ các nút con
     all_nodes = driver.xpath(comment_node + '//*').all()
     comment = None
@@ -186,8 +188,7 @@ def extract_comment_info(driver, comment_node, raw_comments):
         return None
     
     if comment in raw_comments:
-        return None
-    raw_comments.append(comment)
+        return {"name": raw_comments[comment], "comment": comment}
 
     # Lấy bounds và cắt ảnh
     bounds_str = driver.xpath(comment_node).get().attrib.get("bounds", "")
@@ -199,20 +200,71 @@ def extract_comment_info(driver, comment_node, raw_comments):
     time_texts = extract_time_from_image(screen)
 
     # Lấy tên và link người bình luận
-    commenter_node.click()
-    driver(text="Xem trang cá nhân").click()
-    link = extract_facebook_user_link(driver)
-    driver(resourceId="com.android.systemui:id/back").click()
-    name = "<a href='" + link + "'>" + commenter_node.info.get("text", "").strip() + "</a>"
+    if commenter_node.info.get("text", "").strip() in links:
+        name = links[commenter_node.info.get("text", "").strip()]
+    else:
+        commenter_node.click()
+        driver(text="Xem trang cá nhân").click()
+        link = extract_facebook_user_link(driver)
+        time.sleep(0.5)
+        driver(resourceId="com.android.systemui:id/back").click()
+        name = "<a href='" + link + "'>" + commenter_node.info.get("text", "").strip() + "</a>"
+        links[commenter_node.info.get("text", "").strip()] = name
 
     # Lấy tên và link trong comment
     for child, text in link_nodes:
+        if text in links:
+            link = links[text]
+            comment = comment.replace(text, link)
+            continue
         child.click()
         link = extract_facebook_user_link(driver)
         comment = comment.replace(text, "<a href='" + link + "'>" + text + "</a>")
+        links[text] = "<a href='" + link + "'>" + text + "</a>"
         
     return {
         "name": name,
         "comment": comment,
         "time": time_texts
     }
+
+# Kiểm tra xem màn hình có thay đổi không
+def is_screen_changed(driver, threshold=0.99):
+    new_screenshot = driver.screenshot(format='opencv')
+    if os.path.exists("Screen Shot\\" + driver.serial + ".png"):
+        old_screenshot = cv2.imread("Screen Shot\\" + driver.serial + ".png")
+        diff = cv2.absdiff(old_screenshot, new_screenshot)
+        score = 1 - (np.sum(diff) / (old_screenshot.shape[0] * old_screenshot.shape[1] * 255))
+        cv2.imwrite("Screen Shot\\" + driver.serial + ".png", new_screenshot)
+        return score < threshold
+    else:
+        cv2.imwrite("Screen Shot\\" + driver.serial + ".png", new_screenshot)
+        return True
+    
+def expand_collapse_section(driver):
+    while True:
+        clicked = False
+        buttons = [node for node in driver.xpath("//*").all() if node.info.get("className") == "android.widget.Button"]
+        for button in buttons:
+            btn_text = button.info.get("text", "") or ""
+            btn_description = button.info.get("contentDescription", "") or ""
+            if btn_text == "Xem thêm" or "câu trả lời" in btn_description:
+                button.click()
+                time.sleep(1)
+                clicked = True
+                break
+        if not clicked:
+            break
+
+def change_comment_display_mode(driver, base_mode="Phù hợp nhất", mode="Mới nhất"):
+    if base_mode == mode:
+        return
+    while True:
+        mode_selector = driver(textContains=base_mode)
+        if mode_selector.exists:
+            break
+        driver.swipe_ext("up", scale=0.8)
+        time.sleep(1)
+    mode_selector.click()
+    driver(descriptionContains=mode).click()
+    time.sleep(1)
