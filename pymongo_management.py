@@ -526,3 +526,34 @@ def update_post_status(post_id, status, link):
     if result.modified_count == 0:
         return {"message": "⚠️ Cập nhật trạng thái bài viết: Trạng thái bài viết không thay đổi"}, logging.WARNING
     return {"message": "✅ Cập nhật trạng thái bài viết: Thành công, link: " + link}, logging.INFO
+
+#-------------------------------------------------------------------------------------------------------------------------------
+# Lệnh liên quan tới collection Binh-luan-trong-bai-dang
+def save_post_comment(post_link, commenter, comment, time, level=0, parent_commenter=None, parent_comment=None):
+    """Lưu bình luận trong bài đăng vào cơ sở dữ liệu."""
+    collection = get_collection("Binh-luan-trong-bai-dang")
+    if level > 0:
+        if not parent_commenter or not parent_comment:
+            return {'message': '❌ Lưu bình luận trong bài đăng: Thiếu thông tin bình luận cha'}, logging.ERROR
+        # Lấy id của bình luận cha
+        parent = collection.find_one({
+            "Post_link": post_link,
+            "Commenter": parent_commenter,
+            "Comment": parent_comment,
+            "Level": level - 1
+        })
+        if not parent:
+            return {'message': '❌ Lưu bình luận trong bài đăng: Không tìm thấy bình luận cha'}, logging.ERROR
+        parent_id = parent.get("_id")
+    # Lưu bình luận mới
+    result = collection.insert_one({
+        "Post_link": post_link,
+        "Commenter": commenter,
+        "Comment": comment,
+        "Time": time,
+        "Level": level,
+        "Parent_id": parent_id if level > 0 else None
+    })
+    if result.inserted_id:
+        return {'message': '✅ Lưu bình luận trong bài đăng: Thành công'}, logging.INFO
+    return {'message': '❌ Lưu bình luận trong bài đăng: Thất bại'}, logging.ERROR
