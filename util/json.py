@@ -15,7 +15,7 @@ def load_device_account(device_id, folder="devices"):
         print(f"Lỗi khi đọc file {file_path}: {e}")
         return {}
 
-def update_current_account(device_id, account_name, folder="devices"):
+def update_current_account(device_id, account, folder="devices"):
     """
     Cập nhật current_account cho thiết bị trong file riêng.
     """
@@ -23,10 +23,10 @@ def update_current_account(device_id, account_name, folder="devices"):
     try:
         with open(file_path, "r", encoding="utf-8") as f:
             device = json.load(f)
-        device["current_account"] = account_name
+        device["current_account"] = account['account']
         device["time_logged_in"] = datetime.now().isoformat()
         with open(file_path, "w", encoding="utf-8") as f:
             json.dump(device, f, indent=4, ensure_ascii=False)
-        print(f"Đã cập nhật current_account cho {device_id} → {account_name}")
+        print(f"Đã cập nhật current_account cho {device_id} → {account['account']}: {account['name']}")
     except Exception as e:
         print(f"Lỗi khi cập nhật file {file_path}: {e}")
