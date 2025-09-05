@@ -53,7 +53,7 @@
   },
   "22814414": {
     "name": "Bích Ngọc",
-    "device": "DEVICE_ID_BICH_NGOC",
+    "device": "Z5LVOF4PRGXGTS9H",
     "customers": [
       {
         "email": "bichngoc_customer1@gmail.com",
@@ -61,7 +61,11 @@
       },
       {
         "email": "binhphuongtimviec@gmail.com",
-        "sent": false
+        "sent": true
+      },
+      {
+        "email": "vdtimviec@gmail.com",
+        "sent": true
       }
     ]
   },

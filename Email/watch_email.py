@@ -7,7 +7,7 @@ from filelock import FileLock
 from classSend import run_sent
 
 # --- Cấu hình ---
-EMP_ID = 22833463
+EMP_ID = 22814414
 SUBJECT = "Đây là tin nhắn test. Cơ hội việc làm IT dành cho bạn"
 CONTENT = (
     "Xin chào, mình là Lại Nhàn đến từ timviec365.vn.\n"
