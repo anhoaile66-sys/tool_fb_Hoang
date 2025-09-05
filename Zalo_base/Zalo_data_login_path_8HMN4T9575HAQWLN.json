@@ -1,0 +1,104 @@
+[
+    {
+        "id_device": "8HMN4T9575HAQWLN",
+        "num_phone_zalo": "0978585641",
+        "name": "Hải Yến Tuyendung",
+        "ava": "",
+        "list_friend": [],
+        "list_group": [],
+        "list_invite_friend": [],
+        "list_prior_chat_boxes": [],
+        "list_unseen_chat_boxes": [],
+        "status": false,
+        "tags": {
+            "Khách hàng": [],
+            "Gia đình": [],
+            "Công việc": [],
+            "Bạn bè": [],
+            "Trả lời sau": [],
+            "Đồng nghiệp": [],
+            "Tin nhắn từ người lạ": []
+        }
+    },
+    {
+        "id_device": "8HMN4T9575HAQWLN",
+        "num_phone_zalo": "0982305784",
+        "name": "Hải Yến Timviec",
+        "ava": "",
+        "list_friend": [],
+        "list_group": [],
+        "list_invite_friend": [],
+        "list_prior_chat_boxes": [],
+        "list_unseen_chat_boxes": [],
+        "status": false,
+        "tags": {
+            "Khách hàng": [],
+            "Gia đình": [],
+            "Công việc": [],
+            "Bạn bè": [],
+            "Trả lời sau": [],
+            "Đồng nghiệp": [],
+            "Tin nhắn từ người lạ": []
+        }
+    },
+    {
+        "id_device": "8HMN4T9575HAQWLN",
+        "num_phone_zalo": "0973106450",
+        "name": "Hải Yến",
+        "ava": "",
+        "list_friend": [],
+        "list_group": [],
+        "list_invite_friend": [],
+        "list_prior_chat_boxes": [
+            {
+                "name": "",
+                "time": "09:09 5/9/2025",
+                "message": "Chào bạn, mình là Hải Yến, nhân viên hỗ trợ bạn của trang web tìm việc 365 ạ, vui lòng kết nối để mình có thể hỗ trợ bạn ạ. Mình cảm ơn!",
+                "ava": "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",
+                "tag": "",
+                "status": "seen",
+                "data_chat_box": [
+                    {
+                        "you": [
+                            {
+                                "time": "09:09 5/9/2025",
+                                "type": "text",
+                                "data": "Chào bạn, mình là Hải Yến, nhân viên hỗ trợ"
+                            }
+                        ]
+                    },
+                    {
+                        "you": [
+                            {
+                                "time": "09:09 5/9/2025",
+                                "type": "text",
+                                "data": "Chào bạn, mình là Hải Yến, nhân viên hỗ trợ bạn của trang web tìm việc 365 ạ, vui lòng kết nối để mình có thể hỗ trợ bạn ạ. Mình cảm ơn!"
+                            }
+                        ]
+                    },
+                    {
+                        "you": [
+                            {
+                                "time": "09:09 5/9/2025",
+                                "type": "text",
+                                "data": "Chào bạn, mình là Hải Yến, nhân viên hỗ trợ bạn của trang web tìm việc 365 ạ, vui lòng kết nối để mình có thể hỗ trợ bạn ạ. Mình cảm ơn!"
+                            }
+                        ]
+                    }
+                ],
+                "friend_or_not": "no"
+            }
+        ],
+        "list_unseen_chat_boxes": [],
+        "status": false,
+        "tags": {
+            "Khách hàng": [],
+            "Gia đình": [],
+            "Công việc": [],
+            "Bạn bè": [],
+            "Trả lời sau": [],
+            "Đồng nghiệp": [],
+            "Tin nhắn từ người lạ": []
+        }
+    }
+]

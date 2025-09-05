@@ -1,0 +1,67 @@
+[
+    {
+        "id_device": "EM4DYTEITCCYJNFU",
+        "num_phone_zalo": "0966117160",
+        "name": "Hoàng Linh Tuyendungns",
+        "ava": "",
+        "list_friend": [],
+        "list_group": [],
+        "list_invite_friend": [],
+        "list_prior_chat_boxes": [],
+        "list_unseen_chat_boxes": [],
+        "status": false,
+        "tags": {
+            "Khách hàng": [],
+            "Gia đình": [],
+            "Công việc": [],
+            "Bạn bè": [],
+            "Trả lời sau": [],
+            "Đồng nghiệp": [],
+            "Tin nhắn từ người lạ": []
+        }
+    },
+
+    {
+        "id_device": "EM4DYTEITCCYJNFU",
+        "num_phone_zalo": "0961963671",
+        "name": "Hoàng Linh Tuyendung",
+        "ava": "",
+        "list_friend": [],
+        "list_group": [],
+        "list_invite_friend": [],
+        "list_prior_chat_boxes": [],
+        "list_unseen_chat_boxes": [],
+        "status": false,
+        "tags": {
+            "Khách hàng": [],
+            "Gia đình": [],
+            "Công việc": [],
+            "Bạn bè": [],
+            "Trả lời sau": [],
+            "Đồng nghiệp": [],
+            "Tin nhắn từ người lạ": []
+        }
+    },
+
+    {
+        "id_device": "EM4DYTEITCCYJNFU",
+        "num_phone_zalo": "0966578630",
+        "name": "Thuỳ Linh Td",
+        "ava": "",
+        "list_friend": [],
+        "list_group": [],
+        "list_invite_friend": [],
+        "list_prior_chat_boxes": [],
+        "list_unseen_chat_boxes": [],
+        "status": false,
+        "tags": {
+            "Khách hàng": [],
+            "Gia đình": [],
+            "Công việc": [],
+            "Bạn bè": [],
+            "Trả lời sau": [],
+            "Đồng nghiệp": [],
+            "Tin nhắn từ người lạ": []
+        }
+    }
+]

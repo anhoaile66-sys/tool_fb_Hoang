@@ -14,10 +14,14 @@ from PIL import Image
 from uiautomator2.exceptions import UiObjectNotFoundError
 from uiautomator2.exceptions import XPathElementNotFoundError
 from uiautomator2 import Direction
+from datetime import datetime
+
 
 # ===================== CẤU HÌNH / HẰNG SỐ =====================
-USED_ACCOUNTS = {}  # {device_id: [list tên tài khoản đã dùng trong phiên chạy]}
-ACCOUNT_CANDIDATES = {}  # {device_id: [list tên tài khoản hiển thị lần gần nhất]}
+# {device_id: [list tên tài khoản đã dùng trong phiên chạy]}
+USED_ACCOUNTS = {}
+# {device_id: [list tên tài khoản hiển thị lần gần nhất]}
+ACCOUNT_CANDIDATES = {}
 
 LOG_FILE = "sent_log.txt"
 JSON_FILE = "Zalo_data_login_path.json"
@@ -59,12 +63,14 @@ DEVICE_TO_DATABASE = {
 
 DEFAULT_DB_ID = 22615833  # Mặc định: Ngô Dung
 
+
 def get_database_for_device(device_id: str) -> int:
     """Trả về database_id ứng với thiết bị; mặc định Ngô Dung nếu không có map."""
     return DEVICE_TO_DATABASE.get(device_id, DEFAULT_DB_ID)
 
+
 # ===== GIỚI HẠN AN TOÀN =====
-MAX_FRIEND_REQUESTS_PER_ACC = 20 # Số lời mời kết bạn tối đa / tài khoản
+MAX_FRIEND_REQUESTS_PER_ACC = 20  # Số lời mời kết bạn tối đa / tài khoản
 MAX_NEW_MESSAGES_PER_ACC = 20   # Số tin nhắn tới người lạ tối đa / tài khoản
 
 # Danh sách thiết bị (ĐÃ THÊM 5 THIẾT BỊ MỚI)
@@ -111,19 +117,67 @@ file_lock = Lock()                     # Khóa ghi file (log, json)
 db_lock = Lock()                       # Khóa nạp dữ liệu cho queue theo DB
 db_queues = defaultdict(Queue)         # Hàng đợi theo từng emp_id
 db_loaded = set()                      # Đánh dấu DB đã nạp
-db_enqueued_phones = defaultdict(set)  # Theo dõi những số đã enqueue (tránh trùng)
+# Theo dõi những số đã enqueue (tránh trùng)
+db_enqueued_phones = defaultdict(set)
 STOP_EVENT = threading.Event()         # Có thể dùng để dừng khẩn cấp
 
 # ===================== TIỆN ÍCH =====================
+
+def update_base_document_json(database_name, domain, collection_name, document):
+    try:
+        #        print(document)
+        with open(f'{database_name}/{collection_name}.json', 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        for id in range(len(data)):
+            #            print(document[domain])
+            if data[id][domain] == document[domain]:
+                # print(1)
+                for key in document.keys():
+                    data[id][key] = document[key]
+                    # print(document[key])
+                break
+#        print(data)
+        with open(f'{database_name}/{collection_name}.json', 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+        # print(
+        #    f"Đã lưu vào database {collection_name}: {data[0]['list_friend'][0]}")
+    except Exception as e:
+        print(e)
+        return False
+
+
+def get_base_id_zalo_json(database_name, domain, collection_name, document):
+    try:
+        with open(f'{database_name}/{collection_name}.json', 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        cursor = []
+        for d in data:
+            check_key = True
+            for key in document.keys():
+                if d[key] != document[key]:
+                    print(d[key])
+                    print(document[key])
+                    check_key = False
+                    break
+            if check_key:
+                cursor.append(d)
+        print(check_key)
+        return cursor
+    except Exception as e:
+        return False
+
+
 def random_delay(min_sec=3, max_sec=7):
     delay = random.uniform(min_sec, max_sec)
     print(f"[⏳] Đợi {delay:.2f} giây...")
     time.sleep(delay)
 
+
 def long_delay():
     delay = random.uniform(600, 900)  # 10-15 phút
     print(f"[🛡️] Nghỉ dài {delay//60:.0f} phút để tránh spam...")
     time.sleep(delay)
+
 
 def already_sent(phone_number):
     with file_lock:
@@ -132,15 +186,19 @@ def already_sent(phone_number):
         with open(LOG_FILE, "r", encoding="utf-8") as f:
             return phone_number in f.read()
 
+
 def log_sent(phone_number):
     with file_lock:
         with open(LOG_FILE, "a", encoding="utf-8") as f:
             f.write(phone_number + "\n")
 
+
 def get_message_template(sender_name):
     return f"Chào bạn, mình là {sender_name}, nhân viên hỗ trợ bạn của trang web tìm việc 365 ạ, vui lòng kết nối để mình có thể hỗ trợ bạn ạ. Mình cảm ơn!"
 
 # ===================== API LẤY SỐ =====================
+
+
 def get_phone_numbers_from_api(emp_ids, size=1, get_fb_link=True):
     """Lấy danh sách số điện thoại từ API cho nhiều emp_ids"""
     payload = {
@@ -169,6 +227,7 @@ def get_phone_numbers_from_api(emp_ids, size=1, get_fb_link=True):
     except Exception as e:
         print(f"[❌] Lỗi khi gọi API: {e}")
         return []
+
 
 def ensure_db_queue_loaded(emp_id, min_batch_size=1):
     """
@@ -209,6 +268,8 @@ def ensure_db_queue_loaded(emp_id, min_batch_size=1):
             print(f"[DB {emp_id}] ⚠️ Không có mục hợp lệ để nạp.")
 
 # ===================== DEVICE HANDLER =====================
+
+
 class DeviceHandler:
     def __init__(self, driver, device_id):
         self.device_id = device_id
@@ -216,7 +277,8 @@ class DeviceHandler:
         self.friend_requests_count = 0
         self.new_messages_count = 0
         self.current_account_index = 0  # Giữ để tương thích
-        self.accounts = []  # Nếu có nhiều tài khoản, hãy điền [{ "username": "..."}]
+        # Nếu có nhiều tài khoản, hãy điền [{ "username": "..."}]
+        self.accounts = []
 
     def connect(self):
         try:
@@ -226,7 +288,8 @@ class DeviceHandler:
             self.cleanup_background_apps()
             return True
         except Exception as e:
-            print(f"[❌] Không thể kết nối với thiết bị {self.device_id}. Lỗi: {e}")
+            print(
+                f"[❌] Không thể kết nối với thiết bị {self.device_id}. Lỗi: {e}")
             return False
 
     def cleanup_background_apps(self):
@@ -251,9 +314,11 @@ class DeviceHandler:
         """
         names = []
         try:
-            rows = self.d.xpath('//*[@resource-id="com.zing.zalo:id/recycle_view"]/android.widget.LinearLayout').all()
+            rows = self.d.xpath(
+                '//*[@resource-id="com.zing.zalo:id/recycle_view"]/android.widget.LinearLayout').all()
             for idx in range(1, len(rows) + 1):
-                tv2 = self.d.xpath(f'//*[@resource-id="com.zing.zalo:id/recycle_view"]/android.widget.LinearLayout[{idx}]/android.widget.TextView[2]')
+                tv2 = self.d.xpath(
+                    f'//*[@resource-id="com.zing.zalo:id/recycle_view"]/android.widget.LinearLayout[{idx}]/android.widget.TextView[2]')
                 try:
                     name = tv2.get_text().strip()
                 except Exception:
@@ -304,7 +369,8 @@ class DeviceHandler:
                 self.d.app_start("com.zing.zalo")
             except Exception:
                 pass
-            _wait(lambda: self.d(resourceId="com.zing.zalo:id/maintab_metab").exists, 8, 0.4, "tab Me sau khi mở app")
+            _wait(lambda: self.d(resourceId="com.zing.zalo:id/maintab_metab").exists,
+                  8, 0.4, "tab Me sau khi mở app")
 
         try:
             self.d(resourceId="com.zing.zalo:id/maintab_metab").click()
@@ -313,7 +379,8 @@ class DeviceHandler:
 
         # B2: bấm avatar (mở danh sách tài khoản)
         if not _wait(lambda: self.d(resourceId="com.zing.zalo:id/avt_right_list_me_tab").exists, 6, 0.3, "avatar xuất hiện"):
-            print(f"[{device_id}] [⚠] Không tìm thấy avatar để mở danh sách tài khoản.")
+            print(
+                f"[{device_id}] [⚠] Không tìm thấy avatar để mở danh sách tài khoản.")
             return False
         try:
             self.d(resourceId="com.zing.zalo:id/avt_right_list_me_tab").click()
@@ -327,20 +394,25 @@ class DeviceHandler:
         def _accounts_view_exists():
             return (
                 self.d.xpath('//*[@resource-id="com.zing.zalo:id/recycle_view"]').exists or
-                self.d.xpath('//*[@resource-id="com.zing.zalo:id/recycler_view"]').exists
+                self.d.xpath(
+                    '//*[@resource-id="com.zing.zalo:id/recycler_view"]').exists
             )
         if not _wait(_accounts_view_exists, 8, 0.4, "danh sách tài khoản hiện ra"):
-            print(f"[{device_id}] [⚠] Không thấy danh sách tài khoản (recycle/recycler_view).")
+            print(
+                f"[{device_id}] [⚠] Không thấy danh sách tài khoản (recycle/recycler_view).")
             return False
 
         # Trích 3 tên tài khoản để ghi nhớ
         visible_names = []
         try:
             # Ưu tiên recycle_view
-            base_id = "recycle_view" if self.d.xpath('//*[@resource-id="com.zing.zalo:id/recycle_view"]').exists else "recycler_view"
-            rows = self.d.xpath(f'//*[@resource-id="com.zing.zalo:id/{base_id}"]/android.widget.LinearLayout').all()
+            base_id = "recycle_view" if self.d.xpath(
+                '//*[@resource-id="com.zing.zalo:id/recycle_view"]').exists else "recycler_view"
+            rows = self.d.xpath(
+                f'//*[@resource-id="com.zing.zalo:id/{base_id}"]/android.widget.LinearLayout').all()
             for idx in range(1, min(len(rows), 3) + 1):
-                tv2 = self.d.xpath(f'//*[@resource-id="com.zing.zalo:id/{base_id}"]/android.widget.LinearLayout[{idx}]/android.widget.TextView[2]')
+                tv2 = self.d.xpath(
+                    f'//*[@resource-id="com.zing.zalo:id/{base_id}"]/android.widget.LinearLayout[{idx}]/android.widget.TextView[2]')
                 try:
                     nm = tv2.get_text().strip()
                 except Exception:
@@ -352,7 +424,8 @@ class DeviceHandler:
 
         ACCOUNT_CANDIDATES.setdefault(device_id, [])
         ACCOUNT_CANDIDATES[device_id] = visible_names[:]
-        print(f"[{device_id}] 👥 3 tài khoản hiển thị: {visible_names if visible_names else 'Không đọc được'}")
+        print(
+            f"[{device_id}] 👥 3 tài khoản hiển thị: {visible_names if visible_names else 'Không đọc được'}")
 
         # Theo yêu cầu: CLICK CHÍNH XÁC TÀI KHOẢN THỨ 2
         # (Nếu không tồn tại dòng 2, fallback: thử dòng 1 rồi dòng 3)
@@ -360,16 +433,19 @@ class DeviceHandler:
         for try_idx in [2, 1, 3]:
             xpath_try = f'//*[@resource-id="com.zing.zalo:id/recycle_view"]/android.widget.LinearLayout[{try_idx}]/android.widget.TextView[2]'
             xpath_alt = f'//*[@resource-id="com.zing.zalo:id/recycler_view"]/android.widget.LinearLayout[{try_idx}]/android.widget.TextView[2]'
-            target_xpath = xpath_try if self.d.xpath('//*[@resource-id="com.zing.zalo:id/recycle_view"]').exists else xpath_alt
+            target_xpath = xpath_try if self.d.xpath(
+                '//*[@resource-id="com.zing.zalo:id/recycle_view"]').exists else xpath_alt
 
             if self.d.xpath(target_xpath).exists:
                 try:
                     name_try = ""
                     try:
-                        name_try = self.d.xpath(target_xpath).get_text().strip()
+                        name_try = self.d.xpath(
+                            target_xpath).get_text().strip()
                     except Exception:
                         pass
-                    print(f"[{device_id}] 👉 Chọn tài khoản dòng {try_idx}{f' ({name_try})' if name_try else ''}")
+                    print(
+                        f"[{device_id}] 👉 Chọn tài khoản dòng {try_idx}{f' ({name_try})' if name_try else ''}")
                     self.d.xpath(target_xpath).click()
                     clicked = True
                     break
@@ -377,7 +453,8 @@ class DeviceHandler:
                     print(f"[{device_id}] [⚠] Click dòng {try_idx} lỗi: {e}")
 
         if not clicked:
-            print(f"[{device_id}] [❌] Không click được bất kỳ dòng tài khoản nào (1/2/3).")
+            print(
+                f"[{device_id}] [❌] Không click được bất kỳ dòng tài khoản nào (1/2/3).")
             return False
 
         # B4: chờ 10 giây
@@ -403,7 +480,8 @@ class DeviceHandler:
                 print(f"[{device_id}] [⚠] Bấm bằng text 'Hoàn tất' lỗi: {e}")
 
         if not done_clicked:
-            print(f"[{device_id}] [⚠] Không tìm được nút Hoàn tất. Thử nhấn back rồi vào lại tab Me.")
+            print(
+                f"[{device_id}] [⚠] Không tìm được nút Hoàn tất. Thử nhấn back rồi vào lại tab Me.")
             self.d.press("back")
 
         # Ghi nhớ: đừng chọn trùng trong lần sau
@@ -425,20 +503,23 @@ class DeviceHandler:
         self.friend_requests_count = 0
         self.new_messages_count = 0
 
-        print(f"[{device_id}] ✅ Hoàn tất đổi tài khoản. Đã reset quota cho tài khoản mới.")
+        print(
+            f"[{device_id}] ✅ Hoàn tất đổi tài khoản. Đã reset quota cho tài khoản mới.")
         time.sleep(2)
         return True
 
-
     # ===================== NGHIỆP VỤ ZALO =====================
+
     def change_contact_name(self, phone_number, contact_info):
         """Đổi tên gợi nhớ cho số điện thoại"""
         try:
             cv_title = (contact_info.get("cv_title") or "").strip()
             name = (contact_info.get("name") or "").strip()
-            new_name = f"{cv_title if cv_title else ' '} {name if name else ' '}".strip()
+            new_name = f"{cv_title if cv_title else ' '} {name if name else ' '}".strip(
+            )
 
-            print(f"[{self.device_id}][✏️] Đang đổi tên {phone_number} thành '{new_name}'")
+            print(
+                f"[{self.device_id}][✏️] Đang đổi tên {phone_number} thành '{new_name}'")
             self.d.app_start("com.zing.zalo", stop=True)
             random_delay(3, 5)
 
@@ -449,17 +530,20 @@ class DeviceHandler:
             random_delay(2, 3)
 
             if not self.d(resourceId="com.zing.zalo:id/btn_search_result").exists:
-                print(f"[{self.device_id}][⚠️] Không tìm thấy {phone_number} để đổi tên")
+                print(
+                    f"[{self.device_id}][⚠️] Không tìm thấy {phone_number} để đổi tên")
                 self.d.press("back")
                 return False
 
             self.d(resourceId="com.zing.zalo:id/btn_search_result").click()
             random_delay(2, 4)
 
-            self.d.xpath('//*[@resource-id="com.zing.zalo:id/zalo_action_bar"]/android.widget.LinearLayout[1]/android.widget.FrameLayout[2]').click()
+            self.d.xpath(
+                '//*[@resource-id="com.zing.zalo:id/zalo_action_bar"]/android.widget.LinearLayout[1]/android.widget.FrameLayout[2]').click()
             random_delay()
 
-            self.d.xpath('//*[@resource-id="com.zing.zalo:id/user_info_list_view"]/android.widget.RelativeLayout[2]').click()
+            self.d.xpath(
+                '//*[@resource-id="com.zing.zalo:id/user_info_list_view"]/android.widget.RelativeLayout[2]').click()
             random_delay()
 
             if self.d(resourceId="com.zing.zalo:id/btn_remove_alias").exists:
@@ -475,12 +559,12 @@ class DeviceHandler:
                 random_delay(1, 2)
 
             print(f"[{self.device_id}][✅] Đã đổi tên {phone_number} thành công")
-            return True
+            return True, new_name
 
         except Exception as e:
             print(f"[{self.device_id}][❌] Lỗi khi đổi tên {phone_number}: {e}")
             self.d.press("home")
-            return False
+            return False, new_name
 
     def handle_phone_number(self, phone_number, name=None, sender_name=None):
         """Gửi tin nhắn/kết bạn cho một số điện thoại. Trả True nếu đã thao tác."""
@@ -489,11 +573,31 @@ class DeviceHandler:
             random_delay(3, 5)
 
             # Đổi tài khoản nếu đã đạt giới hạn
-            if (self.friend_requests_count >= MAX_FRIEND_REQUESTS_PER_ACC or 
-                self.new_messages_count >= MAX_NEW_MESSAGES_PER_ACC):
-                print(f"[{self.device_id}][⚠️] Đạt giới hạn ({self.friend_requests_count} KB / {self.new_messages_count} TN). Chuyển tài khoản...")
+            if (self.friend_requests_count >= MAX_FRIEND_REQUESTS_PER_ACC or
+                    self.new_messages_count >= MAX_NEW_MESSAGES_PER_ACC):
+                print(
+                    f"[{self.device_id}][⚠️] Đạt giới hạn ({self.friend_requests_count} KB / {self.new_messages_count} TN). Chuyển tài khoản...")
+                self.d(resourceId="com.zing.zalo:id/maintab_metab").click()
+                time.sleep(0.5)
+                name_zalo = self.d(
+                   resourceId="com.zing.zalo:id/title_list_me_tab").get_text()
+                time.sleep(0.5)
                 self.switch_account()
+                status = update_base_document_json("Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{self.device_id}", {
+                "name": name_zalo, "status": False})
 
+            # Đọc tên tài khoản zalo hiện tại
+            self.d(resourceId="com.zing.zalo:id/maintab_metab").click()
+            time.sleep(0.5)
+            print("Lần 1")
+            name_zalo = self.d(
+                resourceId="com.zing.zalo:id/title_list_me_tab").get_text()
+            time.sleep(0.5)
+            status = update_base_document_json("Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{self.device_id}", {
+                "name": name_zalo, "status": True})
+            self.d(resourceId="com.zing.zalo:id/maintab_message").click()
+            time.sleep(0.5)
+            print("Lần 2")
             self.d(text="Tìm kiếm").click()
             random_delay()
 
@@ -501,7 +605,8 @@ class DeviceHandler:
             random_delay(2, 3)
 
             if not self.d(resourceId="com.zing.zalo:id/btn_search_result").exists:
-                print(f"[{self.device_id}][⚠️] Không tìm thấy kết quả cho {phone_number}, bỏ qua.")
+                print(
+                    f"[{self.device_id}][⚠️] Không tìm thấy kết quả cho {phone_number}, bỏ qua.")
                 self.d.press("back")
                 return False
 
@@ -510,41 +615,63 @@ class DeviceHandler:
 
             message = get_message_template(sender_name)
 
+            friend_or_not = "yes"
             # Kịch bản 1: Đã là bạn bè
             if self.d(resourceId="com.zing.zalo:id/chatinput_text").exists:
-                print(f"[{self.device_id}][✔] {phone_number} -> Đã là bạn bè. Gửi tin nhắn.")
+                print(
+                    f"[{self.device_id}][✔] {phone_number} -> Đã là bạn bè. Gửi tin nhắn.")
+                if self.d(resourceId="com.zing.zalo:id/action_bar_title").exists:
+                    name_ntd = self.d(
+                        resourceId="com.zing.zalo:id/action_bar_title").get_text()
+                    time.sleep(0.1)
                 self.d(resourceId="com.zing.zalo:id/chatinput_text").click()
                 self.d.send_keys(message, clear=True)
                 random_delay(1, 2)
                 if self.d(resourceId="com.zing.zalo:id/new_chat_input_btn_chat_send").exists:
-                    self.d(resourceId="com.zing.zalo:id/new_chat_input_btn_chat_send").click()
+                    self.d(
+                        resourceId="com.zing.zalo:id/new_chat_input_btn_chat_send").click()
                 self.new_messages_count += 1
+
+                # Lưu dữ liệu vào database
 
             # Kịch bản 2: Đã gửi lời mời
             elif self.d(text="Hủy kết bạn").exists:
-                print(f"[{self.device_id}][=] {phone_number} -> Đã gửi lời mời. Gửi thêm tin nhắn.")
+                print(
+                    f"[{self.device_id}][=] {phone_number} -> Đã gửi lời mời. Gửi thêm tin nhắn.")
                 if self.d(resourceId="com.zing.zalo:id/btn_send_message").exists:
                     self.d(resourceId="com.zing.zalo:id/btn_send_message").click()
                     random_delay()
+                    if self.d(resourceId="com.zing.zalo:id/action_bar_title").exists:
+                        name_ntd = self.d(
+                            resourceId="com.zing.zalo:id/action_bar_title").get_text()
+                        time.sleep(0.1)
                     self.d(resourceId="com.zing.zalo:id/chatinput_text").click()
                     self.d.send_keys(message, clear=True)
                     random_delay(1, 2)
                     if self.d(resourceId="com.zing.zalo:id/new_chat_input_btn_chat_send").exists:
-                        self.d(resourceId="com.zing.zalo:id/new_chat_input_btn_chat_send").click()
+                        self.d(
+                            resourceId="com.zing.zalo:id/new_chat_input_btn_chat_send").click()
                     self.new_messages_count += 1
+                friend_or_not = "added"
 
             # Kịch bản 3: Chưa kết bạn
             else:
-                print(f"[{self.device_id}][!] {phone_number} -> Xử lý như chưa kết bạn.")
+                print(
+                    f"[{self.device_id}][!] {phone_number} -> Xử lý như chưa kết bạn.")
                 if self.d(resourceId="com.zing.zalo:id/btn_send_message").exists:
                     self.d(resourceId="com.zing.zalo:id/btn_send_message").click()
                     random_delay()
+                    if self.d(resourceId="com.zing.zalo:id/action_bar_title").exists:
+                        name_ntd = self.d(
+                            resourceId="com.zing.zalo:id/action_bar_title").get_text()
+                        time.sleep(0.1)
                     if self.d(resourceId="com.zing.zalo:id/chatinput_text").exists:
                         self.d(resourceId="com.zing.zalo:id/chatinput_text").click()
                         self.d.send_keys(message, clear=True)
                         random_delay(1, 2)
                         if self.d(resourceId="com.zing.zalo:id/new_chat_input_btn_chat_send").exists:
-                            self.d(resourceId="com.zing.zalo:id/new_chat_input_btn_chat_send").click()
+                            self.d(
+                                resourceId="com.zing.zalo:id/new_chat_input_btn_chat_send").click()
                             self.new_messages_count += 1
                     random_delay()
                 if self.d(resourceId="com.zing.zalo:id/tv_function_privacy").exists:
@@ -566,26 +693,31 @@ class DeviceHandler:
                     sent_request = True
 
                 if sent_request:
-                    print(f"[{self.device_id}][✓] Đã gửi lời mời kết bạn tới {phone_number}")
+                    print(
+                        f"[{self.device_id}][✓] Đã gửi lời mời kết bạn tới {phone_number}")
                 else:
-                    print(f"[{self.device_id}][⚠] Không tìm thấy nút gửi lời mời cho {phone_number}")
+                    print(
+                        f"[{self.device_id}][⚠] Không tìm thấy nút gửi lời mời cho {phone_number}")
+                friend_or_not = "no"
 
             # Quay về
             self.d.press("back")
             random_delay()
             self.d.press("back")
             random_delay()
-            return True
+            print("Tên tài khoản hiện tại: ", name_zalo)
+            return True, message, friend_or_not, name_zalo, name_ntd
 
         except Exception as e:
             print(f"[{self.device_id}][❌] Lỗi khi xử lý {phone_number}: {e}")
             self.d.press("home")
             time.sleep(2)
-            return False
+            return False, message, friend_or_not, name_zalo
 
     def extract_profile_info(self, phone_number, original_info):
         """Trích xuất thông tin profile Zalo và kết hợp với dữ liệu gốc"""
-        print(f"\n[{self.device_id}][*] Bắt đầu trích xuất thông tin cho {phone_number}...")
+        print(
+            f"\n[{self.device_id}][*] Bắt đầu trích xuất thông tin cho {phone_number}...")
         try:
             profile_data = {
                 "_id": original_info.get("_id", ""),
@@ -604,7 +736,8 @@ class DeviceHandler:
             random_delay(2, 3)
 
             if not self.d(resourceId="com.zing.zalo:id/btn_search_result").exists:
-                print(f"[{self.device_id}][!] Không tìm thấy {phone_number} để trích xuất")
+                print(
+                    f"[{self.device_id}][!] Không tìm thấy {phone_number} để trích xuất")
                 self.d(resourceId="com.zing.zalo:id/search_src_text").click()
                 self.d.clear_text()
                 self.d.press("back")
@@ -633,9 +766,12 @@ class DeviceHandler:
                 buf = io.BytesIO()
                 img.save(buf, format="JPEG", optimize=True, quality=75)
                 avatar_b64 = base64.b64encode(buf.getvalue()).decode("ascii")
-                print(f"[{self.device_id}][i] Đã xử lý và mã hóa avatar thành công.")
+                print(
+                    f"[{self.device_id}][i] Đã xử lý và mã hóa avatar thành công.")
+
             else:
-                print(f"[{self.device_id}][!] Không tìm thấy khung avatar cho {zalo_name}")
+                print(
+                    f"[{self.device_id}][!] Không tìm thấy khung avatar cho {zalo_name}")
             profile_data["ava"] = avatar_b64
 
             self.d.press("back")
@@ -644,7 +780,8 @@ class DeviceHandler:
             return profile_data
 
         except Exception as e:
-            print(f"[{self.device_id}][❌] Lỗi khi trích xuất thông tin của {phone_number}: {e}")
+            print(
+                f"[{self.device_id}][❌] Lỗi khi trích xuất thông tin của {phone_number}: {e}")
             self.d.press("home")
             time.sleep(2)
             return {
@@ -685,7 +822,8 @@ class DeviceHandler:
                 print(f"[{self.device_id}][💾] Đã ghi JSON ngay cho {phone}")
                 return True
         except Exception as e:
-            print(f"[{self.device_id}][❌] Lỗi ghi JSON cho {profile.get('phone')}: {e}")
+            print(
+                f"[{self.device_id}][❌] Lỗi ghi JSON cho {profile.get('phone')}: {e}")
             return False
 
     def process_phone_number(self, phone_number, contact_info, sender_name):
@@ -693,23 +831,90 @@ class DeviceHandler:
         if already_sent(phone_number):
             print(f"[{self.device_id}][⏭] Bỏ qua {phone_number} (đã có trong log)")
             return
-
+        #if True:
         try:
             # 1) Nhắn tin/ gửi kết bạn
-            interacted = self.handle_phone_number(phone_number, contact_info.get("name", ""), sender_name)
-
+            interacted, message, friend_or_not, name_zalo, name_ntd = self.handle_phone_number(
+                phone_number, contact_info.get("name", ""), sender_name)
+            print("Có chạy đến hàm lưu dữ liệu không")
             if not interacted:
-                print(f"[{self.device_id}][⚠️] Bỏ qua đổi tên & lưu JSON cho {phone_number} vì không tương tác được")
+                print(
+                    f"[{self.device_id}][⚠️] Bỏ qua đổi tên & lưu JSON cho {phone_number} vì không tương tác được")
                 random_delay(3, 5)
                 return
 
             # 2) Đổi tên gợi nhớ NGAY
-            self.change_contact_name(phone_number, contact_info)
+            status, new_name = self.change_contact_name(
+                phone_number, contact_info)
 
             # 3) Trích xuất profile NGAY
-            profile_data = self.extract_profile_info(phone_number, contact_info)
+            profile_data = self.extract_profile_info(
+                phone_number, contact_info)
 
-            # 4) Ghi JSON NGAY (upsert)
+            # 4) Ghi ra file JSON phục vụ CRM
+            document = get_base_id_zalo_json("Zalo_base", "name", f"Zalo_data_login_path_{self.device_id}", {
+                "name": name_zalo})[0]
+            #print("Phần tử được lấy ra là: ", document)
+            print("Đã lấy file base thành công ", f"Zalo_data_login_path_{self.device_id}")
+            # Lấy ra thời gian gửi tin nhắn
+            now = datetime.now()
+            print("Ngày:", now.day)
+            print("Tháng:", now.month)
+            print("Năm:", now.year)
+            print("Giờ:", now.hour)
+            print("Phút:", now.minute)
+            print("Giây:", now.second)
+            hour = str(now.hour)
+            minute = str(now.hour)
+            if len(hour) == 1:
+                hour = f"0{hour}"
+            if len(minute) == 1:
+                minute = f"0{minute}"
+            time_str = f"{hour}:{minute} {now.day}/{now.month}/{now.year}"
+
+            list_prior_chat_boxes = document['list_prior_chat_boxes']
+
+            check = False
+            for id in range(len(list_prior_chat_boxes)):
+                if list_prior_chat_boxes[id]['name'] == name_ntd:
+                    check = True
+                    if 'data_chat_box' not in list_prior_chat_boxes[id].keys():
+                        print("Có khôngs")
+                        list_prior_chat_boxes[id]['data_chat_box'] = []
+
+                    list_prior_chat_boxes[id]['time'] = time_str
+                    list_prior_chat_boxes[id]['message'] = message
+                    list_prior_chat_boxes[id]['status'] = "seen"
+                    if profile_data['ava']:
+                       list_prior_chat_boxes[id]['ava'] = profile_data['ava']
+                    list_prior_chat_boxes[id]['data_chat_box'].append(
+                        {"you": [{'time': time_str, 'type': "text", "data": message}]})
+                    list_prior_chat_boxes[id]['friend_or_not'] = friend_or_not
+                    list_prior_chat_boxes.insert(
+                        0, list_prior_chat_boxes.pop(id))
+
+                    break
+
+            if not check:
+
+                num = message.split(" ")
+                if len(num) > 10:
+                    num = num[:10]
+                    message = " ".join(num)
+                list_prior_chat_boxes.append(
+                    {"name": name_ntd, "time": time_str, "message": message, "ava": profile_data['ava'], "tag": "", "status": "seen", "data_chat_box": [], "friend_or_not": friend_or_not})
+                list_prior_chat_boxes[-1]['data_chat_box'].append(
+                    {"you": [{'time': time_str, 'type': "text", "data": message}]})
+                list_prior_chat_boxes.insert(
+                    0, list_prior_chat_boxes.pop(-1))
+
+            data_update = {"name": name_zalo,
+                           "list_prior_chat_boxes": list_prior_chat_boxes}
+            update_base_document_json(
+                "Zalo_base", "name", f"Zalo_data_login_path_{self.device_id}", data_update)
+            print("Đã lưu vào database ", f"Zalo_data_login_path_{self.device_id}")
+
+            # 5) Ghi JSON NGAY (upsert)
             self.upsert_profile_json(profile_data)
 
             # 5) Ghi log đã gửi để tránh trùng
@@ -738,7 +943,8 @@ class DeviceHandler:
         while rounds > 0 and not STOP_EVENT.is_set():
             current_db = self.pick_database_for_round()
             sender_name = DATABASE_MAPPING.get(current_db, "Nhân viên")
-            print(f"\n[{self.device_id}]===== LẤY VIỆC TỪ DATABASE {current_db} - {sender_name} =====")
+            print(
+                f"\n[{self.device_id}]===== LẤY VIỆC TỪ DATABASE {current_db} - {sender_name} =====")
 
             # Đảm bảo đã có dữ liệu trong hàng đợi của DB này
             ensure_db_queue_loaded(current_db)
@@ -747,12 +953,35 @@ class DeviceHandler:
 
             # Đổi account nếu đạt giới hạn
             if (self.friend_requests_count >= MAX_FRIEND_REQUESTS_PER_ACC or
-                self.new_messages_count >= MAX_NEW_MESSAGES_PER_ACC):
-                print(f"[{self.device_id}][⚠️] Đạt giới hạn ({self.friend_requests_count} KB / {self.new_messages_count} TN). Chuyển tài khoản...")
+                    self.new_messages_count >= MAX_NEW_MESSAGES_PER_ACC):
+                print(
+                    f"[{self.device_id}][⚠️] Đạt giới hạn ({self.friend_requests_count} KB / {self.new_messages_count} TN). Chuyển tài khoản...")
+                
+                #Set lại trạng thái của tài khoản zalo
+                self.d.app_start("com.zing.zalo")
+                time.sleep(0.5)
+                self.d(resourceId="com.zing.zalo:id/maintab_metab").click()
+                time.sleep(0.5)
+                name_zalo = self.d(
+                   resourceId="com.zing.zalo:id/title_list_me_tab").get_text()
+                time.sleep(0.5)
                 self.switch_account()
+                status = update_base_document_json("Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{self.device_id}", {
+                "name": name_zalo, "status": False})
+
+                self.d(resourceId="com.zing.zalo:id/maintab_metab").click()
+                time.sleep(0.5)
+                name_zalo = self.d(
+                   resourceId="com.zing.zalo:id/title_list_me_tab").get_text()
+                time.sleep(0.5)
+                status = update_base_document_json("Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{self.device_id}", {
+                "name": name_zalo, "status": True})
+                self.d(resourceId="com.zing.zalo:id/maintab_message").click()
+                time.sleep(0.5)
 
             try:
-                contact = db_queues[current_db].get(timeout=5)  # chờ 5s nếu tạm thời trống
+                contact = db_queues[current_db].get(
+                    timeout=5)  # chờ 5s nếu tạm thời trống
                 phone_number = (contact.get("phone_number") or "").strip()
                 if not phone_number:
                     continue
@@ -761,16 +990,21 @@ class DeviceHandler:
                 empty_streak = 0
             except Empty:
                 empty_streak += 1
-                print(f"[{self.device_id}][{current_db}] ⏳ Hết việc tạm thời (lần {empty_streak}).")
+                print(
+                    f"[{self.device_id}][{current_db}] ⏳ Hết việc tạm thời (lần {empty_streak}).")
                 ensure_db_queue_loaded(current_db)
                 if empty_streak >= 3:
-                    print(f"[{self.device_id}] 💤 Kết thúc vòng vì DB {current_db} hết việc.")
+                    print(
+                        f"[{self.device_id}] 💤 Kết thúc vòng vì DB {current_db} hết việc.")
                     break
 
-            print(f"\n[{self.device_id}]🎉 Hoàn tất một vòng xử lý (hàng đợi chung, không trùng số).")
+            print(
+                f"\n[{self.device_id}]🎉 Hoàn tất một vòng xử lý (hàng đợi chung, không trùng số).")
             rounds -= 1
 
 # ===================== MAIN =====================
+
+
 def main():
     # Khởi tạo và kết nối các thiết bị
     device_handlers = []
@@ -797,7 +1031,8 @@ def main():
     # Tạo và chạy các luồng
     threads = []
     for handler in device_handlers:
-        t = threading.Thread(target=handler.run, args=(2,), daemon=True)  # 2 rounds mỗi thiết bị
+        t = threading.Thread(target=handler.run, args=(
+            2,), daemon=True)  # 2 rounds mỗi thiết bị
         t.start()
         threads.append(t)
 
@@ -806,6 +1041,7 @@ def main():
         t.join()
 
     print("\n🎉 Tất cả thiết bị đã hoàn thành công việc!")
+
 
 if __name__ == "__main__":
     main()
