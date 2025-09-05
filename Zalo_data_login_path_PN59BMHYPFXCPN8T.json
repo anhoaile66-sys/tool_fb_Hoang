@@ -1,0 +1,67 @@
+[
+    {
+        "id_device": "PN59BMHYPFXCPN8T",
+        "num_phone_zalo": "0966338017",
+        "name": "Ngọc Mai Timviec",
+        "ava": "",
+        "list_friend": [],
+        "list_group": [],
+        "list_invite_friend": [],
+        "list_prior_chat_boxes": [],
+        "list_unseen_chat_boxes": [],
+        "status": false,
+        "tags": {
+            "Khách hàng": [],
+            "Gia đình": [],
+            "Công việc": [],
+            "Bạn bè": [],
+            "Trả lời sau": [],
+            "Đồng nghiệp": [],
+            "Tin nhắn từ người lạ": []
+        }
+    },
+
+    {
+        "id_device": "PN59BMHYPFXCPN8T",
+        "num_phone_zalo": "0383757614",
+        "name": "Ngọc Mai Tuyendung",
+        "ava": "",
+        "list_friend": [],
+        "list_group": [],
+        "list_invite_friend": [],
+        "list_prior_chat_boxes": [],
+        "list_unseen_chat_boxes": [],
+        "status": false,
+        "tags": {
+            "Khách hàng": [],
+            "Gia đình": [],
+            "Công việc": [],
+            "Bạn bè": [],
+            "Trả lời sau": [],
+            "Đồng nghiệp": [],
+            "Tin nhắn từ người lạ": []
+        }
+    },
+
+    {
+        "id_device": "PN59BMHYPFXCPN8T",
+        "num_phone_zalo": "0982470403",
+        "name": "Hoàng Mai Timviec",
+        "ava": "",
+        "list_friend": [],
+        "list_group": [],
+        "list_invite_friend": [],
+        "list_prior_chat_boxes": [],
+        "list_unseen_chat_boxes": [],
+        "status": false,
+        "tags": {
+            "Khách hàng": [],
+            "Gia đình": [],
+            "Công việc": [],
+            "Bạn bè": [],
+            "Trả lời sau": [],
+            "Đồng nghiệp": [],
+            "Tin nhắn từ người lạ": []
+        }
+    }
+]
