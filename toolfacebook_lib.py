@@ -1,9 +1,10 @@
-import time
+import asyncio
 import re
 import cv2
 import subprocess
 import easyocr
 import requests
+import aiohttp
 import os
 import numpy as np
 
@@ -11,18 +12,35 @@ import numpy as np
 def redirect_to(driver, link):
     driver.shell(f"am start -a android.intent.action.VIEW -d '{link}'")
 
+# Truy cập 1 trang facebook qua link
+def redirect_to(driver, link):
+    driver.shell(f"am start -a android.intent.action.VIEW -d '{link}'")
+
 # Trở về trang chủ của facebook
-def back_to_facebook(driver):
-    while not (home_tab := driver(resourceId="com.facebook.katana:id/(name removed)", descriptionContains="Trang chủ")).exists(timeout=1):
-        driver(resourceId="com.android.systemui:id/back").click()
-    time.sleep(1)
-    home_tab.click()
+async def back_to_facebook(driver):
+    driver.press("recent")
+    await asyncio.sleep(1)
+
+    size = driver.window_size()
+    width, height = size[0], size[1]
+
+    start_x = width / 2
+    end_x = start_x
+    start_y = height * 0.7
+    end_y = height * 0.2
+    duration = 0.04
+
+    driver.swipe(start_x, start_y, end_x, end_y, duration=duration)
+    await asyncio.sleep(1)
+    driver.press("home")
+    driver.press("back")
+    driver.app_start("com.facebook.katana") 
 
 # Ấn vào ảnh mẫu trên màn hình
-def click_template(driver, template, threshold = 0.8, scale_start = 50, scale_end = 150, scale_step = 10):
-    time.sleep(1)
-    screen = driver.screenshot(format='opencv')
-    template = cv2.imread(f"Templates/{template}.png")
+async def click_template(driver, template, threshold = 0.8, scale_start = 50, scale_end = 150, scale_step = 10):
+    await asyncio.sleep(1)
+    screen = await asyncio.to_thread(driver.screenshot, format='opencv')
+    template = await asyncio.to_thread(cv2.imread, f"Templates/{template}.png")
 
     for scale in range(scale_start, scale_end, scale_step):
         # Resize template
@@ -38,7 +56,7 @@ def click_template(driver, template, threshold = 0.8, scale_start = 50, scale_en
         if max_val > threshold:
             top_left = max_loc
             h, w, _ = resized.shape
-            driver.click(top_left[0] + w // 2, top_left[1] + h // 2)
+            await asyncio.to_thread(driver.click, top_left[0] + w // 2, top_left[1] + h // 2)
             return True
     return False
 
@@ -50,64 +68,71 @@ def parse_number(s):
     return [int(num) for num in numbers]
 
 # Tải file từ server api
-def download_file_from_server(file_name):
+async def download_file_from_server(file_name):
     # URL của ảnh
     url = "https://socket.hungha365.com:4000/uploads/" + file_name
 
-    # Gửi yêu cầu GET để lấy nội dung ảnh
-    response = requests.get(url)
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as response:
+                if response.status == 200:
+                    content = await response.read()
+                    # Sử dụng asyncio.to_thread cho file I/O
+                    await asyncio.to_thread(_write_file, "Files/" + file_name, content)
+                    return "✅ Đã tải file: " + file_name
+                else:
+                    error_text = await response.text()
+                    return "❌ Lỗi khi tải file. Vui lòng thử lại sau: " + error_text
+    except Exception as e:
+        return f"❌ Lỗi khi tải file: {str(e)}"
 
-    # Kiểm tra nếu yêu cầu thành công
-    if response.status_code == 200:
-        # Lưu ảnh vào file
-        with open("Files/" + file_name, "wb") as f:
-            f.write(response.content)
-        return "✅ Đã tải file: " + file_name
-    else:
-        return "❌ Lỗi khi tải file. Vui lòng thử lại sau: " + response.text
+def _write_file(filepath, content):
+    """Helper function for writing file synchronously"""
+    with open(filepath, "wb") as f:
+        f.write(content)
 
 # Xóa file đã tải về
-def delete_local_file(file_name):
+async def delete_local_file(file_name):
     try:
-        subprocess.run(["del", "Files\\" + file_name], shell=True, check=True)
+        await asyncio.to_thread(subprocess.run, ["del", "Files\\" + file_name], shell=True, check=True)
         return "✅ Đã xóa file: " + file_name
     except subprocess.CalledProcessError:
         return "⚠️ File không tồn tại hoặc không thể xóa: " + file_name
     
 # Gửi file đến thiết bị
-def push_file_to_device(device_id, file_name, remote_path="/sdcard/Download/"):
+async def push_file_to_device(device_id, file_name, remote_path="/sdcard/Download/"):
     try:
-        download_file_from_server(file_name)
-        subprocess.run(["platform-tools\\adb", "-s", device_id, "push", "Files/" + file_name, remote_path + file_name], check=True)
-        subprocess.run([
+        await download_file_from_server(file_name)
+        await asyncio.to_thread(subprocess.run, ["platform-tools\\adb", "-s", device_id, "push", "Files/" + file_name, remote_path + file_name], check=True)
+        await asyncio.to_thread(subprocess.run, [
             "platform-tools\\adb", "-s", device_id,
             "shell", "am", "broadcast",
             "-a", "android.intent.action.MEDIA_SCANNER_SCAN_FILE",
             "-d", f"file://{remote_path + file_name}"
         ], check=True)
     except subprocess.CalledProcessError:
-        print("❌ Lỗi khi gửi file. Kiểm tra kết nối hoặc đường dẫn.")
+        print(f"{device_id} - ❌ Lỗi khi gửi file. Kiểm tra kết nối hoặc đường dẫn.")
     finally:
-        delete_local_file(file_name)
+        await delete_local_file(file_name)
 
 # Xóa file trên thiết bị
-def delete_file(device_id, file_name, remote_path="/sdcard/Download/"):
+async def delete_file(device_id, file_name, remote_path="/sdcard/Download/"):
     try:
-        subprocess.run(["platform-tools\\adb", "-s", device_id, "shell", f"rm '{remote_path + file_name}'"], check=True)
-        print(f"✅ Đã xóa file: {remote_path + file_name}")
+        await asyncio.to_thread(subprocess.run, ["platform-tools\\adb", "-s", device_id, "shell", f"rm '{remote_path + file_name}'"], check=True)
+        print(f"{device_id} - ✅ Đã xóa file: {remote_path + file_name}")
     except subprocess.CalledProcessError:
-        print(f"⚠️ File không tồn tại hoặc không thể xóa: {remote_path + file_name}")
+        print(f"{device_id} - ⚠️ File không tồn tại hoặc không thể xóa: {remote_path + file_name}")
 
 # Lấy nội dung clipboard
-def get_clipboard_content(driver, app):
+async def get_clipboard_content(driver, app):
     driver.app_start("com.termux")
-    driver.send_keys("termux-clipboard-get > /storage/emulated/0/Android/data/com.termux/files/clip.txt\n")
-    time.sleep(2)
+    driver.send_keys("termux-clipboard-get > /sdcard/Download/clip.txt\n")
+    await asyncio.sleep(3)
     driver.app_start(app)
     # Tên file lưu trên máy tính
     local_filename = "clipboard.txt"
     # Đường dẫn file trên thiết bị Android
-    remote_path = "/storage/emulated/0/Android/data/com.termux/files/clip.txt"
+    remote_path = "/sdcard/Download/clip.txt"
 
     # Lệnh adb pull
     command = ["platform-tools/adb", "pull", remote_path, local_filename]
@@ -118,25 +143,25 @@ def get_clipboard_content(driver, app):
         return file.read()
 
 # Lấy liên kết bài viết
-def extract_post_link(driver, post):
+async def extract_post_link(driver, post):
     for node in post.iter():
         if node.attrib.get("text") == "Chia sẻ" or node.attrib.get("content-desc") == "Chia sẻ":
             bounds = parse_number(node.attrib.get("bounds"))
             driver.click((bounds[0] + bounds[2]) // 2, (bounds[1] + bounds[3]) // 2)
-    time.sleep(1)
-    click_template(driver, "copy_link")
-    return get_clipboard_content(driver, "com.facebook.katana")
+    await asyncio.sleep(1)
+    await click_template(driver, "copy_link")
+    return await get_clipboard_content(driver, "com.facebook.katana")
 
 # Lấy liên kết trang cá nhân
-def extract_facebook_user_link(driver):
+async def extract_facebook_user_link(driver):
     button = driver(description="Xem cài đặt khác của trang cá nhân")
     if button.exists(timeout=1):
         button.click()
-    click_template(driver, "copy_profile_link")
-    link = get_clipboard_content(driver, "com.facebook.katana")
-    time.sleep(1)
+    await click_template(driver, "copy_profile_link")
+    link = await get_clipboard_content(driver, "com.facebook.katana")
+    await asyncio.sleep(1)
     driver(resourceId="com.android.systemui:id/back").click()
-    time.sleep(1)
+    await asyncio.sleep(1)
     driver(resourceId="com.android.systemui:id/back").click()
     return link
 
@@ -163,7 +188,7 @@ def extract_time_from_image(image):
     return None
 
 # Trích xuất thông tin bình luận
-def extract_comment_info(driver, comment_node, raw_comments, links):
+async def extract_comment_info(driver, comment_node, raw_comments, links):
     # Trích xuất thông tin từ các nút con
     all_nodes = driver.xpath(comment_node + '//*').all()
     comment = None
@@ -205,8 +230,8 @@ def extract_comment_info(driver, comment_node, raw_comments, links):
     else:
         commenter_node.click()
         driver(text="Xem trang cá nhân").click()
-        link = extract_facebook_user_link(driver)
-        time.sleep(0.5)
+        link = await extract_facebook_user_link(driver)
+        await asyncio.sleep(0.5)
         driver(resourceId="com.android.systemui:id/back").click()
         name = "<a href='" + link + "'>" + commenter_node.info.get("text", "").strip() + "</a>"
         links[commenter_node.info.get("text", "").strip()] = name
@@ -241,7 +266,7 @@ def is_screen_changed(driver, threshold=0.99):
         cv2.imwrite("Screen Shot\\" + driver.serial + ".png", new_screenshot)
         return True
     
-def expand_collapse_section(driver):
+async def expand_collapse_section(driver):
     while True:
         clicked = False
         buttons = [node for node in driver.xpath("//*").all() if node.info.get("className") == "android.widget.Button"]
@@ -250,13 +275,13 @@ def expand_collapse_section(driver):
             btn_description = button.info.get("contentDescription", "") or ""
             if btn_text == "Xem thêm" or "câu trả lời" in btn_description:
                 button.click()
-                time.sleep(1)
+                await asyncio.sleep(1)
                 clicked = True
                 break
         if not clicked:
             break
 
-def change_comment_display_mode(driver, base_mode="Phù hợp nhất", mode="Mới nhất"):
+async def change_comment_display_mode(driver, base_mode="Phù hợp nhất", mode="Mới nhất"):
     if base_mode == mode:
         return
     while True:
@@ -264,7 +289,7 @@ def change_comment_display_mode(driver, base_mode="Phù hợp nhất", mode="M�
         if mode_selector.exists:
             break
         driver.swipe_ext("up", scale=0.8)
-        time.sleep(1)
+        await asyncio.sleep(1)
     mode_selector.click()
     driver(descriptionContains=mode).click()
-    time.sleep(1)
+    await asyncio.sleep(1)
