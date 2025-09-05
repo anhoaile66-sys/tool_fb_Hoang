@@ -1,0 +1,67 @@
+[
+    {
+        "id_device": "PN59BMHYPFXCPN8T",
+        "num_phone_zalo": "0988658315",
+        "name": "Ngọc Vi Timviec Ba Sáu Năm",
+        "ava": "",
+        "list_friend": [],
+        "list_group": [],
+        "list_invite_friend": [],
+        "list_prior_chat_boxes": [],
+        "list_unseen_chat_boxes": [],
+        "status": false,
+        "tags": {
+            "Khách hàng": [],
+            "Gia đình": [],
+            "Công việc": [],
+            "Bạn bè": [],
+            "Trả lời sau": [],
+            "Đồng nghiệp": [],
+            "Tin nhắn từ người lạ": []
+        }
+    },
+
+    {
+        "id_device": "PN59BMHYPFXCPN8T",
+        "num_phone_zalo": "0338734680",
+        "name": "Ngọc Vi Tìm Việc",
+        "ava": "",
+        "list_friend": [],
+        "list_group": [],
+        "list_invite_friend": [],
+        "list_prior_chat_boxes": [],
+        "list_unseen_chat_boxes": [],
+        "status": false,
+        "tags": {
+            "Khách hàng": [],
+            "Gia đình": [],
+            "Công việc": [],
+            "Bạn bè": [],
+            "Trả lời sau": [],
+            "Đồng nghiệp": [],
+            "Tin nhắn từ người lạ": []
+        }
+    },
+
+    {
+        "id_device": "PN59BMHYPFXCPN8T",
+        "num_phone_zalo": "0967791241",
+        "name": "Phương Linh",
+        "ava": "",
+        "list_friend": [],
+        "list_group": [],
+        "list_invite_friend": [],
+        "list_prior_chat_boxes": [],
+        "list_unseen_chat_boxes": [],
+        "status": false,
+        "tags": {
+            "Khách hàng": [],
+            "Gia đình": [],
+            "Công việc": [],
+            "Bạn bè": [],
+            "Trả lời sau": [],
+            "Đồng nghiệp": [],
+            "Tin nhắn từ người lạ": []
+        }
+    }
+]
