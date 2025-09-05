@@ -6,9 +6,11 @@ from filelock import FileLock
 
 # --- Config ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-LINKS_FILE = os.path.join(BASE_DIR, "business_info.json")
-
+BUSINESS_FILE = os.path.join(BASE_DIR, "business_info.json")
+EMAIL_FILE = os.path.join(BASE_DIR, "email_info.json")
+# with open 
 name_acc = "thuluutimviec365@gmail.com"
+
 class EmailSender:
     def __init__(self, emp_id: int, json_file: str, subject: str, content: str, name_acc=name_acc):
         self.emp_id = str(emp_id)
@@ -53,7 +55,7 @@ class EmailSender:
         """Mở Gmail trên thiết bị"""
         current_app = self.d.app_current()
         if current_app["package"] == "com.google.android.gm":
-            # print("✅ Đã ở trong Gmail")
+            print("✅ Đã ở trong Gmail")
             return
 
         self.d(resourceId="com.android.systemui:id/center_group").click()
@@ -105,7 +107,6 @@ class EmailSender:
         
     def send_email(self, to_email: str):
         """Soạn & gửi email"""
-        self.open_gmail()
         self.choose_account(name_acc=self.name_acc)
 
         self.d(resourceId="com.google.android.gm:id/compose_button").click()
@@ -131,18 +132,19 @@ class EmailSender:
 
         self.d(resourceId="com.google.android.gm:id/send").click()
         # print(f"✅ Đã gửi email tới {to_email}")
+        self.mark_sent(to_email)
 
     def run(self):
         customer = self.get_next_customer()
+        self.open_gmail()
         if not customer:
             print("🎉 Không còn khách hàng nào cần gửi")
             return
         email = customer["email"]
 
         self.send_email(email)
-        self.mark_sent(email)
 
 
-def run_sent(EMP_ID, SUBJECT, CONTENT,LINKS_FILE=LINKS_FILE,BASE_DIR=BASE_DIR):
-    sender = EmailSender(EMP_ID, LINKS_FILE, SUBJECT, CONTENT)
+def run_sent(EMP_ID, SUBJECT, CONTENT,name_acc=name_acc,BUSINESS_FILE=BUSINESS_FILE,BASE_DIR=BASE_DIR):
+    sender = EmailSender(emp_id=EMP_ID, json_file=BUSINESS_FILE, subject=SUBJECT, content=CONTENT,name_acc=name_acc)
     sender.run()
