@@ -8,8 +8,9 @@ from filelock import FileLock
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 LINKS_FILE = os.path.join(BASE_DIR, "business_info.json")
 
+name_acc = "thuluutimviec365@gmail.com"
 class EmailSender:
-    def __init__(self, emp_id: int, json_file: str, subject: str, content: str, name_acc="linhnguyn.timviec365@gmail.com"):
+    def __init__(self, emp_id: int, json_file: str, subject: str, content: str, name_acc=name_acc):
         self.emp_id = str(emp_id)
         self.json_file = json_file
         self.subject = subject
@@ -80,10 +81,10 @@ class EmailSender:
 
         # Kiểm tra xem tài khoản đang dùng có phải là name_acc không
         try:
-            current_acc = self.d(resourceId="com.google.android.gm:id/og_secondary_account_information").get_text()
+            current_acc = self.d(resourceId="com.google.android.gm:id/og_bento_single_pane_account_menu_title_container").get_text()
             if current_acc == name_acc:
                 # print(f"✅ Đang sử dụng tài khoản {name_acc}, chỉ đóng menu")
-                self.d(resourceId="com.google.android.gm:id/og_header_close_button").click()
+                self.d(resourceId="com.google.android.gm:id/og_bento_toolbar_close_button").click()
                 return
         except Exception:
             # Nếu không lấy được text thì bỏ qua
@@ -93,10 +94,10 @@ class EmailSender:
         try:
             self.d(resourceId="com.google.android.gm:id/og_secondary_account_information", text=name_acc).click()
             print(f"📌 Chuyển sang tài khoản {name_acc}")
+            return
         except Exception:
             # Nếu không thấy tài khoản, click vào account thứ 2 như dự phòng
-            self.d.xpath('//*[@resource-id="com.google.android.gm:id/accounts"]/android.widget.LinearLayout[2]').click()
-            print("📌 Chọn tài khoản thứ 2 (dự phòng)")
+            print("Giữ nguyện tài khoản hiện tại")
 
         time.sleep(1)
         self.d.press("back")  # Đóng menu chọn tài khoản nếu vẫn mở
@@ -105,6 +106,7 @@ class EmailSender:
     def send_email(self, to_email: str):
         """Soạn & gửi email"""
         self.open_gmail()
+        self.choose_account(name_acc=self.name_acc)
 
         self.d(resourceId="com.google.android.gm:id/compose_button").click()
         time.sleep(1)
@@ -136,8 +138,7 @@ class EmailSender:
             print("🎉 Không còn khách hàng nào cần gửi")
             return
         email = customer["email"]
-        self.open_gmail()
-        self.choose_account(self.name_acc)
+
         self.send_email(email)
         self.mark_sent(email)
 

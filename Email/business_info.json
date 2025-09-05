@@ -67,15 +67,19 @@
   },
   "22833463": {
     "name": "Lưu Thư",
-    "device": "DEVICE_ID_LUU_THU",
+    "device": "QK8TEMKZMBYHPV6P",
     "customers": [
       {
         "email": "luuthu_customer1@gmail.com",
         "sent": true
       },
       {
+        "email": "binhphuong@gmail.com",
+        "sent": true
+      },
+      {
         "email": "vdtimviec@gmail.com",
-        "sent": false
+        "sent": true
       }
     ]
   },

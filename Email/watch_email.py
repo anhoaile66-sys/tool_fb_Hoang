@@ -7,7 +7,7 @@ from filelock import FileLock
 from classSend import run_sent
 
 # --- Cấu hình ---
-EMP_ID = 22789191
+EMP_ID = 22833463
 SUBJECT = "Đây là tin nhắn test. Cơ hội việc làm IT dành cho bạn"
 CONTENT = (
     "Xin chào, mình là Lại Nhàn đến từ timviec365.vn.\n"
@@ -64,7 +64,7 @@ if __name__ == "__main__":
 
     try:
         while True:
-            time.sleep(10)  # giữ main thread sống, tiết kiệm CPU
+            time.sleep(5)  # giữ main thread sống, tiết kiệm CPU
     except KeyboardInterrupt:
         observer.stop()
     observer.join()
