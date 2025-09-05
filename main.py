@@ -229,15 +229,15 @@ async def device_once(device_id: str):
         if restart_event.is_set():
             raise RestartThisDevice("RESTART_THIS_DEVICE (sau pha Facebook)")
         
-        # ===== PHA ZALO =====
-        current_phase["value"] = "zalo"
-        # Đảm bảo đang mở Zalo trước khi chạy
-        driver.app_start(ZALO_PKG)
-        await asyncio.sleep(2.0)
-        await asyncio.to_thread(handler.run, 1)
+        # # ===== PHA ZALO =====
+        # current_phase["value"] = "zalo"
+        # # Đảm bảo đang mở Zalo trước khi chạy
+        # driver.app_start(ZALO_PKG)
+        # await asyncio.sleep(2.0)
+        # await asyncio.to_thread(handler.run, 1)
 
-        if restart_event.is_set():
-            raise RestartThisDevice("RESTART_THIS_DEVICE (sau pha Zalo)")
+        # if restart_event.is_set():
+        #     raise RestartThisDevice("RESTART_THIS_DEVICE (sau pha Zalo)")
 
     finally:
         await watchdog.stop()
