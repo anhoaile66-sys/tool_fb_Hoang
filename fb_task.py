@@ -73,7 +73,7 @@ async def fb_natural_task(driver, emp_id:str):
     random.shuffle(actions)
     log_message(f"\n\nThực hiện tác vụ: Xem reels\n")
     
-    await watch_reels(driver)
+    # await watch_reels(driver)
     await asyncio.sleep(random.uniform(4,6))
     
     for name, action in actions:

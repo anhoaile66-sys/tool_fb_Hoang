@@ -179,8 +179,8 @@ async def device_once(device_id: str):
     handler = DeviceHandler(driver, device_id)
     await asyncio.to_thread(handler.connect)
 
-    # # Bật 1.1.1.1 (một lần)
-    # await ensure_1111_vpn_on_once(driver, device_id)
+    # Bật 1.1.1.1 (một lần)
+    await ensure_1111_vpn_on_once(driver, device_id)
 
     # Trạng thái pha hiện tại để watchdog biết cần resume app nào khi về HOME
     current_phase = {"value": "zalo"}
