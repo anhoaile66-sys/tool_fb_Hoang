@@ -144,20 +144,39 @@ class EmailSender:
 
         self.send_email(email)
 
+# -------- send all pending while accounts còn quota ----------
+def send_all_pending(EMP_ID, SUBJECT, CONTENT, BUSINESS_FILE=BUSINESS_FILE):
+    manager = EmailManager(EMP_ID)
+    while True:
+        name_acc = manager.get_available_account()
+        if not name_acc:
+            print("⚠️ Không còn tài khoản Gmail nào đủ quota để gửi (hoặc hết quota hôm nay).")
+            break
+
+        # tạo sender mới (mỗi lần để load latest business_info.json)
+        sender = EmailSender(emp_id=EMP_ID, json_file=BUSINESS_FILE, subject=SUBJECT, content=CONTENT, name_acc=name_acc)
+
+        customer = sender.get_next_customer()
+        if not customer:
+            print("🎉 Không còn khách hàng nào cần gửi")
+            break
+
+        to_email = customer.get("email")
+        try:
+            sender.open_gmail()
+            sender.send_email(to_email)
+            manager.increase_counter(name_acc)
+            # tuỳ môi trường, bạn có thể tăng sleep nếu UI cần thời gian stable
+            time.sleep(3)
+        except Exception as e:
+            print(f"⚠️ Lỗi khi gửi {to_email} bằng {name_acc}: {e}")
+            # dừng hoặc tiếp tục tuỳ nhu cầu; hiện dừng để tránh vòng lặp vô hạn
+            break
+
+    print("✔️ Kết thúc vòng gửi (send_all_pending).")
 
 def run_sent(EMP_ID, SUBJECT, CONTENT, BUSINESS_FILE=BUSINESS_FILE, BASE_DIR=BASE_DIR):
-    account_manager = EmailManager(EMP_ID)
-    name_acc = account_manager.get_available_account()
-    
-    if not name_acc:
-        print("⚠️ Không còn tài khoản Gmail nào đủ quota để gửi")
-        return
-    else: 
-        print(name_acc)
-    # print(mân)
-    sender = EmailSender(emp_id=EMP_ID, json_file=BUSINESS_FILE, subject=SUBJECT, content=CONTENT,name_acc=name_acc)
-    sender.run()
-    account_manager.increase_counter(name_acc)
+    send_all_pending(EMP_ID, SUBJECT, CONTENT, BUSINESS_FILE=BUSINESS_FILE)
 
 
 

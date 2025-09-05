@@ -20,6 +20,7 @@ CONTENT = (
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 JSON_FILE = os.path.join(BASE_DIR, "business_info.json")
 LOCK_FILE = JSON_FILE + ".lock"
+EMAIL_LST_FILE = os.path.join(BASE_DIR, "email_lst.json")
 
 # --- Debounce ---
 last_trigger = 0
@@ -29,7 +30,7 @@ DEBOUNCE_SEC = 2  # chỉ gọi handler 1 lần nếu file chưa thay đổi tro
 class JsonChangeHandler(FileSystemEventHandler):
     def on_modified(self, event):
         global last_trigger
-        if not event.src_path.endswith("business_info.json"):
+        if not (event.src_path.endswith("business_info.json") or event.src_path.endswith("email_lst.json")):
             return
 
         now = time.time()
@@ -60,7 +61,7 @@ if __name__ == "__main__":
     observer = Observer()
     observer.schedule(event_handler, BASE_DIR, recursive=False)
     observer.start()
-    print(f"👂 Đang lắng nghe thay đổi {JSON_FILE} ...")
+    print(f"👂 Đang lắng nghe thay đổi {JSON_FILE} và {EMAIL_LST_FILE} ...")
 
     try:
         while True:

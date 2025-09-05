@@ -8,14 +8,15 @@ EMAIL_LST_FILE = os.path.join(BASE_DIR, "email_lst.json")
 LOCK_FILE = EMAIL_LST_FILE + ".lock"
 
 MAX_PER_DAY = 3
-ENABLE_RESET = False  # ✅ bật/tắt reset theo ngày
+ENABLE_RESET = False  # <-- bật True để auto reset mỗi ngày, False để test
 
 class EmailManager:
     def __init__(self, emp_id: int):
         self.emp_id = str(emp_id)
         self.today = datetime.now().strftime("%Y-%m-%d")
+        self.reset_happened = False
         if ENABLE_RESET:
-            self._ensure_reset_today()  # kiểm tra khi khởi tạo
+            self.reset_happened = self._ensure_reset_today()
 
     def _load_data(self):
         with FileLock(LOCK_FILE, timeout=10):
@@ -30,26 +31,29 @@ class EmailManager:
                 json.dump(data, f, ensure_ascii=False, indent=2)
 
     def _ensure_reset_today(self):
-        """Kiểm tra nếu sang ngày mới thì reset tất cả counter về 0"""
+        """Reset toàn bộ counters nếu chưa reset hôm nay. Trả về True nếu có reset."""
         data = self._load_data()
         last_reset = data.get("__last_reset__")
+        if last_reset == self.today:
+            return False
 
-        if last_reset != self.today:
-            for emp, accounts in data.items():
-                if emp.startswith("__"):  # bỏ qua key đặc biệt
-                    continue
-                for acc in accounts:
-                    email = list(acc.keys())[0]
-                    acc[email] = 0
-            data["__last_reset__"] = self.today
-            self._save_data(data)
-            print(f"🔄 Reset toàn bộ counter về 0 cho ngày {self.today}")
+        # reset counts
+        for emp, accounts in list(data.items()):
+            if emp.startswith("__"):
+                continue
+            for acc in accounts:
+                email = list(acc.keys())[0]
+                acc[email] = 0
+
+        data["__last_reset__"] = self.today
+        self._save_data(data)
+        print(f"🔄 Reset toàn bộ counter về 0 cho ngày {self.today}")
+        return True
 
     def get_available_account(self):
-        """Lấy tài khoản Gmail còn quota < MAX_PER_DAY"""
+        """Trả về email có count < MAX_PER_DAY hoặc None nếu hết."""
         data = self._load_data()
         accounts = data.get(self.emp_id, [])
-
         for acc in accounts:
             email, count = list(acc.items())[0]
             if count < MAX_PER_DAY:
@@ -57,14 +61,16 @@ class EmailManager:
         return None
 
     def increase_counter(self, email):
-        """Tăng counter sau khi gửi thành công"""
+        """Tăng counter cho một account (với FileLock)."""
         data = self._load_data()
         accounts = data.get(self.emp_id, [])
-
         for acc in accounts:
             if email in acc:
                 acc[email] = acc[email] + 1
+                new_val = acc[email]
                 break
+        else:
+            new_val = None
 
         self._save_data(data)
-        print(f"🔒 Đã tăng counter {email} = {acc[email]} trong {EMAIL_LST_FILE}")
+        print(f"🔒 Đã tăng counter {email} = {new_val} trong {EMAIL_LST_FILE}")
