@@ -61,12 +61,12 @@ account = "test"
 
 async def fb_natural_task(driver, emp_id:str):
     actions = [
-        # ("Xem story", lambda: watch_story(driver)),
-        # ("Lướt fb", lambda: surf_fb(driver)),
+        ("Xem story", lambda: watch_story(driver)),
+        ("Lướt fb", lambda: surf_fb(driver)),
         ("Kết bạn", lambda: add_friend(driver, emp_id)),
-        # ("Kiểm tra bài đăng", lambda: check_post(driver, account)),
-        # ("Kiểm tra nhóm chờ duyệt", lambda: check_unapproved_groups(driver, account)),
-        # ("Nhận lệnh từ CRM", lambda: get_commands(driver, account))
+        ("Kiểm tra bài đăng", lambda: check_post(driver, account)),
+        ("Kiểm tra nhóm chờ duyệt", lambda: check_unapproved_groups(driver, account)),
+        ("Nhận lệnh từ CRM", lambda: get_commands(driver, account))
     ]
 
     # Random hóa thứ tự các hành động
