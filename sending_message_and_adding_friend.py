@@ -896,11 +896,12 @@ class DeviceHandler:
                     break
 
             if not check:
-
+                '''
                 num = message.split(" ")
                 if len(num) > 10:
                     num = num[:10]
                     message = " ".join(num)
+                '''    
                 list_prior_chat_boxes.append(
                     {"name": name_ntd, "time": time_str, "message": message, "ava": profile_data['ava'], "tag": "", "status": "seen", "data_chat_box": [], "friend_or_not": friend_or_not})
                 list_prior_chat_boxes[-1]['data_chat_box'].append(
