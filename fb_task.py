@@ -22,6 +22,8 @@ DEVICES_LIST = [
     "QK8TEMKZMBYHPV6P",
     "IJP78949G69DKNHM",
     "PN59BMHYPFXCPN8T",
+    "EIFYAALRK7U4MRZ9",
+    "Z5LVOF4PRGXGTS9H",
     "1ac1d26f0507"
     ]
 
@@ -85,38 +87,40 @@ async def fb_natural_task(driver, emp_id:str):
 async def run_on_device(driver):
     try:
         device_id = driver.serial
-        device = load_device_account(device_id)
-        if not device:
-            log_message(f"Không tìm thấy dữ liệu cho thiết bị {device_id}", logging.WARNING)
-            return
-        # driver = u2.connect_usb(device_id)
+
         # await clear_app(driver)
         driver.press("home")
         driver.app_start("com.facebook.katana", ".LoginActivity")
         await asyncio.sleep(random.uniform(10,15))
 
-        # Chuyển tài khoản
-        last_time = device['time_logged_in']
-        if last_time and (datetime.fromisoformat(last_time) + timedelta(hours=random.randint(4,6))) < datetime.now():
-            # Đủ thời gian, chuyển tài khoản
-            i=0
-            for acc in device['accounts']:
-                i+=1
-                if acc['account'] == device['current_account']:
-                    break
-            if i==3: i=0
-            for acc in device['accounts']:
-                if i==0:
-                    account=acc
-                    break
-                i-=1
-            log_message(f"Đang đăng nhập vào tài khoản {account['name']} trên thiết bị {device_id}")
-            await swap_account(driver, account)
-            device['current_account'] = account['account']
-            update_current_account(device_id, account)
+        device = load_device_account(device_id)
+        if not device:
+            log_message(f"Không tìm thấy dữ liệu cho thiết bị {device_id}", logging.WARNING)
+            emp_id = "22615833"
+        else:
+            emp_id = device['user']['emp_id']
+            # Chuyển tài khoản
+            last_time = device['time_logged_in']
+            if last_time and (datetime.fromisoformat(last_time) + timedelta(hours=random.randint(4,6))) < datetime.now():
+                # Đủ thời gian, chuyển tài khoản
+                i=0
+                for acc in device['accounts']:
+                    i+=1
+                    if acc['account'] == device['current_account']:
+                        break
+                if i==3: i=0
+                for acc in device['accounts']:
+                    if i==0:
+                        account=acc
+                        break
+                    i-=1
+                log_message(f"Đang đăng nhập vào tài khoản {account['name']} trên thiết bị {device_id}")
+                await swap_account(driver, account)
+                device['current_account'] = account['account']
+                update_current_account(device_id, account)
         
         # tasks nuôi fb
-        await fb_natural_task(driver, device['user']['emp_id'])
+        await fb_natural_task(driver, emp_id)
         # await share_post(driver, text=random.choice(SHARES))
     except Exception as e:
         log_message(f"Lỗi trên thiết bị {device_id}: {e}", logging.ERROR)

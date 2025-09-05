@@ -220,6 +220,15 @@ async def device_once(device_id: str):
     await watchdog.start()
 
     try:
+
+        # ===== PHA FACEBOOK =====
+        current_phase["value"] = "facebook"
+        # Chạy flow Facebook như thường lệ
+        await run_on_device(driver)
+
+        if restart_event.is_set():
+            raise RestartThisDevice("RESTART_THIS_DEVICE (sau pha Facebook)")
+        
         # ===== PHA ZALO =====
         current_phase["value"] = "zalo"
         # Đảm bảo đang mở Zalo trước khi chạy
@@ -229,14 +238,6 @@ async def device_once(device_id: str):
 
         if restart_event.is_set():
             raise RestartThisDevice("RESTART_THIS_DEVICE (sau pha Zalo)")
-
-        # ===== PHA FACEBOOK =====
-        current_phase["value"] = "facebook"
-        # Chạy flow Facebook như thường lệ
-        await run_on_device(driver, device_id)
-
-        if restart_event.is_set():
-            raise RestartThisDevice("RESTART_THIS_DEVICE (sau pha Facebook)")
 
     finally:
         await watchdog.stop()
