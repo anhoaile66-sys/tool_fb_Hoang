@@ -1,0 +1,25 @@
+{
+    "device_id": "1ac1d26f0507",
+    "current_account": "Ngọc Anh",
+    "time_logged_in": null,
+    "accounts": [
+        {
+            "account": "0979836643",
+            "password": "nbngocanh9999",
+            "name": "Tran Anh",
+            "status": true
+        },
+        {
+            "account": "0964427374",
+            "password": "Hhp123456@",
+            "name": "My Nha",
+            "status": true
+        },
+        {
+            "account": "0972223710",
+            "password": "Hhp123456@",
+            "name": "Ngọc Anh",
+            "status": true
+        }
+    ]
+}

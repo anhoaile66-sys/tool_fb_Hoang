@@ -6,6 +6,8 @@ import logging
 import time
 import random
 from typing import Optional, Callable
+import sys
+sys.stdout.reconfigure(encoding='utf-8')
 
 # ====== LOG UTIL (uses util.log if present) ======
 try:
