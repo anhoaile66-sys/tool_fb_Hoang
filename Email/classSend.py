@@ -3,16 +3,16 @@ import time
 import json
 import os
 from filelock import FileLock
+from email_manager import EmailManager
 
 # --- Config ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 BUSINESS_FILE = os.path.join(BASE_DIR, "business_info.json")
-EMAIL_FILE = os.path.join(BASE_DIR, "email_info.json")
-# with open 
-name_acc = "thuluutimviec365@gmail.com"
+
+
 
 class EmailSender:
-    def __init__(self, emp_id: int, json_file: str, subject: str, content: str, name_acc=name_acc):
+    def __init__(self, emp_id: int, json_file: str, subject: str, content: str, name_acc:str):
         self.emp_id = str(emp_id)
         self.json_file = json_file
         self.subject = subject
@@ -145,6 +145,19 @@ class EmailSender:
         self.send_email(email)
 
 
-def run_sent(EMP_ID, SUBJECT, CONTENT,name_acc=name_acc,BUSINESS_FILE=BUSINESS_FILE,BASE_DIR=BASE_DIR):
+def run_sent(EMP_ID, SUBJECT, CONTENT, BUSINESS_FILE=BUSINESS_FILE, BASE_DIR=BASE_DIR):
+    account_manager = EmailManager(EMP_ID)
+    name_acc = account_manager.get_available_account()
+    
+    if not name_acc:
+        print("⚠️ Không còn tài khoản Gmail nào đủ quota để gửi")
+        return
+    else: 
+        print(name_acc)
+    # print(mân)
     sender = EmailSender(emp_id=EMP_ID, json_file=BUSINESS_FILE, subject=SUBJECT, content=CONTENT,name_acc=name_acc)
     sender.run()
+    account_manager.increase_counter(name_acc)
+
+
+
