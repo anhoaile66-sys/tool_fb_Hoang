@@ -1,7 +1,6 @@
 import asyncio
 import pymongo_management
 import toolfacebook_lib
-import time
 import logging
 from util import log_message
 from lxml import etree
@@ -22,7 +21,7 @@ async def post_to_group(driver, command_id, group_link, content, files=None):
     post_button = driver(text="Bạn viết gì đi...")
     if post_button.exists:
         post_button.click()
-        time.sleep(2)
+        await asyncio.sleep(2)
         width, height = driver.window_size()
         center_x = width // 2
         center_y = height // 2
