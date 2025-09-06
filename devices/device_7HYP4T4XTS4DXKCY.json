@@ -1,6 +1,6 @@
 {
     "device_id": "7HYP4T4XTS4DXKCY",
-    "current_account": "Nguyễn Tuấn",
+    "current_account": "0962453658",
     "time_logged_in": null,
     "accounts": [
         {
@@ -21,5 +21,9 @@
             "name": "Long Hoang",
             "status": true
         }
-    ]
+    ],
+    "user": {
+        "name": "Ngô Dung",
+        "emp_id": "22615833"
+    }
 }

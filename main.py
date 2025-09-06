@@ -16,14 +16,6 @@ except Exception:
     def log_message(msg: str, level=logging.INFO):
         print(msg)
 
-"""
-main.py — Watchdog chuẩn (restart riêng từng thiết bị)
-Yêu cầu: Sau 60 giây mà KHÔNG thấy đang bật Zalo hoặc Facebook
-         -> khởi động lại toàn bộ chương trình CHO THIẾT BỊ ĐÓ
-         (bật Zalo chạy 1 vòng rồi sang Facebook như thường).
-Các tính năng khác giữ nguyên.
-"""
-
 # ======================= CẤU HÌNH =======================
 HOME_PACKAGES = {
     "com.android.launcher",
@@ -34,7 +26,7 @@ HOME_PACKAGES = {
     "com.bbk.launcher2",
     "com.vivo.launcher",
     "com.huawei.android.launcher",
-    "com.teslacoilsw.launcher",  # Nova
+    "com.teslacoilsw.launcher",
 }
 ZALO_PKG = "com.zing.zalo"
 FACEBOOK_PKG = "com.facebook.katana"
@@ -187,8 +179,8 @@ async def device_once(device_id: str):
     handler = DeviceHandler(driver, device_id)
     await asyncio.to_thread(handler.connect)
 
-    # # Bật 1.1.1.1 (một lần)
-    # await ensure_1111_vpn_on_once(driver, device_id)
+    # Bật 1.1.1.1 (một lần)
+    await ensure_1111_vpn_on_once(driver, device_id)
 
     # Trạng thái pha hiện tại để watchdog biết cần resume app nào khi về HOME
     current_phase = {"value": "zalo"}
@@ -228,23 +220,24 @@ async def device_once(device_id: str):
     await watchdog.start()
 
     try:
-        # # ===== PHA ZALO =====
-        # current_phase["value"] = "zalo"
-        # # Đảm bảo đang mở Zalo trước khi chạy
-        # driver.app_start(ZALO_PKG)
-        # await asyncio.sleep(2.0)
-        # await asyncio.to_thread(handler.run, 1)
-
-        # if restart_event.is_set():
-        #     raise RestartThisDevice("RESTART_THIS_DEVICE (sau pha Zalo)")
 
         # ===== PHA FACEBOOK =====
         current_phase["value"] = "facebook"
         # Chạy flow Facebook như thường lệ
-        await run_on_device(driver, device_id)
+        await run_on_device(driver)
 
         if restart_event.is_set():
             raise RestartThisDevice("RESTART_THIS_DEVICE (sau pha Facebook)")
+        
+        # ===== PHA ZALO =====
+        current_phase["value"] = "zalo"
+        # Đảm bảo đang mở Zalo trước khi chạy
+        driver.app_start(ZALO_PKG)
+        await asyncio.sleep(2.0)
+        await asyncio.to_thread(handler.run, 1)
+
+        if restart_event.is_set():
+            raise RestartThisDevice("RESTART_THIS_DEVICE (sau pha Zalo)")
 
     finally:
         await watchdog.stop()

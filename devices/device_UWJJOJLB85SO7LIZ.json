@@ -1,6 +1,6 @@
 {
     "device_id": "UWJJOJLB85SO7LIZ",
-    "current_account": "Bùi Nhất",
+    "current_account": "0968581455",
     "time_logged_in": null,
     "accounts": [
         {
@@ -21,5 +21,9 @@
             "name": "Nguyễn Lai",
             "status": true
         }
-    ]
+    ],
+    "user": {
+        "name": "Ngô Dung",
+        "emp_id": "22615833"
+    }
 }
