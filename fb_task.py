@@ -117,11 +117,8 @@ async def run_on_device(driver):
                 await swap_account(driver, account)
                 device['current_account'] = account['account']
                 update_current_account(device_id, account)
-        
-        print(device['current_account'])
         # tasks nuôi fb
         await fb_natural_task(driver, emp_id, device['current_account'])
-        print("123456 ----------------------------------------------")
         # await share_post(driver, text=random.choice(SHARES))
     except Exception as e:
         log_message(f"Lỗi trên thiết bị {device_id}: {e}", logging.ERROR)
