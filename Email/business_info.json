@@ -125,7 +125,7 @@
       },
       {
         "email": "vdtimviec@gmail.com",
-        "sent": false
+        "sent": true
       }
     ]
   },
@@ -139,7 +139,7 @@
       },
       {
         "email": "vdtimviec@gmail.com",
-        "sent": true
+        "sent": false
       }
     ]
   }

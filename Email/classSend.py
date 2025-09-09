@@ -25,7 +25,8 @@ class EmailSender:
 
         self.device_id = self.data[self.emp_id]["device"]
         self.d = u2.connect(self.device_id)
-
+        self.width, self.height = self.d.window_size()
+        
     def get_next_customer(self):
         """Lấy email đầu tiên có sent = False"""
         for customer in self.data[self.emp_id]["customers"]:
@@ -60,16 +61,16 @@ class EmailSender:
 
         self.d(resourceId="com.android.systemui:id/center_group").click()
         self.d.swipe_ext("up", scale=0.8)
-        time.sleep(2)
+        time.sleep(1)
 
         self.d(resourceId="com.gogo.launcher:id/search_container_all_apps").click()
-        time.sleep(2)
+        time.sleep(1)
         self.d.send_keys("Gmail", clear=True)
-        time.sleep(2)
+        time.sleep(1)
         self.d.xpath(
             '//*[@resource-id="com.gogo.launcher:id/branch_suggest_app_list_rv"]/android.view.ViewGroup[1]/android.widget.ImageView[1]'
         ).click()
-        time.sleep(3)
+        time.sleep(1)
         print("📩 Đang mở Gmail...")
         
     def choose_account(self, name_acc=None):
@@ -126,9 +127,18 @@ class EmailSender:
         self.d(resourceId="com.google.android.gm:id/subject").set_text(self.subject)
         time.sleep(1)
 
-        self.d(resourceId="com.google.android.gm:id/composearea_tap_trap_bottom").click()
-        self.d.send_keys(self.content, clear=True)
-        time.sleep(1)
+        x = self.width * 0.492
+        y = self.height * 0.372
+        self.d.long_click(x, y, duration=1.0)
+        # Kiểm tra và click vào tùy chọn "Dán"
+        if self.d(text="Dán").exists(timeout=3):
+            self.d(text="Dán").click()
+            print("Đã dán thành công")
+        else:
+            print("Không tìm thấy tùy chọn Dán")
+
+        
+        time.sleep(3)
 
         self.d(resourceId="com.google.android.gm:id/send").click()
         # print(f"✅ Đã gửi email tới {to_email}")

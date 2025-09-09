@@ -5,24 +5,21 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 from filelock import FileLock
 from classSend import run_sent
+from classHtmlRender import HtmlRenderSimulator
 
 # --- Cấu hình ---
-FILE_BUSINESS = ""
-EMP_ID = 22814414
-SUBJECT = "Đây là tin nhắn test. Cơ hội việc làm IT dành cho bạn"
-CONTENT = (
-    "Xin chào, mình là Lại Nhàn đến từ timviec365.vn.\n"
-    "Mình thấy bạn có quan tâm đến lĩnh vực IT, "
-    "mình muốn giới thiệu bạn một số công việc phù hợp với bạn.\n"
-    {FILE_BUSINESS}
-    "Bạn có thể xem chi tiết tại đây: https://timviec365.vn/it-cntt-jobs.html.\n\n"
-    "Chúc bạn một ngày tốt lành!"
-)
-
+EMP_ID = 22889521
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BUSINESS_SUBJECT_PATH = os.path.join(BASE_DIR, "business_subject_sample.txt")
+BUSINESS_WRITEN_MAIL_PATH = os.path.join(BASE_DIR, "business_writen_mail_sample.txt")
+html_simulator = HtmlRenderSimulator(EMP_ID=EMP_ID,BUSINESS_SUBJECT_PATH=BUSINESS_SUBJECT_PATH,BUSINESS_WRITEN_MAIL_PATH=BUSINESS_WRITEN_MAIL_PATH, MODE=1)
+
 JSON_FILE = os.path.join(BASE_DIR, "business_info.json")
 LOCK_FILE = JSON_FILE + ".lock"
 EMAIL_LST_FILE = os.path.join(BASE_DIR, "email_lst.json")
+SUBJECT = html_simulator.get_subject()
+CONTENT = html_simulator.get_content()  
+html_simulator.beautify_html()
 
 # --- Debounce ---
 last_trigger = 0
