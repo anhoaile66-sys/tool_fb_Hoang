@@ -117,7 +117,7 @@
   },
   "22889521": {
     "name": "Ngọc Mai",
-    "device": "DEVICE_ID_HAI_YEN",
+    "device": "PN59BMHYPFXCPN8T",
     "customers": [
       {
         "email": "ngocmai_customer1@gmail.com",
@@ -126,6 +126,20 @@
       {
         "email": "vdtimviec@gmail.com",
         "sent": false
+      }
+    ]
+  },
+  "22614471": {
+    "name": "Hoàng Khoa",
+    "device": "CEIN4X45I7ZHFEFU",
+    "customers": [
+      {
+        "email": "ngocmai_customer1@gmail.com",
+        "sent": true
+      },
+      {
+        "email": "vdtimviec@gmail.com",
+        "sent": true
       }
     ]
   }
