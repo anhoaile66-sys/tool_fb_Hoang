@@ -173,7 +173,7 @@ class EmailSender:
 
 # -------- send all pending while accounts còn quota ----------
 def send_all_pending(EMP_ID, SUBJECT,NAME_FILE_ATTACH, BUSINESS_FILE=BUSINESS_FILE ):
-    manager = EmailManager(EMP_ID, os.path.join(BASE_DIR, "..", "business", "email_lst.json"))
+    manager = EmailManager(EMP_ID)
     while True:
         name_acc = manager.get_available_account()
         if not name_acc:
