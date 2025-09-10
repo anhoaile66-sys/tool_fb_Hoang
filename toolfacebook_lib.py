@@ -12,30 +12,12 @@ import numpy as np
 def redirect_to(driver, link):
     driver.shell(f"am start -a android.intent.action.VIEW -d '{link}'")
 
-# Truy cập 1 trang facebook qua link
-def redirect_to(driver, link):
-    driver.shell(f"am start -a android.intent.action.VIEW -d '{link}'")
-
 # Trở về trang chủ của facebook
 async def back_to_facebook(driver):
-    driver.press("recent")
-    await asyncio.sleep(1)
-
-    size = driver.window_size()
-    width, height = size[0], size[1]
-
-    start_x = width / 2
-    end_x = start_x
-    start_y = height * 0.7
-    end_y = height * 0.2
-    duration = 0.04
-
-    driver.swipe(start_x, start_y, end_x, end_y, duration=duration)
-    await asyncio.sleep(1)
-    driver.press("home")
-    driver.press("back")
-    driver.app_start("com.facebook.katana") 
-
+    redirect_to(driver, "https://www.facebook.com")
+    driver(resourceId="com.android.systemui:id/back").click()
+    driver.app_start("com.facebook.katana")
+    
 # Ấn vào ảnh mẫu trên màn hình
 async def click_template(driver, template, threshold = 0.8, scale_start = 50, scale_end = 150, scale_step = 10):
     await asyncio.sleep(1)
