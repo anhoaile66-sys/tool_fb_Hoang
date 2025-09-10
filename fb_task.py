@@ -51,15 +51,16 @@ async def clear_app(driver):
     driver.press("home")
     driver.press("back")
 
-async def get_commands(driver, emp_id):
-    commands = await pymongo_management.get_commands(emp_id)
+async def get_commands(driver, user_id: str):
+    commands = await pymongo_management.get_commands(user_id)
     for command in commands:
+        params = command.get("params", {})
         if command['type'] == 'post_to_group':
-            params = command.get("params", {})
             await post_to_group(driver, command['_id'], params.get("group_link", ""), params.get("content", ""), params.get("files", []))
         if command['type'] == 'join_group':
-            params = command.get("params", {})
             await join_group(driver, command['user_id'], params.get("group_link", ""))
+        if command['type'] == 'post_to_wall':
+            await post_to_wall(driver, command['_id'], params.get("content", ""), params.get("files", []))
         await asyncio.sleep(random.uniform(4, 6))
 
 async def fb_natural_task(driver, emp_id:str, account: str):
