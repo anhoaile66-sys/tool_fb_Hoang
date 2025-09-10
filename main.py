@@ -1,5 +1,7 @@
 from fb_task import DEVICES_LIST, run_on_device
 from sending_message_and_adding_friend import DeviceHandler
+from task_manager import task_manager, create_facebook_task, TaskPriority
+from module.websocket import start_websocket_client
 import uiautomator2 as u2
 import asyncio
 import logging
@@ -72,6 +74,22 @@ async def ensure_1111_vpn_on_once(driver, device_id: str):
         log_message(f"[{device_id}] One-time check 1.1.1.1 OK")
     except Exception as e:
         log_message(f"[{device_id}] VPN one-time check lỗi: {e}", logging.WARNING)
+
+async def disable_auto_rotation(driver, device_id: str):
+    """
+    Tắt chế độ tự động xoay màn hình bằng hàm sẵn của UIAutomator2
+    """
+    try:
+        log_message(f"[{device_id}] Tắt chế độ tự động xoay màn hình")
+        
+        # Sử dụng hàm sẵn của UIAutomator2 để tắt auto-rotation
+        await asyncio.to_thread(driver.set_orientation, "natural")
+        
+        await asyncio.sleep(1.0)
+        log_message(f"[{device_id}] Đã tắt auto-rotation thành công")
+        
+    except Exception as e:
+        log_message(f"[{device_id}] Lỗi khi tắt auto-rotation: {e}", logging.WARNING)
 
 class InactivityWatchdog:
     def __init__(
@@ -170,6 +188,7 @@ async def device_once(device_id: str):
     """
     Chạy một vòng đầy đủ cho MỘT thiết bị:
       - Kết nối
+      - Tắt auto-rotation để tránh xoay màn hình
       - Bật VPN 1.1.1.1 nếu cần (1 lần)
       - Watchdog chạy nền
       - Pha 'zalo' (một vòng) -> Pha 'facebook'
@@ -178,6 +197,9 @@ async def device_once(device_id: str):
     driver = await asyncio.to_thread(u2.connect_usb, device_id)
     handler = DeviceHandler(driver, device_id)
     await asyncio.to_thread(handler.connect)
+    
+    # Tắt chế độ tự động xoay màn hình
+    await disable_auto_rotation(driver, device_id)
 
     # Bật 1.1.1.1 (một lần)
     await ensure_1111_vpn_on_once(driver, device_id)
@@ -263,14 +285,52 @@ async def device_supervisor(device_id: str):
             continue
 
 
-# ======================= CHẠY TẤT CẢ THIẾT BỊ =======================
-async def run_all_devices():
-    tasks = [asyncio.create_task(device_supervisor(did)) for did in DEVICES_LIST]
+async def device_supervisor_with_tasks(device_id: str):
+    """
+    Supervisor mới sử dụng Task Manager:
+    - Tạo Facebook task liên tục với priority thấp
+    - Task từ server sẽ có priority cao và interrupt Facebook task
+    """
+    while True:
+        try:
+            # Tạo Facebook task với priority thấp (có thể bị interrupt)
+            task_id = await create_facebook_task(device_id, TaskPriority.LOW)
+            log_message(f"[{device_id}] Created Facebook task: {task_id}")
+            
+            # Đợi task complete hoặc bị interrupt
+            while True:
+                status = task_manager.get_task_status(task_id)
+                if status in [None, "completed", "cancelled", "failed"]:
+                    break
+                await asyncio.sleep(5)
+            
+            # Nghỉ một chút trước khi tạo task mới
+            await asyncio.sleep(random.uniform(10, 30))
+            
+        except Exception as e:
+            log_message(f"[{device_id}] Error in supervisor: {e}", logging.ERROR)
+            await asyncio.sleep(10)
+
+
+# ======================= CHẠY TẤT CẢ THIẾT BỊ VỚI TASK MANAGER =======================
+async def run_all_devices_with_task_manager():
+    """Chạy tất cả device với Task Manager và WebSocket"""
+    
+    # Khởi động Task Manager
+    asyncio.create_task(task_manager.run_task_queue())
+    log_message("Task Manager started")
+    
+    # Khởi động WebSocket client
+    asyncio.create_task(start_websocket_client("1498"))
+    log_message("WebSocket client started")
+    
+    # Khởi động supervisor cho mỗi device
+    tasks = [asyncio.create_task(device_supervisor_with_tasks(did)) for did in DEVICES_LIST]
     await asyncio.gather(*tasks)
 
 if __name__ == "__main__":
     try:
-        asyncio.run(run_all_devices())
+        asyncio.run(run_all_devices_with_task_manager())
     except KeyboardInterrupt:
         print("[!] Dừng bằng bàn phím (KeyboardInterrupt)")
     except Exception as e:

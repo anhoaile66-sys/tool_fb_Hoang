@@ -3,7 +3,7 @@ import logging
 from util import *
 
 # Xem story, còn một role mới cập nhật là ghi chú cũng sẽ lẫn vào story, cần kiểm tra để bỏ qua
-async def watch_story(driver, duration=60):
+async def watch_story(driver, duration=random.uniform(60, 90)):
     """
     Story mặc định ở trên đầu trang
     """
