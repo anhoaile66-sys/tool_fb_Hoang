@@ -64,7 +64,7 @@ def create_tables():
             conn.close()
 
 
-def add_customer_safe(emp_id, customer_email, sent=0, date=None, subject=None, content=None):
+def add_customer_safe(emp_id, customer_email, sent=0,subject=None, content=None,date=None):
     """
     Thêm customer với logic kiểm tra: cùng email + emp_id chỉ được thêm 1 lần/ngày
     """

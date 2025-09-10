@@ -45,7 +45,7 @@ def add_email():
         return jsonify({"error": "Thiếu biến 'content'"}), 400
 
     # Use add_customer_safe to add the email to the database
-    success = add_customer_safe(emp_id, email, subject,content)
+    success = add_customer_safe(emp_id=emp_id, customer_email=email, sent=0, subject=subject, content=content)
     
     if success:
         print(f"✅ Thêm email {email} cho emp_id {emp_id} vào DB")
