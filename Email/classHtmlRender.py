@@ -87,7 +87,7 @@ class HtmlRenderSimulator:
         time.sleep(1)
         self.d.send_keys("Html Editor", clear=True)
         time.sleep(1)
-        self.d.xpath('//*[@resource-id="com.gogo.launcher:id/branch_suggest_app_list_rv"]/android.view.ViewGroup[1]/android.widget.ImageView[1]').click()
+        self.d(resourceId="com.gogo.launcher:id/icon").click()
         time.sleep(1)
         print("Đang mở app HTML Editor...")
         

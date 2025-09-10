@@ -5,11 +5,18 @@
     "customers": [
       {
         "email": "newcustomer1@gmail.com",
-        "sent": true
+        "sent": true,
+        "date": "2025-09-10"
       },
       {
         "email": "vdtimviec@gmail.com",
-        "sent": false
+        "sent": true,
+        "date": "2025-09-10"
+      },
+      {
+        "email": "binhphuongtimviec@gmail.com",
+        "sent": true,
+        "date": "2025-09-10"
       }
     ]
   },
@@ -19,11 +26,18 @@
     "customers": [
       {
         "email": "newcustomer2@gmail.com",
-        "sent": true
+        "sent": true,
+        "date": "2025-09-10"
       },
       {
         "email": "vdtimviec@gmail.com",
-        "sent": false
+        "sent": false,
+        "date": "2025-09-10"
+      },
+      {
+        "email": "chanthichuong@gmail.com",
+        "sent": false,
+        "date": "2025-09-10"
       }
     ]
   },
@@ -33,11 +47,13 @@
     "customers": [
       {
         "email": "lethuy_customer1@gmail.com",
-        "sent": true
+        "sent": true,
+        "date": "2025-09-10"
       },
       {
         "email": "binhphuongtimviec@gmail.com",
-        "sent": false
+        "sent": false,
+        "date": "2025-09-10"
       }
     ]
   },
@@ -47,7 +63,8 @@
     "customers": [
       {
         "email": "nhan_customer1@gmail.com",
-        "sent": true
+        "sent": true,
+        "date": "2025-09-10"
       }
     ]
   },
@@ -57,7 +74,8 @@
     "customers": [
       {
         "email": "bichngoc_customer1@gmail.com",
-        "sent": true
+        "sent": true,
+        "date": "2025-09-10"
       },
       {
         "email": "binhphuongtimviec@gmail.com",
@@ -65,7 +83,8 @@
       },
       {
         "email": "vdtimviec@gmail.com",
-        "sent": true
+        "sent": true,
+        "date": "2025-09-10"
       }
     ]
   },
@@ -75,15 +94,18 @@
     "customers": [
       {
         "email": "luuthu_customer1@gmail.com",
-        "sent": true
+        "sent": true,
+        "date": "2025-09-10"
       },
       {
         "email": "vdtimviec@gmail.com",
-        "sent": true
+        "sent": true,
+        "date": "2025-09-10"
       },
       {
         "email": "binhphuongtimviec@gmail.com",
-        "sent": true
+        "sent": true,
+        "date": "2025-09-10"
       }
     ]
   },
@@ -93,11 +115,13 @@
     "customers": [
       {
         "email": "ngocha_customer1@gmail.com",
-        "sent": true
+        "sent": true,
+        "date": "2025-09-10"
       },
       {
         "email": "vdtimviec@gmail.com",
-        "sent": false
+        "sent": false,
+        "date": "2025-09-10"
       }
     ]
   },
@@ -107,11 +131,13 @@
     "customers": [
       {
         "email": "haiyen_customer1@gmail.com",
-        "sent": true
+        "sent": true,
+        "date": "2025-09-10"
       },
       {
         "email": "vdtimviec@gmail.com",
-        "sent": false
+        "sent": false,
+        "date": "2025-09-10"
       }
     ]
   },
@@ -121,11 +147,13 @@
     "customers": [
       {
         "email": "ngocmai_customer1@gmail.com",
-        "sent": true
+        "sent": true,
+        "date": "2025-09-10"
       },
       {
         "email": "vdtimviec@gmail.com",
-        "sent": false
+        "sent": false,
+        "date": "2025-09-10"
       }
     ]
   },
@@ -135,11 +163,13 @@
     "customers": [
       {
         "email": "ngocmai_customer1@gmail.com",
-        "sent": true
+        "sent": true,
+        "date": "2025-09-10"
       },
       {
         "email": "vdtimviec@gmail.com",
-        "sent": false
+        "sent": false,
+        "date": "2025-09-10"
       }
     ]
   }

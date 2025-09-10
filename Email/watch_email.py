@@ -8,10 +8,11 @@ from classSend import run_sent
 from classHtmlRender import run_simulator
 
 # --- Cấu hình biến truyền vào api ---
-EMP_ID = 22889521
+EMP_ID = 22616467
 SUBJECT = ""
 CONTENT = ""
 MODE = 1
+
 # ----------------------------------- #
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -21,7 +22,6 @@ BUSINESS_WRITEN_MAIL_PATH = os.path.join(BASE_DIR, "business_writen_mail_sample.
 JSON_FILE = os.path.join(BASE_DIR, "business_info.json")
 LOCK_FILE = JSON_FILE + ".lock"
 EMAIL_LST_FILE = os.path.join(BASE_DIR, "email_lst.json")
-
 
 # --- Debounce ---
 last_trigger = 0
