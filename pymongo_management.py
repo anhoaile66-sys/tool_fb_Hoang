@@ -215,7 +215,7 @@ async def get_account(user_id):
                 ]
             }
         )
-        result = await collection.insert_one({"user_id": user_id, "kpi": {"Bình luận": comment_count + 5, "Tham gia nhóm": group_count + 5}, "kpi_per_day": {"Bình luận": 5, "Tham gia nhóm": 5}})
+        result = await collection.insert_one({"user_id": user_id, "kpi": {"Bình luận": comment_count + 1, "Tham gia nhóm": group_count + 5}, "kpi_per_day": {"Bình luận": 1, "Tham gia nhóm": 5}})
         if result.inserted_id:
             user = await collection.find_one({"_id": result.inserted_id})
     return user
@@ -410,13 +410,3 @@ async def save_post_comment(post_link, commenter, comment, time, level=0, parent
     if result.inserted_id:
         return {'message': '✅ Lưu bình luận trong bài đăng: Thành công'}, logging.INFO
     return {'message': '❌ Lưu bình luận trong bài đăng: Thất bại'}, logging.ERROR
-
-if __name__ == "__main__":
-    import asyncio
-
-    async def main():
-        collection = get_async_collection("Link-groups")
-        result = await collection.find_one({"Link": "https://www.facebook.com/groups/100063823707878"})
-        print(result)
-
-    asyncio.run(main())
