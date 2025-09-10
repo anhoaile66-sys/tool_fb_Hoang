@@ -1,78 +1,119 @@
-# import time
-# import os
-# import json
-# from watchdog.observers import Observer
-# from watchdog.events import FileSystemEventHandler
-# from filelock import FileLock
-# from classSend import run_sent
-# from classHtmlRender import run_simulator
+import time
+import os
+import sqlite3
+from datetime import datetime
+from classSend import run_sent
+from classHtmlRender import run_simulator
 
-# # --- Cấu hình biến truyền vào api ---
-# EMP_ID = 22616467
-# SUBJECT = ""
-# CONTENT = ""
-# MODE = 1
+# --- Cấu hình biến truyền vào api ---
+EMP_ID = 22616467
+SUBJECT = ""
+CONTENT = ""
+MODE = 1
 
-# # ----------------------------------- #
+# ----------------------------------- #
 
-# BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-# BUSINESS_SUBJECT_PATH = os.path.join(BASE_DIR, "business_subject_sample.txt")
-# BUSINESS_WRITEN_MAIL_PATH = os.path.join(BASE_DIR, "business_writen_mail_sample.txt")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BUSINESS_SUBJECT_PATH = os.path.join(BASE_DIR, "..", "business", "business_subject_sample.txt")
+BUSINESS_WRITEN_MAIL_PATH = os.path.join(BASE_DIR, "..", "business", "business_writen_mail_sample.txt")
+DB_PATH = os.path.join(BASE_DIR, "..", "business", "businesses.db")
 
-# JSON_FILE = os.path.join(BASE_DIR, "business_info.json")
-# LOCK_FILE = JSON_FILE + ".lock"
-# EMAIL_LST_FILE = os.path.join(BASE_DIR, "email_lst.json")
+def get_db_connection():
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    return conn
 
-# # --- Debounce ---
-# last_trigger = 0
-# DEBOUNCE_SEC = 2  # chỉ gọi handler 1 lần nếu file chưa thay đổi trong 2 giây
+def get_pending_customers(emp_id):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        "SELECT customer_id, customer_email, subject, content FROM customers WHERE emp_id = ? AND sent = 0",
+        (emp_id,)
+    )
+    customers = cursor.fetchall()
+    conn.close()
+    return customers
 
-# # --- Handler khi file JSON thay đổi ---
-# class JsonChangeHandler(FileSystemEventHandler):
-#     def on_modified(self, event):
-#         global last_trigger, SUBJECT, CONTENT
-#         if not (event.src_path.endswith("business_info.json") or event.src_path.endswith("email_lst.json")):
-#             return
+def update_customer_sent_status(customer_id, sent_status=1):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        "UPDATE customers SET sent = ? WHERE customer_id = ?",
+        (sent_status, customer_id)
+    )
+    conn.commit()
+    conn.close()
 
-#         now = time.time()
-#         if now - last_trigger < DEBOUNCE_SEC:
-#             return  # bỏ qua event quá gần nhau
-#         last_trigger = now
+def get_email_account_for_sending(emp_id):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        "SELECT email_account, id FROM email_accounts WHERE emp_id = ? AND is_active = 1 ORDER BY num_sent ASC LIMIT 1",
+        (emp_id,)
+    )
+    account = cursor.fetchone()
+    conn.close()
+    return account
 
-#         try:
-#             with FileLock(LOCK_FILE, timeout=10):
-#                 with open(JSON_FILE, "r", encoding="utf-8") as f:
-#                     data = json.load(f)
-                
-#                 emp_id_str = str(EMP_ID)
-#                 customers = data.get(emp_id_str, {}).get("customers", [])
-#                 has_pending = any(not c.get("sent", False) for c in customers)
+def update_email_account_sent_count(account_id):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        "UPDATE email_accounts SET num_sent = num_sent + 1 WHERE id = ?",
+        (account_id,)
+    )
+    conn.commit()
+    conn.close()
 
-#             if has_pending:
-#                 print("🔔 Có khách hàng mới, chạy gửi lấy html và gửi mail...")
-#                 simulator = run_simulator(EMP_ID, BUSINESS_SUBJECT_PATH, BUSINESS_WRITEN_MAIL_PATH, MODE=MODE)
-#                 # set 2 biến nhận từ api
-#                 simulator.set_subject(SUBJECT)
-#                 simulator.set_content(CONTENT)
-#                 simulator.beautify_html()
-#                 SUBJECT = simulator.get_subject() # có thể không cần thiết nhưng debug đc
-#                 run_sent(EMP_ID, SUBJECT)
-#             else:
-#                 print("ℹ️ Chưa có khách hàng mới, đợi update tiếp.")
-#         except Exception as e:
-#             print(f"⚠️ Lỗi khi đọc JSON hoặc gửi mail: {e}")
+def process_pending_emails(emp_id):
+    global SUBJECT, CONTENT
+    print(f"👂 Đang kiểm tra khách hàng mới cho EMP_ID: {emp_id}...")
+    
+    pending_customers = get_pending_customers(emp_id)
 
-# # --- Khởi động watcher ---
-# if __name__ == "__main__":
-#     event_handler = JsonChangeHandler()
-#     observer = Observer()
-#     observer.schedule(event_handler, BASE_DIR, recursive=False)
-#     observer.start()
-#     print(f"👂 Đang lắng nghe thay đổi {JSON_FILE} và {EMAIL_LST_FILE} ...")
+    if pending_customers:
+        print(f"🔔 Có {len(pending_customers)} khách hàng mới, chạy gửi lấy html và gửi mail...")
+        for customer in pending_customers:
+            customer_id = customer["customer_id"]
+            customer_email = customer["customer_email"]
+            mail_subject = customer["subject"] if customer["subject"] else SUBJECT
+            mail_content = customer["content"] if customer["content"] else CONTENT
 
-#     try:
-#         while True:
-#             time.sleep(5)  
-#     except KeyboardInterrupt:
-#         observer.stop()
-#     observer.join()
+            email_account = get_email_account_for_sending(emp_id)
+            if not email_account:
+                print(f"⚠️ Không tìm thấy tài khoản email hoạt động để gửi cho EMP_ID: {emp_id}")
+                break # Stop processing for this emp_id if no active email account
+
+            sender_email = email_account["email_account"]
+            email_account_id = email_account["id"]
+
+            print(f"✉️ Đang gửi email cho {customer_email} từ {sender_email}...")
+            
+            simulator = run_simulator(emp_id, BUSINESS_SUBJECT_PATH, BUSINESS_WRITEN_MAIL_PATH, MODE=MODE)
+            simulator.set_subject(mail_subject)
+            simulator.set_content(mail_content)
+            simulator.beautify_html()
+            
+            final_subject = simulator.get_subject()
+            final_content = simulator.get_content()
+
+            # Assuming run_sent handles the actual sending and returns success/failure
+            # For now, we'll assume it always succeeds for the purpose of this refactor
+            success = run_sent(emp_id, final_subject, final_content, customer_email, sender_email) 
+            
+            if success:
+                update_customer_sent_status(customer_id, 1)
+                update_email_account_sent_count(email_account_id)
+                print(f"✅ Đã gửi email thành công cho {customer_email}.")
+            else:
+                print(f"❌ Gửi email thất bại cho {customer_email}.")
+                # Optionally, handle retry logic or mark as failed in DB
+    else:
+        print("ℹ️ Chưa có khách hàng mới, đợi update tiếp.")
+
+if __name__ == "__main__":
+    # This script is now designed to be called by an external trigger
+    # or run periodically. For demonstration, we can call it directly.
+    # In a real scenario, you might have a cron job or another script
+    # that calls process_pending_emails(EMP_ID)
+    process_pending_emails(EMP_ID)

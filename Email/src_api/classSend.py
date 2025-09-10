@@ -1,55 +1,40 @@
 import uiautomator2 as u2
 import time
-import json
 import os
-from filelock import FileLock
+import sqlite3
 from email_manager import EmailManager
 
 # --- Config ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-BUSINESS_FILE = os.path.join(BASE_DIR, "..", "business", "business_info.json")
-
+DB_PATH = os.path.join(BASE_DIR, "..", "business", "businesses.db")
 
 class EmailSender:
-    def __init__(self, emp_id: int, json_file: str, subject: str, name_acc:str, name_file_attach:str):
+    def __init__(self, emp_id: int, subject: str, content: str, name_acc: str, name_file_attach: str):
         self.emp_id = str(emp_id)
-        self.json_file = json_file
         self.subject = subject
+        self.content = content
         self.name_acc = name_acc
         self.name_file_attach = name_file_attach
 
-        # Load dữ liệu
-        with open(self.json_file, "r", encoding="utf-8") as f:
-            self.data = json.load(f)
-
-        self.device_id = self.data[self.emp_id]["device"]
+        self.device_id = self._get_employee_device(self.emp_id)
+        if not self.device_id:
+            raise ValueError(f"Không tìm thấy device_id cho EMP_ID: {self.emp_id}")
+        
         self.d = u2.connect(self.device_id)
         self.width, self.height = self.d.window_size()
         
-    def get_next_customer(self):
-        """Lấy email đầu tiên có sent = False"""
-        for customer in self.data[self.emp_id]["customers"]:
-            if not customer["sent"]:
-                return customer
-        return None
+    def _get_db_connection(self):
+        conn = sqlite3.connect(DB_PATH)
+        conn.row_factory = sqlite3.Row
+        return conn
 
-    def mark_sent(self, email: str):
-        """Đánh dấu customer đã gửi email"""
-        # lock theo file JSON
-        with FileLock(self.json_file + ".lock"):
-            # load lại file để chắc chắn dữ liệu mới nhất
-            with open(self.json_file, "r", encoding="utf-8") as f:
-                data = json.load(f)
-
-            for customer in data[self.emp_id]["customers"]:
-                if customer["email"] == email:
-                    customer["sent"] = True
-                    break
-
-            # ghi đè
-            with open(self.json_file, "w", encoding="utf-8") as f:
-                json.dump(data, f, ensure_ascii=False, indent=2)
-        print(f"🔒 Đã đánh dấu {email} = sent:true trong {self.json_file}")
+    def _get_employee_device(self, emp_id):
+        conn = self._get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT device FROM employees WHERE emp_id = ?", (emp_id,))
+        result = cursor.fetchone()
+        conn.close()
+        return result["device"] if result else None
 
     def open_gmail(self):
         """Mở Gmail trên thiết bị"""
@@ -103,7 +88,7 @@ class EmailSender:
         self.d.press("back")  # Đóng menu chọn tài khoản nếu vẫn mở
 
         
-    def send_email(self, to_email: str, name_file=None):
+    def send_email(self, to_email: str, subject: str, content: str, name_file=None):
         if name_file is None:
             name_file = self.name_file_attach
         """Soạn & gửi email"""
@@ -123,7 +108,7 @@ class EmailSender:
         ).click()
         time.sleep(1)
 
-        self.d(resourceId="com.google.android.gm:id/subject").set_text(self.subject)
+        self.d(resourceId="com.google.android.gm:id/subject").set_text(subject)
         time.sleep(1)
 
         x = self.width * 0.492
@@ -139,8 +124,8 @@ class EmailSender:
         time.sleep(3)
         self.add_file(name_file=name_file)
         self.d(resourceId="com.google.android.gm:id/send").click()
-        # print(f"✅ Đã gửi email tới {to_email}")
-        self.mark_sent(to_email)
+        print(f"✅ Đã gửi email tới {to_email}")
+        return True # Indicate success for now
         
     def add_file(self, name_file):
         self.d(resourceId="com.google.android.gm:id/add_attachment").click()
@@ -161,46 +146,13 @@ class EmailSender:
         # chọn được là sẽ quay lại mail
         time.sleep(2)
         
-    def run(self):
-        customer = self.get_next_customer()
-        self.open_gmail()
-        if not customer:
-            print("🎉 Không còn khách hàng nào cần gửi")
-            return
-        email = customer["email"]
-
-        self.send_email(email)
-
 # -------- send all pending while accounts còn quota ----------
-def send_all_pending(EMP_ID, SUBJECT,NAME_FILE_ATTACH, BUSINESS_FILE=BUSINESS_FILE ):
-    manager = EmailManager(EMP_ID)
-    while True:
-        name_acc = manager.get_available_account()
-        if not name_acc:
-            print("⚠️ Không còn tài khoản Gmail nào đủ quota để gửi (hoặc hết quota hôm nay).")
-            break
-
-        # tạo sender mới (mỗi lần để load latest business_info.json)
-        sender = EmailSender(emp_id=EMP_ID, json_file=BUSINESS_FILE, subject=SUBJECT, name_acc=name_acc,name_file_attach=NAME_FILE_ATTACH)
-
-        customer = sender.get_next_customer()
-        if not customer:
-            print("🎉 Không còn khách hàng nào cần gửi")
-            break
-
-        to_email = customer.get("email")
-        try:
-            sender.open_gmail()
-            sender.send_email(to_email)
-            manager.increase_counter(name_acc)
-            # tuỳ môi trường, bạn có thể tăng sleep nếu UI cần thời gian stable
-            time.sleep(3)
-        except Exception as e:
-            print(f"⚠️ Lỗi khi gửi {to_email} bằng {name_acc}: {e}")
-            # dừng hoặc tiếp tục tuỳ nhu cầu; hiện dừng để tránh vòng lặp vô hạn
-            break
-
-    print("✔️ Kết thúc vòng gửi (send_all_pending).")
-
-def run_sent(EMP_ID, SUBJECT, NAME_FILE_ATTACH="gia_goi.pdf", BUSINESS_FILE=BUSINESS_FILE):
-    send_all_pending(EMP_ID, SUBJECT,NAME_FILE_ATTACH, BUSINESS_FILE=BUSINESS_FILE)
+def run_sent(emp_id, subject, content, to_email, sender_email, name_file_attach="gia_goi.pdf"):
+    try:
+        sender = EmailSender(emp_id=emp_id, subject=subject, content=content, name_acc=sender_email, name_file_attach=name_file_attach)
+        sender.open_gmail()
+        success = sender.send_email(to_email, subject, content)
+        return success
+    except Exception as e:
+        print(f"⚠️ Lỗi khi gửi email: {e}")
+        return False
