@@ -2,7 +2,7 @@ from datetime import datetime
 from bson import ObjectId
 import motor.motor_asyncio
 import logging
-
+import pymongo
 #-------------------------------------------------------------------------------------------------------------------------------
 # Lệnh chung
 def get_async_collection(collection_name, client_name="mongodb://localhost:27017/", db_name="Facebook"):
@@ -195,23 +195,21 @@ async def get_comment(user_id):
 # Lệnh liên quan tới collection "Users"
 async def get_account(user_id):
     collection = get_async_collection("Users")
-    return await collection.find_one({"user_id": user_id})
-
-async def login(user_id, fb_name):
-    collection = get_async_collection("Users")
-    existing_user = await collection.find_one({"user_id": user_id})
-    if not existing_user:
-        await collection.insert_one({
-            "user_id": user_id, 
-            "kpi": {"Bình luận": 10, "Tham gia nhóm": 10}, 
-            "kpi_per_day": {"Bình luận": 10, "Tham gia nhóm": 10}, 
-            "fb_name": fb_name
-        })
-    else:
-        await collection.update_one(
-            {"user_id": user_id}, 
-            {"$set": {"fb_name": fb_name}}
+    user = await collection.find_one({"user_id": user_id})
+    if not user:
+        comment_count = await get_async_collection("Thong-ke-binh-luan").count_documents({"Commented_by": user_id})
+        group_count = await get_async_collection("Link-groups").count_documents(
+            {
+                "$or": [
+                    {"Joined_Accounts": user_id},
+                    {"Temp_Joined_Accounts": user_id}
+                ]
+            }
         )
+        result = await collection.insert_one({"user_id": user_id, "kpi": {"Bình luận": comment_count + 5, "Tham gia nhóm": group_count + 5}, "kpi_per_day": {"Bình luận": 5, "Tham gia nhóm": 5}})
+        if result.inserted_id:
+            user = await collection.find_one({"_id": result.inserted_id})
+    return user
 
 async def check_kpi(user_id, kpi_type):
     """Kiểm tra KPI của người dùng."""
@@ -229,24 +227,43 @@ async def check_kpi(user_id, kpi_type):
     return False
 
 async def update_daily_kpi():
-    collection = get_async_collection("Users")
-    users = await collection.find({}, {"kpi": 1, "kpi_per_day": 1}).to_list(length=None)
+    users_collection = get_async_collection("Users")
+    comments_collection = get_async_collection("Thong-ke-binh-luan")
+    groups_collection = get_async_collection("Link-groups")
+
+    users = await users_collection.find({}, {"_id": 1, "user_id": 1, "kpi_per_day": 1}).to_list(length=None)
     updates = []
 
     for user in users:
-        kpi = user.get("kpi", {})
+        user_id = user.get("user_id")
         kpi_per_day = user.get("kpi_per_day", {})
-        new_kpi = {}
+        if not user_id:
+            continue
 
-        for key in kpi:
-            new_kpi[key] = kpi.get(key, 0) + kpi_per_day.get(key, 0)
+        # Đếm số bình luận
+        comment_count = await comments_collection.count_documents({ "Comment_by": user_id })
 
-        updates.append(motor.motor_asyncio.UpdateOne(
+        # Đếm số nhóm đã tham gia
+        group_join_count = await groups_collection.count_documents({
+            "$or": [
+                { "Joined_Accounts": user_id },
+                { "Temp_Joined_Accounts": user_id }
+            ]
+        })
+
+        # Tạo kpi mới
+        new_kpi = {
+            "Bình luận": comment_count + kpi_per_day.get("Bình luận", 0),
+            "Tham gia nhóm": group_join_count + kpi_per_day.get("Tham gia nhóm", 0)
+        }
+
+        updates.append(pymongo.UpdateOne(
             { "_id": user["_id"] },
             { "$set": { "kpi": new_kpi } }
         ))
+
     if updates:
-        await collection.bulk_write(updates)
+        await users_collection.bulk_write(updates)
 #-------------------------------------------------------------------------------------------------------------------------------
 # Lệnh liên quan tới collection "Questions"
 async def upload_question(group_link, question, how_to_answer, answers):
