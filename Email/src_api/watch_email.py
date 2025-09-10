@@ -111,9 +111,6 @@ def process_pending_emails(emp_id):
     else:
         print("ℹ️ Chưa có khách hàng mới, đợi update tiếp.")
 
-if __name__ == "__main__":
-    # This script is now designed to be called by an external trigger
-    # or run periodically. For demonstration, we can call it directly.
-    # In a real scenario, you might have a cron job or another script
-    # that calls process_pending_emails(EMP_ID)
+while True:
     process_pending_emails(EMP_ID)
+    time.sleep(300)  # check lại sau 5 giây
