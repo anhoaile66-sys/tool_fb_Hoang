@@ -5,7 +5,7 @@ import logging
 import pymongo
 #-------------------------------------------------------------------------------------------------------------------------------
 # Lệnh chung
-def get_async_collection(collection_name, client_name="mongodb://localhost:27017/", db_name="Facebook"):
+def get_async_collection(collection_name, client_name="mongodb://123.24.206.25:27017/", db_name="Facebook"):
     """Tạo async collection client"""
     client = motor.motor_asyncio.AsyncIOMotorClient(client_name)
     db = client[db_name]
@@ -401,3 +401,13 @@ async def save_post_comment(post_link, commenter, comment, time, level=0, parent
     if result.inserted_id:
         return {'message': '✅ Lưu bình luận trong bài đăng: Thành công'}, logging.INFO
     return {'message': '❌ Lưu bình luận trong bài đăng: Thất bại'}, logging.ERROR
+
+if __name__ == "__main__":
+    import asyncio
+
+    async def main():
+        collection = get_async_collection("Link-groups")
+        result = await collection.find_one({"Link": "https://www.facebook.com/groups/100063823707878"})
+        print(result)
+
+    asyncio.run(main())
