@@ -15,7 +15,7 @@ DEVICES_LIST = [
     # "MJZDFY896TMJBUPN",
     # "TSPNH6GYZLPJBY6X",
     # "YH9TSS7XCMPFZHNR",
-    # "9PAM7DIFW87DOBEU",
+    "9PAM7DIFW87DOBEU",
     # "F6NZ5LRKWWGACYQ8",
     # "EM4DYTEITCCYJNFU",
     # "EY5H9DJNIVNFH6OR",
@@ -99,7 +99,6 @@ async def run_on_device(driver):
             account = "default"
         else:
             emp_id = device['user']['emp_id']
-            account = device['current_account']
             # Chuyển tài khoản
             last_time = device['time_logged_in']
             if last_time and (datetime.fromisoformat(last_time) + timedelta(hours=random.randint(4,6))) < datetime.now():
@@ -112,13 +111,14 @@ async def run_on_device(driver):
                 if i==3: i=0
                 for acc in device['accounts']:
                     if i==0:
-                        account=acc
+                        device['current_account'] = acc['account']
                         break
                     i-=1
                 log_message(f"Đang đăng nhập vào tài khoản {account['name']} trên thiết bị {device_id}")
                 await swap_account(driver, account)
                 device['current_account'] = account['account']
                 update_current_account(device_id, account)
+            account = device['current_account']
         # tasks nuôi fb
         await fb_natural_task(driver, emp_id, account)
         # await share_post(driver, text=random.choice(SHARES))

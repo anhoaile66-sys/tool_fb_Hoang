@@ -35,7 +35,7 @@ async def watch_story(driver, duration=60):
     log_message("Đã thoát trang story")
 
 # Xem reels
-async def watch_reels(driver, duration=random.randint(900,1200)):
+async def watch_reels(driver, duration=random.randint(2700,72000)):
     """
     Lướt để tìm reels rồi bấm xem
     """
