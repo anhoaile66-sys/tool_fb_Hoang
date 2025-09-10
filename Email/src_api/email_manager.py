@@ -4,7 +4,7 @@ from filelock import FileLock
 from datetime import datetime
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-EMAIL_LST_FILE = os.path.join(BASE_DIR, "email_lst.json")
+EMAIL_LST_FILE = os.path.join(BASE_DIR, "..", "business", "email_lst.json")
 LOCK_FILE = EMAIL_LST_FILE + ".lock"
 
 MAX_PER_DAY = 3

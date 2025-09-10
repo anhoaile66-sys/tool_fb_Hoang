@@ -5,7 +5,7 @@ from flask import Flask, request, jsonify
 from datetime import datetime
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-JSON_FILE = os.path.join(BASE_DIR, "business_info.json")
+JSON_FILE = os.path.join(BASE_DIR, "..", "business", "business_info.json")
 LOCK_FILE = JSON_FILE + ".lock"
 
 app = Flask(__name__)

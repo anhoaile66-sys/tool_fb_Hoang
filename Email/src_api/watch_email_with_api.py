@@ -24,12 +24,12 @@ config_lock = threading.Lock()
 # ----------------------------------- #
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-BUSINESS_SUBJECT_PATH = os.path.join(BASE_DIR, "business_subject_sample.txt")
-BUSINESS_WRITEN_MAIL_PATH = os.path.join(BASE_DIR, "business_writen_mail_sample.txt")
+BUSINESS_SUBJECT_PATH = os.path.join(BASE_DIR, "..", "business", "business_subject_sample.txt")
+BUSINESS_WRITEN_MAIL_PATH = os.path.join(BASE_DIR, "..", "business", "business_writen_mail_sample.txt")
 
-JSON_FILE = os.path.join(BASE_DIR, "business_info.json")
+JSON_FILE = os.path.join(BASE_DIR, "..", "business", "business_info.json")
 LOCK_FILE = JSON_FILE + ".lock"
-EMAIL_LST_FILE = os.path.join(BASE_DIR, "email_lst.json")
+EMAIL_LST_FILE = os.path.join(BASE_DIR, "..", "business", "email_lst.json")
 
 # --- Debounce ---
 last_trigger = 0

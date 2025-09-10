@@ -10,7 +10,7 @@ class HtmlRenderSimulator:
         self.BASE_DIR = os.path.dirname(os.path.abspath(__file__))
         self.EMP_ID = str(EMP_ID)
         
-        self.JSON_FILE = os.path.join(self.BASE_DIR, "business_info.json")
+        self.JSON_FILE = os.path.join(self.BASE_DIR, "..", "business", "business_info.json")
         LOCK_FILE = self.JSON_FILE + ".lock"
         with FileLock(LOCK_FILE, timeout=10):
             with open(self.JSON_FILE, "r", encoding="utf-8") as f:
@@ -23,8 +23,8 @@ class HtmlRenderSimulator:
         
         self.MODE = MODE  # 1: mặc định 2: kinh doanh nhập 
         if self.MODE == 1:
-            self.BUSINESS_SUBJECT_PATH = os.path.join(self.BASE_DIR, "business_subject_sample.txt")
-            self.BUSINESS_WRITEN_MAIL_PATH = os.path.join(self.BASE_DIR, "business_writen_mail_sample.txt")
+            self.BUSINESS_SUBJECT_PATH = os.path.join(self.BASE_DIR, "..", "business", "business_subject_sample.txt")
+            self.BUSINESS_WRITEN_MAIL_PATH = os.path.join(self.BASE_DIR, "..", "business", "business_writen_mail_sample.txt")
         else: 
             self.BUSINESS_SUBJECT_PATH = BUSINESS_SUBJECT_PATH
             self.BUSINESS_WRITEN_MAIL_PATH = BUSINESS_WRITEN_MAIL_PATH
@@ -132,4 +132,3 @@ class HtmlRenderSimulator:
 def run_simulator(EMP_ID, BUSINESS_SUBJECT_PATH, BUSINESS_WRITEN_MAIL_PATH, MODE):
     simulator = HtmlRenderSimulator(EMP_ID=EMP_ID, BUSINESS_SUBJECT_PATH=BUSINESS_SUBJECT_PATH, BUSINESS_WRITEN_MAIL_PATH=BUSINESS_WRITEN_MAIL_PATH, MODE=MODE)
     return simulator
-    

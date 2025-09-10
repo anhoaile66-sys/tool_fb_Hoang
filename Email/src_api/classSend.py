@@ -7,7 +7,7 @@ from email_manager import EmailManager
 
 # --- Config ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-BUSINESS_FILE = os.path.join(BASE_DIR, "business_info.json")
+BUSINESS_FILE = os.path.join(BASE_DIR, "..", "business", "business_info.json")
 
 
 class EmailSender:
@@ -173,7 +173,7 @@ class EmailSender:
 
 # -------- send all pending while accounts còn quota ----------
 def send_all_pending(EMP_ID, SUBJECT,NAME_FILE_ATTACH, BUSINESS_FILE=BUSINESS_FILE ):
-    manager = EmailManager(EMP_ID)
+    manager = EmailManager(EMP_ID, os.path.join(BASE_DIR, "..", "business", "email_lst.json"))
     while True:
         name_acc = manager.get_available_account()
         if not name_acc:
@@ -204,6 +204,3 @@ def send_all_pending(EMP_ID, SUBJECT,NAME_FILE_ATTACH, BUSINESS_FILE=BUSINESS_FI
 
 def run_sent(EMP_ID, SUBJECT, NAME_FILE_ATTACH="gia_goi.pdf", BUSINESS_FILE=BUSINESS_FILE):
     send_all_pending(EMP_ID, SUBJECT,NAME_FILE_ATTACH, BUSINESS_FILE=BUSINESS_FILE)
-
-
-
