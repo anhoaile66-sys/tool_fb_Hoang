@@ -69,7 +69,7 @@ def add_customer_safe(emp_id, customer_email, sent=0, date=None, subject=None, c
     Thêm customer với logic kiểm tra: cùng email + emp_id chỉ được thêm 1 lần/ngày
     """
     if date == None:
-        date = datetime.now().strftime("%d-%m-%Y")
+        date = datetime.now().strftime("%Y-%m-%d")
     conn = None
     try:
         conn = sqlite3.connect(DB_PATH)
@@ -106,8 +106,9 @@ def add_customer_safe(emp_id, customer_email, sent=0, date=None, subject=None, c
         if conn:
             conn.close()
             
-create_tables()
+# create_tables()
 
-add_customer_safe("22615833", "test@gmail.com", 1, "2025-09-10", "Test Subject", "Test Content")
-add_customer_safe("22615833", "test@gmail.com", 1, "2025-09-10", "Test Subject", "Test Content")  # Should fail
-add_customer_safe("22615833", "test@gmail.com", 1, "2025-09-11", "Test Subject", "Test Content")  # Should success
+# add_customer_safe("22615833", "test@gmail.com", 1, "2025-09-10", "Test Subject", "Test Content")
+# add_customer_safe("22615833", "test@gmail.com", 1, None, "Test Subject", "Test Content")  # Should fail
+# add_customer_safe("22615833", "test@gmail.com", 1, "2025-09-11", "Test Subject", "Test Content")  # Should success
+
