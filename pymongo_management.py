@@ -3,9 +3,15 @@ from bson import ObjectId
 import motor.motor_asyncio
 import logging
 import pymongo
+import urllib
 #-------------------------------------------------------------------------------------------------------------------------------
 # Lệnh chung
-def get_async_collection(collection_name, client_name="mongodb://123.24.206.25:27017/", db_name="Facebook"):
+def get_client_name():
+    username = urllib.parse.quote_plus("HHP_tool_mobile")
+    password = urllib.parse.quote_plus("Z@9v!L#7qT$e2Z^mT8&uP@rK1$gY#bW^3s!Nf*Qz@8Lx!R7v$X#pT^e9Z@mT8&uP@rK1$gY#bW^")
+    return f"mongodb://{username}:{password}@192.168.0.123:27017/?authSource=admin"
+
+def get_async_collection(collection_name, client_name=get_client_name(), db_name="Facebook"):
     """Tạo async collection client"""
     client = motor.motor_asyncio.AsyncIOMotorClient(client_name)
     db = client[db_name]
