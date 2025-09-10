@@ -15,14 +15,14 @@
   },
   "22616467": {
     "name": "Hoàng Linh",
-    "device": "DEVICE_ID_HOANG_LINH",
+    "device": "TSPNH6GYZLPJBY6X",
     "customers": [
       {
         "email": "newcustomer2@gmail.com",
         "sent": true
       },
       {
-        "email": "binhphuongtimviec@gmail.com",
+        "email": "vdtimviec@gmail.com",
         "sent": false
       }
     ]
@@ -125,7 +125,7 @@
       },
       {
         "email": "vdtimviec@gmail.com",
-        "sent": true
+        "sent": false
       }
     ]
   },

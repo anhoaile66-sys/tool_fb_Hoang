@@ -5,21 +5,23 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 from filelock import FileLock
 from classSend import run_sent
-from classHtmlRender import HtmlRenderSimulator
+from classHtmlRender import run_simulator
 
-# --- Cấu hình ---
+# --- Cấu hình biến truyền vào api ---
 EMP_ID = 22889521
+SUBJECT = ""
+CONTENT = ""
+MODE = 1
+# ----------------------------------- #
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 BUSINESS_SUBJECT_PATH = os.path.join(BASE_DIR, "business_subject_sample.txt")
 BUSINESS_WRITEN_MAIL_PATH = os.path.join(BASE_DIR, "business_writen_mail_sample.txt")
-html_simulator = HtmlRenderSimulator(EMP_ID=EMP_ID,BUSINESS_SUBJECT_PATH=BUSINESS_SUBJECT_PATH,BUSINESS_WRITEN_MAIL_PATH=BUSINESS_WRITEN_MAIL_PATH, MODE=1)
 
 JSON_FILE = os.path.join(BASE_DIR, "business_info.json")
 LOCK_FILE = JSON_FILE + ".lock"
 EMAIL_LST_FILE = os.path.join(BASE_DIR, "email_lst.json")
-SUBJECT = html_simulator.get_subject()
-CONTENT = html_simulator.get_content()  
-html_simulator.beautify_html()
+
 
 # --- Debounce ---
 last_trigger = 0
@@ -28,7 +30,7 @@ DEBOUNCE_SEC = 2  # chỉ gọi handler 1 lần nếu file chưa thay đổi tro
 # --- Handler khi file JSON thay đổi ---
 class JsonChangeHandler(FileSystemEventHandler):
     def on_modified(self, event):
-        global last_trigger
+        global last_trigger, SUBJECT, CONTENT
         if not (event.src_path.endswith("business_info.json") or event.src_path.endswith("email_lst.json")):
             return
 
@@ -47,8 +49,14 @@ class JsonChangeHandler(FileSystemEventHandler):
                 has_pending = any(not c.get("sent", False) for c in customers)
 
             if has_pending:
-                print("🔔 Có khách hàng mới, chạy gửi email...")
-                run_sent(EMP_ID, SUBJECT, CONTENT)
+                print("🔔 Có khách hàng mới, chạy gửi lấy html và gửi mail...")
+                simulator = run_simulator(EMP_ID, BUSINESS_SUBJECT_PATH, BUSINESS_WRITEN_MAIL_PATH, MODE=MODE)
+                # set 2 biến nhận từ api
+                simulator.set_subject(SUBJECT)
+                simulator.set_content(CONTENT)
+                simulator.beautify_html()
+                SUBJECT = simulator.get_subject() # có thể không cần thiết nhưng debug đc
+                run_sent(EMP_ID, SUBJECT)
             else:
                 print("ℹ️ Chưa có khách hàng mới, đợi update tiếp.")
         except Exception as e:

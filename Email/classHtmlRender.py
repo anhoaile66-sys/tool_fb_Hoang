@@ -11,8 +11,11 @@ class HtmlRenderSimulator:
         self.EMP_ID = str(EMP_ID)
         
         self.JSON_FILE = os.path.join(self.BASE_DIR, "business_info.json")
-        with open(self.JSON_FILE, "r", encoding="utf-8") as f:
-            self.data = json.load(f)
+        LOCK_FILE = self.JSON_FILE + ".lock"
+        with FileLock(LOCK_FILE, timeout=10):
+            with open(self.JSON_FILE, "r", encoding="utf-8") as f:
+                self.data = json.load(f)
+
             
         self.device_id = self.data[self.EMP_ID]["device"]
         self.d = u2.connect(self.device_id)
@@ -95,7 +98,7 @@ class HtmlRenderSimulator:
         time.sleep(1)
         if self.d(text="Select all").exists(timeout=3):
             self.d(text="Select all").click()
-            time.sleep(0.5)
+            time.sleep(1.5)
             self.d.press("del")
             print("Đã xoá cũ")
         else:
@@ -125,6 +128,8 @@ class HtmlRenderSimulator:
     def go_back_code_html(self):
         self.d.xpath('//android.widget.ScrollView/android.view.View[1]/android.view.View[1]/android.view.View[1]/android.widget.TextView[1]').click()
             
+            
+def run_simulator(EMP_ID, BUSINESS_SUBJECT_PATH, BUSINESS_WRITEN_MAIL_PATH, MODE):
+    simulator = HtmlRenderSimulator(EMP_ID=EMP_ID, BUSINESS_SUBJECT_PATH=BUSINESS_SUBJECT_PATH, BUSINESS_WRITEN_MAIL_PATH=BUSINESS_WRITEN_MAIL_PATH, MODE=MODE)
+    return simulator
     
-        
-        

@@ -10,14 +10,13 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 BUSINESS_FILE = os.path.join(BASE_DIR, "business_info.json")
 
 
-
 class EmailSender:
-    def __init__(self, emp_id: int, json_file: str, subject: str, content: str, name_acc:str):
+    def __init__(self, emp_id: int, json_file: str, subject: str, name_acc:str, name_file_attach:str):
         self.emp_id = str(emp_id)
         self.json_file = json_file
         self.subject = subject
-        self.content = content
         self.name_acc = name_acc
+        self.name_file_attach = name_file_attach
 
         # Load dữ liệu
         with open(self.json_file, "r", encoding="utf-8") as f:
@@ -106,7 +105,9 @@ class EmailSender:
         self.d.press("back")  # Đóng menu chọn tài khoản nếu vẫn mở
 
         
-    def send_email(self, to_email: str):
+    def send_email(self, to_email: str, name_file=None):
+        if name_file is None:
+            name_file = self.name_file_attach
         """Soạn & gửi email"""
         self.choose_account(name_acc=self.name_acc)
 
@@ -137,13 +138,31 @@ class EmailSender:
         else:
             print("Không tìm thấy tùy chọn Dán")
 
-        
         time.sleep(3)
-
+        self.add_file(name_file=name_file)
         self.d(resourceId="com.google.android.gm:id/send").click()
         # print(f"✅ Đã gửi email tới {to_email}")
         self.mark_sent(to_email)
-
+        
+    def add_file(self, name_file):
+        self.d(resourceId="com.google.android.gm:id/add_attachment").click()
+        time.sleep(1)
+        self.d.xpath('//android.widget.ListView/android.widget.LinearLayout[3]/android.widget.LinearLayout[1]/android.widget.RelativeLayout[1]').click()
+        time.sleep(3)
+        self.d(description="Hiển thị gốc").click()
+        time.sleep(1)
+        self.d(resourceId="android:id/title", text="Tài liệu").click()
+        time.sleep(1)
+        self.d(resourceId="com.google.android.documentsui:id/option_menu_search").click()
+        time.sleep(1)
+        self.d(resourceId="com.google.android.documentsui:id/search_src_text").click()
+        time.sleep(1)
+        self.d.send_keys(name_file, clear=True)
+        time.sleep(1)
+        self.d(resourceId="com.google.android.documentsui:id/thumbnail").click()
+        # chọn được là sẽ quay lại mail
+        time.sleep(1)
+        
     def run(self):
         customer = self.get_next_customer()
         self.open_gmail()
@@ -155,7 +174,7 @@ class EmailSender:
         self.send_email(email)
 
 # -------- send all pending while accounts còn quota ----------
-def send_all_pending(EMP_ID, SUBJECT, CONTENT, BUSINESS_FILE=BUSINESS_FILE):
+def send_all_pending(EMP_ID, SUBJECT,NAME_FILE_ATTACH, BUSINESS_FILE=BUSINESS_FILE ):
     manager = EmailManager(EMP_ID)
     while True:
         name_acc = manager.get_available_account()
@@ -164,7 +183,7 @@ def send_all_pending(EMP_ID, SUBJECT, CONTENT, BUSINESS_FILE=BUSINESS_FILE):
             break
 
         # tạo sender mới (mỗi lần để load latest business_info.json)
-        sender = EmailSender(emp_id=EMP_ID, json_file=BUSINESS_FILE, subject=SUBJECT, content=CONTENT, name_acc=name_acc)
+        sender = EmailSender(emp_id=EMP_ID, json_file=BUSINESS_FILE, subject=SUBJECT, name_acc=name_acc,name_file_attach=NAME_FILE_ATTACH)
 
         customer = sender.get_next_customer()
         if not customer:
@@ -185,8 +204,8 @@ def send_all_pending(EMP_ID, SUBJECT, CONTENT, BUSINESS_FILE=BUSINESS_FILE):
 
     print("✔️ Kết thúc vòng gửi (send_all_pending).")
 
-def run_sent(EMP_ID, SUBJECT, CONTENT, BUSINESS_FILE=BUSINESS_FILE, BASE_DIR=BASE_DIR):
-    send_all_pending(EMP_ID, SUBJECT, CONTENT, BUSINESS_FILE=BUSINESS_FILE)
+def run_sent(EMP_ID, SUBJECT, NAME_FILE_ATTACH="gia_goi.pdf", BUSINESS_FILE=BUSINESS_FILE):
+    send_all_pending(EMP_ID, SUBJECT,NAME_FILE_ATTACH, BUSINESS_FILE=BUSINESS_FILE)
 
 
 
