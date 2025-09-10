@@ -238,10 +238,10 @@ async def surf_fb(driver):
             count = random.randint(1,2)
             await nature_scroll(driver, max_roll=count, isFast=random.choice([True,False]))
             await asyncio.sleep(random.uniform(1,10))
-            if scroll_count % 11 == 0:
+            if scroll_count % 23 == 0:
                 await comment_post(driver, text=random.choice(COMMENTS))
                 await asyncio.sleep(random.uniform(3,5))
-            if scroll_count % 21 == 0:
+            if scroll_count % 24 == 0:
                 await like_post(driver, random.choice(EMOTION))
                 await asyncio.sleep(random.uniform(3,5))
             # if scroll_count % 25 == 0:

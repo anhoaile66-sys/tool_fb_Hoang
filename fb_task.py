@@ -4,27 +4,27 @@ from module import *
 from datetime import datetime, timedelta
 
 DEVICES_LIST = [
-    "7HYP4T4XTS4DXKCY",
-    "UWJJOJLB85SO7LIZ",
-    "2926294610DA007N",
     "7DXCUKKB6DVWDAQO",
     "8HMN4T9575HAQWLN",
     "CEIN4X45I7ZHFEFU",
     "CQIZKJ8P59AY7DHI",
-    "EQLNQ8O7EQCQPFXG",
-    "MJZDFY896TMJBUPN",
-    "TSPNH6GYZLPJBY6X",
-    "YH9TSS7XCMPFZHNR",
+    "UWJJOJLB85SO7LIZ",
+    # "7HYP4T4XTS4DXKCY",
+    # "2926294610DA007N",
+    # "EQLNQ8O7EQCQPFXG",
+    # "MJZDFY896TMJBUPN",
+    # "TSPNH6GYZLPJBY6X",
+    # "YH9TSS7XCMPFZHNR",
     "9PAM7DIFW87DOBEU",
-    "F6NZ5LRKWWGACYQ8",
-    "EM4DYTEITCCYJNFU",
-    "EY5H9DJNIVNFH6OR",
-    "QK8TEMKZMBYHPV6P",
-    "IJP78949G69DKNHM",
-    "PN59BMHYPFXCPN8T",
-    "EIFYAALRK7U4MRZ9",
-    "Z5LVOF4PRGXGTS9H",
-    "1ac1d26f0507"
+    # "F6NZ5LRKWWGACYQ8",
+    # "EM4DYTEITCCYJNFU",
+    # "EY5H9DJNIVNFH6OR",
+    # "QK8TEMKZMBYHPV6P",
+    # "IJP78949G69DKNHM",
+    # "PN59BMHYPFXCPN8T",
+    # "EIFYAALRK7U4MRZ9",
+    # "Z5LVOF4PRGXGTS9H",
+    # "1ac1d26f0507"
     ]
 
 # Thoát app, xóa cache khi chờ task
@@ -60,8 +60,8 @@ async def get_commands(driver, emp_id):
 async def fb_natural_task(driver, emp_id:str, account: str):
     actions = [
         ("Xem story", lambda: watch_story(driver)),
-        # ("Lướt fb", lambda: surf_fb(driver)),
-        ("Kết bạn", lambda: add_friend(driver, emp_id)),
+        ("Lướt fb", lambda: surf_fb(driver)),
+        # ("Kết bạn", lambda: add_friend(driver, emp_id)),
         ("Kiểm tra bài đăng", lambda: check_post(driver, account)),
         ("Kiểm tra nhóm chờ duyệt", lambda: check_unapproved_groups(driver, account)),
         ("Bình luận thương hiệu", lambda: comment_recruitment_post(driver, account)),
@@ -72,7 +72,7 @@ async def fb_natural_task(driver, emp_id:str, account: str):
     random.shuffle(actions)
     log_message(f"\n\nThực hiện tác vụ: Xem reels\n")
 
-    # await watch_reels(driver)
+    await watch_reels(driver)
     await asyncio.sleep(random.uniform(4,6))
 
     for name, action in actions:
@@ -96,6 +96,7 @@ async def run_on_device(driver):
         if not device:
             log_message(f"Không tìm thấy dữ liệu cho thiết bị {device_id}", logging.WARNING)
             emp_id = "22615833"
+            account = "default"
         else:
             emp_id = device['user']['emp_id']
             # Chuyển tài khoản
@@ -110,15 +111,16 @@ async def run_on_device(driver):
                 if i==3: i=0
                 for acc in device['accounts']:
                     if i==0:
-                        account=acc
+                        device['current_account'] = acc['account']
                         break
                     i-=1
                 log_message(f"Đang đăng nhập vào tài khoản {account['name']} trên thiết bị {device_id}")
                 await swap_account(driver, account)
                 device['current_account'] = account['account']
                 update_current_account(device_id, account)
+            account = device['current_account']
         # tasks nuôi fb
-        await fb_natural_task(driver, emp_id, device['current_account'])
+        await fb_natural_task(driver, emp_id, account)
         # await share_post(driver, text=random.choice(SHARES))
     except Exception as e:
         log_message(f"Lỗi trên thiết bị {device_id}: {e}", logging.ERROR)
