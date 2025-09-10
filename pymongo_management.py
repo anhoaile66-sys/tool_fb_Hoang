@@ -3,9 +3,18 @@ from bson import ObjectId
 import motor.motor_asyncio
 import logging
 import pymongo
+import urllib
+import json
 #-------------------------------------------------------------------------------------------------------------------------------
 # Lệnh chung
-def get_async_collection(collection_name, client_name="mongodb://localhost:27017/", db_name="Facebook"):
+def get_client_name(Type="Base"):
+    with open("DatabaseAccounts.env", "r") as file:
+        data = json.load(file).get(Type, {})
+    username = urllib.parse.quote_plus(data["username"])
+    password = urllib.parse.quote_plus(data["pwd"])
+    return f"mongodb://{username}:{password}@123.24.206.25:27017/?authSource=admin"
+
+def get_async_collection(collection_name, client_name=get_client_name(), db_name="Facebook"):
     """Tạo async collection client"""
     client = motor.motor_asyncio.AsyncIOMotorClient(client_name)
     db = client[db_name]
@@ -206,7 +215,7 @@ async def get_account(user_id):
                 ]
             }
         )
-        result = await collection.insert_one({"user_id": user_id, "kpi": {"Bình luận": comment_count + 5, "Tham gia nhóm": group_count + 5}, "kpi_per_day": {"Bình luận": 5, "Tham gia nhóm": 5}})
+        result = await collection.insert_one({"user_id": user_id, "kpi": {"Bình luận": comment_count + 1, "Tham gia nhóm": group_count + 5}, "kpi_per_day": {"Bình luận": 1, "Tham gia nhóm": 5}})
         if result.inserted_id:
             user = await collection.find_one({"_id": result.inserted_id})
     return user
