@@ -6891,10 +6891,10 @@ def api_add_create_group_chat_pvp():
                         device_status['max_add_friend_per_day'][id][num_phone_zalo] -= 1
 
                 dict_status_zalo[num_phone_zalo] = ""
-                dict_status_update_pvp[num_phone_zalo] = 2
+                dict_status_update_pvp[num_phone_zalo] = 0
                 # two = time.time()
                 # print(two-one)
-                handle_chat_view(d, num_phone_zalo)
+                #handle_chat_view(d, num_phone_zalo)
                 # print("Đã hết treo chưa")
                 # two = time.time()
                 # print(two-one)
