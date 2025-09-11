@@ -6,11 +6,10 @@ from classSend import run_sent
 from classHtmlRender import run_simulator
 
 # --- Cấu hình biến truyền vào api ---
-EMP_ID = 22894754
+# EMP_ID is now dynamically read from the database
 SUBJECT = ""
 CONTENT = ""
 
-# ----------------------------------- #
 MODE = 2
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -23,21 +22,21 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
+def get_distinct_emp_ids_with_pending_emails():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        "SELECT DISTINCT emp_id FROM customers WHERE sent = 0"
+    )
+    emp_ids = [row["emp_id"] for row in cursor.fetchall()]
+    conn.close()
+    return emp_ids
+
 def get_pending_customers(emp_id):
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute(
         "SELECT customer_id, customer_email, subject, content FROM customers WHERE emp_id = ? AND sent = 0",
-        (emp_id,)
-    )
-    customers = cursor.fetchall()
-    conn.close()
-    return customers
-
-def update_customer_sent_status(customer_id, sent_status=1):
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute(
         "UPDATE customers SET sent = ? WHERE customer_id = ?",
         (sent_status, customer_id)
     )
@@ -113,4 +112,4 @@ def process_pending_emails(emp_id):
 
 while True:
     process_pending_emails(EMP_ID)
-    time.sleep(300)  # check lại sau 5 giây
+    time.sleep(300)  # check lại sau 300 giây

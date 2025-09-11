@@ -6,77 +6,106 @@ from filelock import FileLock
 
 
 class HtmlRenderSimulator:
-    def __init__(self, EMP_ID: int, BUSINESS_SUBJECT_PATH: str, BUSINESS_WRITEN_MAIL_PATH: str,  MODE:int=2):
+    def __init__(self, EMP_ID: int, customer_id: int = None, MODE=2):
         self.BASE_DIR = os.path.dirname(os.path.abspath(__file__))
         self.EMP_ID = str(EMP_ID)
+        self.customer_id = customer_id
+        self.MODE = MODE
+        self.html_processed = False
+        # Database path
+        self.DB_PATH = os.path.join(self.BASE_DIR, "..", "business", "business.db")
         
-        self.JSON_FILE = os.path.join(self.BASE_DIR, "..", "business", "business_info.json")
-        LOCK_FILE = self.JSON_FILE + ".lock"
-        with FileLock(LOCK_FILE, timeout=10):
-            with open(self.JSON_FILE, "r", encoding="utf-8") as f:
-                self.data = json.load(f)
-
-            
-        self.device_id = self.data[self.EMP_ID]["device"]
+        # Get device info from employees table
+        self.device_id = self.get_device_id()
         self.d = u2.connect(self.device_id)
         self.width, self.height = self.d.window_size()
         
-        self.MODE = 2  # 1: mặc định 2: kinh doanh nhập 
-        if self.MODE == 1:
-            self.BUSINESS_SUBJECT_PATH = os.path.join(self.BASE_DIR, "..", "business", "business_subject_sample.txt")
-            self.BUSINESS_WRITEN_MAIL_PATH = os.path.join(self.BASE_DIR, "..", "business", "business_writen_mail_sample.txt")
-        else: 
-            self.BUSINESS_SUBJECT_PATH = BUSINESS_SUBJECT_PATH
-            self.BUSINESS_WRITEN_MAIL_PATH = BUSINESS_WRITEN_MAIL_PATH
+        # Get email content from database
+        self.BUSINESS_SUBJECT = None
+        self.BUSINESS_WRITEN_MAIL = None
+        
+        if self.customer_id:
+            self.load_customer_data()
 
-        
-        
-        self.BUSINESS_SUBJECT = self.get_subject()
-        self.BUSINESS_WRITEN_MAIL = self.get_content()
+    def get_device_id(self):
+        """Lấy device_id từ bảng employees"""
+        conn = None
+        try:
+            conn = sqlite3.connect(self.DB_PATH)
+            cursor = conn.cursor()
+            
+            cursor.execute("SELECT device FROM employees WHERE emp_id = ?", (self.EMP_ID,))
+            result = cursor.fetchone()
+            
+            if result:
+                return result[0]
+            else:
+                raise ValueError(f"Employee ID {self.EMP_ID} not found in database")
+                
+        except sqlite3.Error as e:
+            raise Exception(f"Database error: {e}")
+        finally:
+            if conn:
+                conn.close()
+
+    def load_customer_data(self):
+        """Load subject và content từ bảng customers"""
+        conn = None
+        try:
+            conn = sqlite3.connect(self.DB_PATH)
+            cursor = conn.cursor()
+            
+            cursor.execute(
+                "SELECT subject, content FROM customers WHERE customer_id = ? AND emp_id = ?", 
+                (self.customer_id, self.EMP_ID)
+            )
+            result = cursor.fetchone()
+            
+            if result:
+                self.BUSINESS_SUBJECT = result[0] if result[0] else ""
+                self.BUSINESS_WRITEN_MAIL = result[1] if result[1] else ""
+            else:
+                raise ValueError(f"Customer ID {self.customer_id} not found for employee {self.EMP_ID}")
+                
+        except sqlite3.Error as e:
+            raise Exception(f"Database error: {e}")
+        finally:
+            if conn:
+                conn.close()
 
     def get_subject(self):
-        """Lấy subject"""
-        with open (self.BUSINESS_SUBJECT_PATH, "r", encoding="utf-8") as f:
-            BUSINESS_SUBJECT = f.read().strip()
-        return BUSINESS_SUBJECT
+        """Lấy subject từ database"""
+        if self.BUSINESS_SUBJECT is None and self.customer_id:
+            self.load_customer_data()
+        return self.BUSINESS_SUBJECT if self.BUSINESS_SUBJECT else ""
 
     def get_content(self):
-        """Lấy content"""
-        with open (self.BUSINESS_WRITEN_MAIL_PATH, "r", encoding="utf-8") as f:
-            BUSINESS_WRITEN_MAIL = f.read().strip()
-        return BUSINESS_WRITEN_MAIL
+        """Lấy content từ database"""
+        if self.BUSINESS_WRITEN_MAIL is None and self.customer_id:
+            self.load_customer_data()
+        return self.BUSINESS_WRITEN_MAIL if self.BUSINESS_WRITEN_MAIL else ""
     
-    def set_subject(self, text:str):
-        "Nhận kết quả từ đầu vào api để viết lại file txt"
-        if self.MODE == 2:
-            lock = FileLock(self.BUSINESS_SUBJECT_PATH + ".lock")
-            with lock:
-                with open(self.BUSINESS_SUBJECT_PATH, "w", encoding="utf-8") as f:
-                    f.write(text)
-            self.BUSINESS_SUBJECT = text
-        
-    def set_content(self, text:str):
-        """
-        Nhận kết quả từ đầu vào api để viết lại file txt, text ở đây đang là html raw
-        """
-        if self.MODE == 2:
-            lock = FileLock(self.BUSINESS_WRITEN_MAIL_PATH + ".lock")
-            with lock:
-                with open(self.BUSINESS_WRITEN_MAIL_PATH, "w", encoding="utf-8") as f:
-                    f.write(text)
-            self.BUSINESS_WRITEN_MAIL = text
     
     def beautify_html(self):
         """Chuyển text dạng html thành text render có format"""
+        if self.html_processed:
+            print("HTML đã được xử lý rồi")
+            return None
+        # chạy lấy rendered text
         self.open_html_app()
         self.search_html_online_viewer()
         self.compile_html()
+        
+        print("HTML processing hoàn thành, chờ 5s...")
+        time.sleep(5)
+        self.html_processed = True
+        print("HTML processing đã được đánh dấu hoàn thành")
 
         return None
     
     def open_html_app(self):
         """
-        Mở app HTML Editor trên thiết bị
+        Mở app Google trên thiết bị
         Lưu ý khi mở app phải ở trong thẻ .html rồi 
         sử dụng weditor để dễ bề biết trước xpath
         """
@@ -101,12 +130,13 @@ class HtmlRenderSimulator:
             print("Đúng trang HTML Online Viewer rồi → clear luôn")
             self.clear_old_html()
         else:
-            self.delete_recent_tab()
             # nhấp tìm kiếm
             self.d.xpath('//*[@resource-id="googleapp_facade_search_box"]/android.widget.TextView[1]').click()
+            time.sleep(1)
             self.d(resourceId="com.google.android.googlequicksearchbox:id/googleapp_search_box").click()
             # truyền tên miền 
             self.d.send_keys("https://html.onlineviewer.net/", clear=True)
+            time.sleep(1)
             self.d.xpath('//*[@resource-id="com.google.android.inputmethod.latin:id/key_pos_ime_action"]/android.widget.FrameLayout[1]/android.widget.ImageView[1]').click()
             time.sleep(3)
             self.clear_old_html()
@@ -158,9 +188,12 @@ class HtmlRenderSimulator:
     def delete_recent_tab(self):
         self.d(resourceId="com.android.systemui:id/recent_apps").click()
         	# (0.476, 0.48)
-        self.d.swipe_ext("up", scale=0.8, box=(0.3, 0.3, 0.7, 0.6))
-            
-            
+        time.sleep(1)
+        self.d.swipe(0.476, 0.74, 0.476, 0.0)
+        time.sleep(1)
+        self.d(resourceId="com.android.systemui:id/center_group").click()
+        time.sleep(1)
+        
 def run_simulator(EMP_ID, BUSINESS_SUBJECT_PATH, BUSINESS_WRITEN_MAIL_PATH, MODE):
     simulator = HtmlRenderSimulator(EMP_ID=EMP_ID, BUSINESS_SUBJECT_PATH=BUSINESS_SUBJECT_PATH, BUSINESS_WRITEN_MAIL_PATH=BUSINESS_WRITEN_MAIL_PATH, MODE=MODE)
     return simulator
