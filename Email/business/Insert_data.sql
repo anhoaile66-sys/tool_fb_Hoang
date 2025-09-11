@@ -108,13 +108,7 @@
 
 
 
--- DELETE FROM customers
--- WHERE customer_id = (
---     SELECT customer_id
---     FROM customers
---     ORDER BY customer_id
---     LIMIT 1 OFFSET 10
--- );
+
 
 UPDATE customers
 SET sent = 1

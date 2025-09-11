@@ -147,17 +147,22 @@ class HtmlRenderSimulator:
         y = self.height * 0.210
         self.d.long_click(x, y, duration=1.0)
         time.sleep(1)
-        self.d(resourceId="android:id/overflow").click()
-        time.sleep(1)
-        
-        if self.d(text="Chọn tất cả").exists(timeout=3):
-            self.d(text="Chọn tất cả").click()
+        # 
+        if not self.d(resourceId="android:id/floating_toolbar_menu_item_text", text="Chọn tất cả").exists(timeout=2):
+            if self.d(resourceId="android:id/overflow").exists(timeout=2):
+                self.d(resourceId="android:id/overflow").click()
+                time.sleep(1)
+
+        # Click "Chọn tất cả" nếu có
+        if self.d(resourceId="android:id/floating_toolbar_menu_item_text", text="Chọn tất cả").exists(timeout=3):
+            self.d(resourceId="android:id/floating_toolbar_menu_item_text", text="Chọn tất cả").click()
             time.sleep(1.5)
         else:
             print("Không tìm thấy tuỳ chọn Chọn tất cả")
-        # chọn tất rồi lại nhấn giữ để cắt
+            # chọn tất rồi lại nhấn giữ để cắt
         self.d.long_click(x, y, duration=1.0)
         time.sleep(1)
+        
         if self.d(text="Cắt").exists(timeout=3):
             self.d(text="Cắt").click()
             time.sleep(1.5)
@@ -168,21 +173,38 @@ class HtmlRenderSimulator:
         self.d.send_keys(self.BUSINESS_WRITEN_MAIL)
         
     def compile_html(self):
-        # 0.794, 0.305
-        x = self.width * 0.794
-        y = self.height * 0.305
+        print("➡️ Bắt đầu compile_html (copy rendered text)...")
+        x = self.width * 0.678
+        y = self.height * 0.138
         self.d.long_click(x, y, duration=1.0)
         time.sleep(1)
-        self.d(resourceId="android:id/overflow").click()
+
+        if not self.d(resourceId="android:id/floating_toolbar_menu_item_text", text="Chọn tất cả").exists(timeout=2):
+            if self.d(resourceId="android:id/overflow").exists(timeout=2):
+                print("Long click thành công")
+                self.d(resourceId="android:id/overflow").click()
+                time.sleep(1)
+                
+        # Click "Chọn tất cả" nếu có
+        elif self.d(resourceId="android:id/floating_toolbar_menu_item_text", text="Chọn tất cả").exists(timeout=3):
+            self.d(resourceId="android:id/floating_toolbar_menu_item_text", text="Chọn tất cả").click()
+            print("Long click được và chọn tất cả được")
+            time.sleep(1.5)
+        else:
+            print("Không nhấn được longclick???? Rõ code y hệt hàm clear mà")
+        
+        self.d.long_click(x, y, duration=1.0)
         time.sleep(1)
-        # chọn tất rồi sao chép
+         
         if self.d(text="Chọn tất cả").exists(timeout=3):
             self.d(text="Chọn tất cả").click()
             time.sleep(1.5)
-            self.d(text="Sao chép").click()
-            time.sleep(1)
+            if self.d(text="Sao chép").exists(timeout=3):
+                self.d(text="Sao chép").click()
+                time.sleep(1.5)
+                print("✅ Đã sao chép rendered text")
         else:
-            print("Không tìm thấy tuỳ chọn Chọn tất cả")
+            print("❌ Không tìm thấy tuỳ chọn 'sao chép' trong compile_html")
             # ảnh Cả cook tiếp nhé, đoạn này nếu cơ chế giữ để hiện menu nếu thay đổi thì toang, phải chinh lại mấy hàm này
         
     def delete_recent_tab(self):

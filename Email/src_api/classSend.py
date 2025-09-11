@@ -225,6 +225,7 @@ class EmailSender:
             self.email_manager.increase_counter(sender_email)
             # Đánh dấu customer đã gửi
             self._mark_customer_as_sent(customer_id)
+            
             return True
         
         return False

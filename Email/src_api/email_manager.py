@@ -4,7 +4,7 @@ from datetime import datetime
 from filelock import FileLock
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(BASE_DIR, "..", "business", "business.db")  # Sửa tên DB cho đúng
+DB_PATH = os.path.join(BASE_DIR, "..", "business", "businesses.db")
 
 MAX_PER_DAY = 3
 ENABLE_RESET = False  # <-- bật True để auto reset mỗi ngày, False để test

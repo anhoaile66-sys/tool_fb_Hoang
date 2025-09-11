@@ -2,19 +2,11 @@ import time
 import os
 import sqlite3
 from datetime import datetime
-from classSend import run_sent
-from classHtmlRender import run_simulator
+from classSend import EmailSender
+from classHtmlRender import HtmlRenderSimulator
 
-# --- Cấu hình biến truyền vào api ---
-# EMP_ID is now dynamically read from the database
-SUBJECT = ""
-CONTENT = ""
-
-MODE = 2
-
+# --- Cấu hình ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-BUSINESS_SUBJECT_PATH = os.path.join(BASE_DIR, "..", "business", "business_subject_sample.txt")
-BUSINESS_WRITEN_MAIL_PATH = os.path.join(BASE_DIR, "..", "business", "business_writen_mail_sample.txt")
 DB_PATH = os.path.join(BASE_DIR, "..", "business", "businesses.db")
 
 def get_db_connection():
@@ -32,84 +24,105 @@ def get_distinct_emp_ids_with_pending_emails():
     conn.close()
     return emp_ids
 
-def get_pending_customers(emp_id):
+def get_next_pending_customer(emp_id):
+    """Lấy khách hàng chờ xử lý tiếp theo cho một emp_id."""
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute(
-        "SELECT customer_id, customer_email, subject, content FROM customers WHERE emp_id = ? AND sent = 0",
-        "UPDATE customers SET sent = ? WHERE customer_id = ?",
-        (sent_status, customer_id)
-    )
-    conn.commit()
-    conn.close()
-
-def get_email_account_for_sending(emp_id):
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute(
-        "SELECT email_account, id FROM email_accounts WHERE emp_id = ? AND is_active = 1 ORDER BY num_sent ASC LIMIT 1",
+        "SELECT customer_id FROM customers WHERE emp_id = ? AND sent = 0 ORDER BY customer_id LIMIT 1",
         (emp_id,)
     )
-    account = cursor.fetchone()
+    result = cursor.fetchone()
     conn.close()
-    return account
+    return result["customer_id"] if result else None
 
-def update_email_account_sent_count(account_id):
+def is_customer_sent(customer_id):
+    """Kiểm tra xem một customer đã được đánh dấu là đã gửi chưa."""
+    if customer_id is None:
+        return True # Không có customer trước đó, coi như đã xử lý
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute(
-        "UPDATE email_accounts SET num_sent = num_sent + 1 WHERE id = ?",
-        (account_id,)
+        "SELECT sent FROM customers WHERE customer_id = ?",
+        (customer_id,)
     )
-    conn.commit()
+    result = cursor.fetchone()
     conn.close()
+    return result["sent"] == 1 if result else False
 
-def process_pending_emails(emp_id):
-    global SUBJECT, CONTENT
-    print(f"👂 Đang kiểm tra khách hàng mới cho EMP_ID: {emp_id}...")
-    
-    pending_customers = get_pending_customers(emp_id)
+def process_next_email_for_emp(emp_id, last_processed_customer_info):
+    """
+    Xử lý email chờ xử lý tiếp theo cho một nhân viên.
+    Kiểm tra xem email đã xử lý trước đó cho nhân viên này đã được đánh dấu là đã gửi chưa.
+    Trả về ID của khách hàng vừa được xử lý, hoặc ID cũ nếu thất bại.
+    """
+    last_customer_id = last_processed_customer_info.get('customer_id')
+    last_html_ok = last_processed_customer_info.get('html_ok', True)
 
-    if pending_customers:
-        print(f"🔔 Có {len(pending_customers)} khách hàng mới, chạy gửi lấy html và gửi mail...")
-        for customer in pending_customers:
-            customer_id = customer["customer_id"]
-            customer_email = customer["customer_email"]
-            mail_subject = customer["subject"] if customer["subject"] else SUBJECT
-            mail_content = customer["content"] if customer["content"] else CONTENT
+    if not is_customer_sent(last_customer_id) or not last_html_ok:
+        print(f"🔴 Tác vụ trước đó cho EMP_ID {emp_id} (Customer ID: {last_customer_id}) chưa hoàn tất. Tạm dừng cho nhân viên này.")
+        return {'customer_id': last_customer_id, 'html_ok': last_html_ok}
 
-            email_account = get_email_account_for_sending(emp_id)
-            if not email_account:
-                print(f"⚠️ Không tìm thấy tài khoản email hoạt động để gửi cho EMP_ID: {emp_id}")
-                break # Stop processing for this emp_id if no active email account
+    customer_id = get_next_pending_customer(emp_id)
 
-            sender_email = email_account["email_account"]
-            email_account_id = email_account["id"]
+    if customer_id is None:
+        # Không còn khách hàng nào cho nhân viên này, reset trạng thái
+        return {'customer_id': None, 'html_ok': True} 
 
-            print(f"✉️ Đang gửi email cho {customer_email} từ {sender_email}...")
-            
-            simulator = run_simulator(emp_id, BUSINESS_SUBJECT_PATH, BUSINESS_WRITEN_MAIL_PATH, MODE=MODE)
-            simulator.set_subject(mail_subject)
-            simulator.set_content(mail_content)
-            simulator.beautify_html()
-            
-            final_subject = simulator.get_subject()
-            final_content = simulator.get_content()
+    print(f"\n▶️ Đang xử lý khách hàng ID: {customer_id} cho EMP_ID: {emp_id}...")
 
-            # Assuming run_sent handles the actual sending and returns success/failure
-            # For now, we'll assume it always succeeds for the purpose of this refactor
-            success = run_sent(emp_id, final_subject, final_content, customer_email, sender_email) 
-            
-            if success:
-                update_customer_sent_status(customer_id, 1)
-                update_email_account_sent_count(email_account_id)
-                print(f"✅ Đã gửi email thành công cho {customer_email}.")
-            else:
-                print(f"❌ Gửi email thất bại cho {customer_email}.")
-                # Optionally, handle retry logic or mark as failed in DB
-    else:
-        print("ℹ️ Chưa có khách hàng mới, đợi update tiếp.")
+    try:
+        # 1. Xử lý HTML
+        print("   - Bước 1: Xử lý HTML...")
+        simulator = HtmlRenderSimulator(EMP_ID=emp_id, customer_id=customer_id)
+        simulator.beautify_html()
 
-while True:
-    process_pending_emails(EMP_ID)
-    time.sleep(300)  # check lại sau 300 giây
+        if not simulator.html_processed:
+            print(f"   - ❌ Lỗi: Xử lý HTML thất bại cho customer ID: {customer_id}.")
+            return {'customer_id': last_customer_id, 'html_ok': False}
+
+        # 2. Gửi Email
+        print("   - Bước 2: Gửi email...")
+        sender = EmailSender(emp_id=emp_id)
+        sender.open_gmail()
+        success = sender.send_to_customer(customer_id)
+
+        if success:
+            print(f"   - ✅ Gửi email thành công cho customer ID: {customer_id}.")
+            return {'customer_id': customer_id, 'html_ok': True}
+        else:
+            print(f"   - ❌ Lỗi: Gửi email thất bại cho customer ID: {customer_id}.")
+            return {'customer_id': last_customer_id, 'html_ok': True}
+
+    except Exception as e:
+        print(f"   - ❌ Lỗi nghiêm trọng khi xử lý customer ID {customer_id}: {e}")
+        return {'customer_id': last_customer_id, 'html_ok': True}
+
+def main():
+    # Dictionary để theo dõi khách hàng cuối cùng được xử lý cho mỗi nhân viên
+    # Định dạng: { emp_id: {'customer_id': id, 'html_ok': True/False} }
+    last_processed_status = {}
+
+    while True:
+        print(f"\n--- Chạy kiểm tra lúc {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} ---")
+        emp_ids = get_distinct_emp_ids_with_pending_emails()
+
+        if not emp_ids:
+            print("ℹ️ Không có nhân viên nào có email cần gửi.")
+        else:
+            print(f"🔍 Tìm thấy {len(emp_ids)} nhân viên có email chờ xử lý: {emp_ids}")
+            for emp_id in emp_ids:
+                # Lấy trạng thái cuối cùng cho nhân viên này, hoặc mặc định là trạng thái sạch
+                last_status = last_processed_status.get(emp_id, {'customer_id': None, 'html_ok': True})
+                
+                # Xử lý một email và nhận trạng thái mới
+                new_status = process_next_email_for_emp(emp_id, last_status)
+                
+                # Cập nhật bản đồ trạng thái
+                last_processed_status[emp_id] = new_status
+
+        print(f"--- Hoàn thành chu kỳ, nghỉ 90 giây ---")
+        time.sleep(90)
+
+if __name__ == "__main__":
+    main()

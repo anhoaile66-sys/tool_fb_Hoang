@@ -1,171 +1,128 @@
 import time
 import os
-import json
-import threading
-from watchdog.observers import Observer
-from watchdog.events import FileSystemEventHandler
-from filelock import FileLock
-from flask import Flask, request, jsonify
-from classSend import run_sent
-from classHtmlRender import run_simulator
+import sqlite3
+from datetime import datetime
+from classSend import EmailSender
+from classHtmlRender import HtmlRenderSimulator
 
-# --- Cấu hình biến mặc định ---
-DEFAULT_CONFIG = {
-    "EMP_ID": 22616467,
-    "SUBJECT": "",
-    "CONTENT": "",
-    "MODE": 1
-}
-
-# Biến toàn cục để lưu config hiện tại
-current_config = DEFAULT_CONFIG.copy()
-config_lock = threading.Lock()
-
-# ----------------------------------- #
-
+# --- Cấu hình ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-BUSINESS_SUBJECT_PATH = os.path.join(BASE_DIR, "..", "business", "business_subject_sample.txt")
-BUSINESS_WRITEN_MAIL_PATH = os.path.join(BASE_DIR, "..", "business", "business_writen_mail_sample.txt")
+DB_PATH = os.path.join(BASE_DIR, "..", "business", "businesses.db")
 
-JSON_FILE = os.path.join(BASE_DIR, "..", "business", "business_info.json")
-LOCK_FILE = JSON_FILE + ".lock"
-EMAIL_LST_FILE = os.path.join(BASE_DIR, "..", "business", "email_lst.json")
+def get_db_connection():
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    return conn
 
-# --- Debounce ---
-last_trigger = 0
-DEBOUNCE_SEC = 2
+def get_distinct_emp_ids_with_pending_emails():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        "SELECT DISTINCT emp_id FROM customers WHERE sent = 0"
+    )
+    emp_ids = [row["emp_id"] for row in cursor.fetchall()]
+    conn.close()
+    return emp_ids
 
-# --- Flask app cho API ---
-app = Flask(__name__)
+def get_next_pending_customer(emp_id):
+    """Lấy khách hàng chờ xử lý tiếp theo cho một emp_id."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        "SELECT customer_id FROM customers WHERE emp_id = ? AND sent = 0 ORDER BY customer_id LIMIT 1",
+        (emp_id,)
+    )
+    result = cursor.fetchone()
+    conn.close()
+    return result["customer_id"] if result else None
 
-@app.route('/update-watcher-config', methods=['POST'])
-def update_config():
-    """API để cập nhật config từ file 1"""
-    global current_config
+def is_customer_sent(customer_id):
+    """Kiểm tra xem một customer đã được đánh dấu là đã gửi chưa."""
+    if customer_id is None:
+        return True # Không có customer trước đó, coi như đã xử lý
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        "SELECT sent FROM customers WHERE customer_id = ?",
+        (customer_id,)
+    )
+    result = cursor.fetchone()
+    conn.close()
+    return result["sent"] == 1 if result else False
+
+def process_emails_for_emp(emp_id):
+    print(f"👂 Bắt đầu xử lý cho EMP_ID: {emp_id}...")
     
-    # Ưu tiên lấy từ JSON, nếu không có thì lấy từ form-data
-    data = request.get_json(silent=True)
-    if not data:
-        data = {}
-    
-    # Lấy dữ liệu từ form nếu không có trong JSON
-    for key in ["EMP_ID", "SUBJECT", "CONTENT", "MODE"]:
-        key_lower = key.lower()
-        if key not in data:
-            if key in request.form:
-                data[key] = request.form[key]
-            elif key_lower in request.form:
-                data[key] = request.form[key_lower]
-    
-    # Kiểm tra có dữ liệu không
-    if not data:
-        return jsonify({"error": "Không có dữ liệu JSON hoặc form-data"}), 400
-    
-    with config_lock:
-        # Cập nhật các trường có trong request
-        for key in ["EMP_ID", "SUBJECT", "CONTENT", "MODE"]:
-            key_lower = key.lower()
-            if key in data:
-                # Convert EMP_ID và MODE về int nếu cần
-                if key in ["EMP_ID", "MODE"]:
-                    try:
-                        current_config[key] = int(data[key])
-                    except (ValueError, TypeError):
-                        return jsonify({"error": f"Giá trị {key} phải là số"}), 400
-                else:
-                    current_config[key] = str(data[key])
-            elif key_lower in data:
-                # Convert EMP_ID và MODE về int nếu cần
-                if key in ["EMP_ID", "MODE"]:
-                    try:
-                        current_config[key] = int(data[key_lower])
-                    except (ValueError, TypeError):
-                        return jsonify({"error": f"Giá trị {key_lower} phải là số"}), 400
-                else:
-                    current_config[key] = str(data[key_lower])
-    
-    print(f"🔄 Config đã được cập nhật: {current_config}")
-    return jsonify({
-        "status": "updated",
-        "config": current_config
-    })
+    last_customer_id_processed = None
+    html_processed_successfully = True
 
-@app.route('/get-watcher-config', methods=['GET'])
-def get_config():
-    """API để xem config hiện tại"""
-    with config_lock:
-        return jsonify(current_config)
+    while True:
+        # Điều kiện để xử lý hàng tiếp theo:
+        # 1. DB của hàng trước đó đã được cập nhật là sent=1
+        # 2. HTML của hàng trước đó đã được xử lý thành công
+        if not is_customer_sent(last_customer_id_processed) or not html_processed_successfully:
+            print(f"🔴 Hàng trước đó (ID: {last_customer_id_processed}) chưa được xử lý xong. Tạm dừng cho EMP_ID: {emp_id}.")
+            break
 
-# --- Handler khi file JSON thay đổi ---
-class JsonChangeHandler(FileSystemEventHandler):
-    def on_modified(self, event):
-        global last_trigger
-        if not (event.src_path.endswith("business_info.json") or event.src_path.endswith("email_lst.json")):
-            return
+        customer_id = get_next_pending_customer(emp_id)
 
-        now = time.time()
-        if now - last_trigger < DEBOUNCE_SEC:
-            return
-        last_trigger = now
+        if customer_id is None:
+            print(f"✅ Không còn khách hàng nào chờ xử lý cho EMP_ID: {emp_id}.")
+            break
+        
+        print(f"\n▶️ Đang xử lý khách hàng ID: {customer_id}...")
 
         try:
-            with config_lock:
-                config = current_config.copy()
+            # 1. Xử lý HTML
+            print("   - Bước 1: Xử lý HTML...")
+            simulator = HtmlRenderSimulator(EMP_ID=emp_id, customer_id=customer_id)
+            simulator.beautify_html()
             
-            emp_id = config["EMP_ID"]
-            subject = config["SUBJECT"]
-            content = config["CONTENT"]
-            mode = config["MODE"]
-            
-            with FileLock(LOCK_FILE, timeout=10):
-                with open(JSON_FILE, "r", encoding="utf-8") as f:
-                    data = json.load(f)
-                
-                emp_id_str = str(emp_id)
-                customers = data.get(emp_id_str, {}).get("customers", [])
-                has_pending = any(not c.get("sent", False) for c in customers)
+            html_processed_successfully = simulator.html_processed
+            if not html_processed_successfully:
+                print(f"   - ❌ Lỗi: Xử lý HTML thất bại cho customer ID: {customer_id}.")
+                # Dừng vòng lặp, lần check sau sẽ bị chặn lại ở điều kiện đầu
+                continue 
+            print("   - ✅ HTML đã được xử lý.")
 
-            if has_pending:
-                print(f"🔔 Có khách hàng mới cho EMP_ID {emp_id}, chạy gửi mail...")
-                simulator = run_simulator(emp_id, BUSINESS_SUBJECT_PATH, BUSINESS_WRITEN_MAIL_PATH, MODE=mode)
-                simulator.set_subject(subject)
-                simulator.set_content(content)
-                simulator.beautify_html()
-                updated_subject = simulator.get_subject()
-                run_sent(emp_id, updated_subject)
+            # 2. Gửi email
+            print("   - Bước 2: Gửi email...")
+            sender = EmailSender(emp_id=emp_id)
+            # Không cần mở Gmail mỗi lần nếu app đã mở, nhưng để đơn giản, ta giữ nguyên
+            sender.open_gmail() 
+            success = sender.send_to_customer(customer_id)
+
+            if success:
+                print(f"   - ✅ Gửi email thành công cho customer ID: {customer_id}.")
+                last_customer_id_processed = customer_id
             else:
-                print("ℹ️ Chưa có khách hàng mới, đợi update tiếp.")
+                print(f"   - ❌ Lỗi: Gửi email thất bại cho customer ID: {customer_id}.")
+                # Dừng xử lý cho emp_id này, vì gửi lỗi
+                break
+        
         except Exception as e:
-            print(f"⚠️ Lỗi khi đọc JSON hoặc gửi mail: {e}")
+            print(f"   - ❌ Đã xảy ra lỗi nghiêm trọng khi xử lý customer ID {customer_id}: {e}")
+            # Dừng xử lý cho emp_id này
+            break
+        
+        # Nghỉ một chút trước khi xử lý khách hàng tiếp theo
+        time.sleep(5)
 
-def run_flask_app():
-    """Chạy Flask app trong thread riêng"""
-    app.run(host="0.0.0.0", port=5469, debug=False, use_reloader=False)
 
-def run_file_watcher():
-    """Chạy file watcher"""
-    event_handler = JsonChangeHandler()
-    observer = Observer()
-    observer.schedule(event_handler, BASE_DIR, recursive=False)
-    observer.start()
-    print(f"👂 Đang lắng nghe thay đổi {JSON_FILE} và {EMAIL_LST_FILE} ...")
-    
-    try:
-        while True:
-            time.sleep(5)
-    except KeyboardInterrupt:
-        observer.stop()
-    observer.join()
+def main():
+    while True:
+        print(f"\n--- Chạy kiểm tra lúc {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} ---")
+        emp_ids = get_distinct_emp_ids_with_pending_emails()
+        
+        if not emp_ids:
+            print("ℹ️ Không có nhân viên nào có email cần gửi.")
+        else:
+            print(f"🔍 Tìm thấy {len(emp_ids)} nhân viên có email chờ xử lý: {emp_ids}")
+            for emp_id in emp_ids:
+                process_emails_for_emp(emp_id)
+        
+        print(f"--- Hoàn thành chu kỳ, nghỉ 300 giây ---")
+        time.sleep(300)
 
-# --- Khởi động cả Flask và Watcher ---
 if __name__ == "__main__":
-    print("🚀 Khởi động Watch Email Service...")
-    print(f"📡 API Server: http://localhost:5469")
-    print(f"🔧 Config mặc định: {current_config}")
-    
-    # Chạy Flask trong thread riêng
-    flask_thread = threading.Thread(target=run_flask_app, daemon=True)
-    flask_thread.start()
-    
-    # Chạy file watcher trong main thread
-    run_file_watcher()
+    main()
