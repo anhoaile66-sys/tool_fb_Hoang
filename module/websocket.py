@@ -36,7 +36,8 @@ class WebSocketTaskHandler:
         self.websocket = None
         self.connected = False
     async def get_driver_by_user_id(self, user_id: str):
-        driver = u2.connect("1ac1d26f0507")
+        device_id = await pymongo_management.get_device_by_username(user_id)
+        driver = u2.connect(device_id)
         return driver
     
     async def get_commands(self, user_id: str):
@@ -46,7 +47,6 @@ class WebSocketTaskHandler:
         """Lấy lệnh từ server và thực hiện"""
         commands = await self.get_commands(user_id)
         for command in commands:
-            print(command)
             params = command.get("params", {})
             if command['type'] == 'post_to_group':
                 await post_to_group(driver, command['_id'], params.get("group_link", ""), params.get("content", ""), params.get("files", []))
@@ -55,7 +55,7 @@ class WebSocketTaskHandler:
             if command['type'] == 'post_to_wall':
                 await post_to_wall(driver, command['_id'], params.get("content", ""), params.get("files", []))
             await asyncio.sleep(random.uniform(4, 6))
-
+    
     async def handle_server_message(self, data: dict):
         """Xử lý message từ server và tạo task tương ứng"""
         message_type = data.get("type")

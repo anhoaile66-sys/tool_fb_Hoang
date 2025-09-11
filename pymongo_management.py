@@ -436,16 +436,16 @@ async def save_post_comment(post_link, commenter, comment, time, level=0, parent
     return {'message': '❌ Lưu bình luận trong bài đăng: Thất bại'}, logging.ERROR
 
 #-------------------------------------------------------------------------------------------------------------------------------
-# Lệnh liên quan tới collection "Thiet-bi
+# Lệnh liên quan tới collection "userfbs"
 async def get_device_by_username(username):
     """Lấy thiết bị theo username."""
-    collection = get_async_collection("Thiet-bi")
+    collection = get_async_collection("userfbs")
     device = await collection.find_one({"username": username})
     return device
 
 async def update_statusFB(username, statusFB):
     """Cập nhật trạng thái Facebook của thiết bị."""
-    collection = get_async_collection("Thiet-bi")
+    collection = get_async_collection("userfbs")
     result = await collection.update_one(
         {"username": username},
         {"$set": {"statusFB": statusFB}}

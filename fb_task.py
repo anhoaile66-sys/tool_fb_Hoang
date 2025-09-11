@@ -28,7 +28,7 @@ DEVICES_LIST = [
     "PN59BMHYPFXCPN8T",
     "EIFYAALRK7U4MRZ9",
     "Z5LVOF4PRGXGTS9H",
-    "1ac1d26f0507"
+    # "1ac1d26f0507"
     ]
 
 
