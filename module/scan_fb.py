@@ -34,8 +34,8 @@ def load_account_list():
         with open(USER_ACCOUNT_FILE, "r", encoding="utf-8") as f:
             if os.stat(USER_ACCOUNT_FILE).st_size == 0:
                 return []            
-            data = json.load(f)
-    except json.JSONDecodeError:
+            data = get_device_info.load(f)
+    except get_device_info.JSONDecodeError:
         return []
     for acc in data:
         acc['name'] = None
@@ -54,13 +54,13 @@ def create_device_structure(device_id):
 def save_device(device):
     file_path = os.path.join(DEVICES_FOLDER, f"device_{device['device_id']}.json")
     with open(file_path, "w", encoding="utf-8") as f:
-        json.dump(device, f, indent=4, ensure_ascii=False)
+        get_device_info.dump(device, f, indent=4, ensure_ascii=False)
     log_message(f"Đã tạo file {file_path} cho thiết bị {device['device_id']}")
 
 # Lưu lại danh sách tài khoản
 def save_account_list(account_list):
     with open(USER_ACCOUNT_FILE, "w", encoding="utf-8") as f:
-        json.dump(account_list, f, indent=4, ensure_ascii=False)
+        get_device_info.dump(account_list, f, indent=4, ensure_ascii=False)
     log_message("Đã lưu lại danh sách tài khoản chưa xử lý")
 
 # Lấy tên tài khoản nếu tên được lưu là null

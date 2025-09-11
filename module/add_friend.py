@@ -5,7 +5,7 @@ import requests
 API_LINK = "https://api.timviec365.vn/api/crm/customer/getNTDByEmpIdToGetPhoneNumber"
 
 # Gọi API lấy tên ntd, kết bạn
-async def add_friend(driver, emp_id:str):
+async def add_friend(driver, crm_id:str):
     """
     Lấy ntd, kiểm tra xem có thể kết bạn không, nếu không thì tìm ntd khác
     """
@@ -13,7 +13,7 @@ async def add_friend(driver, emp_id:str):
     log_message("Bắt đầu kết bạn")
     # Gọi API lấy ntd
     payload = {
-        "emp_ids": [int(emp_id)],
+        "crm_ids": [int(crm_id)],
         "size": 1,
         "key": "1697a131cb22ea0ab9510d379a8151f1",
         "getFbLink": True
@@ -23,8 +23,8 @@ async def add_friend(driver, emp_id:str):
         response = requests.post(API_LINK, json=payload)
         data=response.json()
         log_message("Lấy được response")
-        if emp_id in data['data']:
-            fb_link = data['data'][emp_id][0]['link_user_post']
+        if crm_id in data['data']:
+            fb_link = data['data'][crm_id][0]['link_user_post']
     except Exception:
         log_message("Có lỗi trong khi gọi API", logging.ERROR)
 
