@@ -5,14 +5,16 @@ from util import log_message
 import asyncio
 import logging
 
-async def join_group(driver, user_id, group_link, back_to_facebook = True):
+async def join_group(driver, command_id, user_id, group_link, back_to_facebook = True):
     toolfacebook_lib.redirect_to(driver, "https://facebook.com/" + group_link)
     await asyncio.sleep(2)
     joined_group = driver(textContains="đã tham gia nhóm")
     if joined_group.exists:
         result = await pymongo_management.update_joined_accounts(user_id, group_link)
         log_message(f"{driver.serial} - {result[0]['message']}", result[1])
-        await toolfacebook_lib.back_to_facebook(driver)
+        await pymongo_management.execute_command(command_id)
+        if back_to_facebook:
+            await toolfacebook_lib.back_to_facebook(driver)
         return
 
     join_button_clicked = False
@@ -25,12 +27,16 @@ async def join_group(driver, user_id, group_link, back_to_facebook = True):
         if joined_group.exists(timeout=5):
             result = await pymongo_management.update_joined_accounts(user_id, group_link)
             log_message(f"{driver.serial} - {result[0]['message']}", result[1])
-            await toolfacebook_lib.back_to_facebook(driver)
+            await pymongo_management.execute_command(command_id)
+            if back_to_facebook:
+                await toolfacebook_lib.back_to_facebook(driver)
             return
 
     if not await toolfacebook_lib.click_template(driver, "answer_question") and not join_button_clicked:
-        await toolfacebook_lib.back_to_facebook(driver)
         log_message(f"{driver.serial} - Nhóm đang chờ duyệt: {group_link}", logging.INFO)
+        await pymongo_management.execute_command(command_id)
+        if back_to_facebook:
+            await toolfacebook_lib.back_to_facebook(driver)
         return
     await asyncio.sleep(2)
     xml_dump = driver.dump_hierarchy()
@@ -87,10 +93,11 @@ async def join_group(driver, user_id, group_link, back_to_facebook = True):
     else:
         driver(resourceId="com.android.systemui:id/back").click()
         driver(resourceId="com.facebook.katana:id/(name removed)", text="THOÁT").click()
+    await pymongo_management.execute_command(command_id)
     if back_to_facebook:
         await toolfacebook_lib.back_to_facebook(driver)
     
 async def check_unapproved_groups(driver, user_id):
     unapproved_groups = await pymongo_management.get_unapproved_groups(user_id)
     for group in unapproved_groups:
-        await join_group(driver, user_id, group['Link'], False)
+        await join_group(driver, "", user_id, group['Link'], False)

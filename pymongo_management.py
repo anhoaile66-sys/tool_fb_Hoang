@@ -434,3 +434,24 @@ async def save_post_comment(post_link, commenter, comment, time, level=0, parent
     if result.inserted_id:
         return {'message': '✅ Lưu bình luận trong bài đăng: Thành công'}, logging.INFO
     return {'message': '❌ Lưu bình luận trong bài đăng: Thất bại'}, logging.ERROR
+
+#-------------------------------------------------------------------------------------------------------------------------------
+# Lệnh liên quan tới collection "userfbs"
+async def get_account_by_username(username):
+    """Lấy tài khoản theo username."""
+    collection = get_async_collection("userfbs")
+    account = await collection.find_one({"username": username})
+    return account
+
+async def update_statusFB(username, statusFB):
+    """Cập nhật trạng thái Facebook của thiết bị."""
+    collection = get_async_collection("userfbs")
+    result = await collection.update_one(
+        {"username": username},
+        {"$set": {"statusFB": statusFB}}
+    )
+    if result.matched_count == 0:
+        return {'message': '❌ Thiết bị không tồn tại'}, logging.ERROR
+    if result.modified_count == 0:
+        return {'message': '⚠️ Trạng thái Facebook không thay đổi'}, logging.WARNING
+    return {'message': '✅ Cập nhật trạng thái Facebook thành công'}, logging.INFO
