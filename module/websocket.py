@@ -35,11 +35,11 @@ class WebSocketTaskHandler:
         self.client_id = client_id
         self.websocket = None
         self.connected = False
-    async def get_driver_by_user_id(self, user_id: str):
-        device_id = await pymongo_management.get_device_by_username(user_id)
-        driver = u2.connect(device_id)
-        return driver
-    
+    async def get_account_and_driver(self, user_id: str):
+        account = await pymongo_management.get_account_by_username(user_id)
+        driver = u2.connect(account.device_id)
+        return account, driver
+
     async def get_commands(self, user_id: str):
         return await pymongo_management.get_commands(user_id)
     
@@ -55,19 +55,26 @@ class WebSocketTaskHandler:
             if command['type'] == 'post_to_wall':
                 await post_to_wall(driver, command['_id'], params.get("content", ""), params.get("files", []))
             await asyncio.sleep(random.uniform(4, 6))
-    
+
     async def handle_server_message(self, data: dict):
         """Xử lý message từ server và tạo task tương ứng"""
         message_type = data.get("type")
         
         if message_type == "new_command_notification":
-            account = data.get("data", {}).get("commandType", "")
-            driver = await self.get_driver_by_user_id(account)
+            user_id = data.get("data", {}).get("user_id", "")
+            account, driver = await self.get_account_and_driver(user_id)
+            if not account['statusFb']:
+                acc = {
+                    'name': account['nameFB'],
+                    'username': account['username'],
+                    'password': account['password'],
+                }
+                login.swap_account(driver, acc)
             if not account:
                 log_message(f"{driver.serial} - Thực hiện lệnh từ CRM: Không có user_id trong message", logging.WARNING)
                 return
             # Nhận và thực hiện lệnh
-            await self.run_commands(driver, account)
+            await self.run_commands(driver, account['username'])
 
         elif message_type == "send_message":
             # Server yêu cầu gửi tin nhắn
