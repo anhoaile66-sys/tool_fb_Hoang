@@ -3,7 +3,6 @@ import re
 import cv2
 import subprocess
 import easyocr
-import requests
 import aiohttp
 import os
 import numpy as np
@@ -14,7 +13,9 @@ def redirect_to(driver, link):
 
 # Trở về trang chủ của facebook
 async def back_to_facebook(driver):
+    driver(resourceId="com.android.systemui:id/back").click()
     redirect_to(driver, "https://www.facebook.com")
+    await asyncio.sleep(0.5)
     driver(resourceId="com.android.systemui:id/back").click()
     driver.app_start("com.facebook.katana")
     
