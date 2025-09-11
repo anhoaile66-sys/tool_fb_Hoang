@@ -3,23 +3,26 @@ import time
 import os
 import sqlite3
 from email_manager import EmailManager
+from filelock import FileLock
 
 # --- Config ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, "..", "business", "businesses.db")
 
 class EmailSender:
-    def __init__(self, emp_id: int, subject: str, content: str, name_acc: str, name_file_attach: str):
+    def __init__(self, emp_id: int, customer_id: int = None):
         self.emp_id = str(emp_id)
-        self.subject = subject
-        self.content = content
-        self.name_acc = name_acc
-        self.name_file_attach = name_file_attach
-
+        self.customer_id = customer_id
+        
+        # Lấy thông tin từ database
         self.device_id = self._get_employee_device(self.emp_id)
         if not self.device_id:
             raise ValueError(f"Không tìm thấy device_id cho EMP_ID: {self.emp_id}")
         
+        # Khởi tạo EmailManager để quản lý quota
+        self.email_manager = EmailManager(emp_id)
+        
+        # Kết nối device
         self.d = u2.connect(self.device_id)
         self.width, self.height = self.d.window_size()
         
@@ -29,12 +32,48 @@ class EmailSender:
         return conn
 
     def _get_employee_device(self, emp_id):
+        """Lấy device_id từ bảng employees"""
         conn = self._get_db_connection()
         cursor = conn.cursor()
         cursor.execute("SELECT device FROM employees WHERE emp_id = ?", (emp_id,))
         result = cursor.fetchone()
         conn.close()
         return result["device"] if result else None
+    
+    def _get_customer_data(self, customer_id):
+        """Lấy thông tin customer từ database"""
+        conn = self._get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT customer_email, subject, content FROM customers WHERE customer_id = ? AND emp_id = ?",
+            (customer_id, self.emp_id)
+        )
+        result = cursor.fetchone()
+        conn.close()
+        
+        if result:
+            return {
+                'email': result['customer_email'],
+                'subject': result['subject'] if result['subject'] else "",
+                'content': result['content'] if result['content'] else ""
+            }
+        return None    
+
+    def _mark_customer_as_sent(self, customer_id):
+        """Đánh dấu customer đã được gửi email"""
+        lock_file = DB_PATH + ".lock"
+        with FileLock(lock_file, timeout=10):
+            conn = self._get_db_connection()
+            cursor = conn.cursor()
+            cursor.execute(
+                "UPDATE customers SET sent = 1 WHERE customer_id = ? AND emp_id = ?",
+                (customer_id, self.emp_id)
+            )
+            conn.commit()
+            conn.close()
+            print(f"✅ Đã đánh dấu customer_id {customer_id} là đã gửi")
+
+
 
     def open_gmail(self):
         """Mở Gmail trên thiết bị"""
@@ -44,6 +83,7 @@ class EmailSender:
             return
 
         self.d(resourceId="com.android.systemui:id/center_group").click()
+        time.sleep(1)
         self.d.swipe_ext("up", scale=0.8)
         time.sleep(1)
 
@@ -52,107 +92,219 @@ class EmailSender:
         self.d.send_keys("Gmail", clear=True)
         time.sleep(1)
         self.d(resourceId="com.gogo.launcher:id/icon").click()
-        time.sleep(1)
+        time.sleep(2)
         print("📩 Đang mở Gmail...")
         
-    def choose_account(self, name_acc=None):
-        """Chọn tài khoản Gmail nếu có nhiều tài khoản"""
-        if name_acc is None:
-            name_acc = self.name_acc
-
-        # Nhấp vào avatar để mở menu chọn tài khoản
-        self.d(resourceId="com.google.android.gm:id/og_apd_internal_image_view").click()
-        time.sleep(1)
-
-        # Kiểm tra xem tài khoản đang dùng có phải là name_acc không
-        try:
-            current_acc = self.d(resourceId="com.google.android.gm:id/og_bento_single_pane_account_menu_title_container").get_text()
-            if current_acc == name_acc:
-                # print(f"✅ Đang sử dụng tài khoản {name_acc}, chỉ đóng menu")
-                self.d(resourceId="com.google.android.gm:id/og_bento_toolbar_close_button").click()
-                return
-        except Exception:
-            # Nếu không lấy được text thì bỏ qua
-            pass
-
-        # Chọn tài khoản name_acc nếu có
-        try:
-            self.d(resourceId="com.google.android.gm:id/og_secondary_account_information", text=name_acc).click()
-            print(f"📌 Chuyển sang tài khoản {name_acc}")
+    def choose_account(self, name_acc):
+        """Chọn tài khoản Gmail"""
+        if not name_acc:
+            print("⚠️ Không có tên account để chọn")
             return
-        except Exception:
-            # Nếu không thấy tài khoản, click vào account thứ 2 như dự phòng
-            print("Giữ nguyện tài khoản hiện tại")
 
-        time.sleep(1)
-        self.d.press("back")  # Đóng menu chọn tài khoản nếu vẫn mở
+        try:
+            # Nhấp vào avatar để mở menu chọn tài khoản
+            self.d(resourceId="com.google.android.gm:id/og_apd_internal_image_view").click()
+            time.sleep(1.5)
 
+            # Kiểm tra xem tài khoản đang dùng có phải là name_acc không
+            try:
+                current_acc = self.d(resourceId="com.google.android.gm:id/og_bento_single_pane_account_menu_title_container").get_text()
+                if current_acc == name_acc:
+                    print(f"✅ Đã đang sử dụng tài khoản {name_acc}")
+                    self.d(resourceId="com.google.android.gm:id/og_bento_toolbar_close_button").click()
+                    return
+            except Exception:
+                pass
+
+            # Chọn tài khoản name_acc nếu có
+            try:
+                self.d(resourceId="com.google.android.gm:id/og_secondary_account_information", text=name_acc).click()
+                print(f"📌 Chuyển sang tài khoản {name_acc}")
+                time.sleep(2)
+                return
+            except Exception:
+                print(f"⚠️ Không tìm thấy tài khoản {name_acc}, giữ nguyên tài khoản hiện tại")
+
+            # Đóng menu nếu vẫn mở
+            try:
+                self.d.press("back")
+            except:
+                pass
+
+        except Exception as e:
+            print(f"⚠️ Lỗi khi chọn tài khoản: {e}")
         
-    def send_email(self, to_email: str, subject: str, content: str, name_file=None):
-        if name_file is None:
-            name_file = self.name_file_attach
+    def send_email(self, to_email: str, subject: str, content: str, sender_email: str):
         """Soạn & gửi email"""
-        self.choose_account(name_acc=self.name_acc)
+        try:
+            self.choose_account(name_acc=sender_email)
+            time.sleep(1)
 
-        self.d(resourceId="com.google.android.gm:id/compose_button").click()
-        time.sleep(1)
+            # Nhấn nút compose
+            self.d(resourceId="com.google.android.gm:id/compose_button").click()
+            time.sleep(2)
 
-        receiver = self.d.xpath(
-            '//*[@resource-id="com.google.android.gm:id/peoplekit_autocomplete_chip_group"]/android.widget.EditText[1]'
+            # Nhập email người nhận
+            receiver = self.d.xpath(
+                '//*[@resource-id="com.google.android.gm:id/peoplekit_autocomplete_chip_group"]/android.widget.EditText[1]'
+            )
+            receiver.set_text(to_email)
+            time.sleep(1)
+
+            # Chọn email từ suggestion
+            try:
+                self.d.xpath(
+                    '//*[@resource-id="com.google.android.gm:id/peoplekit_listview_flattened_row"]/android.widget.RelativeLayout[2]'
+                ).click()
+                time.sleep(1)
+            except:
+                # Nếu không có suggestion, nhấn Tab hoặc Enter
+                self.d.press("tab")
+                time.sleep(1)
+
+            # Nhập subject
+            self.d(resourceId="com.google.android.gm:id/subject").set_text(subject)
+            time.sleep(1)
+
+            # Dán content vào body email
+            x = self.width * 0.492
+            y = self.height * 0.372
+            self.d.long_click(x, y, duration=1.0)
+            time.sleep(1)
+            
+            # Kiểm tra và click vào tùy chọn "Dán"
+            if self.d(text="Dán").exists(timeout=3):
+                self.d(text="Dán").click()
+                print("✅ Đã dán nội dung email")
+            else:
+                print("⚠️ Không tìm thấy tùy chọn Dán, nhập thủ công")
+                # Fallback: nhập trực tiếp content
+                body_field = self.d(resourceId="com.google.android.gm:id/composearea_tap_trap_bottom")
+                body_field.click()
+                time.sleep(0.5)
+                self.d.send_keys(content)
+
+            time.sleep(2)
+            
+            # Gửi email
+            self.d(resourceId="com.google.android.gm:id/send").click()
+            time.sleep(3)
+            print(f"✅ Đã gửi email tới {to_email}")
+            return True
+            
+        except Exception as e:
+            print(f"❌ Lỗi khi gửi email: {e}")
+            return False
+        
+
+        
+    def send_to_customer(self, customer_id: int):
+        """Gửi email cho một customer cụ thể"""
+        # Lấy thông tin customer
+        customer_data = self._get_customer_data(customer_id)
+        if not customer_data:
+            print(f"❌ Không tìm thấy customer_id {customer_id}")
+            return False
+
+        # Lấy email account khả dụng
+        sender_email = self.email_manager.get_available_account()
+        if not sender_email:
+            print(f"❌ Không còn email account khả dụng cho EMP_ID {self.emp_id}")
+            return False
+
+        # Gửi email
+        success = self.send_email(
+            to_email=customer_data['email'],
+            subject=customer_data['subject'],
+            content=customer_data['content'],
+            sender_email=sender_email
         )
-        receiver.set_text(to_email)
-        time.sleep(1)
 
-        self.d.xpath(
-            '//*[@resource-id="com.google.android.gm:id/peoplekit_listview_flattened_row"]/android.widget.RelativeLayout[2]'
-        ).click()
-        time.sleep(1)
-
-        self.d(resourceId="com.google.android.gm:id/subject").set_text(subject)
-        time.sleep(1)
-
-        x = self.width * 0.492
-        y = self.height * 0.372
-        self.d.long_click(x, y, duration=1.0)
-        # Kiểm tra và click vào tùy chọn "Dán"
-        if self.d(text="Dán").exists(timeout=3):
-            self.d(text="Dán").click()
-            print("Đã dán thành công")
-        else:
-            print("Không tìm thấy tùy chọn Dán")
-
-        time.sleep(3)
-        self.add_file(name_file=name_file)
-        self.d(resourceId="com.google.android.gm:id/send").click()
-        print(f"✅ Đã gửi email tới {to_email}")
-        return True # Indicate success for now
+        if success:
+            # Tăng counter cho email account
+            self.email_manager.increase_counter(sender_email)
+            # Đánh dấu customer đã gửi
+            self._mark_customer_as_sent(customer_id)
+            return True
         
-    def add_file(self, name_file):
-        self.d(resourceId="com.google.android.gm:id/add_attachment").click()
-        time.sleep(1)
-        self.d.xpath('//android.widget.ListView/android.widget.LinearLayout[3]/android.widget.LinearLayout[1]/android.widget.RelativeLayout[1]').click()
-        time.sleep(3)
-        self.d(description="Hiển thị gốc").click()
-        time.sleep(1)
-        self.d(resourceId="android:id/title", text="Tài liệu").click()
-        time.sleep(1)
-        self.d(resourceId="com.google.android.documentsui:id/option_menu_search").click()
-        time.sleep(1)
-        self.d(resourceId="com.google.android.documentsui:id/search_src_text").click()
-        time.sleep(1)
-        self.d.send_keys(name_file, clear=True)
-        time.sleep(1)
-        self.d(resourceId="com.google.android.documentsui:id/thumbnail").click()
-        # chọn được là sẽ quay lại mail
-        time.sleep(2)
+        return False
+
+    def send_all_pending(self):
+        """Gửi email cho tất cả customers chưa gửi"""
+        conn = self._get_db_connection()
+        cursor = conn.cursor()
         
-# -------- send all pending while accounts còn quota ----------
-def run_sent(emp_id, subject, content, to_email, sender_email, name_file_attach="gia_goi.pdf"):
+        # Lấy danh sách customers chưa gửi
+        cursor.execute(
+            "SELECT customer_id FROM customers WHERE emp_id = ? AND sent = 0 ORDER BY customer_id",
+            (self.emp_id,)
+        )
+        pending_customers = cursor.fetchall()
+        conn.close()
+
+        if not pending_customers:
+            print(f"✅ Không có customer nào chưa gửi cho EMP_ID {self.emp_id}")
+            return 0
+
+        sent_count = 0
+        print(f"📧 Bắt đầu gửi cho {len(pending_customers)} customers...")
+
+        for customer in pending_customers:
+            customer_id = customer['customer_id']
+            
+            # Kiểm tra còn email accounts khả dụng không
+            if not self.email_manager.has_available_accounts():
+                print(f"❌ Hết email accounts khả dụng. Đã gửi được {sent_count}/{len(pending_customers)} emails")
+                break
+
+            print(f"\n📤 Đang gửi cho customer_id {customer_id}...")
+            success = self.send_to_customer(customer_id)
+            
+            if success:
+                sent_count += 1
+                print(f"✅ Đã gửi thành công ({sent_count}/{len(pending_customers)})")
+            else:
+                print(f"❌ Gửi thất bại cho customer_id {customer_id}")
+            
+            # Nghỉ một chút giữa các email
+            time.sleep(2)
+
+        print(f"\n🎉 Hoàn thành! Đã gửi {sent_count}/{len(pending_customers)} emails")
+        return sent_count
+
+
+# -------- Wrapper functions cho backward compatibility ----------
+def run_sent(emp_id, subject, content, to_email, sender_email):
+    """Gửi email đơn lẻ (backward compatibility)"""
     try:
-        sender = EmailSender(emp_id=emp_id, subject=subject, content=content, name_acc=sender_email, name_file_attach=name_file_attach)
+        sender = EmailSender(emp_id=emp_id)
         sender.open_gmail()
-        success = sender.send_email(to_email, subject, content)
+        success = sender.send_email(to_email, subject, content, sender_email)
         return success
     except Exception as e:
         print(f"⚠️ Lỗi khi gửi email: {e}")
         return False
+
+
+def run_sent_customer(emp_id, customer_id):
+    """Gửi email cho một customer từ database"""
+    try:
+        sender = EmailSender(emp_id=emp_id, customer_id=customer_id)
+        sender.open_gmail()
+        success = sender.send_to_customer(customer_id)
+        return success
+    except Exception as e:
+        print(f"⚠️ Lỗi khi gửi email cho customer: {e}")
+        return False
+
+
+def run_sent_all_pending(emp_id):
+    """Gửi email cho tất cả customers chưa gửi"""
+    try:
+        sender = EmailSender(emp_id=emp_id)
+        sender.open_gmail()
+        sent_count = sender.send_all_pending()
+        return sent_count
+    except Exception as e:
+        print(f"⚠️ Lỗi khi gửi email hàng loạt: {e}")
+        return 0
