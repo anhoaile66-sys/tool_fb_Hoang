@@ -122,16 +122,11 @@
   },
   "22894754": {
     "name": "Hải Yến",
-    "device": "DEVICE_ID_HAI_YEN",
+    "device": "8HMN4T9575HAQWLN",
     "customers": [
       {
         "email": "haiyen_customer1@gmail.com",
         "sent": true,
-        "date": "2025-09-10"
-      },
-      {
-        "email": "vdtimviec@gmail.com",
-        "sent": false,
         "date": "2025-09-10"
       }
     ]
@@ -164,6 +159,17 @@
       {
         "email": "vdtimviec@gmail.com",
         "sent": false,
+        "date": "2025-09-10"
+      }
+    ]
+  },
+  "22896992": {
+    "name": "Huyền Trang",
+    "device": "EY5H9DJNIVNFH6OR",
+    "customers": [
+      {
+        "email": "huyentrang_customer1@gmail.com",
+        "sent": true,
         "date": "2025-09-10"
       }
     ]

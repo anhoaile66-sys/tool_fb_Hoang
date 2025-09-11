@@ -8,12 +8,14 @@
 -- ('22814414', 'Bích Ngọc', 'Z5LVOF4PRGXGTS9H'),
 -- ('22833463', 'Lưu Thư', 'QK8TEMKZMBYHPV6P'),
 -- ('22889226', 'Ngọc Hà', 'DEVICE_ID_NGOC_HA'),
--- ('22894754', 'Hải Yến', 'DEVICE_ID_HAI_YEN'),
+-- ('22894754', 'Hải Yến', '8HMN4T9575HAQWLN'),
 -- ('22889521', 'Ngọc Mai', 'PN59BMHYPFXCPN8T'),
--- ('22614471', 'Hoàng Khoa', 'CEIN4X45I7ZHFEFU');
+-- ('22614471', 'Hoàng Khoa', 'CEIN4X45I7ZHFEFU'),
+-- ('22896992', 'Huyền Trang', 'EY5H9DJNIVNFH6OR');
 
--- -- DELETE FROM sqlite_sequence WHERE name='customers';
--- DELETE FROM customers;
+
+
+
 -- INSERT INTO customers (emp_id, customer_email, sent, date,subject,content)
 -- VALUES
 -- ('22615833', 'newcustomer1@gmail.com', 1, '2025-09-09', 'test subject','test_content'),
@@ -26,16 +28,12 @@
 -- ('22894754', 'haiyen_customer1@gmail.com', 1, '2025-09-09','test subject','test_content'),
 -- ('22889521', 'ngocmai_customer1@gmail.com', 1, '2025-09-09','test subject','test_content'),
 -- ('22614471', 'ngocmai_customer1@gmail.com', 1, '2025-09-09','test subject','test_content');
+-- ('22896992', 'huyentrang_customer1@gmail.com','1', '2025-09-09','test subject','test_content');
 
--- SELECT customer_email, emp_id, date
--- FROM customers
--- WHERE customer_email = 'ngocmai_customer1@gmail.com' AND date = '2025-09-10';
-
--- SELECT * from customers;
 
 -- -- Insert data into email_accounts table
--- INSERT INTO email_accounts (emp_id, email_account, num_sent)
--- VALUES
+INSERT INTO email_accounts (emp_id, email_account, num_sent)
+VALUES
 -- ('22616467', 'hoanglinh.tuyendung1@gmail.com', 3),
 -- ('22616467', 'linhphnguyen.timviec365@gmail.com', 3),
 -- ('22616467', 'linhphnguyen1.timviec365@gmail.com', 1),
@@ -82,12 +80,38 @@
 -- ('22614471', 'lyvp06.timviec365@gmail.com', 0),
 -- ('22614471', 'lyvp07.timviec365@gmail.com', 0),
 -- ('22614471', 'ctyhungha365@gmail.com', 0);
+-- ('22896992','huyentrangtimviec3655@gmail.com',0),
+-- ('22896992','duongloan036@gmail.com',0),
+-- ('22896992','tanhong6833o@gmail.com',0),
+-- ('22896992','langh5648@gmail.com',0),
+-- ('22896992','phglinh01.timviec365@gmail.com',0),
+-- ('22896992','linhphtimviec365@gmail.com',0),
+-- ('22896992','phuonglinh03.timviec365@gmail.com',0),
+-- ('22896992','linhphuong03.timviec365@gmail.com',0),
+-- ('22896992','linhnp3.timviec365@gmail.com',0),
+-- ('22896992','maihoavu425@gmail.com',0),
+-- ('22896992','oanhha556333@gmail.com',0),
+-- ('22896992','hthaolinh91@gmail.com',0),
+-- ('22896992','tranghuyen365vn@gmail.com',0),
+-- ('22896992','hothuloan257@gmail.com',0);
+('22894754','haiyentimviec365@gmail.com',3),
+('22894754','yenhoangtimviec365@gmail.com',0),
+('22894754','yenytimviec365@gmail.com',0),
+('22894754','hyentd365@gmail.com',0),
+('22894754','yenhoanghai203@gmail.com',0),
+('22894754','lyvu01.timviec365@gmail.com',0),
+('22894754','lyvu02.timviec365@gmail.com',0),
+('22894754','lyvu03.timviec365@gmail.com',0),
+('22894754','lyvu04.timviec365@gmail.com',0),
+('22894754','lyvu05.timviec365@gmail.com',0),
+('22894754','lyvu06.timviec365@gmail.com',0);
 
 
-DELETE FROM customers
-WHERE customer_id = (
-    SELECT customer_id
-    FROM customers
-    ORDER BY customer_id
-    LIMIT 1 OFFSET 10
-);
+
+-- DELETE FROM customers
+-- WHERE customer_id = (
+--     SELECT customer_id
+--     FROM customers
+--     ORDER BY customer_id
+--     LIMIT 1 OFFSET 10
+-- );
