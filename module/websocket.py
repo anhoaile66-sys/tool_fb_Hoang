@@ -4,13 +4,6 @@ import json
 import logging
 from util import log_message
 
-# Import task manager
-try:
-    from task_manager import task_manager, create_server_task, TaskPriority
-except ImportError:
-    log_message("Could not import task_manager", logging.WARNING)
-    task_manager = None
-
 WEBSOCKET_URL = "ws://192.168.0.89:4000"
 
 class WebSocketTaskHandler:
