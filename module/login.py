@@ -1,7 +1,7 @@
 import asyncio
 import logging
 from util import *
-
+import pymongo_management
 
 # Hàm đăng xuất
 async def log_out(driver):
@@ -54,6 +54,7 @@ async def log_out(driver):
     # Đợi load trang chọn tài khoản
     await asyncio.sleep(15)
     log_message("Đăng xuất thành công")
+    await pymongo_management.update_statusFB(driver.serial, False)
 
 # Đăng nhập lần đầu
 async def login_facebook(driver, acc):
@@ -128,6 +129,7 @@ async def login_facebook(driver, acc):
     # Đợi load trang chủ
     await asyncio.sleep(20)
     log_message("Đăng nhập thành công")
+    pymongo_management.update_statusFB(account, True)
     return True
 
 # Hàm đăng nhập vào tài khoản đã lưu
@@ -137,6 +139,7 @@ async def swap_account(driver, acc):
     
     """
     name = acc['name']
+    username = acc['account']
     password = acc['password']
     # Đăng xuất
     await log_out(driver)
@@ -160,6 +163,7 @@ async def swap_account(driver, acc):
             await asyncio.sleep(2)
         except Exception:
             log_message("Không tìm được ô nhập mật khẩu", logging.ERROR)
+            pymongo_management.update_statusFB(username, True)
             return
 
     # Kiểm tra có yêu cầu lưu tài khoản không
@@ -184,4 +188,4 @@ async def swap_account(driver, acc):
     # Đợi vào màn hình chính
     await asyncio.sleep(6)
     log_message(f"Đăng nhập thành công vào tài khoản {name}")
-
+    pymongo_management.update_statusFB(username, True)
