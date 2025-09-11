@@ -135,7 +135,6 @@ async def get_unapproved_groups(user_id):
     collection = get_async_collection("Link-groups")
     groups = await collection.find({"Temp_Joined_Accounts": user_id}).to_list(length=None)
     return groups
-
 #-------------------------------------------------------------------------------------------------------------------------------
 # Lệnh liên quan tới collection "Binh-luan"
 async def save_comment(group_name, post_link, content, comment, post_type, post_keywords):
@@ -339,14 +338,27 @@ async def execute_command(command_id):
             {"_id": ObjectId(params["oid"])},
             {"$set": {"status": "Đang chờ duyệt"}}
         )
+    if type == "post_to_wall":
+        params = command.get("params") if command else None
+        bai_dang_tuong_collection = get_async_collection("Bai-dang-tuong")
+        await bai_dang_tuong_collection.update_one(
+            {"_id": ObjectId(params["oid"])},
+            {"$set": {"status": "Đang đăng"}}
+        )
     return {"message": "✅ Cập nhật trạng thái lệnh: Lệnh đã được thực hiện"}, logging.INFO
 
 #-------------------------------------------------------------------------------------------------------------------------------
-# Lệnh liên quan tới collection Bai-dang
+# Lệnh liên quan tới collection Bai-dang và Bai-dang-tuong
 async def get_unapproved_posts(user_id):
     """Lấy danh sách bài viết chưa được phê duyệt của người dùng."""
     collection = get_async_collection("Bai-dang")
     posts = await collection.find({"user_id": user_id, "status": "Đang chờ duyệt"}).to_list(length=None)
+    return posts
+
+async def get_unapproved_wall_posts(user_id):
+    """Lấy danh sách bài viết chưa được phê duyệt trên tường của người dùng."""
+    collection = get_async_collection("Bai-dang-tuong")
+    posts = await collection.find({"user_id": user_id, "status": "Đang đăng"}).to_list(length=None)
     return posts
 
 async def update_post_status(post_id, status, link):
@@ -362,6 +374,18 @@ async def update_post_status(post_id, status, link):
         return {"message": "⚠️ Cập nhật trạng thái bài viết: Trạng thái bài viết không thay đổi"}, logging.WARNING
     return {"message": "✅ Cập nhật trạng thái bài viết: Thành công, link: " + link}, logging.INFO
 
+async def update_wall_post_status(post_id, status, link):
+    """Cập nhật trạng thái bài viết trên tường."""
+    collection = get_async_collection("Bai-dang-tuong")
+    result = await collection.update_one(
+        {"_id": ObjectId(post_id)},
+        {"$set": {"status": status, "updated_at": datetime.now(), "link": link}}
+    )
+    if result.matched_count == 0:
+        return {"message": "❌ Cập nhật trạng thái bài viết trên tường: Bài viết không tồn tại"}, logging.ERROR
+    if result.modified_count == 0:
+        return {"message": "⚠️ Cập nhật trạng thái bài viết trên tường: Trạng thái bài viết không thay đổi"}, logging.WARNING
+    return {"message": "✅ Cập nhật trạng thái bài viết trên tường: Thành công, link: " + link}, logging.INFO
 #-------------------------------------------------------------------------------------------------------------------------------
 # Lệnh liên quan tới collection "Danh-sach-bai-dang"
 async def update_crawled_post_status(post_link, status):

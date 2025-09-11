@@ -6,4 +6,6 @@ from .add_friend import *
 from .join_group import *
 from .comment_recruitment_post import *
 from .post_to_group import *
+from .websocket import *
+from .scan_fb import *
 from .post_to_wall import *
