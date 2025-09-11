@@ -1,7 +1,5 @@
 from fb_task import *
 from sending_message_and_adding_friend import DeviceHandler
-from task_manager import task_manager, create_facebook_task, TaskPriority
-from module.websocket import start_websocket_client
 import uiautomator2 as u2
 import asyncio
 import logging
