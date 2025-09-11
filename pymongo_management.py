@@ -446,10 +446,16 @@ async def get_account_by_username(username):
 async def update_statusFB(username, statusFB):
     """Cập nhật trạng thái Facebook của thiết bị."""
     collection = get_async_collection("userfbs")
-    result = await collection.update_one(
-        {"username": username},
-        {"$set": {"statusFB": statusFB}}
-    )
+    if statusFB:
+        result = await collection.update_one(
+            {"username": username},
+            {"$set": {"statusFb": statusFB}}
+        )
+    else:
+        result = await collection.update_many(
+            {"device_id": username},
+            {"$set": {"statusFb": statusFB}}
+        )
     if result.matched_count == 0:
         return {'message': '❌ Thiết bị không tồn tại'}, logging.ERROR
     if result.modified_count == 0:
