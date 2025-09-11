@@ -2,19 +2,7 @@ import asyncio
 import websockets
 import json
 import logging
-import sys
-import os
-from util import *
-
-# Thêm đường dẫn root để import util
-sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-
-# Import log_message từ util.log
-try:
-    from util.log import log_message
-except ImportError:
-    def log_message(msg: str, level=logging.INFO):
-        print(f"[{level}] {msg}")
+from util import log_message
 
 # Import task manager
 try:
@@ -50,8 +38,6 @@ class WebSocketTaskHandler:
                 )
                 log_message(f"Created post task {task_id} for device {device_id}")
 
-
-                    
                 # Gửi response về server
                 await self.send_response({
                     "type": "task_created",
