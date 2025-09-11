@@ -2,7 +2,22 @@ import asyncio
 import websockets
 import json
 import logging
-from util import log_message
+import sys
+import os
+from util import *
+import pymongo_management
+from module import *
+import uiautomator2 as u2
+
+# Thêm đường dẫn root để import util
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
+# Import log_message từ util.log
+try:
+    from util.log import log_message
+except ImportError:
+    def log_message(msg: str, level=logging.INFO):
+        print(f"[{level}] {msg}")
 
 # Import task manager
 try:
@@ -11,7 +26,7 @@ except ImportError:
     log_message("Could not import task_manager", logging.WARNING)
     task_manager = None
 
-WEBSOCKET_URL = "ws://192.168.0.89:4000"
+WEBSOCKET_URL = "wss://socket.hungha365.com:4000"
 
 class WebSocketTaskHandler:
     """Xử lý task từ WebSocket server"""
@@ -20,32 +35,40 @@ class WebSocketTaskHandler:
         self.client_id = client_id
         self.websocket = None
         self.connected = False
-        
+    async def get_driver_by_user_id(self, user_id: str):
+        driver = u2.connect("1ac1d26f0507")
+        return driver
+    
+    async def get_commands(self, user_id: str):
+        return await pymongo_management.get_commands(user_id)
+    
+    async def run_commands(self, driver, user_id: str):
+        """Lấy lệnh từ server và thực hiện"""
+        commands = await self.get_commands(user_id)
+        for command in commands:
+            print(command)
+            params = command.get("params", {})
+            if command['type'] == 'post_to_group':
+                await post_to_group(driver, command['_id'], params.get("group_link", ""), params.get("content", ""), params.get("files", []))
+            if command['type'] == 'join_group':
+                await join_group(driver, command['user_id'], params.get("group_link", ""))
+            if command['type'] == 'post_to_wall':
+                await post_to_wall(driver, command['_id'], params.get("content", ""), params.get("files", []))
+            await asyncio.sleep(random.uniform(4, 6))
+
     async def handle_server_message(self, data: dict):
         """Xử lý message từ server và tạo task tương ứng"""
         message_type = data.get("type")
         
-        if message_type == "new_post":
-            # Server yêu cầu đăng bài mới
-            content = data.get("content", "")
-            device_id = data.get("device_id", "")
-            
-            if device_id and task_manager:
-                task_id = await create_server_task(
-                    device_id=device_id,
-                    action="post_content", 
-                    content = content
-                )
-                log_message(f"Created post task {task_id} for device {device_id}")
+        if message_type == "new_command_notification":
+            account = data.get("data", {}).get("commandType", "")
+            driver = await self.get_driver_by_user_id(account)
+            if not account:
+                log_message(f"{driver.serial} - Thực hiện lệnh từ CRM: Không có user_id trong message", logging.WARNING)
+                return
+            # Nhận và thực hiện lệnh
+            await self.run_commands(driver, account)
 
-                # Gửi response về server
-                await self.send_response({
-                    "type": "task_created",
-                    "task_id": task_id,
-                    "device_id": device_id,
-                    "action": "post_content"
-                })
-        
         elif message_type == "send_message":
             # Server yêu cầu gửi tin nhắn
             recipient = data.get("recipient", "")
@@ -159,7 +182,7 @@ class WebSocketTaskHandler:
             reconnect_interval = min(reconnect_interval * 1.5, max_reconnect_interval)
 
 # Hàm chính để khởi động WebSocket client
-async def start_websocket_client(client_id: str = "1498"):
+async def start_websocket_client(client_id: str = "123456"):
     """Khởi động WebSocket client với Task Manager"""
     
     # Khởi động Task Manager nếu có

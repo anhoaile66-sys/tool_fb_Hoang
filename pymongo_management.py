@@ -434,3 +434,24 @@ async def save_post_comment(post_link, commenter, comment, time, level=0, parent
     if result.inserted_id:
         return {'message': '✅ Lưu bình luận trong bài đăng: Thành công'}, logging.INFO
     return {'message': '❌ Lưu bình luận trong bài đăng: Thất bại'}, logging.ERROR
+
+#-------------------------------------------------------------------------------------------------------------------------------
+# Lệnh liên quan tới collection "Thiet-bi
+async def get_device_by_username(username):
+    """Lấy thiết bị theo username."""
+    collection = get_async_collection("Thiet-bi")
+    device = await collection.find_one({"username": username})
+    return device
+
+async def update_statusFB(username, statusFB):
+    """Cập nhật trạng thái Facebook của thiết bị."""
+    collection = get_async_collection("Thiet-bi")
+    result = await collection.update_one(
+        {"username": username},
+        {"$set": {"statusFB": statusFB}}
+    )
+    if result.matched_count == 0:
+        return {'message': '❌ Thiết bị không tồn tại'}, logging.ERROR
+    if result.modified_count == 0:
+        return {'message': '⚠️ Trạng thái Facebook không thay đổi'}, logging.WARNING
+    return {'message': '✅ Cập nhật trạng thái Facebook thành công'}, logging.INFO  
