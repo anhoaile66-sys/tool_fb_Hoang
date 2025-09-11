@@ -1,4 +1,4 @@
-from fb_task import DEVICES_LIST, run_on_device
+from fb_task import *
 from sending_message_and_adding_friend import DeviceHandler
 from task_manager import task_manager, create_facebook_task, TaskPriority
 from module.websocket import start_websocket_client
@@ -77,16 +77,33 @@ async def ensure_1111_vpn_on_once(driver, device_id: str):
 
 async def disable_auto_rotation(driver, device_id: str):
     """
-    Tắt chế độ tự động xoay màn hình bằng hàm sẵn của UIAutomator2
+    Thực sự tắt chế độ tự động xoay màn hình của hệ thống Android
     """
     try:
-        log_message(f"[{device_id}] Tắt chế độ tự động xoay màn hình")
+        log_message(f"[{device_id}] Tắt chế độ tự động xoay màn hình hệ thống")
         
-        # Sử dụng hàm sẵn của UIAutomator2 để tắt auto-rotation
-        await asyncio.to_thread(driver.set_orientation, "natural")
+        # Phương pháp 1: Tắt auto-rotation qua shell command
+        try:
+            # Tắt auto-rotation trong settings (0 = tắt, 1 = bật)
+            driver.shell("settings put system accelerometer_rotation 0")
+            log_message(f"[{device_id}] Đã tắt auto-rotation qua settings")
+            await asyncio.sleep(1)
+            
+        except Exception as e:
+            log_message(f"[{device_id}] Lỗi tắt auto-rotation qua settings: {e}")
         
+
         await asyncio.sleep(1.0)
-        log_message(f"[{device_id}] Đã tắt auto-rotation thành công")
+        
+        # Kiểm tra trạng thái auto-rotation
+        try:
+            result = driver.shell("settings get system accelerometer_rotation")
+            status = "TẮT" if result.strip() == "0" else "BẬT"
+            log_message(f"[{device_id}] Trạng thái auto-rotation: {status}")
+        except Exception:
+            log_message(f"[{device_id}] Không thể kiểm tra trạng thái auto-rotation")
+        
+        log_message(f"[{device_id}] Hoàn thành disable auto-rotation")
         
     except Exception as e:
         log_message(f"[{device_id}] Lỗi khi tắt auto-rotation: {e}", logging.WARNING)
@@ -246,7 +263,7 @@ async def device_once(device_id: str):
         # ===== PHA FACEBOOK =====
         current_phase["value"] = "facebook"
         # Chạy flow Facebook như thường lệ
-        await run_on_device(driver)
+        await run_on_device_original(driver)
 
         if restart_event.is_set():
             raise RestartThisDevice("RESTART_THIS_DEVICE (sau pha Facebook)")
@@ -285,33 +302,6 @@ async def device_supervisor(device_id: str):
             continue
 
 
-async def device_supervisor_with_tasks(device_id: str):
-    """
-    Supervisor mới sử dụng Task Manager:
-    - Tạo Facebook task liên tục với priority thấp
-    - Task từ server sẽ có priority cao và interrupt Facebook task
-    """
-    while True:
-        try:
-            # Tạo Facebook task với priority thấp (có thể bị interrupt)
-            task_id = await create_facebook_task(device_id, TaskPriority.LOW)
-            log_message(f"[{device_id}] Created Facebook task: {task_id}")
-            
-            # Đợi task complete hoặc bị interrupt
-            while True:
-                status = task_manager.get_task_status(task_id)
-                if status in [None, "completed", "cancelled", "failed"]:
-                    break
-                await asyncio.sleep(5)
-            
-            # Nghỉ một chút trước khi tạo task mới
-            await asyncio.sleep(random.uniform(10, 30))
-            
-        except Exception as e:
-            log_message(f"[{device_id}] Error in supervisor: {e}", logging.ERROR)
-            await asyncio.sleep(10)
-
-
 # ======================= CHẠY TẤT CẢ THIẾT BỊ VỚI TASK MANAGER =======================
 async def run_all_devices_with_task_manager():
     """Chạy tất cả device với Task Manager và WebSocket"""
@@ -325,7 +315,7 @@ async def run_all_devices_with_task_manager():
     log_message("WebSocket client started")
     
     # Khởi động supervisor cho mỗi device
-    tasks = [asyncio.create_task(device_supervisor_with_tasks(did)) for did in DEVICES_LIST]
+    tasks = [asyncio.create_task(device_supervisor(did)) for did in DEVICES_LIST]
     await asyncio.gather(*tasks)
 
 if __name__ == "__main__":

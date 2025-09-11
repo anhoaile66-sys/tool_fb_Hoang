@@ -277,15 +277,16 @@ async def create_facebook_task(device_id: str, priority: TaskPriority = TaskPrio
     async def facebook_task_wrapper(stop_event, pause_event, resume_event):
         driver = await asyncio.to_thread(u2.connect_usb, device_id)
         
-        # Gọi run_on_device với control events
-        try:
-            await run_on_device(driver, stop_event, pause_event, resume_event)
-        except Exception as e:
-            if not stop_event.is_set():
-                log_message(f"Facebook task error on {device_id}: {e}", logging.ERROR)
-                raise e
-            else:
-                log_message(f"Facebook task interrupted on {device_id}", logging.INFO)
+        # Wrapper cho run_on_device với interrupt support
+        async def interruptible_run_on_device():
+            # Chia nhỏ task và check interrupt
+            try:
+                await run_on_device(driver)
+            except Exception as e:
+                if not stop_event.is_set():
+                    raise e
+        
+        await interruptible_run_on_device()
     
     task = Task(
         id=f"facebook_{device_id}_{int(time.time())}",

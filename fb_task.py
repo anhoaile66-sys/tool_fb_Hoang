@@ -5,30 +5,30 @@ from module import *
 from datetime import datetime, timedelta
 
 DEVICES_LIST = [
-    # "R8YY70F5MKN",
-    # "R8YY70F81TV",
-    # "69QGMN8PXWDYPNIF",
-    # "7HYP4T4XTS4DXKCY",
+    "R8YY70F5MKN",
+    "R8YY70F81TV",
+    "69QGMN8PXWDYPNIF",
+    "7HYP4T4XTS4DXKCY",
     "UWJJOJLB85SO7LIZ",
-    # "2926294610DA007N",
-    # "7DXCUKKB6DVWDAQO",
-    # "8HMN4T9575HAQWLN",
-    # "CEIN4X45I7ZHFEFU",
-    # "CQIZKJ8P59AY7DHI",
-    # "EQLNQ8O7EQCQPFXG",
-    # "MJZDFY896TMJBUPN",
+    "2926294610DA007N",
+    "7DXCUKKB6DVWDAQO",
+    "8HMN4T9575HAQWLN",
+    "CEIN4X45I7ZHFEFU",
+    "CQIZKJ8P59AY7DHI",
+    "EQLNQ8O7EQCQPFXG",
+    "MJZDFY896TMJBUPN",
     "TSPNH6GYZLPJBY6X",
-    # "YH9TSS7XCMPFZHNR",
-    # "9PAM7DIFW87DOBEU",
-    # "F6NZ5LRKWWGACYQ8",
-    # "EM4DYTEITCCYJNFU",
-    # "EY5H9DJNIVNFH6OR",
-    # "QK8TEMKZMBYHPV6P",
-    # "IJP78949G69DKNHM",
-    # "PN59BMHYPFXCPN8T",
-    # "EIFYAALRK7U4MRZ9",
-    # "Z5LVOF4PRGXGTS9H",
-    # "1ac1d26f0507"
+    "YH9TSS7XCMPFZHNR",
+    "9PAM7DIFW87DOBEU",
+    "F6NZ5LRKWWGACYQ8",
+    "EM4DYTEITCCYJNFU",
+    "EY5H9DJNIVNFH6OR",
+    "QK8TEMKZMBYHPV6P",
+    "IJP78949G69DKNHM",
+    "PN59BMHYPFXCPN8T",
+    "EIFYAALRK7U4MRZ9",
+    "Z5LVOF4PRGXGTS9H",
+    "1ac1d26f0507"
     ]
 
 
@@ -51,16 +51,15 @@ async def clear_app(driver):
     driver.press("home")
     driver.press("back")
 
-async def get_commands(driver, user_id: str):
-    commands = await pymongo_management.get_commands(user_id)
+async def get_commands(driver, emp_id):
+    commands = await pymongo_management.get_commands(emp_id)
     for command in commands:
-        params = command.get("params", {})
         if command['type'] == 'post_to_group':
+            params = command.get("params", {})
             await post_to_group(driver, command['_id'], params.get("group_link", ""), params.get("content", ""), params.get("files", []))
         if command['type'] == 'join_group':
+            params = command.get("params", {})
             await join_group(driver, command['user_id'], params.get("group_link", ""))
-        if command['type'] == 'post_to_wall':
-            await post_to_wall(driver, command['_id'], params.get("content", ""), params.get("files", []))
         await asyncio.sleep(random.uniform(4, 6))
 
 async def fb_natural_task(driver, emp_id:str, account: str):
@@ -70,7 +69,7 @@ async def fb_natural_task(driver, emp_id:str, account: str):
         # ("Kết bạn", lambda: add_friend(driver, emp_id)),
         # ("Kiểm tra bài đăng", lambda: check_post(driver, account)),
         # ("Kiểm tra nhóm chờ duyệt", lambda: check_unapproved_groups(driver, account)),
-        # ("Bình luận thương hiệu", lambda: comment_recruitment_post(driver, account)),
+        ("Bình luận thương hiệu", lambda: comment_recruitment_post(driver, account)),
         # ("Nhận lệnh từ CRM", lambda: get_commands(driver, account))
     ]
 
