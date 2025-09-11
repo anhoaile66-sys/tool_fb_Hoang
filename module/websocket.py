@@ -18,7 +18,7 @@ class WebSocketTaskHandler:
         self.connected = False
     async def get_account_and_driver(self, user_id: str):
         account = await pymongo_management.get_account_by_username(user_id)
-        driver = u2.connect(account.device_id)
+        driver = u2.connect(account['device_id'])
         return account, driver
 
     async def get_commands(self, user_id: str):
@@ -42,18 +42,20 @@ class WebSocketTaskHandler:
         message_type = data.get("type")
         
         if message_type == "new_command_notification":
+            print(data)
             user_id = data.get("data", {}).get("user_id", "")
             account, driver = await self.get_account_and_driver(user_id)
-            if not account['statusFb']:
-                acc = {
-                    'name': account['nameFB'],
-                    'username': account['username'],
-                    'password': account['password'],
-                }
-                login.swap_account(driver, acc)
+            print(account)
             if not account:
                 log_message(f"{driver.serial} - Thực hiện lệnh từ CRM: Không có user_id trong message", logging.WARNING)
                 return
+            if not account['statusFb']:
+                acc = {
+                    'name': account['nameFb'],
+                    'account': account['username'],
+                    'password': account['password'],
+                }
+                await login.swap_account(driver, acc)
             # Nhận và thực hiện lệnh
             await self.run_commands(driver, account['username'])
 
