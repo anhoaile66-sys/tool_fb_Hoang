@@ -3,6 +3,7 @@ import time
 import os
 import json
 from filelock import FileLock
+import sqlite3
 
 
 class HtmlRenderSimulator:
@@ -13,7 +14,7 @@ class HtmlRenderSimulator:
         self.MODE = MODE
         self.html_processed = False
         # Database path
-        self.DB_PATH = os.path.join(self.BASE_DIR, "..", "business", "business.db")
+        self.DB_PATH = os.path.join(self.BASE_DIR, "..", "business", "businesses.db")
         
         # Get device info from employees table
         self.device_id = self.get_device_id()
@@ -93,7 +94,6 @@ class HtmlRenderSimulator:
             return None
         # chạy lấy rendered text
         self.open_html_app()
-        self.search_html_online_viewer()
         self.compile_html()
         
         print("HTML processing hoàn thành, chờ 5s...")
@@ -179,7 +179,7 @@ class HtmlRenderSimulator:
         if self.d(text="Chọn tất cả").exists(timeout=3):
             self.d(text="Chọn tất cả").click()
             time.sleep(1.5)
-            self.d(text="SAo chép").click()
+            self.d(text="Sao chép").click()
             time.sleep(1)
         else:
             print("Không tìm thấy tuỳ chọn Chọn tất cả")
