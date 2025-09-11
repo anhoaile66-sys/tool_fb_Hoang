@@ -2,22 +2,10 @@ import asyncio
 import websockets
 import json
 import logging
-import sys
-import os
 from util import *
 import pymongo_management
 from module import *
 import uiautomator2 as u2
-
-# Thêm đường dẫn root để import util
-sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-
-# Import log_message từ util.log
-try:
-    from util.log import log_message
-except ImportError:
-    def log_message(msg: str, level=logging.INFO):
-        print(f"[{level}] {msg}")
 
 WEBSOCKET_URL = "ws://192.168.0.89:4000"
 
@@ -68,53 +56,6 @@ class WebSocketTaskHandler:
                 return
             # Nhận và thực hiện lệnh
             await self.run_commands(driver, account['username'])
-
-        elif message_type == "send_message":
-            # Server yêu cầu gửi tin nhắn
-            recipient = data.get("recipient", "")
-            message = data.get("message", "")
-            device_id = data.get("device_id", "")
-            
-            # Tạo content string từ recipient và message
-            content = f"recipient:{recipient};message:{message}"
-            
-            if device_id and task_manager:
-                task_id = await create_server_task(
-                    device_id=device_id,
-                    action="send_message",
-                    content=content
-                )
-                log_message(f"Created message task {task_id} for device {device_id}")
-        
-        elif message_type == "add_friend":
-            # Server yêu cầu kết bạn
-            user_id = data.get("user_id", "")
-            device_id = data.get("device_id", "")
-            
-            if device_id and task_manager:
-                task_id = await create_server_task(
-                    device_id=device_id,
-                    action="add_friend",
-                    content=user_id  # user_id là content
-                )
-                log_message(f"Created add friend task {task_id} for device {device_id}")
-        
-        elif message_type == "stop_device":
-            # Server yêu cầu dừng tất cả task của device
-            device_id = data.get("device_id", "")
-            if device_id and task_manager:
-                await task_manager.stop_all_tasks(device_id)
-                log_message(f"Stopped all tasks for device {device_id}")
-        
-        elif message_type == "get_status":
-            # Server yêu cầu trạng thái device
-            device_id = data.get("device_id", "")
-            if device_id and task_manager:
-                status = task_manager.get_device_status(device_id)
-                await self.send_response({
-                    "type": "device_status",
-                    "data": status
-                })
 
         else:
             log_message(f"Unknown message type: {message_type}", logging.WARNING)
@@ -183,13 +124,7 @@ class WebSocketTaskHandler:
 
 # Hàm chính để khởi động WebSocket client
 async def start_websocket_client(client_id: str = "123456"):
-    """Khởi động WebSocket client với Task Manager"""
-    
-    # Khởi động Task Manager nếu có
-    if task_manager:
-        asyncio.create_task(task_manager.run_task_queue())
-        log_message("Task Manager started", logging.INFO)
-    
+    """Khởi động WebSocket client"""
     # Khởi động WebSocket client
     handler = WebSocketTaskHandler(client_id)
     await handler.connect_websocket()

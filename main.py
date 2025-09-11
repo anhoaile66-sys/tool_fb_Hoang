@@ -363,24 +363,14 @@ async def device_supervisor(device_id: str):
 
 
 # ======================= CHẠY TẤT CẢ THIẾT BỊ VỚI TASK MANAGER =======================
-async def run_all_devices_with_task_manager():
+async def run_all_devices():
     """Chạy tất cả device với Task Manager và WebSocket"""
-    
-    # Khởi động Task Manager
-    asyncio.create_task(task_manager.run_task_queue())
-    log_message("Task Manager started")
-    
-    # Khởi động WebSocket client
-    asyncio.create_task(start_websocket_client("1498"))
-    log_message("WebSocket client started")
-    
     # Khởi động supervisor cho mỗi device
     tasks = [asyncio.create_task(device_supervisor(did)) for did in DEVICE_LIST]
     await asyncio.gather(*tasks)
-
 if __name__ == "__main__":
     try:
-        asyncio.run(run_all_devices_with_task_manager())
+        asyncio.run(run_all_devices())
     except KeyboardInterrupt:
         print("[!] Dừng bằng bàn phím (KeyboardInterrupt)")
     except Exception as e:
