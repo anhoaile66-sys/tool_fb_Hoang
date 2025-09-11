@@ -6,12 +6,12 @@ from classSend import run_sent
 from classHtmlRender import run_simulator
 
 # --- Cấu hình biến truyền vào api ---
-EMP_ID = 22616467
+EMP_ID = 22894754
 SUBJECT = ""
 CONTENT = ""
-MODE = 1
 
 # ----------------------------------- #
+MODE = 2
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 BUSINESS_SUBJECT_PATH = os.path.join(BASE_DIR, "..", "business", "business_subject_sample.txt")

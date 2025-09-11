@@ -21,7 +21,7 @@ class HtmlRenderSimulator:
         self.d = u2.connect(self.device_id)
         self.width, self.height = self.d.window_size()
         
-        self.MODE = MODE  # 1: mặc định 2: kinh doanh nhập 
+        self.MODE = 2  # 1: mặc định 2: kinh doanh nhập 
         if self.MODE == 1:
             self.BUSINESS_SUBJECT_PATH = os.path.join(self.BASE_DIR, "..", "business", "business_subject_sample.txt")
             self.BUSINESS_WRITEN_MAIL_PATH = os.path.join(self.BASE_DIR, "..", "business", "business_writen_mail_sample.txt")
@@ -69,9 +69,9 @@ class HtmlRenderSimulator:
     def beautify_html(self):
         """Chuyển text dạng html thành text render có format"""
         self.open_html_app()
-        self.clear_old_html()
+        self.search_html_online_viewer()
         self.compile_html()
-        self.go_back_code_html()
+
         return None
     
     def open_html_app(self):
@@ -81,52 +81,84 @@ class HtmlRenderSimulator:
         sử dụng weditor để dễ bề biết trước xpath
         """
         self.d(resourceId="com.android.systemui:id/center_group").click()
+        time.sleep(1)
         self.d.swipe_ext("up", scale=0.8)
         time.sleep(1)
         self.d(resourceId="com.gogo.launcher:id/search_container_all_apps").click()
         time.sleep(1)
-        self.d.send_keys("Html Editor", clear=True)
+        # tìm google, bắt buộc phải đăng nhập và hiện giao diện google rồi
+        self.d.send_keys("Google", clear=True)
         time.sleep(1)
-        self.d(resourceId="com.gogo.launcher:id/icon").click()
+        self.d(resourceId="com.gogo.launcher:id/icon", text="Google").click()
         time.sleep(1)
-        print("Đang mở app HTML Editor...")
+        print("Đang mở Google...")
+        
+        self.search_html_online_viewer()
+        
+    def search_html_online_viewer(self):
+        """Mở đúng website htmlonlineviewer"""
+        if self.d(resourceId="com.android.chrome:id/url_bar", textContains="html.onlineviewer.net").exists(timeout=2):
+            print("Đúng trang HTML Online Viewer rồi → clear luôn")
+            self.clear_old_html()
+        else:
+            self.delete_recent_tab()
+            # nhấp tìm kiếm
+            self.d.xpath('//*[@resource-id="googleapp_facade_search_box"]/android.widget.TextView[1]').click()
+            self.d(resourceId="com.google.android.googlequicksearchbox:id/googleapp_search_box").click()
+            # truyền tên miền 
+            self.d.send_keys("https://html.onlineviewer.net/", clear=True)
+            self.d.xpath('//*[@resource-id="com.google.android.inputmethod.latin:id/key_pos_ime_action"]/android.widget.FrameLayout[1]/android.widget.ImageView[1]').click()
+            time.sleep(3)
+            self.clear_old_html()
         
     def clear_old_html(self):
-        x = self.width * 0.325
-        y = self.height * 0.323
+        # 476, 0.21
+        x = self.width * 0.476
+        y = self.height * 0.210
         self.d.long_click(x, y, duration=1.0)
         time.sleep(1)
-        if self.d(text="Select all").exists(timeout=3):
-            self.d(text="Select all").click()
+        self.d(resourceId="android:id/overflow").click()
+        time.sleep(1)
+        
+        if self.d(text="Chọn tất cả").exists(timeout=3):
+            self.d(text="Chọn tất cả").click()
             time.sleep(1.5)
-            self.d.press("del")
+        else:
+            print("Không tìm thấy tuỳ chọn Chọn tất cả")
+        # chọn tất rồi lại nhấn giữ để cắt
+        self.d.long_click(x, y, duration=1.0)
+        time.sleep(1)
+        if self.d(text="Cắt").exists(timeout=3):
+            self.d(text="Cắt").click()
+            time.sleep(1.5)
             print("Đã xoá cũ")
         else:
-            print("Không tìm thấy tuỳ chọn Select all")
-
+            print("Không tìm thấy tuỳ chọn Cắt")
+            self.d.send_keys(self.BUSINESS_WRITEN_MAIL, clear=True)
         self.d.send_keys(self.BUSINESS_WRITEN_MAIL)
         
     def compile_html(self):
-        self.d(description="Run").click()
-        time.sleep(2)
-        x = self.width * 0.058
-        y = self.height * 0.193
+        # 0.794, 0.305
+        x = self.width * 0.794
+        y = self.height * 0.305
         self.d.long_click(x, y, duration=1.0)
         time.sleep(1)
+        self.d(resourceId="android:id/overflow").click()
+        time.sleep(1)
+        # chọn tất rồi sao chép
         if self.d(text="Chọn tất cả").exists(timeout=3):
             self.d(text="Chọn tất cả").click()
-            time.sleep(0.5)
-            self.d(text="Sao chép").click()
-        elif self.d(text="Select all").exists(timeout=3):
-            self.d(text="Select all").click()
-            time.sleep(0.5)
-            self.d(text="Copy").click()
+            time.sleep(1.5)
+            self.d(text="SAo chép").click()
+            time.sleep(1)
         else:
-            print("Không tìm thấy tuỳ chọn Select all")
-            # anh Cả quất tiếp nhé
+            print("Không tìm thấy tuỳ chọn Chọn tất cả")
+            # ảnh Cả cook tiếp nhé, đoạn này nếu cơ chế giữ để hiện menu nếu thay đổi thì toang, phải chinh lại mấy hàm này
         
-    def go_back_code_html(self):
-        self.d.xpath('//android.widget.ScrollView/android.view.View[1]/android.view.View[1]/android.view.View[1]/android.widget.TextView[1]').click()
+    def delete_recent_tab(self):
+        self.d(resourceId="com.android.systemui:id/recent_apps").click()
+        	# (0.476, 0.48)
+        self.d.swipe_ext("up", scale=0.8, box=(0.3, 0.3, 0.7, 0.6))
             
             
 def run_simulator(EMP_ID, BUSINESS_SUBJECT_PATH, BUSINESS_WRITEN_MAIL_PATH, MODE):

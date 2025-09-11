@@ -32,8 +32,8 @@
 
 
 -- -- Insert data into email_accounts table
-INSERT INTO email_accounts (emp_id, email_account, num_sent)
-VALUES
+-- INSERT INTO email_accounts (emp_id, email_account, num_sent)
+-- VALUES
 -- ('22616467', 'hoanglinh.tuyendung1@gmail.com', 3),
 -- ('22616467', 'linhphnguyen.timviec365@gmail.com', 3),
 -- ('22616467', 'linhphnguyen1.timviec365@gmail.com', 1),
@@ -93,18 +93,18 @@ VALUES
 -- ('22896992','oanhha556333@gmail.com',0),
 -- ('22896992','hthaolinh91@gmail.com',0),
 -- ('22896992','tranghuyen365vn@gmail.com',0),
--- ('22896992','hothuloan257@gmail.com',0);
-('22894754','haiyentimviec365@gmail.com',3),
-('22894754','yenhoangtimviec365@gmail.com',0),
-('22894754','yenytimviec365@gmail.com',0),
-('22894754','hyentd365@gmail.com',0),
-('22894754','yenhoanghai203@gmail.com',0),
-('22894754','lyvu01.timviec365@gmail.com',0),
-('22894754','lyvu02.timviec365@gmail.com',0),
-('22894754','lyvu03.timviec365@gmail.com',0),
-('22894754','lyvu04.timviec365@gmail.com',0),
-('22894754','lyvu05.timviec365@gmail.com',0),
-('22894754','lyvu06.timviec365@gmail.com',0);
+-- ('22896992','hothuloan257@gmail.com',0),
+-- ('22894754','haiyentimviec365@gmail.com',3),
+-- ('22894754','yenhoangtimviec365@gmail.com',0),
+-- ('22894754','yenytimviec365@gmail.com',0),
+-- ('22894754','hyentd365@gmail.com',0),
+-- ('22894754','yenhoanghai203@gmail.com',0),
+-- ('22894754','lyvu01.timviec365@gmail.com',0),
+-- ('22894754','lyvu02.timviec365@gmail.com',0),
+-- ('22894754','lyvu03.timviec365@gmail.com',0),
+-- ('22894754','lyvu04.timviec365@gmail.com',0),
+-- ('22894754','lyvu05.timviec365@gmail.com',0),
+-- ('22894754','lyvu06.timviec365@gmail.com',0);
 
 
 
@@ -115,3 +115,7 @@ VALUES
 --     ORDER BY customer_id
 --     LIMIT 1 OFFSET 10
 -- );
+
+UPDATE customers
+SET sent = 1
+WHERE customer_id = 12
