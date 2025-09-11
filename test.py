@@ -406,6 +406,63 @@ async def test_and_fix_auto_rotation():
             print(f"  ❌ Lỗi xử lý device {device_id}: {e}")
 
 # Chạy hàm async
+async def test_app_start_auto_rotation():
+    """Test xem app_start có ảnh hưởng đến auto-rotation không"""
+    print("🧪 TEST: App_start có ảnh hưởng đến auto-rotation không?")
+    print("=" * 60)
+    
+    connected_devices = get_connected_devices()
+    
+    if not connected_devices:
+        print("❌ Không tìm thấy device nào!")
+        return
+    
+    # Test với device đầu tiên
+    device_id = connected_devices[0]
+    print(f"📱 Test device: {device_id}")
+    
+    try:
+        driver = u2.connect_usb(device_id)
+        
+        print(f"\n🔄 BƯỚC 1: Tắt auto-rotation")
+        driver.shell("settings put system accelerometer_rotation 0")
+        
+        result1 = driver.shell("settings get system accelerometer_rotation")
+        value1 = parse_shell_response(result1)
+        print(f"  Auto-rotation sau khi tắt: {value1}")
+        
+        print(f"\n📱 BƯỚC 2: Mở Facebook app")
+        driver.app_start("com.facebook.katana")
+        await asyncio.sleep(3)
+        
+        result2 = driver.shell("settings get system accelerometer_rotation")
+        value2 = parse_shell_response(result2)
+        print(f"  Auto-rotation sau khi mở FB: {value2}")
+        
+        print(f"\n📱 BƯỚC 3: Mở Zalo app")
+        driver.app_start("com.zing.zalo")
+        await asyncio.sleep(3)
+        
+        result3 = driver.shell("settings get system accelerometer_rotation")
+        value3 = parse_shell_response(result3)
+        print(f"  Auto-rotation sau khi mở Zalo: {value3}")
+        
+        print(f"\n📊 KẾT QUẢ:")
+        print(f"  Trước app_start: {value1}")
+        print(f"  Sau mở Facebook: {value2}")
+        print(f"  Sau mở Zalo: {value3}")
+        
+        if value1 == value2 == value3 == "0":
+            print(f"  ✅ CHỨNG MINH: app_start KHÔNG ảnh hưởng auto-rotation")
+        else:
+            print(f"  ⚠️ CHÚ Ý: Có thay đổi auto-rotation sau app_start")
+            
+        # Cleanup - về home
+        driver.press("home")
+        
+    except Exception as e:
+        print(f"❌ Lỗi test: {e}")
+
 async def main():
     print("Chọn chức năng:")
     print("1. Monitor ADB devices")

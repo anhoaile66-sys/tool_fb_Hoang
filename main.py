@@ -11,6 +11,7 @@ import random
 from typing import Optional, Callable
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
+from id import DEVICE_LIST
 
 # ====== LOG UTIL (uses util.log if present) ======
 try:
@@ -80,29 +81,58 @@ async def disable_auto_rotation(driver, device_id: str):
     """
     Thực sự tắt chế độ tự động xoay màn hình của hệ thống Android
     """
+    
+    def parse_shell_response(result):
+        """Helper function để xử lý ShellResponse object từ UIAutomator2"""
+        if hasattr(result, 'output'):
+            return result.output.strip()
+        elif hasattr(result, 'text'):
+            return result.text.strip()
+        elif hasattr(result, 'stdout'):
+            return result.stdout.strip()
+        else:
+            return str(result).strip()
+    
     try:
         log_message(f"[{device_id}] Tắt chế độ tự động xoay màn hình hệ thống")
         
-        # Phương pháp 1: Tắt auto-rotation qua shell command
+        # Kiểm tra trạng thái hiện tại trước
         try:
-            # Tắt auto-rotation trong settings (0 = tắt, 1 = bật)
+            current_result = driver.shell("settings get system accelerometer_rotation")
+            current_value = parse_shell_response(current_result)
+            log_message(f"[{device_id}] Trạng thái auto-rotation hiện tại: {current_value}")
+        except Exception as e:
+            log_message(f"[{device_id}] Không thể kiểm tra trạng thái hiện tại: {e}")
+            current_value = "unknown"
+        
+        # Tắt auto-rotation qua shell command
+        try:
             driver.shell("settings put system accelerometer_rotation 0")
-            log_message(f"[{device_id}] Đã tắt auto-rotation qua settings")
-            await asyncio.sleep(1)
+            log_message(f"[{device_id}] Đã gửi lệnh tắt auto-rotation qua settings")
+            await asyncio.sleep(1)  # Chờ settings apply
             
         except Exception as e:
             log_message(f"[{device_id}] Lỗi tắt auto-rotation qua settings: {e}")
         
-
-        await asyncio.sleep(1.0)
-        
-        # Kiểm tra trạng thái auto-rotation
+        # Kiểm tra trạng thái sau khi tắt
         try:
             result = driver.shell("settings get system accelerometer_rotation")
-            status = "TẮT" if result.strip() == "0" else "BẬT"
-            log_message(f"[{device_id}] Trạng thái auto-rotation: {status}")
-        except Exception:
-            log_message(f"[{device_id}] Không thể kiểm tra trạng thái auto-rotation")
+            final_value = parse_shell_response(result)
+            
+            if final_value == "0":
+                status = "TẮT ✅"
+                log_message(f"[{device_id}] Auto-rotation đã được TẮT thành công!")
+            elif final_value == "1":
+                status = "BẬT ❌"
+                log_message(f"[{device_id}] Auto-rotation vẫn còn BẬT - có thể cần retry", logging.WARNING)
+            else:
+                status = f"KHÔNG XÁC ĐỊNH ({final_value})"
+                log_message(f"[{device_id}] Trạng thái auto-rotation không xác định: {final_value}", logging.WARNING)
+            
+            log_message(f"[{device_id}] Trạng thái auto-rotation cuối: {status}")
+            
+        except Exception as e:
+            log_message(f"[{device_id}] Không thể kiểm tra trạng thái cuối: {e}")
         
         log_message(f"[{device_id}] Hoàn thành disable auto-rotation")
         
@@ -345,7 +375,7 @@ async def run_all_devices_with_task_manager():
     log_message("WebSocket client started")
     
     # Khởi động supervisor cho mỗi device
-    tasks = [asyncio.create_task(device_supervisor(did)) for did in DEVICES_LIST]
+    tasks = [asyncio.create_task(device_supervisor(did)) for did in DEVICE_LIST]
     await asyncio.gather(*tasks)
 
 if __name__ == "__main__":

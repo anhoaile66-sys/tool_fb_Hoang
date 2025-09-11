@@ -6,15 +6,10 @@ import logging
 from util import *
 from module import *
 from collections import deque
+from id import DEVICE_LIST
 
 USER_ACCOUNT_FILE = "user_account.json"
 DEVICES_FOLDER = "devices"
-DEVICES_LIST = [
-    # "7HYP4T4XTS4DXKCY",
-    "UWJJOJLB85SO7LIZ",
-    "2926294610DA007N",
-    "7DXCUKKB6DVWDAQO"
-    ]
 
 # Xử lý khi tài khoản không đăng nhập được, đánh dấu tài khoản bị ban, trả về danh sách tài khoản ở thiết bị theo cấu trúc file gốc
 # Thay đổi cấu trúc file gốc, bỏ phần thiết bị ra khỏi file, thay vào đó là chia tài khoản cho các thiết bị, mỗi thiết bị 3 tài khoản
@@ -150,7 +145,7 @@ async def main():
     ensure_devices_folder()
     account_list = deque(load_account_list())
     lock = asyncio.Lock()
-    task = [handle_device(device_id, account_list, lock) for device_id in DEVICES_LIST]
+    task = [handle_device(device_id, account_list, lock) for device_id in DEVICE_LIST]
     await asyncio.gather(*task)
     save_account_list(list(account_list))
 

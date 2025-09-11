@@ -4,34 +4,6 @@ from util import *
 from module import *
 from datetime import datetime, timedelta
 
-DEVICES_LIST = [
-    "R8YY70F5MKN",
-    "R8YY70F81TV",
-    "69QGMN8PXWDYPNIF",
-    "7HYP4T4XTS4DXKCY",
-    "UWJJOJLB85SO7LIZ",
-    "2926294610DA007N",
-    "7DXCUKKB6DVWDAQO",
-    "8HMN4T9575HAQWLN",
-    "CEIN4X45I7ZHFEFU",
-    "CQIZKJ8P59AY7DHI",
-    "EQLNQ8O7EQCQPFXG",
-    "MJZDFY896TMJBUPN",
-    "TSPNH6GYZLPJBY6X",
-    "YH9TSS7XCMPFZHNR",
-    "9PAM7DIFW87DOBEU",
-    "F6NZ5LRKWWGACYQ8",
-    "EM4DYTEITCCYJNFU",
-    "EY5H9DJNIVNFH6OR",
-    "QK8TEMKZMBYHPV6P",
-    "IJP78949G69DKNHM",
-    "PN59BMHYPFXCPN8T",
-    "EIFYAALRK7U4MRZ9",
-    "Z5LVOF4PRGXGTS9H",
-    "1ac1d26f0507"
-    ]
-
-
 # Thoát app, xóa cache khi chờ task
 async def clear_app(driver):
     driver.press("recent")
