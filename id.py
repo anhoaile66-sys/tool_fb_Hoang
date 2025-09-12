@@ -1,9 +1,8 @@
 import requests
 import json
-from typing import List, Dict, Optional
 
 # Device API Configuration
-ALL_DEVICE_API = "http://192.168.0.116:4000/api/device/getAllDevices"
+ALL_DEVICE_API = "https://socket.hungha365.com:4000/api/device/getAllDevices"
 
 def get_all_devices_from_api():
     """

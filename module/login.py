@@ -12,15 +12,16 @@ async def log_out(driver):
     await go_to_home_page(driver)
 
     log_message("Đăng xuất")
-    menu = my_find_element(driver, {("xpath", '//android.view.View[contains(@content-desc, "Menu")]')})
+    menu = my_find_element(driver, {("xpath", '//*[contains(@content-desc, "Menu")]')})
     try:
         menu.click()
     except Exception:
         log_message("Không tìm được theo xpath, thử tọa độ cứng", logging.WARNING)
         # Cách tồi nhất
-        driver.click(661, 202)
+        # driver.click(661, 202)
+        return
     # Đợi chuyển sang tab menu
-    await asyncio.sleep(6)
+    await asyncio.sleep(12)
     log_message("Vào menu")
 
     safe_flag = 10
@@ -35,7 +36,7 @@ async def log_out(driver):
     log_out.click()
     log_message("Đang đăng xuất")
     # Đợi hiện box lưu
-    await asyncio.sleep(6)
+    await asyncio.sleep(12)
     # Xác nhận lưu tài khoản(nếu có)
     save = my_find_element(driver, {("text", "LƯU")})
     try:
