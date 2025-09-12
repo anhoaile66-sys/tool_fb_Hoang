@@ -1,31 +1,53 @@
-# Device ID List
-# Generated from devices/mapping.json
+import requests
+import json
+from typing import List, Dict, Optional
 
-DEVICE_LIST = [
-    "R8YY70F5MKN",      # A01
-    "7DXCUKKB6DVWDAQO",  # A02
-    "TSPNH6GYZLPJBY6X",  # A03
-    "7HYP4T4XTS4DXKCY",  # A04
-    "UWJJOJLB85SO7LIZ",  # A05
-    "CEIN4X45I7ZHFEFU",  # A06
-    "8HMN4T9575HAQWLN",  # A07
-    "CQIZKJ8P59AY7DHI",  # A08
-    "9PAM7DIFW87DOBEU",  # A09
-    "EQLNQ8O7EQCQPFXG",  # A10
-    "YH9TSS7XCMPFZHNR",  # A11
-    "MJZDFY896TMJBUPN",  # A12
-    "EY5H9DJNIVNFH6OR",  # A13
-    "F6NZ5LRKWWGACYQ8",  # A14
-    "QK8TEMKZMBYHPV6P",  # A15
-    "IJP78949G69DKNHM",  # A16
-    "EM4DYTEITCCYJNFU",  # A17
-    "PN59BMHYPFXCPN8T",  # A18
-    "Z5LVOF4PRGXGTS9H",  # A19
-    "R8YY70F81TV",       # A21
-    "69QGMN8PXWDYPNIF",  # A22
-    "IZDEGA8TFYXWRK9X",  # A23
-    "R8YY70HCNRX",       # A24
-    "R83Y50JZK6A"        # A25
-]
+# Device API Configuration
+ALL_DEVICE_API = "http://192.168.0.116:4000/api/device/getAllDevices"
 
-# Total devices: 24
+def get_all_devices_from_api():
+    """
+    Lấy danh sách tất cả devices từ API
+    Returns: List of device objects hoặc None nếu có lỗi
+    """
+    try:
+        response = requests.post(ALL_DEVICE_API, timeout=10)
+        response.raise_for_status()
+        
+        data = response.json()
+        devices = data.get("results", [])
+        
+        print(f"✅ Lấy thành công {len(devices)} devices từ API")
+        return devices
+        
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Lỗi kết nối API: {e}")
+        return None
+    except json.JSONDecodeError as e:
+        print(f"❌ Lỗi parse JSON: {e}")
+        return None
+    except Exception as e:
+        print(f"❌ Lỗi không xác định: {e}")
+        return None
+
+def get_device():
+    """
+    Lấy dictionary mapping device_id -> device_name
+    Args:
+        use_cache: Sử dụng cache hay gọi API mới
+    Returns: Dict {device_id: device_name}
+    """
+
+    # Gọi API lấy devices
+    devices = get_all_devices_from_api()
+    
+    if devices is None:
+        return []
+    
+    # Tạo dictionary mapping
+    device_list = []
+    for device in devices:
+        device_list.append(device.get("device_id"))
+    return device_list
+
+DEVICE_LIST = get_device()
