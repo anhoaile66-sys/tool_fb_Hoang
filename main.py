@@ -336,7 +336,7 @@ async def device_supervisor(device_id: str):
                 device_status_path = f"D:/Zalo_CRM/Zalo_base/device_status_{device_id}.json"
                 try:
                     with open(device_status_path, 'r', encoding='utf-8') as f:
-                        device_status = get_device_info.load(f)
+                        device_status = json.load(f)
                     # Nếu 'active' là True, thiết bị sẽ bị tạm dừng
                     if device_status.get('active', False):
                         is_paused = True

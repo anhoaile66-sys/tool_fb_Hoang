@@ -85,7 +85,7 @@ class WebSocketTaskHandler:
         """Gửi response về server"""
         if self.websocket and self.connected:
             try:
-                await self.websocket.send(get_device_info.dumps(data))
+                await self.websocket.send(json.dumps(data))
                 log_message(f"Sent response: {data.get('type', 'unknown')}")
             except Exception as e:
                 log_message(f"Failed to send response: {e}", logging.ERROR)
@@ -112,19 +112,19 @@ class WebSocketTaskHandler:
                         "type": "register",
                         "clientId": self.client_id,
                     }
-                    await websocket.send(get_device_info.dumps(register_message))
+                    await websocket.send(json.dumps(register_message))
                     log_message(f"Đã gửi tin nhắn đăng ký với clientId: {self.client_id}", logging.INFO)
                     
                     # Lắng nghe tin nhắn từ server
                     async for message in websocket:
                         try:
-                            data = get_device_info.loads(message)
+                            data = json.loads(message)
                             log_message(f"Received message: {data.get('type', 'unknown')}")
                             
                             # Xử lý message và tạo task
                             await self.handle_server_message(data)
                             
-                        except get_device_info.JSONDecodeError:
+                        except json.JSONDecodeError:
                             log_message(f"Lỗi decode JSON từ WebSocket: {message}", logging.ERROR)
                         except Exception as e:
                             log_message(f"Error handling message: {e}", logging.ERROR)
