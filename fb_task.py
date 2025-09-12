@@ -54,7 +54,7 @@ async def run_on_device_original(driver):
 
         device = load_device_account(device_id)
 
-        account = "default"
+
         if device == {}:
             log_message(f"Không tìm thấy dữ liệu cho thiết bị {device_id}", logging.WARNING)
             crm_id = "22615833"
