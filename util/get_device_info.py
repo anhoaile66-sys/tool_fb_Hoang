@@ -1,7 +1,7 @@
 import requests
 from datetime import datetime
 
-API_BASE_URL = "http://192.168.0.97:4000/api/device"
+API_BASE_URL = "https://socket.hungha365.com:4000/api/device"
 
 def load_device_account(device_id):
     """

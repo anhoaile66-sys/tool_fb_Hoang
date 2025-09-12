@@ -239,6 +239,8 @@ async def device_once(device_id: str):
       - Watchdog chạy nền
       - Pha 'zalo' (một vòng) -> Pha 'facebook'
     """
+    global status
+    status[device_id] = True
     # Kết nối thiết bị
     driver = await asyncio.to_thread(u2.connect_usb, device_id)
     handler = DeviceHandler(driver, device_id)
@@ -310,12 +312,21 @@ async def device_once(device_id: str):
     finally:
         await watchdog.stop()
 
+    status[device_id] = False
+
+status = {}  # device_id -> bool (đang chạy hay không)
+
+
 async def device_supervisor(device_id: str):
     """
     Giám sát riêng từng thiết bị:
       - Nếu watchdog yêu cầu restart -> chạy lại from-scratch chỉ cho thiết bị đó.
       - Không ảnh hưởng các thiết bị khác.
     """
+    global status
+    status[device_id] = False
+    task = asyncio.create_task(device_once(device_id))
+
     while True:
         try:
             # ======================= NEW CODE BLOCK START =======================
@@ -338,15 +349,17 @@ async def device_supervisor(device_id: str):
                     print(f"[{device_id}] ❌ Lỗi khi đọc file JSON: {e}. Sẽ tiếp tục chạy.")
 
                 if is_paused:
-                    print(f"[{device_id}] ⏸️ Trạng thái 'active' là TRUE. Tạm dừng, kiểm tra lại sau 0.1 giây.")
-                    await asyncio.sleep(0.1) 
+                    if not task.done():
+                        task.cancel()
+                        print("Task đã bị hủy do thiết bị active")
+                    status[device_id] = False
+                    await asyncio.sleep(0.1)
                 else:
-                    print(f"[{device_id}] ▶️ Trạng thái 'active' là FALSE. Bắt đầu công việc.")
-                    break # Thoát vòng lặp chờ và bắt đầu công việc
+                    break
             # ======================= NEW CODE BLOCK END =======================
             
-            # Nếu đã thoát khỏi vòng lặp trên, tiến hành chạy tác vụ
-            await device_once(device_id)
+            if not status:
+                task = asyncio.create_task(device_once(device_id))
 
             # Sau khi xong 1 vòng, ngủ ngắn rồi tiếp tục vòng kế
             await asyncio.sleep(random.uniform(5, 10))
