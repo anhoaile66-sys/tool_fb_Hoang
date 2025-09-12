@@ -354,6 +354,7 @@ async def device_supervisor(device_id: str):
                         print("Task đã bị hủy do thiết bị active")
                     status[device_id] = False
                     await asyncio.sleep(0.1)
+                    continue
                 else:
                     break
             # ======================= NEW CODE BLOCK END =======================

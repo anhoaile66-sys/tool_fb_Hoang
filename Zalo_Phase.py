@@ -14,7 +14,7 @@ from PIL import Image
 from uiautomator2.exceptions import UiObjectNotFoundError
 from uiautomator2.exceptions import XPathElementNotFoundError
 from uiautomator2 import Direction
-from datetime import datetime
+from datetime import datetime, timedelta
 import xml.etree.ElementTree as ET
 import re
 
@@ -1033,7 +1033,7 @@ class DeviceHandler:
         account_data = None
         try:
             # Ưu tiên đọc file theo ID thiết bị
-            json_file = f"Zalo_data_login_path_{self.device_id}.json"
+            json_file = f"Zalo_data_login_path_{self.device_id}.json"  ##note1
             if not os.path.exists(json_file):
                  # Nếu không có, thử đọc file mà người dùng cung cấp
                  json_file = "Zalo_data_login_path_YH9TSS7XCMPFZHNR.json"
@@ -1239,6 +1239,208 @@ class DeviceHandler:
             print(f"[{self.device_id}] ❌ Lỗi khi bình luận: {e}")
             self.d.press("back")
             return 0
+ 
+    # ------------------ BỔ SUNG: LƯỚT TRANG CÁ NHÂN BẠN BÈ ------------------
+    # ------------------ QUẢN LÝ LỊCH SỬ FRIENDS VIEWED ------------------
+    def load_viewed_friends(self):
+        """
+        Đọc file lưu bạn bè đã xem profile, tự động xóa entry quá 7 ngày.
+        """
+        file_path = f"Zalo_friends_viewed_{self.device_id}.json"
+        data = {}
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception:
+            return {}
+
+        # cleanup entries quá hạn
+        now = datetime.now()
+        new_data = {}
+        for name, ts in data.items():
+            try:
+                ts_dt = datetime.fromisoformat(ts)
+                if now - ts_dt <= timedelta(days=7):
+                    new_data[name] = ts
+            except Exception:
+                continue
+
+        if new_data != data:
+            try:
+                with open(file_path, "w", encoding="utf-8") as f:
+                    json.dump(new_data, f, ensure_ascii=False, indent=2)
+            except Exception:
+                pass
+
+        return new_data
+
+    def save_viewed_friend(self, friend_name):
+        """
+        Lưu lại bạn bè vừa được xem profile kèm timestamp.
+        """
+        file_path = f"Zalo_friends_viewed_{self.device_id}.json"
+        try:
+            data = self.load_viewed_friends()
+            data[friend_name] = datetime.now().isoformat()
+            with open(file_path, "w", encoding="utf-8") as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+        except Exception as e:
+            print(f"[{self.device_id}] ❌ Không thể lưu viewed friend {friend_name}: {e}")
+# ---------------------------------------------------------------------
+
+    def surf_friends_profiles(self, duration_minutes=10):
+        """
+        Vào profile bạn bè theo tên (lấy từ file Zalo_data_login_path_{device_id}.json)
+        Lướt và like theo luật:
+        - Mỗi friend: lướt tối đa 15 lần
+        - Nếu lướt 3 lần liên tiếp mà không thấy bài viết (không thấy nút like) -> dừng sớm cho friend đó
+        - Xác suất like mỗi lần thấy nút like: 90%
+        - Sau mỗi friend: tắt tất cả tab (cleanup) rồi mở lại Zalo trước khi tìm friend tiếp theo
+        - Toàn bộ quá trình không vượt quá duration_minutes (phút)
+        Đồng thời lưu danh sách bạn bè đã xem profile để tránh xem trùng trong 7 ngày.
+        """
+        start_ts = time.time()
+        max_seconds = duration_minutes * 60
+        base_dir = r"C:\Zalo_CRM\Zalo_base"
+        device_json_file = os.path.join(base_dir, f"Zalo_data_login_path_{self.device_id}.json")
+        print(f"[{self.device_id}] 🔎 Đọc dữ liệu từ: {device_json_file}")
+
+        # Đọc file dữ liệu để lấy list_friend cho tài khoản hiện tại
+        try:
+            with open(device_json_file, "r", encoding="utf-8") as f:
+                accounts = json.load(f)
+        except Exception as e:
+            print(f"[{self.device_id}] ❌ Không thể đọc file {device_json_file}: {e}")
+            return
+
+        # Lấy tên tài khoản hiện tại trên thiết bị
+        try:
+            self.d(resourceId="com.zing.zalo:id/maintab_metab").click()
+            time.sleep(0.5)
+            current_account_name = self.d(resourceId="com.zing.zalo:id/title_list_me_tab").get_text().strip()
+        except Exception:
+            current_account_name = None
+
+        # Tìm entry trong JSON trùng tên tài khoản (nếu không có tên, fallback: lấy mọi list_friend của device_id)
+        friends_list = []
+        for entry in accounts:
+            if entry.get("id_device") == self.device_id:
+                if current_account_name and entry.get("name") == current_account_name:
+                    friends_list = entry.get("list_friend", []) or []
+                    break
+                if not friends_list:
+                    friends_list = entry.get("list_friend", []) or []
+
+        if not friends_list:
+            print(f"[{self.device_id}] ⚠️ Không tìm thấy bạn bè trong dữ liệu cho account '{current_account_name}'. Bỏ qua.")
+            return
+
+        # Load danh sách bạn bè đã xem trong 7 ngày gần nhất
+        viewed_friends = self.load_viewed_friends()
+
+        print(f"[{self.device_id}] ℹ️ Bắt đầu lướt trang cá nhân bạn bè: {len(friends_list)} bạn.")
+
+        for friend in friends_list:
+            if time.time() - start_ts > max_seconds:
+                print(f"[{self.device_id}] ⏱️ Hết thời gian {duration_minutes} phút cho quá trình lướt friends. Dừng.")
+                break
+
+            friend_name = friend.get("name")
+            if not friend_name:
+                continue
+
+            # Bỏ qua nếu friend đã được xem trong 7 ngày qua
+            if friend_name in viewed_friends:
+                print(f"[{self.device_id}] ⏩ Bỏ qua {friend_name} (đã xem trong 7 ngày qua).")
+                continue
+
+            print(f"[{self.device_id}] ▶ Vào trang cá nhân: {friend_name}")
+
+            try:
+                # Reset / khởi động lại app để tìm kiếm sạch sẽ
+                self.cleanup_background_apps()
+                time.sleep(1)
+                self.d.app_start("com.zing.zalo")
+                time.sleep(2)
+
+                # Tìm kiếm theo tên
+                if self.d(text="Tìm kiếm").exists:
+                    self.d(text="Tìm kiếm").click()
+                elif self.d(resourceId="com.zing.zalo:id/search_text").exists:
+                    self.d(resourceId="com.zing.zalo:id/search_text").click()
+                else:
+                    if self.d(resourceId="com.zing.zalo:id/maintab_message").exists:
+                        self.d(resourceId="com.zing.zalo:id/maintab_message").click()
+                        time.sleep(0.5)
+                        if self.d(text="Tìm kiếm").exists:
+                            self.d(text="Tìm kiếm").click()
+
+                time.sleep(0.8)
+                self.d.send_keys(friend_name, clear=True)
+                time.sleep(1)
+
+                if not self.d(resourceId="com.zing.zalo:id/btn_search_result").exists:
+                    print(f"[{self.device_id}] ⚠️ Không tìm thấy kết quả tìm kiếm cho '{friend_name}'. Tiếp.")
+                    self.d.press("back")
+                    continue
+
+                self.d(resourceId="com.zing.zalo:id/btn_search_result").click()
+                time.sleep(1.2)
+
+                if self.d(resourceId="com.zing.zalo:id/action_bar_title").exists:
+                    try:
+                        self.d(resourceId="com.zing.zalo:id/action_bar_title").click()
+                        time.sleep(1.2)
+                    except Exception:
+                        pass
+
+                # Bắt đầu lướt profile
+                no_post_consecutive = 0
+                scrolls = 0
+                while scrolls < 15 and (time.time() - start_ts) <= max_seconds:
+                    likes_done = 0
+                    if random.random() < 0.9:
+                        likes_done = self.like_posts_in_current_frame()
+                    else:
+                        print(f"[{self.device_id}] ℹ️ Bỏ qua like do xác suất.")
+
+                    if likes_done:
+                        no_post_consecutive = 0
+                        print(f"[{self.device_id}] 👍 Đã like 1 bài trên profile {friend_name}.")
+                    else:
+                        no_post_consecutive += 1
+                        print(f"[{self.device_id}] ℹ️ Không thấy post để like (đếm: {no_post_consecutive}).")
+
+                    if no_post_consecutive >= 3:
+                        print(f"[{self.device_id}] ℹ️ 3 lần liên tiếp không thấy post -> kết thúc sớm cho {friend_name}.")
+                        break
+
+                    self.d.swipe_ext("up", scale=random.uniform(0.55, 0.8))
+                    time.sleep(random.uniform(1.2, 2.5))
+                    scrolls += 1
+
+                # Sau khi xem xong: lưu lại friend này
+                self.save_viewed_friend(friend_name)
+
+                # Dọn app để chuyển sang friend tiếp theo
+                print(f"[{self.device_id}] ✅ Xong profile {friend_name}. Dọn background và chuẩn bị profile tiếp.")
+                self.cleanup_background_apps()
+                time.sleep(random.uniform(1.0, 2.0))
+                self.d.app_start("com.zing.zalo")
+                time.sleep(1.2)
+
+            except Exception as e:
+                print(f"[{self.device_id}] ❌ Lỗi khi lướt profile {friend_name}: {e}")
+                try:
+                    self.cleanup_background_apps()
+                except Exception:
+                    pass
+                continue
+
+        print(f"[{self.device_id}] 🎯 Hoàn tất lướt trang cá nhân bạn bè (hoặc hết thời gian).")
+
+
+# -------------------------------------------------------------------------
 
     def surf_zalo_timeline(self):
         """
@@ -1328,21 +1530,25 @@ class DeviceHandler:
 
     def run(self, rounds=1):
         """
-        Chạy luồng Zalo mới: Chúc mừng SN -> 1 SĐT -> Lướt Nhật ký -> Đổi tài khoản.
+        Chạy luồng Zalo: (1) Lướt khám phá -> (2) Tìm SĐT & nhắn tin kết bạn -> (3) Lướt trang cá nhân bạn bè -> Đổi TK
         """
         if rounds > 0 and not STOP_EVENT.is_set():
-            # ===================== TÍNH NĂNG MỚI: CHÚC MỪNG SINH NHẬT =====================
+            # Tính năng chúc mừng SN (giữ nguyên như cũ)
             self.send_birthday_wishes()
-            # ============================================================================
-            
-            # PHA 1: XỬ LÝ MỘT SỐ ĐIỆN THOẠI
-            print(f"\n[{self.device_id}]===== Bắt đầu chu trình Zalo (1 SĐT -> Lướt -> Đổi TK) =====")
+
+            print(f"\n[{self.device_id}]===== Bắt đầu chu trình Zalo (Lướt -> SĐT -> Lướt profile -> Đổi TK) =====")
             current_db = self.pick_database_for_round()
             sender_name = DATABASE_MAPPING.get(current_db, "Nhân viên")
             print(f"[{self.device_id}] Lấy việc từ database {current_db} ({sender_name})")
 
-            ensure_db_queue_loaded(current_db)
+            # PHA 1: Lướt khám phá (Timeline)
+            try:
+                self.surf_zalo_timeline()
+            except Exception as e:
+                print(f"[{self.device_id}] ⚠️ Lỗi khi lướt khám phá: {e}")
 
+            # PHA 2: Tìm SĐT và xử lý 1 item (giữ nguyên logic)
+            ensure_db_queue_loaded(current_db)
             try:
                 contact = db_queues[current_db].get(timeout=5)
                 phone_number = (contact.get("phone_number") or "").strip()
@@ -1351,25 +1557,24 @@ class DeviceHandler:
                     self.process_phone_number(phone_number, contact, sender_name, current_db)
                 db_queues[current_db].task_done()
             except Empty:
-                print(f"[{self.device_id}] Hàng đợi trống, bỏ qua xử lý SĐT và chuyển sang lướt.")
+                print(f"[{self.device_id}] Hàng đợi trống, bỏ qua xử lý SĐT.")
             except Exception as e:
                 print(f"[{self.device_id}] Lỗi khi xử lý SĐT: {e}")
 
-            # PHA 2: LƯỚT ZALO (NHẬT KÝ)
-            self.surf_zalo_timeline()
-
-            # PHA 3: ĐỔI TÀI KHOẢN
-            print(f"[{self.device_id}] Chu trình lướt đã xong, chuẩn bị đổi tài khoản.")
+            # PHA 3: Lướt trang cá nhân bạn bè (mỗi account 10 phút tối đa)
             try:
-                # === BỔ SUNG: Khởi động lại Zalo trước khi đổi tài khoản ===
-                print(f"[{self.device_id}] Đang khởi động lại Zalo trước khi đổi tài khoản...")
+                self.surf_friends_profiles(duration_minutes=10)
+            except Exception as e:
+                print(f"[{self.device_id}] ⚠️ Lỗi khi lướt profile bạn bè: {e}")
+
+            # PHA 4: Đổi tài khoản như cũ
+            print(f"[{self.device_id}] Chu trình xong, chuẩn bị đổi tài khoản.")
+            try:
+                # Restart app & set inactive cho tài khoản cũ như trước
                 self.d.app_stop("com.zing.zalo")
                 time.sleep(1)
                 self.d.app_start("com.zing.zalo")
-                time.sleep(5) # Chờ ứng dụng sẵn sàng
-                # ===========================================================
-
-                # Tắt trạng thái active cho tài khoản cũ
+                time.sleep(5)
                 self.d(resourceId="com.zing.zalo:id/maintab_metab").click()
                 time.sleep(0.5)
                 name_zalo = self.d(resourceId="com.zing.zalo:id/title_list_me_tab").get_text()
@@ -1378,25 +1583,25 @@ class DeviceHandler:
                 })
             except Exception as e:
                 print(f"[{self.device_id}] Không thể set trạng thái inactive cho tài khoản cũ: {e}")
-            
-            # Thực hiện đổi tài khoản
+
+            # thực hiện đổi tài khoản
             self.switch_account()
 
+            # set active cho tk mới (giữ logic cũ)
             try:
-                # Bật trạng thái active cho tài khoản mới
                 self.d(resourceId="com.zing.zalo:id/maintab_metab").click()
                 time.sleep(0.5)
                 new_name_zalo = self.d(resourceId="com.zing.zalo:id/title_list_me_tab").get_text()
                 update_base_document_json("Zalo_base", "name", f"Zalo_data_login_path_{self.device_id}", {
                     "name": new_name_zalo, "status": True
                 })
-                # Về lại tab tin nhắn
                 self.d(resourceId="com.zing.zalo:id/maintab_message").click()
                 time.sleep(0.5)
             except Exception as e:
                 print(f"[{self.device_id}] Không thể set trạng thái active cho tài khoản mới: {e}")
 
             print(f"\n[{self.device_id}]🎉 Hoàn tất chu trình Zalo. Quay về luồng chính.")
+
 
 
 # ===================== MAIN =====================

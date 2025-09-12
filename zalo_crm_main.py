@@ -6829,7 +6829,14 @@ def api_add_create_group_chat_pvp():
     user_name = document['name']
     list_prior_chat_boxes = document['list_prior_chat_boxes']
     list_group = document['list_group']
-    # d = u2.connect(id_device)
+    try:
+        d = u2.connect(id_device)
+        device_connect[id_device] = True
+    except Exception as e:
+        print("Thiết bị đã ngắt kết nối")
+        device_connect[id_device] = False
+        return jsonify({"status": "Thiết bị đã ngắt kết nối"})
+
     if (id_device in dict_devices and num_phone_zalo in dict_status_zalo.keys()):
         if (dict_status_zalo[num_phone_zalo] != ''):
             print("bận rồi !!!", dict_status_zalo[num_phone_zalo])

@@ -6799,6 +6799,7 @@ def api_add_create_group_chat_pvp():
     mem_list = json.loads(mem_list_str)
     print("Danh sách thành viên nhóm là: ", mem_list)
     ava = data.get('group_avatar')
+    #device_connect[]
     #global now_phone_zalo
     #now_phone_zalo = num_phone_zalo
     global num_add_friend
@@ -6828,10 +6829,21 @@ def api_add_create_group_chat_pvp():
 
 # docs giờ là một list chứa mọi document tìm được
     id_device = document['id_device']
+    #device_connect[id_device] = 
     user_name = document['name']
     list_prior_chat_boxes = document['list_prior_chat_boxes']
     list_group = document['list_group']
-    # d = u2.connect(id_device)
+    try:
+        d = u2.connect(id_device)
+        device_connect[id_device] = True
+    except Exception as e:
+        print("Thiết bị đã ngắt kết nối")
+        device_connect[id_device] = False
+        #emit("busy", {
+        #    "status": dict_status_zalo[num_phone_zalo], 'name_ntd': name}, room=room)
+        #dict_status_zalo[num_phone_zalo] = ""
+
+        return jsonify({"status": "Thiết bị đã ngắt kết nối"})
     if (id_device in dict_devices and num_phone_zalo in dict_status_zalo.keys()):
         if (dict_status_zalo[num_phone_zalo] != ''):
             print("bận rồi !!!", dict_status_zalo[num_phone_zalo])
