@@ -441,7 +441,7 @@
         "list_invite_friend": [],
         "list_prior_chat_boxes": [],
         "list_unseen_chat_boxes": [],
-        "status": false,
+        "status": true,
         "tags": {
             "Khách hàng": [],
             "Gia đình": [],

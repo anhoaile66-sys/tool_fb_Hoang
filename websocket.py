@@ -54,7 +54,6 @@ class WebSocketTaskHandler:
     async def handle_server_message(self, account, driver, message_type):
         """Xử lý message từ server và tạo task tương ứng"""
         if message_type == "new_command_notification":
-            log_message(f"Nhận lệnh mới từ server cho user_id: {account['username']}", logging.INFO)
             for _ in range(30):
                 if await self.check_device_status(driver):
                     break
@@ -116,7 +115,13 @@ class WebSocketTaskHandler:
                             
                             # Trích xuất thông tin từ message
                             message_type = data.get("type", "")
+                            if not message_type:
+                                continue
+                            log_message(f"Nhận lệnh mới từ server - Type: {message_type}", logging.INFO)
                             user_id = data.get("data", {}).get("user_id", "")
+                            if user_id == "":
+                                continue
+                            log_message(f"User nhận lệnh: {user_id}")
                             account, driver = await self.get_account_and_driver(user_id)
                             
                             # Xử lý message và tạo task
