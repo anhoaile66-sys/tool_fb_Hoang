@@ -27,17 +27,20 @@ async def fb_natural_task(driver, crm_id:str, account: str):
     actions = [
         ("Xem reels", lambda: watch_reels(driver)),
         ("Xem story", lambda: watch_story(driver)),
-        ("Lướt fb", lambda: surf_fb(driver)),
         ("Kết bạn", lambda: add_friend(driver, crm_id)),
         ("Thăm tường bạn bè", lambda: load_facebook_friends_list_advanced(driver, driver.serial, True)),
         ("Bình luận thương hiệu", lambda: comment_recruitment_post(driver, account)),
+        ("Thăm trang cá nhân", lambda: tham_trang_ca_nhan(driver)),
     ]
-    # Random hóa thứ tự các hành động
-    random.shuffle(actions)
-    for name, action in actions:
-        log_message(f"\n\n{driver.serial} Thực hiện tác vụ: {name}\n", logging.INFO)
-        await action()
-        await asyncio.sleep(random.uniform(4,6))
+    await tham_trang_ca_nhan(driver)
+    # # Random hóa thứ tự các hành động
+    # random.shuffle(actions)
+    # for name, action in actions:
+    #     log_message(f"\n\n{driver.serial} Thực hiện tác vụ: {name}\n", logging.INFO)
+    #     await action()
+    #     await asyncio.sleep(random.uniform(4,6))
+    #     # Xóa app, xóa cache sau mỗi tác vụ
+    #     await go_to_home_page(driver)
 
     log_message("Hoàn thành 1 chuỗi task")
 # Backward compatibility - original function without interrupt
