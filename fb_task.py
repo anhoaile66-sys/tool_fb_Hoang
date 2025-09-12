@@ -68,25 +68,25 @@ async def run_on_device_original(driver):
         else:
             crm_id = device['user']['crm_id']
             # Chuyển tài khoản
-            last_time = device['time_logged_in']
-            if (last_time != '0') and (datetime.fromisoformat(last_time) + timedelta(hours=random.randint(4,6))) < datetime.now():
+            # last_time = device['time_logged_in']
+            # if (last_time != '0') and (datetime.fromisoformat(last_time) + timedelta(hours=random.randint(4,6))) < datetime.now():
                 # Đủ thời gian, chuyển tài khoản
-                i=0
-                for acc in device['accounts']:
-                    i+=1
-                    if acc['account'] == device['current_account']:
-                        break
-                if i==3: i=0
-                for acc in device['accounts']:
-                    if i==0:
-                        device['current_account'] = acc['account']
-                        this_account = acc
-                        break
-                    i-=1
-                log_message(f"Đang đăng nhập vào tài khoản {this_account['name']} trên thiết bị {device_id}")
-                await swap_account(driver, this_account)
-                update_current_account(device_id, this_account)
-                account = device['current_account']
+            i=0
+            for acc in device['accounts']:
+                i+=1
+                if acc['account'] == device['current_account']:
+                    break
+            if i==3: i=0
+            for acc in device['accounts']:
+                if i==0:
+                    device['current_account'] = acc['account']
+                    this_account = acc
+                    break
+                i-=1
+            log_message(f"Đang đăng nhập vào tài khoản {this_account['name']} trên thiết bị {device_id}")
+            await swap_account(driver, this_account)
+            update_current_account(device_id, this_account)
+            account = device['current_account']
         # tasks nuôi fb
         await fb_natural_task(driver, crm_id, account)
         # await share_post(driver, text=random.choice(SHARES))
