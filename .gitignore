@@ -55,3 +55,4 @@ test.py
 .idea/
 *.swp
 *.swo
+/module/__pycache__

@@ -6,6 +6,8 @@ import easyocr
 import aiohttp
 import os
 import numpy as np
+from util import log_message
+import logging
 
 # Truy cập 1 trang facebook qua link
 def redirect_to(driver, link):
@@ -94,7 +96,7 @@ async def push_file_to_device(device_id, file_name, remote_path="/sdcard/Downloa
             "-d", f"file://{remote_path + file_name}"
         ], check=True)
     except subprocess.CalledProcessError:
-        print(f"{device_id} - ❌ Lỗi khi gửi file. Kiểm tra kết nối hoặc đường dẫn.")
+        log_message(f"{device_id} - ⚠️ File không tồn tại hoặc không thể đẩy: {remote_path + file_name}", logging.WARNING)
     finally:
         await delete_local_file(file_name)
 
@@ -130,8 +132,16 @@ async def extract_post_link(driver, post):
     for node in post.iter():
         if node.attrib.get("text") == "Chia sẻ" or node.attrib.get("content-desc") == "Chia sẻ":
             bounds = parse_number(node.attrib.get("bounds"))
+            print(bounds)
             driver.click((bounds[0] + bounds[2]) // 2, (bounds[1] + bounds[3]) // 2)
     await asyncio.sleep(1)
+    width, height = driver.window_size()
+
+    start_x = width * 0.9   # gần mép phải
+    end_x = width * 0.1     # gần mép trái
+    y = height * 0.9
+
+    driver.swipe(start_x, y, end_x, y, duration=0.2)
     await click_template(driver, "copy_link")
     return await get_clipboard_content(driver, "com.facebook.katana")
 

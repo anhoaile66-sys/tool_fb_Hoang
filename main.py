@@ -333,7 +333,7 @@ async def device_supervisor(device_id: str):
             # Vòng lặp chờ, liên tục kiểm tra file status trước khi làm bất cứ điều gì
             while True:
                 is_paused = False
-                device_status_path = f"D:/Zalo_CRM/Zalo_base/device_status_{device_id}.json"
+                device_status_path = f"C:/Zalo_CRM/Zalo_base/device_status_{device_id}.json"
                 try:
                     with open(device_status_path, 'r', encoding='utf-8') as f:
                         device_status = json.load(f)
@@ -354,6 +354,7 @@ async def device_supervisor(device_id: str):
                         print("Task đã bị hủy do thiết bị active")
                     status[device_id] = False
                     await asyncio.sleep(0.1)
+                    continue
                 else:
                     break
             # ======================= NEW CODE BLOCK END =======================

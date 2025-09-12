@@ -58,19 +58,19 @@ def get_list_friend_new():
 
     return jsonify({'user_db': user_db})
 
-socketio.run(app, host="0.0.0.0", port=8000,
-                 debug=True, use_reloader=False)
-'''
+#socketio.run(app, host="0.0.0.0", port=8000,
+#                 debug=True, use_reloader=False)
+
 socketio.run(
     app,
     host="0.0.0.0",
-    port=8001,
+    port=8000,
     debug=True,
     use_reloader=False,
     certfile="ssl/fullchain.pem",
     keyfile="ssl/privkey.pem",
     server_side=True
 )
-'''
+
     
     
