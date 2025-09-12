@@ -5,7 +5,7 @@ import logging
 from util import log_message
 from lxml import etree
 
-async def post_to_group(driver, command_id, group_link, content, files=None):
+async def post_to_group(driver, command_id, user_id, group_link, content, files=None):
     if files:
         for file in files:
             await toolfacebook_lib.push_file_to_device(driver.serial, file)
@@ -16,6 +16,7 @@ async def post_to_group(driver, command_id, group_link, content, files=None):
     if not joined_group.exists:
         log_message(f"{driver.serial} - Đăng bài lên nhóm: Chưa tham gia nhóm {group_link}", logging.WARNING)
         await toolfacebook_lib.back_to_facebook(driver)
+        await pymongo_management.execute_command(command_id, "Lỗi: Chưa tham gia nhóm")
         return
 
     post_button = driver(text="Bạn viết gì đi...")
@@ -41,14 +42,17 @@ async def post_to_group(driver, command_id, group_link, content, files=None):
                 pass
         driver(text="ĐĂNG").click()
         log_message(f"{driver.serial} - Đăng bài lên nhóm: Đã đăng bài viết vào nhóm {group_link}", logging.INFO)
+        log_message(f"{driver.serial} - Đăng bài lên nhóm: Sau 30s sẽ kiểm tra trạng thái bài viết", logging.INFO)
+        await pymongo_management.execute_command(command_id, "Đã thực hiện")
+        await asyncio.sleep(30)
+        await check_post(driver, user_id)
     else:
         log_message(f"{driver.serial} - Đăng bài lên nhóm: Không tìm thấy nút Tạo bài viết", logging.WARNING)
+        await pymongo_management.execute_command(command_id, "Lỗi: Không tìm thấy nút Tạo bài viết")
     await toolfacebook_lib.back_to_facebook(driver)
     if files:
         for file in files:
             await toolfacebook_lib.delete_file(driver.serial, file)
-    await pymongo_management.execute_command(command_id)
-    
 async def check_post(driver, user_id):
     posts = await pymongo_management.get_unapproved_posts(user_id)
     if len(posts) == 0:
@@ -84,7 +88,7 @@ async def check_post(driver, user_id):
                     break
             if found:
                 if post.get('link', "") == "":
-                    post_link = toolfacebook_lib.extract_post_link(driver, grandparent)
+                    post_link = await toolfacebook_lib.extract_post_link(driver, grandparent)
                 else:
                     post_link = post.get('link', "")
                 result = await pymongo_management.update_post_status(post['_id'], status, post_link)

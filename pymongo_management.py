@@ -314,14 +314,19 @@ async def get_commands(user_id, status="Chưa xử lý"):
     """Lấy thông tin lệnh từ cơ sở dữ liệu."""
     collection = get_async_collection("Commands")
     commands = await collection.find({"user_id": user_id, "Status": status}).to_list(length=None)
+    if status == "Chưa xử lý":
+        collection.update_many(
+            {"user_id": user_id, "Status": status},
+            {"$set": {"Status": "Đang thực hiện"}}
+        )
     return commands
 
-async def execute_command(command_id):
+async def execute_command(command_id, status):
     """Thực hiện lệnh cho người dùng."""
     collection = get_async_collection("Commands")
     result = await collection.update_one(
         {"_id": ObjectId(command_id)},
-        {"$set": {"Status": "Đã thực hiện"}}
+        {"$set": {"Status": status, "Executed_at": datetime.now()}}
     )
     if result.matched_count == 0:
         return {"message": "❌ Cập nhật trạng thái lệnh: Lệnh không tồn tại"}, logging.ERROR

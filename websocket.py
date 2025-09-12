@@ -2,7 +2,6 @@ import asyncio
 import websockets
 import json
 import logging
-from util import *
 import pymongo_management
 from module import *
 import uiautomator2 as u2
@@ -31,11 +30,11 @@ class WebSocketTaskHandler:
         for command in commands:
             params = command.get("params", {})
             if command['type'] == 'post_to_group':
-                await post_to_group(driver, command['_id'], params.get("group_link", ""), params.get("content", ""), params.get("files", []))
+                await post_to_group(driver, command['_id'], user_id, params.get("group_link", ""), params.get("content", ""), params.get("files", []))
             if command['type'] == 'join_group':
-                await join_group(driver, command['_id'], command['user_id'], params.get("group_link", ""))
+                await join_group(driver, command['_id'], user_id, params.get("group_link", ""))
             if command['type'] == 'post_to_wall':
-                await post_to_wall(driver, command['_id'], params.get("content", ""), params.get("files", []))
+                await post_to_wall(driver, command['_id'], user_id, params.get("content", ""), params.get("files", []))
             await asyncio.sleep(random.uniform(4, 6))
 
     async def check_device_status(self, driver):
@@ -57,6 +56,7 @@ class WebSocketTaskHandler:
         message_type = data.get("type")
         
         if message_type == "new_command_notification":
+            log_message(f"Received message: {data.get('type', 'unknown')}")
             user_id = data.get("data", {}).get("user_id", "")
             account, driver = await self.get_account_and_driver(user_id)
             for _ in range(30):
@@ -67,7 +67,7 @@ class WebSocketTaskHandler:
             if not account:
                 log_message(f"{driver.serial} - Thực hiện lệnh từ CRM: Không có user_id trong message", logging.WARNING)
                 return
-            toolfacebook_lib.back_to_facebook(driver)
+            await toolfacebook_lib.back_to_facebook(driver)
             if not account['statusFb']:
                 acc = {
                     'name': account['nameFb'],
@@ -78,9 +78,7 @@ class WebSocketTaskHandler:
             # Nhận và thực hiện lệnh
             await self.run_commands(driver, account['username'])
             await self.update_device_status(driver, False)
-        else:
-            log_message(f"Unknown message type: {message_type}", logging.WARNING)
-    
+            
     async def send_response(self, data: dict):
         """Gửi response về server"""
         if self.websocket and self.connected:
@@ -119,7 +117,6 @@ class WebSocketTaskHandler:
                     async for message in websocket:
                         try:
                             data = json.loads(message)
-                            log_message(f"Received message: {data.get('type', 'unknown')}")
                             
                             # Xử lý message và tạo task
                             await self.handle_server_message(data)

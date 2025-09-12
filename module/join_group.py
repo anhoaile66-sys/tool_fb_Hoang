@@ -7,12 +7,12 @@ import logging
 
 async def join_group(driver, command_id, user_id, group_link, back_to_facebook = True):
     toolfacebook_lib.redirect_to(driver, "https://facebook.com/" + group_link)
-    await asyncio.sleep(2)
+    await asyncio.sleep(5)
     joined_group = driver(textContains="đã tham gia nhóm")
     if joined_group.exists:
         result = await pymongo_management.update_joined_accounts(user_id, group_link)
         log_message(f"{driver.serial} - {result[0]['message']}", result[1])
-        await pymongo_management.execute_command(command_id)
+        await pymongo_management.execute_command(command_id, "Đã thực hiện")
         if back_to_facebook:
             await toolfacebook_lib.back_to_facebook(driver)
         return
@@ -27,14 +27,14 @@ async def join_group(driver, command_id, user_id, group_link, back_to_facebook =
         if joined_group.exists(timeout=5):
             result = await pymongo_management.update_joined_accounts(user_id, group_link)
             log_message(f"{driver.serial} - {result[0]['message']}", result[1])
-            await pymongo_management.execute_command(command_id)
+            await pymongo_management.execute_command(command_id, "Đã thực hiện")
             if back_to_facebook:
                 await toolfacebook_lib.back_to_facebook(driver)
             return
 
     if not await toolfacebook_lib.click_template(driver, "answer_question") and not join_button_clicked:
         log_message(f"{driver.serial} - Nhóm đang chờ duyệt: {group_link}", logging.INFO)
-        await pymongo_management.execute_command(command_id)
+        await pymongo_management.execute_command(command_id, "Đã thực hiện")
         if back_to_facebook:
             await toolfacebook_lib.back_to_facebook(driver)
         return
@@ -93,7 +93,7 @@ async def join_group(driver, command_id, user_id, group_link, back_to_facebook =
     else:
         driver(resourceId="com.android.systemui:id/back").click()
         driver(resourceId="com.facebook.katana:id/(name removed)", text="THOÁT").click()
-    await pymongo_management.execute_command(command_id)
+    await pymongo_management.execute_command(command_id, "Đã thực hiện")
     if back_to_facebook:
         await toolfacebook_lib.back_to_facebook(driver)
     
