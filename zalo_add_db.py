@@ -30,6 +30,6 @@ for id_device in dict_device_and_phone.keys():
     }
     for phone in dict_device_and_phone[id_device]:
         device_status['max_message_per_day'].append({phone: 10})
-        device_status['max_add_friend_per_day'].append({phone: 5})
-    with open(f"Zalo_base/device_status_{id_device}.json", 'w') as f:
+        device_status['max_add_friend_per_day'].append({phone: 1})
+    with open(f"C:/Zalo_CRM/Zalo_base/device_status_{id_device}.json", 'w') as f:
         json.dump(device_status, f, indent=4)
