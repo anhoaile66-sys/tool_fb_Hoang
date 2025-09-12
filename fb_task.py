@@ -2,7 +2,6 @@ import asyncio
 from module.fb_friends import load_facebook_friends_list_advanced
 from util import *
 from module import *
-from datetime import datetime, timedelta
 
 # Thoát app, xóa cache khi chờ task
 async def clear_app(driver):
