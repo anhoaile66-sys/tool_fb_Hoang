@@ -35,30 +35,166 @@ async def watch_story(driver, duration=random.uniform(60, 90)):
     log_message("Đã thoát trang story")
 
 # Xem reels
-async def watch_reels(driver, duration=random.randint(2700,7200)):
+async def watch_reels(driver, duration=random.randint(2700,3600)):
     """
-    Lướt để tìm reels rồi bấm xem
+    Lướt để tìm reels rồi bấm xem các video liên quan đến tuyển dụng
     """
-    log_message("Bắt đầu watch reels")
+    log_message("Bắt đầu watch reels tuyển dụng")
     # Về đầu trang
     await go_to_home_page(driver)
     await asyncio.sleep(random.uniform(5,7))
+    
+    # Danh sách từ khóa tuyển dụng
+    recruitment_keywords = [
+        "tuyển dụng",
+        "việc làm", 
+        "tìm việc",
+        "hiring",
+        "job",
+        "career",
+        "recruitment",
+        "tuyển sinh",
+        "cơ hội nghề nghiệp"
+    ]
+    
+    reel_selectors = [
+            # Samsung selectors 
+            ("description", "Reels, Tab 3/6"),                                           
+            ("descriptionContains", "Reels, Tab"),                                          
+            
+            # Xiaomi selectors  
+            ("xpath", '//android.widget.Button[contains(@content-desc, "Xem thước phim")]'),
+            
+            # Khác 
+            ("textContains", "Reels"),                                                 
+            ("descriptionContains", "reel"),                                               
+        ]
     # Tìm Reels
-    reel_item = await scroll_until_element_visible(driver, {("xpath", '//android.widget.Button[contains(@content-desc, "Xem thước phim")]')})
-    if reel_item == None:
-        log_message("Không tìm thấy reels", logging.ERROR)
-        return
+    reel_item = None
+    log_message("Đang tìm nút Reels...")
+        
+    # Thử từng selector
+    for i, selector in enumerate(reel_selectors):
+        try:
+            if selector[0] == "description":
+                reel_item = driver(description=selector[1])
+                if reel_item.exists:
+                    break
+                        
+            elif selector[0] == "descriptionContains":
+                reel_item = driver(descriptionContains=selector[1])
+                if reel_item.exists:
+                    break
+                        
+            elif selector[0] == "xpath":
+                reel_item = driver.xpath(selector[1])
+                if reel_item.exists:
+                    break
+                        
+            elif selector[0] == "textContains":
+                reel_item = driver(textContains=selector[1])
+                if reel_item.exists:
+                    break
+        except Exception as e:
+            continue
+            
+    if reel_item is None or (hasattr(reel_item, 'exists') and not reel_item.exists):
+        reel_item = await scroll_until_element_visible(driver, {("xpath", '//android.widget.Button[contains(@content-desc, "Xem thước phim")]')})
+        if reel_item is None:
+            log_message("Không tìm thấy nút Reels", logging.ERROR)
+            return
+
+        
     reel_item.click()
-    log_message("Lướt reels")
-    # Lướt
-    time=random.uniform(10,30)
+    log_message("Đã vào phần Reels")
+    await asyncio.sleep(random.uniform(3,5))
+    
+    # Tìm và bấm nút tìm kiếm trong reels
+    try:
+        search_button = driver(description="Tìm kiếm")
+        if search_button.exists:
+            search_button.click()
+            log_message("Đã bấm nút tìm kiếm trong Reels")
+            await asyncio.sleep(random.uniform(2,4))
+            
+            # Tìm ô search để nhập text
+            search_selectors = [
+                ("className", "android.widget.EditText"),
+                ("xpath", "//android.widget.EditText"),
+                ("textContains", "Tìm kiếm"),
+                ("descriptionContains", "search"),
+                ("descriptionContains", "tìm kiếm")
+            ]
+            
+            search_box = None
+            for selector_type, selector_value in search_selectors:
+                try:
+                    if selector_type == "className":
+                        search_box = driver(className=selector_value)
+                    elif selector_type == "xpath":
+                        search_box = driver.xpath(selector_value)
+                    elif selector_type == "textContains":
+                        search_box = driver(textContains=selector_value)
+                    elif selector_type == "descriptionContains":
+                        search_box = driver(descriptionContains=selector_value)
+                    
+                    if search_box and search_box.exists:
+                        break
+                except:
+                    continue
+            
+            if search_box and search_box.exists:
+                # Chọn từ khóa tuyển dụng ngẫu nhiên
+                keyword = random.choice(recruitment_keywords)
+                log_message(f"Nhập từ khóa tìm kiếm: {keyword}")
+                
+                # Bấm vào ô search và nhập text
+                search_box.click()
+                await asyncio.sleep(random.uniform(1,2))
+                
+                # Xóa text cũ nếu có
+                search_box.clear_text()
+                await asyncio.sleep(random.uniform(0.5,1))
+                
+                # Nhập từ khóa
+                search_box.set_text(keyword)
+                await asyncio.sleep(random.uniform(1,2))
+                
+                # Bấm enter hoặc tìm nút search
+                driver.press("enter")
+                await asyncio.sleep(random.uniform(3,5))
+                log_message(f"Đã tìm kiếm với từ khóa: {keyword}")
+            else:
+                log_message("Không tìm thấy ô tìm kiếm, xem reels thông thường")
+                
+        else:
+            log_message("Không tìm thấy nút tìm kiếm, xem reels thông thường")
+    except Exception as e:
+        log_message(f"Lỗi khi tìm kiếm: {e}", logging.WARNING)
+        log_message("Tiếp tục xem reels thông thường")
+    
+    # Xem các video reels
+    log_message("Bắt đầu lướt reels tuyển dụng")
+    time = random.uniform(10,30)
     await asyncio.sleep(time)
-    while time<duration:
+    # CLick vào video đầu tiên nếu có thể
+    try:
+        first_video = driver.xpath('//androidx.recyclerview.widget.StaggeredGridLayoutManager/android.view.ViewGroup[3]')
+        if first_video.exists:
+            first_video.click()
+            log_message("Đã bấm vào video đầu tiên")
+            await asyncio.sleep(random.uniform(5,7))
+    except:
+        pass
+    while time < duration:
         await nature_scroll(driver, isFast=True)
         log_message("Video tiếp theo")
-        i=random.uniform(10,30)
-        time+=i
+        i = random.uniform(10,30)
+        time += i
         await asyncio.sleep(i)
-    # Lướt xong thì lướt
-    driver.press("back")
-    log_message("Thoát về màn hình chính")
+    
+    # Thoát về màn hình chính bằng cách back 4 lần
+    for _ in range(4):
+        driver.press("back")
+    await asyncio.sleep(random.uniform(1,2))
+    log_message("Đã thoát về màn hình chính")
