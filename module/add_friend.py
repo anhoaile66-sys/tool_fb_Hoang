@@ -13,7 +13,7 @@ async def add_friend(driver, crm_id:str):
     log_message("Bắt đầu kết bạn")
     # Gọi API lấy ntd
     payload = {
-        "crm_ids": [int(crm_id)],
+        "emp_ids": [int(crm_id)],
         "size": 1,
         "key": "1697a131cb22ea0ab9510d379a8151f1",
         "getFbLink": True
