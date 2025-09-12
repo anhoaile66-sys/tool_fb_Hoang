@@ -48,6 +48,7 @@ clipboard.txt
 sent_log.txt
 *.tmp
 *.temp
+test.py
 
 # IDE
 .vscode/
