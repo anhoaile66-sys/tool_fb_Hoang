@@ -317,6 +317,13 @@ async def device_once(device_id: str):
 status = {}  # device_id -> bool (đang chạy hay không)
 
 
+async def check_driver(driver):
+    try:
+        _ = driver.info
+        return True
+    except Exception:
+        return False
+    
 async def device_supervisor(device_id: str):
     """
     Giám sát riêng từng thiết bị:
@@ -325,10 +332,17 @@ async def device_supervisor(device_id: str):
     """
     global status
     status[device_id] = False
-    task = asyncio.create_task(device_once(device_id))
-
+    driver = await asyncio.to_thread(u2.connect_usb, device_id)
+    task = None
     while True:
         try:
+            still_alive = await check_driver(driver)
+            if not still_alive:
+                status[device_id] = False
+                await asyncio.sleep(5.0)
+                driver = await asyncio.to_thread(u2.connect_usb, device_id)
+                continue
+            
             # ======================= NEW CODE BLOCK START =======================
             # Vòng lặp chờ, liên tục kiểm tra file status trước khi làm bất cứ điều gì
             while True:
@@ -348,7 +362,7 @@ async def device_supervisor(device_id: str):
                     # Lỗi đọc file, cũng cho phép chạy để tránh bị kẹt
                     print(f"[{device_id}] ❌ Lỗi khi đọc file JSON: {e}. Sẽ tiếp tục chạy.")
 
-                if is_paused:
+                if is_paused and task is not None:
                     if not task.done():
                         task.cancel()
                         print("Task đã bị hủy do thiết bị active")
