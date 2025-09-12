@@ -2901,7 +2901,7 @@ def api_find_new_friend():
                         d(resourceId="android:id/home").click()
                         eventlet.sleep(1.0)
                         btn = d(resourceId="com.zing.zalo:id/tv_function_privacy")
-                       try:
+                        try:
 
                             if d(text="Đã gửi lời mời kết bạn").exists:
                                 friend_or_not = "added"
