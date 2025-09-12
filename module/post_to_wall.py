@@ -41,7 +41,7 @@ async def post_to_wall(driver, command_id, user_id, content, files=None):
     if files:
         for file in files:
             await toolfacebook_lib.delete_file(driver.serial, file)
-    await pymongo_management.execute_command(command_id)
+    await pymongo_management.execute_command(command_id, "Đã thực hiện")
 
 async def check_wall_post(driver, user_id):
     posts = await pymongo_management.get_unapproved_wall_posts(user_id)
