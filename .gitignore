@@ -54,3 +54,4 @@ sent_log.txt
 .idea/
 *.swp
 *.swo
+/module/__pycache__

@@ -1,7 +1,7 @@
 import asyncio
+from module.fb_friends import load_facebook_friends_list_advanced
 from util import *
 from module import *
-from datetime import datetime, timedelta
 
 # Thoát app, xóa cache khi chờ task
 async def clear_app(driver):
@@ -24,30 +24,24 @@ async def clear_app(driver):
 
 async def fb_natural_task(driver, crm_id:str, account: str):
     actions = [
+        ("Xem reels", lambda: watch_reels(driver)),
         ("Xem story", lambda: watch_story(driver)),
         ("Lướt fb", lambda: surf_fb(driver)),
-        ("Kết bạn", lambda: add_friend(driver, crm_id)),
-        # ("Kiểm tra bài đăng", lambda: check_post(driver, account)),
-        # ("Kiểm tra nhóm chờ duyệt", lambda: check_unapproved_groups(driver, account)),
+        # ("Kết bạn", lambda: add_friend(driver, crm_id)),
+        ("Thăm tường bạn bè", lambda: load_facebook_friends_list_advanced(driver, driver.serial, True)),
         ("Bình luận thương hiệu", lambda: comment_recruitment_post(driver, account)),
-        # ("Nhận lệnh từ CRM", lambda: get_commands(driver, account))
+        ("Thăm trang cá nhân", lambda: tham_trang_ca_nhan(driver)),
     ]
-
     # Random hóa thứ tự các hành động
     random.shuffle(actions)
-    log_message(f"\n\nThực hiện tác vụ: Xem reels\n")
-
-    await watch_reels(driver)
-    await asyncio.sleep(random.uniform(4,6))
-
     for name, action in actions:
         log_message(f"\n\n{driver.serial} Thực hiện tác vụ: {name}\n", logging.INFO)
-
         await action()
         await asyncio.sleep(random.uniform(4,6))
+        # Xóa app, xóa cache sau mỗi tác vụ
+        await go_to_home_page(driver)
 
     log_message("Hoàn thành 1 chuỗi task")
-
 # Backward compatibility - original function without interrupt
 async def run_on_device_original(driver):
     try:
@@ -68,25 +62,25 @@ async def run_on_device_original(driver):
         else:
             crm_id = device['user']['crm_id']
             # Chuyển tài khoản
-            last_time = device['time_logged_in']
-            if (last_time != '0') and (datetime.fromisoformat(last_time) + timedelta(hours=random.randint(4,6))) < datetime.now():
+            # last_time = device['time_logged_in']
+            # if (last_time != '0') and (datetime.fromisoformat(last_time) + timedelta(hours=random.randint(4,6))) < datetime.now():
                 # Đủ thời gian, chuyển tài khoản
-                i=0
-                for acc in device['accounts']:
-                    i+=1
-                    if acc['account'] == device['current_account']:
-                        break
-                if i==3: i=0
-                for acc in device['accounts']:
-                    if i==0:
-                        device['current_account'] = acc['account']
-                        this_account = acc
-                        break
-                    i-=1
-                log_message(f"Đang đăng nhập vào tài khoản {this_account['name']} trên thiết bị {device_id}")
-                await swap_account(driver, this_account)
-                update_current_account(device_id, this_account)
-                account = device['current_account']
+            i=0
+            for acc in device['accounts']:
+                i+=1
+                if acc['account'] == device['current_account']:
+                    break
+            if i==3: i=0
+            for acc in device['accounts']:
+                if i==0:
+                    device['current_account'] = acc['account']
+                    this_account = acc
+                    break
+                i-=1
+            log_message(f"Đang đăng nhập vào tài khoản {this_account['name']} trên thiết bị {device_id}")
+            await swap_account(driver, this_account)
+            update_current_account(device_id, this_account)
+            account = device['current_account']
         # tasks nuôi fb
         await fb_natural_task(driver, crm_id, account)
         # await share_post(driver, text=random.choice(SHARES))
