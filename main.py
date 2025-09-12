@@ -332,7 +332,12 @@ async def device_supervisor(device_id: str):
     """
     global status
     status[device_id] = False
-    driver = await asyncio.to_thread(u2.connect_usb, device_id)
+    while True:
+        try:
+            driver = await asyncio.to_thread(u2.connect_usb, device_id)
+            break
+        except:
+            pass
     task = None
     while True:
         try:
@@ -342,7 +347,7 @@ async def device_supervisor(device_id: str):
                 await asyncio.sleep(5.0)
                 driver = await asyncio.to_thread(u2.connect_usb, device_id)
                 continue
-            
+
             # ======================= NEW CODE BLOCK START =======================
             # Vòng lặp chờ, liên tục kiểm tra file status trước khi làm bất cứ điều gì
             while True:
