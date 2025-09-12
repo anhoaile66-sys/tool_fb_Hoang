@@ -1,4 +1,5 @@
 import asyncio
+from module.fb_friends import load_facebook_friends_list_advanced
 from util import *
 from module import *
 from datetime import datetime, timedelta
@@ -24,30 +25,22 @@ async def clear_app(driver):
 
 async def fb_natural_task(driver, crm_id:str, account: str):
     actions = [
+        ("Xem reels", lambda: watch_reels(driver)),
         ("Xem story", lambda: watch_story(driver)),
-        ("Lướt fb", lambda: surf_fb(driver)),
+        # ("Lướt fb", lambda: surf_fb(driver)),
         ("Kết bạn", lambda: add_friend(driver, crm_id)),
-        # ("Kiểm tra bài đăng", lambda: check_post(driver, account)),
-        # ("Kiểm tra nhóm chờ duyệt", lambda: check_unapproved_groups(driver, account)),
+        ("Thăm tường bạn bè", lambda: load_facebook_friends_list_advanced(driver, driver.serial, True)),
         ("Bình luận thương hiệu", lambda: comment_recruitment_post(driver, account)),
-        # ("Nhận lệnh từ CRM", lambda: get_commands(driver, account))
     ]
 
     # Random hóa thứ tự các hành động
     random.shuffle(actions)
-    log_message(f"\n\nThực hiện tác vụ: Xem reels\n")
-
-    await watch_reels(driver)
-    await asyncio.sleep(random.uniform(4,6))
-
     for name, action in actions:
         log_message(f"\n\n{driver.serial} Thực hiện tác vụ: {name}\n", logging.INFO)
-
         await action()
         await asyncio.sleep(random.uniform(4,6))
 
     log_message("Hoàn thành 1 chuỗi task")
-
 # Backward compatibility - original function without interrupt
 async def run_on_device_original(driver):
     try:

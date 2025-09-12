@@ -26,6 +26,7 @@ DEVICE_LIST = [
     "IZDEGA8TFYXWRK9X",  # A23
     "R8YY70HCNRX",       # A24
     "R83Y50JZK6A"        # A25
+
 ]
 
 # Total devices: 24
