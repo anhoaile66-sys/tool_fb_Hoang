@@ -1,81 +1,51 @@
 import asyncio
 import logging
+import json
 from util import *
+import toolfacebook_lib
 
 EMOTION = [
     "Thích",
     "Yêu thích",
-    "Thương thương",
-    "Haha",
-    "Wow",
-    "Buồn",
-    "Phẫn nộ"
+    "Thương thương"
 ]
 
 COMMENTS = [
-    # Nhóm khen ngợi, tích cực
-    "Tuyệt vời quá! 😍🔥",
-    "Chuẩn không cần chỉnh! 👍",
-    "Xịn xò quá! 💯",
-    "Đẹp quá trời luôn! 🌸",
-    "Dễ thương ghê! 🥰",
-    "Quá đỉnh luôn! 🚀",
-    "Thích ghê á! 💖",
-    "Hợp gu mình ghê! 😎",
-    "Chuẩn bài! ✅",
-    "Chất lượng quá! 🌟",
+    # Nhóm quan tâm, hỏi thông tin
+    "Còn tuyển không ạ? �‍♂️",
+    "Vị trí này còn không ạ?",
+    "Mình có thể ứng tuyển được không?",
+    "Làm sao để apply ạ?",
+    "Có yêu cầu kinh nghiệm không ạ?",
+    "Lương bao nhiêu vậy ạ?",
+    "Thời gian làm việc như thế nào?",
+    "Địa điểm làm việc ở đâu ạ?",
+    "Có cần bằng cấp gì không?",
+    "Mình quan tâm position này ạ 👍",
 
-    # Nhóm cảm xúc, reaction
-    "Haha, buồn cười quá! 😂",
-    "Đáng yêu ghê! 🐻",
-    "Cưng xỉu! 😍",
-    "Nhìn mà muốn ăn liền! 🍰",
-    "Trời ơi, dễ thương quá! 🥹💗",
-    "Yêu quá đi! ❤️",
-    "Cười đau bụng luôn! 🤣",
-    "Xem mà nhớ hồi xưa ghê! 📸",
-    "Đỉnh của chóp! 🏆",
-    "Xem hoài không chán! 🎯",
+    # Nhóm thể hiện hứng thú
+    "Công việc hay quá! �",
+    "Phù hợp với mình ghê! �",
+    "Mình đang tìm việc như này!",
+    "Cơ hội tốt quá! �",
+    "Công ty có vẻ ổn nhỉ! �",
+    "Môi trường làm việc tuyệt! 💼",
+    "Thử apply xem sao! 🚀",
+    "Đúng ngành mình rồi!",
+    "Thanks for sharing! 🙏",
+    "Cảm ơn info hay! ✨",
 
-    # Nhóm xã giao, tương tác nhẹ
-    "Hôm nay thế nào rồi? 🤔",
-    "Đang ở đâu đó? 📍",
-    "Lâu quá không gặp! 👋",
-    "Hợp lý ghê! ✔️",
-    "Chuẩn trend luôn! 🔥",
-    "Cũng bình thường thôi 😄",
-    "Hóng phần tiếp theo! ⏳",
-    "Coi ké với nha! 🙌",
-    "Đang làm gì đó? 🕒",
-    "Like mạnh! ❤️👍"
-]
-
-SHARES = [
-    # Nhóm kêu gọi hành động
-    "Xem ngay kẻo lỡ! 🔥",
-    "Không xem là tiếc đó!",
-    "Chia sẻ để mọi người cùng biết nhé!",
-    "Ai quan tâm thì đọc nha!",
-    "Đọc và suy ngẫm 📖",
-    "Mọi người nên biết điều này!",
-    "Lưu lại để dùng sau! 📌",
-    "Ai cũng nên xem ít nhất một lần!",
-
-    # Nhóm bày tỏ cảm xúc
-    "Quá hay luôn! 😍",
-    "Đọc xong mà nổi da gà! 😱",
-    "Cảm động quá! 💖",
-    "Không thể tin nổi! 🤯",
-    "Hay hơn cả mong đợi!",
-    "Nghe mà muốn rớt nước mắt! 😢",
-
-    # Nhóm bắt trend / vui nhộn
-    "Bắt trend liền tay! 💃",
-    "Hợp mood ghê! 😎",
-    "Ai đã xem chưa nè? 🙋",
-    "Cười xỉu 🤣",
-    "Không share không được! 😂",
-    "Xem xong chỉ biết nói: Đỉnh! 🏆"
+    # Nhóm tích cực, professional
+    "Cảm ơn bạn đã share!",
+    "Thông tin hữu ích quá! �",
+    "Note lại để apply sau! �",
+    "Công ty uy tín nhỉ! 🏢",
+    "Mong được cơ hội thử! �",
+    "Đã gửi CV rồi ạ! �",
+    "Hy vọng sẽ có cơ hội! 🤞",
+    "Up cho mọi người cùng biết! ⬆️",
+    "Ai quan tâm thì inbox mình nhé!",
+    "Good luck cho ai apply! 🍀"
 ]
 
 #Thả cảm xúc vào bài viết (Phẫn nộ sẽ đổi thành Buồn, "đấy là tính năng")
@@ -164,98 +134,56 @@ async def comment_post(driver, text):
         log_message("Không tìm được nút gửi", logging.ERROR)
     await exit()
     return
+def load_groups(file_path: str = "nhom_tuyen_dung.json"):
+    """Đọc dữ liệu nhóm từ file JSON đã lưu."""
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        log_message(f"Không tìm thấy file '{file_path}'. Hãy chạy get_groups_data_and_save trước.", logging.WARNING)
+    except Exception as e:
+        log_message(f"Lỗi khi đọc file '{file_path}': {e}", logging.ERROR)
+    return None
 
-# Share bài viết
-async def share_post(driver, text=""):
-    """
-    Chia sẻ bài viết lụm được đầu tiên về trang cá nhân
-    """
-    log_message("Bắt đầu chia sẻ")
-    # Tìm nút share
-    share_button = await scroll_until_element_visible(driver, {("xpath", '//android.widget.Button[contains(@content-desc, "Chia sẻ")]')})
-    if share_button == None:
-        log_message("Không thể tìm được nút share", logging.ERROR)
-        return
-    share_button.click()
-    await asyncio.sleep(random.uniform(1,2))
-    # Phải click vào 1 lần nữa mới có thể tìm element
-    share_box = my_find_element(driver, {("xpath", '//android.view.ViewGroup[@content-desc="Chia sẻ lên"]')})
-    if share_box:
-        # Lấy toạ độ và kích thước phần tử
-        bounds = share_box.info['bounds']
-        x1, y1 = bounds['left'], bounds['top']
-        x2, y2 = bounds['right'], bounds['bottom']
 
-        # Tính vị trí click: 40% từ trên xuống
-        click_x = (x1 + x2) / 4
-        click_y = y1 + (y2 - y1) * 0.4
+def get_random_group(file_path: str = "nhom_tuyen_dung.json", only_link: bool = True):
+    """Lấy ngẫu nhiên một nhóm từ file JSON đã lưu."""
+    data = load_groups(file_path)
+    if not data:
+        return None
 
-        # Click vào vị trí đó
-        driver.click(click_x, click_y)
-    else:
-        log_message("Không tìm thấy nút chia sẻ", logging.ERROR)
+    groups = data.get("groups", [])
+    if not groups:
+        log_message("Danh sách nhóm rỗng.", logging.WARNING)
+        return None
 
-    if text != "":
-        text_box = my_find_element(driver, {("xpath", '//android.widget.AutoCompleteTextView')})
-        if text_box == None:
-            log_message("Không thể tìm được ô text", logging.ERROR)
-            exit = my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đóng"]')})
-            if exit == None:
-                log_message("Không thể tìm được nút đóng\n Bất lực :)))", logging.ERROR)
-                return
-            exit.click()
-            log_message("Chia sẻ thất bại, thoát chia sẻ", logging.ERROR)
-            return
-        text_box.set_text(text)
-        await asyncio.sleep(1)
-        log_message(f"Đã nhập nội dung chia sẻ: {text}")
-    
-    # Tìm nút chia sẻ ngay
-    share_now = my_find_element(driver, {("xpath", '//android.widget.Button[contains(@content-desc, "Chia sẻ ngay")]'), ('xpath', '//android.view.ViewGroup[@content-desc="Gửi bằng Messenger"]')})
-    if share_now == None:
-        log_message("Không thể tìm được nút share", logging.ERROR)
-        exit = my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đóng"]')})
-        if exit == None:
-            log_message("Không thể tìm được nút đóng\n Bất lực :)))", logging.ERROR)
-            return
-        exit.click()
-        log_message("Chia sẻ thất bại, thoát chia sẻ", logging.ERROR)
-        return
-    share_now.click()
-    log_message("Đã chia sẻ")
+    g = random.choice(groups)
+    return g.get("link") if only_link else g
 
 # lướt facebook
 async def surf_fb(driver):
-    log_message("Lướt fb")
-    await go_to_home_page(driver)
-    await asyncio.sleep(5,7)
-
+    log_message("Lướt tin nhóm tuyển dụng")
+    link = get_random_group()
+    logging.info(f"Đi đến nhóm: {link}")
+    toolfacebook_lib.redirect_to(driver, link)
     try:
         await asyncio.sleep(random.uniform(5,8))
-        scroll_count = random.randint(20, 30)
+        scroll_count = random.randint(50, 100)
 
         while scroll_count > 0:
             count = random.randint(1,2)
             await nature_scroll(driver, max_roll=count, isFast=random.choice([True,False]))
             await asyncio.sleep(random.uniform(1,10))
-            if scroll_count % 23 == 0:
+            if scroll_count % 39 == 0:
                 await comment_post(driver, text=random.choice(COMMENTS))
                 await asyncio.sleep(random.uniform(3,5))
-            if scroll_count % 24 == 0:
+            if scroll_count % 11 == 0:
                 await like_post(driver, random.choice(EMOTION))
-                await asyncio.sleep(random.uniform(3,5))
-            # if scroll_count % 25 == 0:
-            #     i=random.randint(0,1)
-            #     if i:
-            #         await share_post(driver, text=random.choice(SHARES))
-            #         await asyncio.sleep(3,5)
-            #     else:
-            #         await share_post(driver)
-            #         await asyncio.sleep(3,5)
+                await asyncio.sleep(random.uniform(3,5))                                                                                                           
             scroll_count -= 1
         await asyncio.sleep(random.uniform(2,5))
         log_message("Đã hoàn thành lướt facebook")
-    except Exception as e:
+    except Exception as e:    
         log_message(f"Error {e}", logging.ERROR)
 
     await go_to_home_page(driver)
