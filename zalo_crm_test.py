@@ -2901,30 +2901,35 @@ def api_find_new_friend():
                         d(resourceId="android:id/home").click()
                         eventlet.sleep(1.0)
                         btn = d(resourceId="com.zing.zalo:id/tv_function_privacy")
+                        try:
 
-                        if d(text="Đã gửi lời mời kết bạn").exists:
-                            friend_or_not = "added"
-                        else:
-                            try:
+                            if d(text="Đã gửi lời mời kết bạn").exists:
+                                friend_or_not = "added"
+                            else:
+
                                 btn = d(
                                     resourceId="com.zing.zalo:id/tv_function_privacy")
-                                if btn.exists:
+                                kb = d.xpath('//*[@text="Kết bạn"]')
+                                if btn.exists or kb.exists:
                                     friend_or_not = "no"
                                 else:
                                     friend_or_not = "yes"
-                            except Exception as e:
-                                print(e)
+                        except Exception as e:
+                            friend_or_not = "yes"
+                            print(e)
 
                         check = False
                         for id in range(len(list_prior_chat_boxes)):
                             if list_prior_chat_boxes[id]['name'] == name_ntd:
                                 list_prior_chat_boxes[id]['phone'] = num_send_phone_zalo
                                 list_prior_chat_boxes[id]['status'] = 'seen'
+                                list_prior_chat_boxes[id]['friend_or_not'] = friend_or_not
                                 check = True
                                 break
                         if not check:
                             list_prior_chat_boxes.append(
-                                {"name": name_ntd, "phone": num_send_phone_zalo, "ava": avatar_64, "time": "", "message": "", "status": "seen",  "data_chat_box": []})
+                                {"name": name_ntd, "phone": num_send_phone_zalo, "ava": avatar_64, "time": "", "friend_or_not": friend_or_not,"message": "", "status": "seen",  "data_chat_box": []})
+
                         data_update = {"num_phone_zalo": num_phone_zalo,
                                        "list_prior_chat_boxes": list_prior_chat_boxes}
                         update_base_document_json(
@@ -6837,7 +6842,7 @@ def api_add_create_group_chat_pvp():
         d = u2.connect(id_device)
         device_connect[id_device] = True
     except Exception as e:
-        print("Thiết bị đã ngắt kết nối")
+        print("Thiết bị đã ngắt kết nối", id_device)
         device_connect[id_device] = False
         #emit("busy", {
         #    "status": dict_status_zalo[num_phone_zalo], 'name_ntd': name}, room=room)

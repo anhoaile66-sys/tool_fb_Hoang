@@ -51,14 +51,10 @@ class WebSocketTaskHandler:
         with open(f'C:/Zalo_CRM/Zalo_base/device_status_{driver.serial}.json', 'w') as f:
             json.dump(data, f)
 
-    async def handle_server_message(self, data: dict):
+    async def handle_server_message(self, account, driver, message_type):
         """Xử lý message từ server và tạo task tương ứng"""
-        message_type = data.get("type")
-        
         if message_type == "new_command_notification":
-            log_message(f"Received message: {data.get('type', 'unknown')}")
-            user_id = data.get("data", {}).get("user_id", "")
-            account, driver = await self.get_account_and_driver(user_id)
+            log_message(f"Nhận lệnh mới từ server cho user_id: {account['username']}", logging.INFO)
             for _ in range(30):
                 if await self.check_device_status(driver):
                     break
@@ -118,14 +114,18 @@ class WebSocketTaskHandler:
                         try:
                             data = json.loads(message)
                             
-                            # Xử lý message và tạo task
-                            await self.handle_server_message(data)
+                            # Trích xuất thông tin từ message
+                            message_type = data.get("type", "")
+                            user_id = data.get("data", {}).get("user_id", "")
+                            account, driver = await self.get_account_and_driver(user_id)
                             
+                            # Xử lý message và tạo task
+                            await self.handle_server_message(account, driver, message_type)
                         except json.JSONDecodeError:
                             log_message(f"Lỗi decode JSON từ WebSocket: {message}", logging.ERROR)
                         except Exception as e:
                             log_message(f"Error handling message: {e}", logging.ERROR)
-                            
+                            await self.update_device_status(driver, False)   
             except websockets.exceptions.ConnectionClosed:
                 log_message("WebSocket connection bị đóng. Sẽ thử kết nối lại...", logging.WARNING)
                 self.connected = False

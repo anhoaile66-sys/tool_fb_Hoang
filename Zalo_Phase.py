@@ -1005,7 +1005,7 @@ class DeviceHandler:
         Kiểm tra và gửi lời chúc mừng sinh nhật cho bạn bè có sinh nhật hôm nay.
         """
         print(f"\n[{self.device_id}]🎂 Bắt đầu kiểm tra sinh nhật...")
-        
+
         # --- Lấy thông tin tài khoản Zalo hiện tại ---
         current_account_name = ""
         try:
@@ -1016,7 +1016,8 @@ class DeviceHandler:
                 time.sleep(1.5)
                 if self.d(resourceId="com.zing.zalo:id/title_list_me_tab").exists:
                     current_account_name = self.d(resourceId="com.zing.zalo:id/title_list_me_tab").get_text().strip()
-                self.d(resourceId="com.zing.zalo:id/maintab_message").click() # Quay về tab tin nhắn
+                # Quay về tab tin nhắn
+                self.d(resourceId="com.zing.zalo:id/maintab_message").click()
                 time.sleep(1)
         except Exception as e:
             print(f"[{self.device_id}][⚠️] Không thể lấy tên tài khoản Zalo hiện tại: {e}")
@@ -1026,24 +1027,24 @@ class DeviceHandler:
         if not current_account_name:
             print(f"[{self.device_id}][❌] Không có tên tài khoản Zalo, không thể kiểm tra sinh nhật.")
             return
-            
+
         print(f"[{self.device_id}][ℹ️] Tài khoản hiện tại: {current_account_name}")
 
-        # --- Đọc dữ liệu từ file JSON của thiết bị ---
+        # --- Đọc dữ liệu từ file JSON trong thư mục Zalo_base ---
         account_data = None
         try:
-            # Ưu tiên đọc file theo ID thiết bị
-            json_file = f"Zalo_data_login_path_{self.device_id}.json"  ##note1
+            # 📌 Path tuyệt đối tới thư mục Zalo_base
+            base_dir = r"C:/Zalo_CRM/Zalo_base"
+            json_file = os.path.join(base_dir, f"Zalo_data_login_path_{self.device_id}.json")
+            print(f"[{self.device_id}] 🔎 Đang đọc dữ liệu từ: {json_file}")
+
             if not os.path.exists(json_file):
-                 # Nếu không có, thử đọc file mà người dùng cung cấp
-                 json_file = "Zalo_data_login_path_YH9TSS7XCMPFZHNR.json"
-                 if not os.path.exists(json_file):
-                    print(f"[{self.device_id}][❌] Không tìm thấy file dữ liệu: {json_file}")
-                    return
+                print(f"[{self.device_id}][❌] Không tìm thấy file dữ liệu: {json_file}")
+                return
 
             with open(json_file, 'r', encoding='utf-8') as f:
                 all_accounts = json.load(f)
-            
+
             for acc in all_accounts:
                 if acc.get("name") == current_account_name:
                     account_data = acc
@@ -1063,7 +1064,7 @@ class DeviceHandler:
             dob = friend.get('day_of_birth', '')
             if dob and dob.startswith(today_str):
                 birthday_friends.append(friend)
-        
+
         if not birthday_friends:
             print(f"[{self.device_id}][ℹ️] Hôm nay không có sinh nhật bạn bè nào.")
             return
@@ -1077,7 +1078,7 @@ class DeviceHandler:
             with open(log_file_today, 'r', encoding='utf-8') as f:
                 sent_today = {line.strip() for line in f}
         except FileNotFoundError:
-            pass # Bỏ qua nếu file chưa tồn tại
+            pass  # Bỏ qua nếu file chưa tồn tại
 
         birthday_wishes = [
             "Chúc mừng sinh nhật bạn!",
@@ -1085,7 +1086,7 @@ class DeviceHandler:
             "Sinh nhật vui vẻ nha bạn ơi!",
             "Happy Birthday! Chúc bạn mọi điều tốt lành."
         ]
-        
+
         for friend in birthday_friends:
             friend_name = friend.get('name')
             # Bỏ qua nếu không có tên hoặc đã gửi rồi
@@ -1099,14 +1100,14 @@ class DeviceHandler:
                 self.cleanup_background_apps()
                 self.d.app_start("com.zing.zalo", stop=True)
                 random_delay(5, 7)
-                
-                # Thực hiện chuỗi hành động gửi tin nhắn theo yêu cầu
+
+                # Thực hiện chuỗi hành động gửi tin nhắn
                 self.d(text="Tìm kiếm").click()
                 random_delay()
                 self.d(resourceId="com.zing.zalo:id/global_search_edt").click()
-                self.d.send_keys(friend_name, clear=True) # Tìm theo tên bạn bè
+                self.d.send_keys(friend_name, clear=True)  # Tìm theo tên bạn bè
                 random_delay()
-                
+
                 if self.d(resourceId="com.zing.zalo:id/btn_search_result").exists:
                     self.d(resourceId="com.zing.zalo:id/btn_search_result").click()
                     random_delay()
@@ -1114,7 +1115,7 @@ class DeviceHandler:
                     print(f"[{self.device_id}][⚠️] Không tìm thấy kết quả cho '{friend_name}'.")
                     self.d.press("back")
                     continue
-                
+
                 if self.d(resourceId="com.zing.zalo:id/btn_send_message").exists:
                     self.d(resourceId="com.zing.zalo:id/btn_send_message").click()
                     random_delay()
@@ -1127,34 +1128,35 @@ class DeviceHandler:
                 # Gửi sticker
                 self.d(resourceId="com.zing.zalo:id/chatinput_text").click()
                 self.d.send_keys("Chúc mừng sinh nhật!", clear=True)
-                random_delay(2, 3) # Chờ sticker load
+                random_delay(2, 3)
                 if self.d.xpath('//*[@resource-id="com.zing.zalo:id/search_inline_listview"]/androidx.recyclerview.widget.RecyclerView[1]/android.widget.FrameLayout[1]').exists:
                     self.d.xpath('//*[@resource-id="com.zing.zalo:id/search_inline_listview"]/androidx.recyclerview.widget.RecyclerView[1]/android.widget.FrameLayout[1]').click()
                     random_delay()
-                
+
                 # Gửi tin nhắn text
                 self.d(resourceId="com.zing.zalo:id/chatinput_text").click()
                 self.d.send_keys(random.choice(birthday_wishes), clear=True)
                 random_delay()
                 if self.d(resourceId="com.zing.zalo:id/new_chat_input_btn_chat_send").exists:
                     self.d(resourceId="com.zing.zalo:id/new_chat_input_btn_chat_send").click()
-                
+
                 print(f"[{self.device_id}][✅] Đã gửi lời chúc mừng sinh nhật đến {friend_name}")
-                
+
                 # Ghi log để không gửi lại
                 with file_lock, open(log_file_today, 'a', encoding='utf-8') as f:
                     f.write(f"{friend_name}\n")
-                
-                random_delay(3, 5) 
+
+                random_delay(3, 5)
                 self.d.press("home")
-                
+
             except Exception as e:
                 print(f"[{self.device_id}][❌] Lỗi khi gửi lời chúc cho {friend_name}: {e}")
                 self.d.press("home")
                 continue
-        
+
         print(f"[{self.device_id}]🎂 Hoàn tất kiểm tra và gửi lời chúc sinh nhật.")
         self.cleanup_background_apps()
+
 
     # ===================== CÁC HÀM LƯỚT ZALO (TỪ NOTEBOOK) =====================
     def like_posts_in_current_frame(self):
@@ -1301,7 +1303,7 @@ class DeviceHandler:
         """
         start_ts = time.time()
         max_seconds = duration_minutes * 60
-        base_dir = r"C:\Zalo_CRM\Zalo_base"
+        base_dir = r"C:/Zalo_CRM/Zalo_base"
         device_json_file = os.path.join(base_dir, f"Zalo_data_login_path_{self.device_id}.json")
         print(f"[{self.device_id}] 🔎 Đọc dữ liệu từ: {device_json_file}")
 
