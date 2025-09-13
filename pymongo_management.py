@@ -1,4 +1,5 @@
 from datetime import datetime
+from pydoc import doc
 from bson import ObjectId
 import motor.motor_asyncio
 import logging
@@ -441,25 +442,36 @@ async def save_post_comment(post_link, commenter, comment, time, level=0, parent
     return {'message': '❌ Lưu bình luận trong bài đăng: Thất bại'}, logging.ERROR
 
 #-------------------------------------------------------------------------------------------------------------------------------
-# Lệnh liên quan tới collection "userfbs"
+# Lệnh liên quan tới collection "devices"
 async def get_account_by_username(username):
     """Lấy tài khoản theo username."""
-    collection = get_async_collection("userfbs")
-    account = await collection.find_one({"username": username})
-    return account
+    collection = get_async_collection("devices")
+    device = await collection.find_one({"accounts.account": username})
+    if not device:
+        return None
+    account = next(
+        (acc for acc in device["accounts"] if acc["account"] == username),
+            None
+        )
+    if not account:
+        device_id = None
+    else:
+        device_id = device.get("device_id")
+    return account, device_id
 
 async def update_statusFB(username, statusFB):
     """Cập nhật trạng thái Facebook của thiết bị."""
-    collection = get_async_collection("userfbs")
+    collection = get_async_collection("devices")
     if statusFB:
         result = await collection.update_one(
-            {"username": username},
-            {"$set": {"statusFb": statusFB}}
+            {"accounts.account": username},
+            {"$set": {"accounts.$[elem].status": True}},
+            array_filters=[{"elem.account": username}]
         )
     else:
         result = await collection.update_many(
             {"device_id": username},
-            {"$set": {"statusFb": statusFB}}
+            {"$set": {"accounts.$[].status": False}}
         )
     if result.matched_count == 0:
         return {'message': '❌ Thiết bị không tồn tại'}, logging.ERROR

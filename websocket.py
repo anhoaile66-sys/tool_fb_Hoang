@@ -17,8 +17,8 @@ class WebSocketTaskHandler:
         self.connected = False
     
     async def get_account_and_driver(self, user_id: str):
-        account = await pymongo_management.get_account_by_username(user_id)
-        driver = u2.connect(account['device_id'])
+        account, device_id = await pymongo_management.get_account_by_username(user_id)
+        driver = u2.connect(device_id)
         return account, driver
 
     async def get_commands(self, user_id: str):
