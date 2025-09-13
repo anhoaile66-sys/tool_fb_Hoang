@@ -1,7 +1,6 @@
 import os
 import re
 import json
-import time
 import random
 import logging
 import asyncio
@@ -21,7 +20,7 @@ except Exception:
 
 # ---------------------- Persistence helpers ----------------------
 
-def get_facebook_account_name(driver) -> str:
+async def get_facebook_account_name(driver) -> str:
     """
     Phiên bản cải tiến - ưu tiên tên người thật hơn text placeholder
     """
@@ -31,7 +30,7 @@ def get_facebook_account_name(driver) -> str:
         # Bước 1: Đảm bảo ở trang chủ
         driver.press("home")
         driver.app_start("com.facebook.katana")
-        time.sleep(3)
+        await asyncio.sleep(3)
         
         # Bước 2: Click vào "Đi tới trang cá nhân"
         print("👤 Tìm và click vào trang cá nhân...")
@@ -45,7 +44,7 @@ def get_facebook_account_name(driver) -> str:
             ("text", "Go to profile"),
         ]
         
-        profile_element = my_find_element(driver, profile_locators)
+        profile_element = await my_find_element(driver, profile_locators)
         
         if not profile_element:
             print("❌ Không tìm thấy nút 'Đi tới trang cá nhân'")
@@ -53,7 +52,7 @@ def get_facebook_account_name(driver) -> str:
         
         profile_element.click()
         print("✅ Đã click vào trang cá nhân")
-        time.sleep(4)
+        await asyncio.sleep(4)
         
         # Bước 3: Phân tích trang profile
         print("🔍 Phân tích trang profile...")
@@ -185,7 +184,7 @@ def get_facebook_account_name(driver) -> str:
                 
                 # Quay lại trang chủ
                 driver.press("back")
-                time.sleep(2)
+                await asyncio.sleep(2)
                 
                 if clean_name and len(clean_name) >= 2:
                     print(f"\n✅ THÀNH CÔNG: {clean_name}")
@@ -199,21 +198,21 @@ def get_facebook_account_name(driver) -> str:
         
         # Quay lại nếu thất bại
         driver.press("back")
-        time.sleep(2)
+        await asyncio.sleep(2)
         return "unknown_user"
         
     except Exception as e:
         print(f"❌ Lỗi: {e}")
         try:
             driver.press("back")
-            time.sleep(2)
+            await asyncio.sleep(2)
         except:
             pass
         return "unknown_user"
 
-def get_facebook_username(driver, device_id: str) -> str:
+async def get_facebook_username(driver, device_id: str) -> str:
     """Trả về tên user thực tế từ device_id + account_name."""
-    account_name = get_facebook_account_name(driver)
+    account_name = await get_facebook_account_name(driver)
     return f"{device_id}_{account_name}"
 
 
@@ -355,7 +354,7 @@ async def surf_friend_profile_with_interactions_v2(driver, scroll_count: Optiona
     try:
         for i in range(scroll_count):
             driver.swipe_ext("up", scale=random.uniform(0.5, 0.7))
-            time.sleep(random.uniform(1.5, 3))
+            await asyncio.sleep(random.uniform(1.5, 3))
 
             if HAS_SURF_FB:
                 # React chỉ mỗi lần lướt chia hết cho 11, bỏ qua nếu lỗi
@@ -371,14 +370,14 @@ async def surf_friend_profile_with_interactions_v2(driver, scroll_count: Optiona
         log_message(f"❌ Lỗi khi lướt tường: {e}", logging.ERROR)
 
 
-def _search_and_click_friend(driver, friend_name: str):
+async def _search_and_click_friend(driver, friend_name: str):
     friend_locators = [
         ("text", friend_name),
         ("xpath", f"//*[@text='{friend_name}']"),
         ("xpath", f"//*[contains(@text, '{friend_name}')]"),
     ]
 
-    friend_el = my_find_element(driver, friend_locators)
+    friend_el = await my_find_element(driver, friend_locators)
     if friend_el:
         friend_el.click()
         return True
@@ -387,34 +386,34 @@ def _search_and_click_friend(driver, friend_name: str):
     found = False
     # Scroll down up to 7 times
     for _ in range(7):
-        friend_el = my_find_element(driver, friend_locators)
+        friend_el = await my_find_element(driver, friend_locators)
         if friend_el:
             friend_el.click()
             found = True
             break
         driver.swipe_ext("up", scale=random.uniform(0.6, 0.8))
-        time.sleep(random.uniform(1, 1.5))
+        await asyncio.sleep(random.uniform(1, 1.5))
     # Scroll up up to 8 times
     if not found:
         for _ in range(8):
-            friend_el = my_find_element(driver, friend_locators)
+            friend_el = await my_find_element(driver, friend_locators)
             if friend_el:
                 friend_el.click()
                 found = True
                 break
             driver.swipe_ext("down", scale=random.uniform(0.6, 0.8))
-            time.sleep(random.uniform(1, 1.5))
+            await asyncio.sleep(random.uniform(1, 1.5))
     return found
 
 
 async def visit_friend_profile_v2(driver, friend_name: str, device_id: str, username: Optional[str] = None, friends_data: Optional[Dict[str, bool]] = None) -> bool:
     try:
         log_message(f"👀 Đang thăm tường: {friend_name}")
-        if not _search_and_click_friend(driver, friend_name):
+        if not await _search_and_click_friend(driver, friend_name):
             log_message(f"❌ Không tìm thấy {friend_name}", logging.WARNING)
             return False
 
-        time.sleep(random.uniform(3, 5))
+        await asyncio.sleep(random.uniform(3, 5))
 
         # Mark visited immediately
         if username and friends_data is not None:
@@ -429,11 +428,11 @@ async def visit_friend_profile_v2(driver, friend_name: str, device_id: str, user
             log_message(f"⚠️ Lỗi khi chạy tương tác: {e}")
             for _ in range(scroll_times):
                 driver.swipe_ext("up", scale=random.uniform(0.5, 0.7))
-                time.sleep(random.uniform(1, 2))
+                await asyncio.sleep(random.uniform(1, 2))
 
         # Go back to list
         driver.press("back")
-        time.sleep(random.uniform(2, 3))
+        await asyncio.sleep(random.uniform(2, 3))
         log_message(f"✅ Đã thăm xong: {friend_name}")
         return True
     except Exception as e:
@@ -443,7 +442,7 @@ async def visit_friend_profile_v2(driver, friend_name: str, device_id: str, user
 
 async def load_facebook_friends_list_advanced(driver, device_id: str, visit_friends: bool = True) -> bool:
     """Thu thập danh sách bạn bè và thăm ngẫu nhiên, đánh dấu ngay."""
-    username = get_facebook_username(driver, device_id)
+    username = await get_facebook_username(driver, device_id)
     friends_data = load_friends_data(username)
 
     try:
@@ -460,7 +459,7 @@ async def load_facebook_friends_list_advanced(driver, device_id: str, visit_frie
             ("xpath", "//*[contains(@content-desc, 'Bạn bè') and contains(@content-desc, 'Tab')]"),
             ("xpath", "//*[contains(@content-desc, 'Friends') and contains(@content-desc, 'Tab')]")
         ]
-        tab = my_find_element(driver, friends_tab_locators)
+        tab = await my_find_element(driver, friends_tab_locators)
         if not tab:
             log_message("❌ Không tìm thấy tab bạn bè", logging.ERROR)
             return False
@@ -482,7 +481,7 @@ async def load_facebook_friends_list_advanced(driver, device_id: str, visit_frie
             ("xpath", "//android.widget.Button[contains(@content-desc, 'bạn')]"),
             ("xpath", "//android.widget.Button[contains(@content-desc, 'friend')]")
         ]
-        btn = my_find_element(driver, friends_list_locators)
+        btn = await my_find_element(driver, friends_list_locators)
         if not btn:
             log_message("❌ Không tìm thấy nút danh sách bạn bè", logging.ERROR)
             return False

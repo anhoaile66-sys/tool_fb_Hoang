@@ -11,50 +11,46 @@ async def log_out(driver):
 
     await go_to_home_page(driver)
 
-    log_message("Đăng xuất")
-    menu = my_find_element(driver, {("xpath", '//*[contains(@content-desc, "Menu")]')})
+    log_message(f"{driver.serial} - Đăng xuất")
+    menu = await my_find_element(driver, {("xpath", '//android.view.View[contains(@content-desc, "Menu")]')})
     try:
         menu.click()
     except Exception:
-        log_message("Không tìm được theo xpath, thử tọa độ cứng", logging.WARNING)
+        log_message(f"{driver.serial} - Không tìm được theo xpath, thử tọa độ cứng", logging.WARNING)
         # Cách tồi nhất
         # driver.click(661, 202)
         return
     # Đợi chuyển sang tab menu
-    await asyncio.sleep(12)
-    log_message("Vào menu")
+    log_message(f"{driver.serial} - Vào menu")
 
-    safe_flag = 10
-    while (log_out := my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đăng xuất"]')})) == None:
-        if not safe_flag:
-            log_message("Không tìm được nút đăng xuất sau 10 lần thử",logging.ERROR)
-            await go_to_home_page(driver)
-            return
-        await nature_scroll(driver, isFast=True)
-        safe_flag-=1
-
-    log_out.click()
-    log_message("Đang đăng xuất")
-    # Đợi hiện box lưu
-    await asyncio.sleep(12)
-    # Xác nhận lưu tài khoản(nếu có)
-    save = my_find_element(driver, {("text", "LƯU")})
-    try:
-        save.click()
-        log_message("Lưu tài khoản")
-        await asyncio.sleep(3)
-    except Exception:
-        log_message("Không thấy box lưu tài khoản", logging.WARNING)
-    # Xác nhận đăng xuất
-    xac_nhan = my_find_element(driver, {("text", "ĐĂNG XUẤT")})
-    try:
-        xac_nhan.click()
-    except Exception:
-        log_message("Không thấy box xác nhận", logging.ERROR)
+    safe_flag = 20
+    log_out = await my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đăng xuất"]')}, safe_flag, True)
+    if log_out == None:
+        log_message(f"{driver.serial} - Không tìm được nút đăng xuất sau {safe_flag} lần thử",logging.ERROR)
+        await go_to_home_page(driver)
         return
+    log_out.click()
+    log_message(f"{driver.serial} - Đang đăng xuất")
+
+    # Đợi hiện box lưu
+    # Xác nhận lưu tài khoản(nếu có)
+    save = await my_find_element(driver, {("text", "LƯU")}, 6)
+    if save == None:
+        log_message(f"{driver.serial} - Không thấy box lưu tài khoản", logging.WARNING)
+    else:
+        save.click()
+        log_message(f"{driver.serial} - Lưu tài khoản")
+
+    # Xác nhận đăng xuất
+    xac_nhan = await my_find_element(driver, {("text", "ĐĂNG XUẤT")}, 10)   
+    if xac_nhan == None:
+        log_message(f"{driver.serial} - Không tìm thấy box xác nhận đăng xuất", logging.ERROR)
+        return
+    else:
+        xac_nhan.click()
+        log_message(f"{driver.serial} - Xác nhận đăng xuất")
     # Đợi load trang chọn tài khoản
-    await asyncio.sleep(15)
-    log_message("Đăng xuất thành công")
+    log_message(f"{driver.serial} - Đăng xuất thành công")
     await pymongo_management.update_statusFB(driver.serial, False)
 
 # Đăng nhập lần đầu
@@ -68,17 +64,17 @@ async def login_facebook(driver, acc):
     password = acc['password']
 
     # Tìm nút chuyển trang cá nhân
-    while swap := my_find_element(driver, {("text", "Dùng trang cá nhân khác"), ("text", "Đăng nhập bằng tài khoản khác")}):
+    while swap := await my_find_element(driver, {("text", "Dùng trang cá nhân khác"), ("text", "Đăng nhập bằng tài khoản khác")}):
         swap.click()
     await asyncio.sleep(6)
     # Tắt box quản lý mật khẩu của google
-    gg_password = my_find_element(driver, {("text", "Trình quản lý mật khẩu của Google")})
+    gg_password = await my_find_element(driver, {("text", "Trình quản lý mật khẩu của Google")})
     if gg_password:
         log_message("Tắt trình quản lý mật khẩu")
         driver.press("back")
     await asyncio.sleep(6)
     # Tìm nút đăng nhập, nếu thấy thì mới có thể tìm được ô nhập text
-    login_button = my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đăng nhập"]')})
+    login_button = await my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đăng nhập"]')})
     if login_button:
         # Tìm tất cả ô nhập text có thể tương tác
         input_fields = my_find_elements(driver, {("className", 'android.widget.EditText')})
@@ -96,21 +92,21 @@ async def login_facebook(driver, acc):
         log_message("Không tìm được nút login", logging.ERROR)
         return False
     # Kiểm tra có đăng nhập thành công không
-    cant_login = my_find_element(driver, {("text", "Không thể đăng nhập")})
+    cant_login = await my_find_element(driver, {("text", "Không thể đăng nhập")})
     if cant_login:
         log_message("Đăng nhập thất bại do lỗi không thể đăng nhập", logging.ERROR)
         driver.press("back")
         return False
     # Kiểm tra có yêu cầu lưu tài khoản không
-    save = my_find_element(driver, {("text", "Lưu")})
+    save = await my_find_element(driver, {("text", "Lưu")})
     try:
         save.click()
         log_message("Lưu tài khoản")
         await asyncio.sleep(3)
         # Kiểm tra có yêu cầu lưu mật khẩu vào trình quản lý mật khẩu không
-        gg_save = my_find_element(driver, {("text", "Trình quản lý mật khẩu của Google")})
+        gg_save = await my_find_element(driver, {("text", "Trình quản lý mật khẩu của Google")})
         if gg_save:
-            tiep = my_find_element(driver, {("text", "Tiếp tục")})
+            tiep = await my_find_element(driver, {("text", "Tiếp tục")})
             tiep.click()
             log_message("Đã lưu mk vào tk gg")
             await asyncio.sleep(6)
@@ -118,11 +114,11 @@ async def login_facebook(driver, acc):
         log_message("Không thấy box lưu tài khoản", logging.WARNING)
     
     # Kiểm tra có yêu cầu quyền gì không
-    while skip := my_find_element(driver, {("text", "Bỏ qua")}):
+    while skip := await my_find_element(driver, {("text", "Bỏ qua")}):
         skip.click()
         log_message("Bỏ qua")
         await asyncio.sleep(3)
-        check_skip = my_find_element(driver, {("text", "BỎ QUA")})
+        check_skip = await my_find_element(driver, {("text", "BỎ QUA")})
         if check_skip != None:
             check_skip.click()
             await asyncio.sleep(3)
@@ -146,47 +142,44 @@ async def swap_account(driver, acc):
     await log_out(driver)
 
     # Đăng nhập
-    log_message(f"Bắt đầu đăng nhập vào tài khoản {name}")
-    await asyncio.sleep(5)
-    account = my_find_element(driver, {("xpath", f'//android.view.View[@content-desc="{name}"]')})
+    log_message(f"{driver.serial} - Bắt đầu đăng nhập vào tài khoản {name}")
+    account = await my_find_element(driver, {("xpath", f'//android.view.View[@content-desc="{name}"]')}, 20)
     try:
         account.click()
     except Exception:
-        log_message(f"Không thể đăng nhập", logging.ERROR)
+        log_message(f"{driver.serial} - Không thể đăng nhập", logging.ERROR)
         return
     # Tìm xem có bắt nhập mật khẩu lại không
-    login = my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đăng nhập"]')})
+    login = await my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đăng nhập"]')})
     if login != None:
-        pass_box = my_find_element(driver, {("xpath", 'android.widget.EditText')})
+        pass_box = await my_find_element(driver, {("xpath", 'android.widget.EditText')})
         try:
             pass_box.set_text(password)
             login.click()
             await asyncio.sleep(2)
         except Exception:
-            log_message("Không tìm được ô nhập mật khẩu", logging.ERROR)
+            log_message(f"{driver.serial} - Không tìm được ô nhập mật khẩu", logging.ERROR)
             await pymongo_management.update_statusFB(username, True)
             return
 
     # Kiểm tra có yêu cầu lưu tài khoản không
-    save = my_find_element(driver, {("text", "Lưu")})
+    save = await my_find_element(driver, {("text", "Lưu")})
     try:
         save.click()
-        log_message("Lưu tài khoản")
+        log_message(f"{driver.serial} - Lưu tài khoản")
         await asyncio.sleep(3)
     except Exception:
-        log_message("Không thấy box lưu tài khoản", logging.WARNING)
+        log_message(f"{driver.serial} - Không thấy box lưu tài khoản", logging.WARNING)
 
     # Kiểm tra có yêu cầu quyền gì không
-    while skip := my_find_element(driver, {("text", "Bỏ qua")}):
-        skip.click()
-        log_message("Bỏ qua")
-        await asyncio.sleep(3)
-        check_skip = my_find_element(driver, {("text", "BỎ QUA")})
-        if check_skip != None:
-            check_skip.click()
-            await asyncio.sleep(3)
+    while True:
+        skip = await my_find_element(driver, {("text", "Bỏ qua")}, 5)
+        if skip is not None:
+            skip.click()
+        else:
+            break
 
     # Đợi vào màn hình chính
     await asyncio.sleep(6)
-    log_message(f"Đăng nhập thành công vào tài khoản {name}")
+    log_message(f"{driver.serial} - Đăng nhập thành công vào tài khoản {name}")
     await pymongo_management.update_statusFB(username, True)
