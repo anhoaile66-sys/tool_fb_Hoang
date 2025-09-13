@@ -150,15 +150,9 @@ async def swap_account(driver, acc):
     # Tìm xem có bắt nhập mật khẩu lại không
     login = await my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đăng nhập"]')})
     if login != None:
-        pass_box = await my_find_element(driver, {("xpath", 'android.widget.EditText')})
-        try:
-            pass_box.set_text(password)
-            login.click()
-            await asyncio.sleep(2)
-        except Exception:
-            log_message(f"{driver.serial} - Không tìm được ô nhập mật khẩu", logging.ERROR)
-            await pymongo_management.update_statusFB(username, True)
-            return
+        await asyncio.sleep(3)
+        driver.send_keys(password)
+        login.click()
 
     # Kiểm tra có yêu cầu lưu tài khoản không
     save = await my_find_element(driver, {("text", "Lưu")})
