@@ -377,7 +377,7 @@ async def device_supervisor(device_id: str):
                     break
             # ======================= NEW CODE BLOCK END =======================
             
-            if not status:
+            if not status[device_id]:
                 task = asyncio.create_task(device_once(device_id))
 
             # Sau khi xong 1 vòng, ngủ ngắn rồi tiếp tục vòng kế
