@@ -12,7 +12,8 @@ async def post_to_wall(driver, command_id, user_id, content, files=None):
         driver.app_start("com.miui.gallery")
     toolfacebook_lib.back_to_facebook(driver)
     post_button = driver(text="Viết bài trên Facebook")
-    if post_button.exists(timeout=2):
+    await asyncio.sleep(2)
+    if post_button.exists:
         post_button.click()
         await asyncio.sleep(2)
         w, h = driver.window_size()
