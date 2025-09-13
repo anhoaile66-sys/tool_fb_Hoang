@@ -16,9 +16,7 @@ async def log_out(driver):
     try:
         menu.click()
     except Exception:
-        log_message(f"{driver.serial} - Không tìm được theo xpath, thử tọa độ cứng", logging.WARNING)
-        # Cách tồi nhất
-        # driver.click(661, 202)
+        log_message(f"{driver.serial} - Không tìm được nút menu", logging.ERROR)
         return
     # Đợi chuyển sang tab menu
     log_message(f"{driver.serial} - Vào menu")
