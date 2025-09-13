@@ -41,7 +41,7 @@ async def fb_natural_task(driver, crm_id:str, account: str):
         # Xóa app, xóa cache sau mỗi tác vụ
         await go_to_home_page(driver)
 
-    log_message("Hoàn thành 1 chuỗi task")
+    log_message(f"[{driver.serial}] Hoàn thành 1 chuỗi task")
 # Backward compatibility - original function without interrupt
 async def run_on_device_original(driver):
     try:

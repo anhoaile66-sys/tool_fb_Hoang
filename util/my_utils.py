@@ -154,11 +154,11 @@ async def go_to_home_page(driver):
     safe_count = 10
     while (element := my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')})) == None:
         if not safe_count:
-            log_message("Không tìm được homepage sau 10 lần thử", logging.ERROR)
+            # log_message("Không tìm được homepage sau 10 lần thử", logging.ERROR)
             return None
         driver.press("back")
         await asyncio.sleep(1)
-        log_message("Không tìm được trang chủ", logging.WARNING)
+        log_message(f"[{driver.serial}] Không tìm được trang chủ", logging.WARNING)
         safe_count -= 1
-    log_message("Đã về trang chủ")
+    log_message(f"[{driver.serial}] Đã về trang chủ")
     return element
