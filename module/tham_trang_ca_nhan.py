@@ -1,9 +1,7 @@
 import asyncio
 import logging
-import json
-import time
+import random
 from util import *
-import toolfacebook_lib
 
 EMOTION = [
     "Thích",
@@ -13,6 +11,7 @@ EMOTION = [
     "Wow",
     "Buồn",
 ]
+
 #Thả cảm xúc vào bài viết (Phẫn nộ sẽ đổi thành Buồn, "đấy là tính năng")
 async def like_post(driver, emotion="like"):
     """
@@ -39,7 +38,7 @@ async def like_post(driver, emotion="like"):
     await asyncio.sleep(random.uniform(1,2))
     
     # Tìm và chọn cảm xúc mong muốn
-    emotion_element = my_find_element(driver, {("xpath", f'//com.facebook.feedback.sharedcomponents.reactions.dock.RopeStyleUFIDockView[@content-desc="{emotion}"]')})
+    emotion_element = await my_find_element(driver, {("xpath", f'//com.facebook.feedback.sharedcomponents.reactions.dock.RopeStyleUFIDockView[@content-desc="{emotion}"]')})
     try:
         emotion_element.click()
         await asyncio.sleep(random.uniform(2,3))
@@ -61,7 +60,7 @@ async def tham_trang_ca_nhan(driver):
         ("text", "Go to profile"),
     ]
         
-    profile_element = my_find_element(driver, profile_locators)
+    profile_element = await my_find_element(driver, profile_locators)
         
     if not profile_element:
         print("❌ Không tìm thấy nút 'Đi tới trang cá nhân'")
@@ -69,7 +68,7 @@ async def tham_trang_ca_nhan(driver):
         
     profile_element.click()
     print("✅ Đã click vào trang cá nhân")
-    time.sleep(4)
+    await asyncio.sleep(4)
     try:
         await asyncio.sleep(random.uniform(5,8))
         scroll_count = random.randint(5, 20)

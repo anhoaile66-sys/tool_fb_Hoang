@@ -1,5 +1,6 @@
 import asyncio
 import logging
+import random
 from util import *
 
 # Xem story, còn một role mới cập nhật là ghi chú cũng sẽ lẫn vào story, cần kiểm tra để bỏ qua
@@ -12,7 +13,7 @@ async def watch_story(driver, duration=random.uniform(60, 90)):
     await go_to_home_page(driver)
     await asyncio.sleep(random.uniform(5,7))
     # Tìm story
-    story_item = my_find_element(driver, {("xpath", '//android.widget.Button[contains(@content-desc, "Tin của ")]')})
+    story_item = await my_find_element(driver, {("xpath", '//android.widget.Button[contains(@content-desc, "Tin của ")]')})
     if story_item == None:
         log_message("Không thể tìm được story", logging.ERROR)
         return
@@ -20,7 +21,7 @@ async def watch_story(driver, duration=random.uniform(60, 90)):
     log_message("Xem story")
 
     # Kiểm tra có hiện box xác nhận không
-    ok = my_find_element(driver, {("text", "OK")})
+    ok = await my_find_element(driver, {("text", "OK")})
     if ok:
         ok.click()
         await asyncio.sleep(random.uniform(3,4))

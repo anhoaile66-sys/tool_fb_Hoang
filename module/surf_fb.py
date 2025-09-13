@@ -1,6 +1,7 @@
 import asyncio
 import logging
 import json
+import random
 from util import *
 import toolfacebook_lib
 
@@ -12,7 +13,7 @@ EMOTION = [
 
 COMMENTS = [
     # Nhóm quan tâm, hỏi thông tin
-    "Còn tuyển không ạ? �‍♂️",
+    "Còn tuyển không ạ? 👨‍💼",
     "Vị trí này còn không ạ?",
     "Mình có thể ứng tuyển được không?",
     "Làm sao để apply ạ?",
@@ -24,11 +25,11 @@ COMMENTS = [
     "Mình quan tâm position này ạ 👍",
 
     # Nhóm thể hiện hứng thú
-    "Công việc hay quá! �",
-    "Phù hợp với mình ghê! �",
+    "Công việc hay quá! 😍",
+    "Phù hợp với mình ghê! 😊",
     "Mình đang tìm việc như này!",
-    "Cơ hội tốt quá! �",
-    "Công ty có vẻ ổn nhỉ! �",
+    "Cơ hội tốt quá! 🎯",
+    "Công ty có vẻ ổn nhỉ! 😎",
     "Môi trường làm việc tuyệt! 💼",
     "Thử apply xem sao! 🚀",
     "Đúng ngành mình rồi!",
@@ -37,11 +38,11 @@ COMMENTS = [
 
     # Nhóm tích cực, professional
     "Cảm ơn bạn đã share!",
-    "Thông tin hữu ích quá! �",
-    "Note lại để apply sau! �",
+    "Thông tin hữu ích quá! 👌",
+    "Note lại để apply sau! 📝",
     "Công ty uy tín nhỉ! 🏢",
-    "Mong được cơ hội thử! �",
-    "Đã gửi CV rồi ạ! �",
+    "Mong được cơ hội thử! 🤝",
+    "Đã gửi CV rồi ạ! 📧",
     "Hy vọng sẽ có cơ hội! 🤞",
     "Up cho mọi người cùng biết! ⬆️",
     "Ai quan tâm thì inbox mình nhé!",
@@ -74,7 +75,7 @@ async def like_post(driver, emotion="like"):
     await asyncio.sleep(random.uniform(1,2))
     
     # Tìm và chọn cảm xúc mong muốn
-    emotion_element = my_find_element(driver, {("xpath", f'//com.facebook.feedback.sharedcomponents.reactions.dock.RopeStyleUFIDockView[@content-desc="{emotion}"]')})
+    emotion_element = await my_find_element(driver, {("xpath", f'//com.facebook.feedback.sharedcomponents.reactions.dock.RopeStyleUFIDockView[@content-desc="{emotion}"]')})
     try:
         emotion_element.click()
         await asyncio.sleep(random.uniform(2,3))
@@ -92,7 +93,7 @@ async def comment_post(driver, text):
 
     # Thoát giao diện comment
     async def exit():
-        exit = my_find_element(driver, {("xpath", '//android.widget.Button[contains(@content-desc, "Đóng")]')})
+        exit = await my_find_element(driver, {("xpath", '//android.widget.Button[contains(@content-desc, "Đóng")]')})
         try:
             exit.click()
             log_message("Đã thoát giao diện comment")
@@ -113,7 +114,7 @@ async def comment_post(driver, text):
         return
 
     # Nhập comment
-    binhluan = my_find_element(driver, {("xpath", '//android.widget.AutoCompleteTextView')})
+    binhluan = await my_find_element(driver, {("xpath", '//android.widget.AutoCompleteTextView')})
     try:
         # Nhập comment, thay thế bằng hàm input text nếu bị ban, và sửa được hàm input text
         await asyncio.sleep(random.uniform(2,5))
@@ -125,7 +126,7 @@ async def comment_post(driver, text):
         return
 
     # Gửi comment
-    send_comment = my_find_element(driver, {("xpath", '//android.widget.Button[contains(@content-desc, "Gửi")]')})
+    send_comment = await my_find_element(driver, {("xpath", '//android.widget.Button[contains(@content-desc, "Gửi")]')})
     try:
         send_comment.click()
         await asyncio.sleep(random.uniform(3,5))
@@ -134,6 +135,7 @@ async def comment_post(driver, text):
         log_message("Không tìm được nút gửi", logging.ERROR)
     await exit()
     return
+
 def load_groups(file_path: str = "nhom_tuyen_dung.json"):
     """Đọc dữ liệu nhóm từ file JSON đã lưu."""
     try:

@@ -25,7 +25,8 @@ id_port = {
     "22889521":[{"8018": "PN59BMHYPFXCPN8T"}], #Chị Ngọc Mai
     "22735395":[{"8010": ""}], #Chị Tâm
     "22897894":[{"8011": ""}], #Ngọc Anh
-    "22862103":[{"8002": "7DXCUKKB6DVWDAQO"}, {"8008": "CQIZKJ8P59AY7DHI"}, {"8005": "UWJJOJLB85SO7LIZ"}] #Thằng đẻ ra ứng dụng
+    "22862103":[{"8008": "CQIZKJ8P59AY7DHI"}], #Thằng đẻ ra ứng dụng
+    "22858638":[{"8002": "7DXCUKKB6DVWDAQO"}, {"8005": "UWJJOJLB85SO7LIZ"}, {"8009": "9PAM7DIFW87DOBEU"}]
 
 
 }
