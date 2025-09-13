@@ -30,7 +30,7 @@ async def get_groups_links():
     return await collection.find().to_list(length=None)
 
 async def get_group_to_join(FB_id):
-    """Lấy liên kết nhóm từ cơ sở dữ liệu."""
+    """Lấy liên kết nhóm từ cơ sở dữ liệu để tham gia."""
     collection = get_async_collection("Link-groups")
     cursor = collection.aggregate([
         {

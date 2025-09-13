@@ -54,7 +54,7 @@ class WebSocketTaskHandler:
     async def handle_server_message(self, account, driver, message_type):
         """Xử lý message từ server và tạo task tương ứng"""
         if message_type == "new_command_notification":
-            for _ in range(30):
+            while True:
                 if await self.check_device_status(driver):
                     break
                 await asyncio.sleep(5)
@@ -63,10 +63,10 @@ class WebSocketTaskHandler:
                 log_message(f"{driver.serial} - Thực hiện lệnh từ CRM: Không có user_id trong message", logging.WARNING)
                 return
             await toolfacebook_lib.back_to_facebook(driver)
-            if not account['statusFb']:
+            if not account['status']:
                 acc = {
-                    'name': account['nameFb'],
-                    'account': account['username'],
+                    'name': account['name'],
+                    'account': account['account'],
                     'password': account['password'],
                 }
                 await login.swap_account(driver, acc)

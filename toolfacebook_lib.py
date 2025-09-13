@@ -148,7 +148,8 @@ async def extract_post_link(driver, post):
 # Lấy liên kết trang cá nhân
 async def extract_facebook_user_link(driver):
     button = driver(description="Xem cài đặt khác của trang cá nhân")
-    if button.exists(timeout=1):
+    await asyncio.sleep(1)
+    if button.exists:
         button.click()
     await click_template(driver, "copy_profile_link")
     link = await get_clipboard_content(driver, "com.facebook.katana")
