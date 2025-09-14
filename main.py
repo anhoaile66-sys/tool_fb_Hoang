@@ -379,9 +379,6 @@ async def device_supervisor(device_id: str):
             
             if not status[device_id]:
                 task = asyncio.create_task(device_once(device_id))
-
-            # Sau khi xong 1 vòng, ngủ ngắn rồi tiếp tục vòng kế
-            await asyncio.sleep(random.uniform(5, 10))
         except RestartThisDevice as e:
             log_message(f"[{device_id}] ↻ Watchdog yêu cầu RESTART — khởi động lại quy trình cho máy này.", logging.WARNING)
             await asyncio.sleep(2.0)
