@@ -13,20 +13,28 @@ socketio = SocketIO(app, async_mode='eventlet',
                     max_http_buffer_size=1024 * 1024 * 1024, cors_allowed_origins='*')
 
 id_port = {
-    "22614471": [{"8002": "7DXCUKKB6DVWDAQO"}, {"8006": "CEIN4X45I7ZHFEFU"}, {"8005": "UWJJOJLB85SO7LIZ"}, {"8003": "TSPNH6GYZLPJBY6X"}],
+    "22773024": [{"8002": "7DXCUKKB6DVWDAQO"}, {"8006": "CEIN4X45I7ZHFEFU"}, {"8005": "UWJJOJLB85SO7LIZ"}, {"8003": "TSPNH6GYZLPJBY6X"}, {"8004": "7HYP4T4XTS4DXKCY"}, {"8001": "R8YY70F5MKN"}, {"8022": "69QGMN8PXWDYPNIF"}, {"8023": "IZDEGA8TFYXWRK9X"}], #Sếp
+    "22614471": [{"8002": "7DXCUKKB6DVWDAQO"}, {"8006": "CEIN4X45I7ZHFEFU"}, {"8005": "UWJJOJLB85SO7LIZ"}, {"8003": "TSPNH6GYZLPJBY6X"}, {"8004": "7HYP4T4XTS4DXKCY"}, {"8001": "R8YY70F5MKN"}], #Lê Thị Liên
+    "22616467": [{"8017": "EM4DYTEITCCYJNFU"}], #Hoàng Thị Thùy Linh
     "22615833": [{"8009": "9PAM7DIFW87DOBEU"}], #Chị Ngô Dung
     "22814414": [{"8019": "Z5LVOF4PRGXGTS9H"}], #Chị Bích Ngọc
     "22789191": [{"8014": "F6NZ5LRKWWGACYQ8"}], #Chị Lại Thị Nhàn
-    "22833463": [{"8003": "TSPNH6GYZLPJBY6X"}], #Chị Thư
-    "22636101":[], #Chị Thùy
-    "22896992":[{"8013": "EY5H9DJNIVNFH6OR"}], #Chị Huyền Trang
+    "22833463": [{"8015": "QK8TEMKZMBYHPV6P"}], #Chị Thư
+    "22636101":[{"8016": "IJP78949G69DKNHM"}], #Chị Thùy
+    "22896992":[{"8013": "EY5H9DJNIVNFH6OR"}], #Huyền Trang
+    "22911349":[{"8024": "R8YY70HCNRX"}], #Diễm Quỳnh
     "22889226":[{"8008": "CQIZKJ8P59AY7DHI"}], #Chị Ngọc Hà
     "22894754":[{"8007": "8HMN4T9575HAQWLN"}], #Chị Hải Yến
     "22889521":[{"8018": "PN59BMHYPFXCPN8T"}], #Chị Ngọc Mai
-    "22735395":[{"8010": ""}], #Chị Tâm
-    "22897894":[{"8011": ""}], #Ngọc Anh
+    "22735395":[{"8010": "EQLNQ8O7EQCQPFXG"}], #Chị Tâm
+    "22897894":[{"8011": "YH9TSS7XCMPFZHNR"}], #Ngọc Anh
+    "22846624":[{"8020": ""}], #Ngọc Ánh
+    "22846622":[{"8021": "R8YY70F81TV"}], #Thu Trà
+    "22891672":[{"8012": "MJZDFY896TMJBUPN"}], #Phạm Linh Chi
+    "22907106":[{"8025": "R83Y50JZK6A"}], #Vân Anh
     "22862103":[{"8008": "CQIZKJ8P59AY7DHI"}], #Thằng đẻ ra ứng dụng
-    "22858638":[{"8002": "7DXCUKKB6DVWDAQO"}, {"8005": "UWJJOJLB85SO7LIZ"}, {"8009": "9PAM7DIFW87DOBEU"}]
+    "22858638":[{"8002": "7DXCUKKB6DVWDAQO"}, {"8005": "UWJJOJLB85SO7LIZ"}, {"8009": "9PAM7DIFW87DOBEU"}] #Phạm Huy dùng để test
+
 
 
 }
