@@ -2983,6 +2983,97 @@ def api_find_new_friend():
 
                 return jsonify({"num_send_phone_zalo": num_send_phone_zalo, "name_ntd": name_ntd, "ava": avatar_64, "friend_or_not": friend_or_not}), 200
 
+@app.route('/switch_account', methods=['POST', 'GET'])
+def api_switch_account():
+    # print(data)
+    # list_socket_call.append("open_chat_pvp")
+    #    room = data["id_chat"]
+    # room = data['id_chat']
+    data = request.form
+    num_phone_zalo = data.get('num_phone_zalo')
+    num_send_phone_zalo = data.get('num_send_phone_zalo')
+    # global now_phone_zalo
+    # now_phone_zalo = num_phone_zalo
+    print(num_phone_zalo)
+    print(num_send_phone_zalo)
+    one = time.time()
+    # name = data.get('name')
+#    ava = data['ava']
+    docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                                 "num_phone_zalo": num_phone_zalo})
+    if len(docs) > 0:
+        document = docs[0]
+    else:
+        print(num_phone_zalo)
+        print("không có đâu")
+
+# docs giờ là một list chứa mọi document tìm được
+    id_device = document['id_device']
+    now_phone_zalo[id_device] = num_phone_zalo
+    user_name = document['name']
+    list_prior_chat_boxes = document['list_prior_chat_boxes']
+
+    print("Đã vào được điện thoại này chưa")
+    if (id_device in dict_devices and num_phone_zalo in dict_status_zalo.keys()):
+        if (dict_status_zalo[num_phone_zalo] != ''):
+            print("bận rồi !!!", dict_status_zalo[num_phone_zalo])
+            return jsonify({"status": "Bận rồi ông cháu ơi"})
+        else:
+            docs = get_base_id_zalo_json(
+                "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+            check_busy = False
+            for doc in docs:
+                if doc['num_phone_zalo'] != "":
+                    if dict_status_zalo[doc['num_phone_zalo']] != "":
+                        check_busy = True
+                        break
+            if check_busy:
+                print("bận rồi !!!", dict_status_zalo[num_phone_zalo])
+                return jsonify({"status": "Bận rồi ông cháu ơi"})
+            else:
+                dict_status_update_pvp[num_phone_zalo] = 1
+                dict_status_zalo[num_phone_zalo] = "switch_account"
+                doc = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                                            "num_phone_zalo": num_phone_zalo})[0]
+                if not doc['status']:
+                    docs = get_base_id_zalo_json(
+                        "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                    current_phone = ""
+                    for it in docs:
+                        if it['status']:
+                            current_phone = it['num_phone_zalo']
+                            break
+
+                    try:
+                        with open(f'C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json', 'r') as f:
+                            device_status = json.load(f)
+                        if not device_status['active']:
+                            device_status['active'] = True
+                            with open(f"C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json", 'w') as f:
+                                json.dump(device_status, f, indent=4)
+                            eventlet.sleep(0.2)
+                        d = u2.connect(id_device)
+                        d = switch_account(d, user_name)
+                        if current_phone != "":
+                            status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                                "num_phone_zalo": current_phone, "status": False})
+                        status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                            "num_phone_zalo": num_phone_zalo, "status": True})
+                        dict_status_zalo[num_phone_zalo] = ""
+                        dict_status_update_pvp[num_phone_zalo] = 0
+                        with open(f'C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json', 'r') as f:
+                            device_status = json.load(f)
+                        if device_status['active']:
+                            device_status['active'] = False
+                            print("Có set về false không")
+                            with open(f"C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json", 'w') as f:
+                                json.dump(device_status, f, indent=4)
+                        return jsonify({"status": "Chuyển tài khoản thành công"})
+                        
+                    except Exception as e:
+                        print("Chuyển tài khoản thất bại", id_device)
+                        return jsonify({"status": "Chuyển tài khoản thất bại"})
+
 
 def handle_chat_view(d: u2.Device,  num_phone_zalo):
     last_time[num_phone_zalo] = time.time()
@@ -4248,8 +4339,8 @@ def get_data_chat_boxes_1vs1_u2(d: u2.Device, time_and_mes, max_scroll: int = 5,
                 bounds = items[num-id].info['bounds']
                 width, height = bounds['right'] - \
                     bounds['left'], bounds['bottom'] - bounds['top']
-                if height <= 400:
-                    continue
+                #if height <= 400:
+                #    continue
             formatted = date.today().strftime("%d/%m/%Y")
             raw = raw.replace("Hôm nay", formatted)
             if "[File]" in raw:
