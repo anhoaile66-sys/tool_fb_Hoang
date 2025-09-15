@@ -33,14 +33,14 @@ async def add_friend(driver, crm_id:str):
     await asyncio.sleep(random.uniform(20,30))
 
     # Tìm nút kết bạn
-    if add_button := my_find_element(driver, {('xpath', '//android.widget.Button[@content-desc="Thêm bạn bè"]')}):
+    if add_button := await my_find_element(driver, {('xpath', '//android.widget.Button[@content-desc="Thêm bạn bè"]')}):
         add_button.click()
         log_message("Đã gửi lời mời kết bạn")
-    elif setting := my_find_element(driver, {('xpath', '//android.widget.Button[contains(@content-desc,"Xem cài đặt khác của trang cá nhân")]')}):
+    elif setting := await my_find_element(driver, {('xpath', '//android.widget.Button[contains(@content-desc,"Xem cài đặt khác của trang cá nhân")]')}):
         log_message("Không tìm được nút kết bạn", logging.WARNING)
         setting.click()
         log_message("Mở menu để tìm nút kết bạn")
-        if add_button := my_find_element(driver, {('xpath', '//android.widget.Button[@content-desc="Thêm bạn bè"]')}):
+        if add_button := await my_find_element(driver, {('xpath', '//android.widget.Button[@content-desc="Thêm bạn bè"]')}):
             add_button.click()
             log_message("Đã gửi lời mời kết bạn")
         else:

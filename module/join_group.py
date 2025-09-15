@@ -24,7 +24,8 @@ async def join_group(driver, command_id, user_id, group_link, back_to_facebook =
         join_button_clicked = True
 
         joined_group = driver(textContains="đã tham gia nhóm")
-        if joined_group.exists(timeout=5):
+        await asyncio.sleep(5)
+        if joined_group.exists:
             result = await pymongo_management.update_joined_accounts(user_id, group_link)
             log_message(f"{driver.serial} - {result[0]['message']}", result[1])
             await pymongo_management.execute_command(command_id, "Đã thực hiện")

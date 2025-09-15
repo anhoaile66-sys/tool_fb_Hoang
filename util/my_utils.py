@@ -20,32 +20,32 @@ async def type_text_input(element, text):
     log_message(f"Đã nhập: {text}")
 
 # Tìm element thỏa mãn
-def my_find_element(d, locators):
-    for locator in locators:
-        method, value = locator
-        try:
-            if method == "text":
-                element = d(text=value)
-            elif method == "desc":
-                element = d(description=value)
-            elif method == "resourceId":
-                element = d(resourceId=value)
-            elif method == "className":
-                element = d(className=value)
-            elif method == "xpath":
-                element = d.xpath(value)
-            else:
-                log_message(f"Không hỗ trợ method: {method}", logging.ERROR)
-                continue
-
-            if element.exists:
-                log_message(f"Tìm thấy element với locator: {locator}")
-                return element
-            # else:
-                # log_message(f"Không tìm thấy element với locator: {locator}", logging.WARNING)
-        except Exception as e:
-            log_message(f"Lỗi {type(e).__name__}: {e}", logging.ERROR)
-    log_message("Không tìm thấy element trong tất cả locators", logging.ERROR)
+async def my_find_element(d, locators, max_retries=3, nature_scroll_if_not_found=False):
+    try:
+        for _ in range(max_retries):
+            for locator in locators:
+                method, value = locator
+                if method == "text":
+                    element = d(text=value)
+                elif method == "desc":
+                    element = d(description=value)
+                elif method == "resourceId":
+                    element = d(resourceId=value)
+                elif method == "className":
+                    element = d(className=value)
+                elif method == "xpath":
+                    element = d.xpath(value)
+                else:
+                    log_message(f"{d.serial} - Không hỗ trợ method: {method}", logging.ERROR)
+                    continue
+                if element.exists:
+                    log_message(f"{d.serial} - Tìm thấy element với locator: {locator}")
+                    return element
+            if nature_scroll_if_not_found:
+                await nature_scroll(d, isFast=True)
+            await asyncio.sleep(1)
+    except Exception as e:
+        log_message(f"Lỗi {type(e).__name__}: {e}", logging.ERROR)
     return None
 
 # Tìm nhiều element
@@ -138,7 +138,7 @@ async def scroll_until_element_visible(driver, locators, max_scrolls=10):
     """
 
     for _ in range(max_scrolls):
-        element = my_find_element(driver, locators)
+        element = await my_find_element(driver, locators)
         if element != None:
             return element
         await nature_scroll(driver)
@@ -152,13 +152,13 @@ async def go_to_home_page(driver):
     """
     log_message("Đang về trang chủ")
     safe_count = 10
-    while (element := my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')})) == None:
+    while (element := await my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')})) == None:
         if not safe_count:
-            log_message("Không tìm được homepage sau 10 lần thử", logging.ERROR)
+            log_message(f"{driver.serial} - Không tìm được homepage sau 10 lần thử", logging.ERROR)
             return None
         driver.press("back")
         await asyncio.sleep(1)
-        log_message("Không tìm được trang chủ", logging.WARNING)
+        log_message(f"[{driver.serial}] Không tìm được trang chủ", logging.WARNING)
         safe_count -= 1
-    log_message("Đã về trang chủ")
+    log_message(f"[{driver.serial}] Đã về trang chủ")
     return element
