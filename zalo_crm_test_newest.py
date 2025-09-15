@@ -4219,6 +4219,7 @@ def get_data_chat_boxes_1vs1_u2(d: u2.Device, time_and_mes, max_scroll: int = 5,
     lst_time_str = ""
     lst_message = ""
     check_first = False
+    check_f_ac = False
     fr = d(resourceId="com.zing.zalo:id/action_bar_title").get_text()
     name_sender = fr
     chat[f'{name_sender}'] = []
@@ -4230,6 +4231,9 @@ def get_data_chat_boxes_1vs1_u2(d: u2.Device, time_and_mes, max_scroll: int = 5,
         # Đọc từ dưới lên trên (các tin mới trước)
         for id in range(num+1):
             raw = items[num-id].text or ""
+
+            if "đã đồng ý kết bạn" in raw:
+                check_f_ac = True
 
             if raw in seen:
                 continue
@@ -4474,7 +4478,7 @@ def get_data_chat_boxes_1vs1_u2(d: u2.Device, time_and_mes, max_scroll: int = 5,
             rever_data_chat_box[i][key] = rever_data_chat_box[i][key][::-1]
     print(rever_data_chat_box)
 
-    return rever_data_chat_box, lst_time_str, lst_message
+    return rever_data_chat_box, lst_time_str, lst_message, check_f_ac
 
 
 def get_data_chat_boxes_gr_u2(d: u2.Device, time_and_mes, list_mems, max_scroll: int = 5, scroll_delay: float = 1.0):
@@ -5107,6 +5111,7 @@ def api_update_data_1vs1_chat_box(d: u2.Device, data, document):
                 if 'list_prior_chat_boxes' not in document.keys():
                     document['list_prior_chat_boxes'] = []
                 list_prior_chat_boxes = document['list_prior_chat_boxes']
+                list_friend = document['list_friend']
                 data_ntd = name_ntd
                 check = False
                 pick = -1
@@ -5143,7 +5148,7 @@ def api_update_data_1vs1_chat_box(d: u2.Device, data, document):
                         # print(last_data_mes)
                         time_and_mes = {
                             "time": last_data_mes['time'], "message": last_data_mes['data']}
-                raw_result, lst_time_str, lst_message = get_data_chat_boxes_1vs1_u2(
+                raw_result, lst_time_str, lst_message, check_f_ac = get_data_chat_boxes_1vs1_u2(
                     d, time_and_mes)
                 result = [r for r in raw_result if r]
                 # retr = result
@@ -5155,8 +5160,13 @@ def api_update_data_1vs1_chat_box(d: u2.Device, data, document):
                     list_prior_chat_boxes[pick]['status'] = "unseen"
                     list_prior_chat_boxes.insert(
                         0, list_prior_chat_boxes.pop(pick))
+                    if check_f_ac:
+                        ava = ""
+                        if 'ava' in list_prior_chat_boxes[pick].keys():
+                            ava = list_prior_chat_boxes[pick]['ava']
+                            list_friend.append({"name": data_ntd, "ava": ava})
                     data_update = {"num_phone_zalo": num_phone_zalo,
-                                   "list_prior_chat_boxes": list_prior_chat_boxes}
+                                   "list_prior_chat_boxes": list_prior_chat_boxes, "list_friend": list_friend}
                     update_base_document_json(
                         "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                     # retr =  {"result": result}
@@ -7813,8 +7823,6 @@ if __name__ == "__main__":
     #socketio.run(app, host="0.0.0.0", port=8001,
     #             debug=True, use_reloader=False)
 
-    
-    
     socketio.run(
         app,
         host="0.0.0.0",
