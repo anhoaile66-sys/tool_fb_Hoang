@@ -17,8 +17,16 @@ def create_tables():
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS employees (
                 emp_id TEXT PRIMARY KEY,
-                name TEXT NOT NULL,
-                device TEXT
+                name   TEXT NOT NULL
+            )
+        ''')
+        
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS devices (
+                device_id TEXT PRIMARY KEY,      -- có thể là serial number từ adb
+                emp_id    TEXT NOT NULL,
+                brand     TEXT,
+                FOREIGN KEY (emp_id) REFERENCES employees(emp_id)
             )
         ''')
 
@@ -34,7 +42,6 @@ def create_tables():
                 content TEXT,
                 FOREIGN KEY (emp_id) REFERENCES employees (emp_id),
                 UNIQUE(customer_email, emp_id, date)
-                
             )
         ''')
         
@@ -55,7 +62,7 @@ def create_tables():
         cursor.execute('CREATE INDEX IF NOT EXISTS idx_customers_sent ON customers(sent)')
         cursor.execute('CREATE INDEX IF NOT EXISTS idx_email_accounts_emp_id ON email_accounts(emp_id)')
         conn.commit()
-        print("Tables 'employees' and 'customers' and 'email_accounts created successfully in business.db")
+        print("Tables 'employees', 'devices', 'customers', and 'email_accounts' created successfully in business.db")
 
     except sqlite3.Error as e:
         print(f"SQLite error: {e}")

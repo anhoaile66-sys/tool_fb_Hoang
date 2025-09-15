@@ -110,6 +110,16 @@
 
 
 
-UPDATE customers
-SET sent = 1
-WHERE customer_id = 12
+-- UPDATE customers
+-- SET sent = 1
+-- WHERE customer_id = 12
+
+UPDATE employees
+VALUES 
+
+ALTER TABLE employees ADD COLUMN brand TEXT;
+UPDATE employees SET brand = 'Redmi';
+
+
+INSERT INTO employees (emp_id, name, device, brand)
+VALUES ('22616467', 'Hoàng Linh', 'EM4DYTEITCCYJNFU', 'Redmi');
