@@ -7107,9 +7107,9 @@ def api_log_in_status(id_device):
             ], "list_group": [], "list_invite_friend": [], "list_prior_chat_boxes": [], "list_unseen_chat_boxes": [], "status": False})
         '''
 
-        phone_zalos = []
+        #phone_zalos = []
 
-        dict_device_and_phone[id_device] = phone_zalos
+        #[id_device] = phone_zalos
 
         # print("Các tên tài khoản zalo hiện tại là", zalo_name)
 

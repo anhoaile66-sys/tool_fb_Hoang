@@ -2453,6 +2453,26 @@
         "list_invite_friend": [],
         "list_prior_chat_boxes": [
             {
+                "name": "Bùi Thị Nhung",
+                "time": "17:17 12/9/2025",
+                "message": "Chào anh/chị, em là Ngô Dung. Em cảm ơn anh/chị đã đồng ý kết bạn, hy vọng sẽ giúp được a/c tuyển được nhân sự hiệu quả.",
+                "ava": null,
+                "tag": "",
+                "status": "seen",
+                "data_chat_box": [
+                    {
+                        "you": [
+                            {
+                                "time": "17:17 12/9/2025",
+                                "type": "text",
+                                "data": "Chào anh/chị, em là Ngô Dung. Em cảm ơn anh/chị đã đồng ý kết bạn, hy vọng sẽ giúp được a/c tuyển được nhân sự hiệu quả."
+                            }
+                        ]
+                    }
+                ],
+                "friend_or_not": "no"
+            },
+            {
                 "name": "Lê Sự",
                 "time": "17:17 12/9/2025",
                 "message": "Chào anh/chị, em là Ngô Dung. Em rất vui được kết nối, anh/chị thường tìm ứng viên bằng hình thức gì ạ?",
