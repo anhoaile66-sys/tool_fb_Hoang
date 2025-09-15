@@ -6153,6 +6153,8 @@ def handle_share_message_chat_pvp(data):
     names = data['names']
     name_share = data['name_share']
     extra_message = data['extra_message']
+    name_card = data['name_card']
+    num_phone_card = data['num_phone_card']
     type = data['type']
     # mime = data['mime']
     image_data = data['image_data']
@@ -6551,6 +6553,27 @@ def handle_share_message_chat_pvp(data):
                                 emit("receive_send_message_status", {
                                     "status": "Gửi tin nhắn thất bại",  "name_ntd": name, "message": message}, room=room)
                                 return False
+                        elif type == 'card':
+                            try:
+                                d(resourceId="com.zing.zalo:id/new_chat_input_btn_attach").click()
+                                eventlet.sleep(0.1)
+                                d.xpath('//*[@text="Danh thiếp"]').click()
+                                eventlet.sleep(0.1)
+                                d(resourceId="com.zing.zalo:id/search_input_text").click()
+                                eventlet.sleep(0.1)
+                                d.send_keys(name_card, clear=True)
+                                eventlet.sleep(0.1)
+                                d(resourceId="com.zing.zalo:id/layoutcontact").click()
+                                eventlet.sleep(0.1)
+                                d(resourceId="com.zing.zalo:id/btn_done_add_item").click()
+                                eventlet.sleep(0.1)
+                                d(resourceId="com.zing.zalo:id/new_chat_input_btn_attach").click()
+                                eventlet.sleep(0.1)
+                            except Exception as e:
+                                print(e)
+                                dict_status_zalo[num_phone_zalo] = ""
+                                emit("receive_send_message_status", {
+                                "status": "Gửi tin nhắn thất bại",  "name_ntd": name, "message": message}, room=room)
 
                         now = datetime.now()
                         print("Ngày:", now.day)
@@ -6601,6 +6624,14 @@ def handle_share_message_chat_pvp(data):
                                         {"you": [{'time': time_str, 'type': "file", "data": f"[File]\n{file_name}\n{file_size}", "file_data": file_data}]})
                                     list_prior_chat_boxes.insert(
                                         0, list_prior_chat_boxes.pop(id))
+                                elif type == 'card':
+                                    list_prior_chat_boxes[id]['time'] = time_str
+                                    list_prior_chat_boxes[id]['message'] = message
+                                    list_prior_chat_boxes[id]['status'] = "seen"
+                                    list_prior_chat_boxes[id]['data_chat_box'].append(
+                                        {"you": [{'time': time_str, 'type': "card", "data": f"{name_card}\nGọi điện\nNhắn tin", "card_data": {"name_card": name_card, "num_phone_card": num_phone_card}}]})
+                                    list_prior_chat_boxes.insert(
+                                        0, list_prior_chat_boxes.pop(id))
                                 break
 
                                 # pick = id
@@ -6629,6 +6660,13 @@ def handle_share_message_chat_pvp(data):
                                     {"name": name, "time": time_str, "message": f"[File]\n{file_name}\n{file_size}", "status": "seen", "data_chat_box": []})
                                 list_prior_chat_boxes[-1]['data_chat_box'].append(
                                     {"you": [{'time': time_str, 'type': "file", "data": f"[File]\n{file_name}\n{file_size}", "file_data": file_data}]})
+                                list_prior_chat_boxes.insert(
+                                    0, list_prior_chat_boxes.pop(-1))
+                            elif type == 'card':
+                                list_prior_chat_boxes.append(
+                                    {"name": name, "time": time_str, "message": message, "status": "seen", "data_chat_box": []})
+                                list_prior_chat_boxes[-1]['data_chat_box'].append(
+                                    {"you": [{'time': time_str, 'type': "card", "data": message, "card_data": {"name_card": name_card, "num_phone_card": num_phone_card}}]})
                                 list_prior_chat_boxes.insert(
                                     0, list_prior_chat_boxes.pop(-1))
                         if extra_message != "":
