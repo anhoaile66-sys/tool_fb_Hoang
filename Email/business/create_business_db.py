@@ -2,6 +2,10 @@ import sqlite3
 import json
 import os
 from datetime import datetime
+import pytz # Import pytz for timezone handling
+
+# Define Vietnam timezone
+VIETNAM_TIMEZONE = pytz.timezone('Asia/Ho_Chi_Minh')
 
 DB_PATH = 'Email/business/businesses.db'
 BUSINESS_INFO_JSON = 'Email/business/business_info.json'
@@ -92,8 +96,8 @@ def add_customer_safe(emp_id, customer_email, sent=0,subject=None, content=None,
     """
     Thêm customer với logic kiểm tra: cùng email + emp_id chỉ được thêm 1 lần/ngày
     """
-    if date == None:
-        date = datetime.now().strftime("%Y-%m-%d")
+    if date is None:
+        date = datetime.now(VIETNAM_TIMEZONE).strftime("%Y-%m-%d")
     conn = None
     try:
         conn = sqlite3.connect(DB_PATH)
@@ -130,8 +134,6 @@ def add_customer_safe(emp_id, customer_email, sent=0,subject=None, content=None,
         if conn:
             conn.close()
             
-# create_tables()
-
 # add_customer_safe("22615833", "test@gmail.com", 1, "2025-09-10", "Test Subject", "Test Content")
 # add_customer_safe("22615833", "test@gmail.com", 1, None, "Test Subject", "Test Content")  # Should fail
 # add_customer_safe("22615833", "test@gmail.com", 1, "2025-09-11", "Test Subject", "Test Content")  # Should success

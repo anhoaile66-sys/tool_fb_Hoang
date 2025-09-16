@@ -1,165 +1,26 @@
-import time
-import os
-import sqlite3
-from datetime import datetime
-from classSend import EmailSender
-from classHtmlRender import HtmlRenderSimulator
+import requests
 
-# --- Cấu hình ---
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(BASE_DIR, "..", "business", "businesses.db")
+# Base URL for the API endpoint
+BASE_URL = 'http://localhost:5468'
 
-def get_db_connection():
-    conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row
-    return conn
+# List of example emp_ids and their corresponding template data
+# We need 11 distinct emp_ids as requested by the user.
+# Using a range of emp_ids for testing purposes.
+templates_to_add = [
+    {"emp_id": '22615833', "subject": "Cơ hội việc làm IT hấp dẫn 1", "content": "Nội dung email 1: Chúng tôi có nhiều vị trí IT đang tuyển dụng."},
+    {"emp_id": '22636101', "subject": "Tuyển dụng Chuyên viên Marketing 2", "content": "Nội dung email 2: Tìm kiếm tài năng Marketing cho đội ngũ của chúng tôi."},
+    {"emp_id": '22789191', "subject": "Kỹ sư phần mềm cấp cao 3", "content": "Nội dung email 3: Tham gia đội ngũ phát triển sản phẩm hàng đầu."},
+    {"emp_id": '22814414', "subject": "Thực tập sinh Data Analyst 4", "content": "Nội dung email 4: Cơ hội học hỏi và phát triển trong lĩnh vực phân tích dữ liệu."},
+    {"emp_id": '22833463', "subject": "Chuyên viên tư vấn tài chính 5", "content": "Nội dung email 5: Xây dựng sự nghiệp vững chắc với chúng tôi."},
+    {"emp_id": '22889226', "subject": "Quản lý dự án IT 6", "content": "Nội dung email 6: Dẫn dắt các dự án công nghệ đột phá."},
+    {"emp_id": '22894754', "subject": "Thiết kế đồ họa sáng tạo 7", "content": "Nội dung email 7: Biến ý tưởng thành hiện thực với thiết kế ấn tượng."},
+    {"emp_id": '22889521', "subject": "Nhân viên kinh doanh B2B 8", "content": "Nội dung email 8: Phát triển mạng lưới khách hàng doanh nghiệp."},
+    {"emp_id": '22614471', "subject": "Chuyên viên hỗ trợ kỹ thuật 9", "content": "Nội dung email 9: Giải quyết các vấn đề kỹ thuật cho khách hàng."},
+    {"emp_id": '22896992', "subject": "Kế toán tổng hợp 10", "content": "Nội dung email 10: Đảm bảo hoạt động tài chính minh bạch."},
+    {"emp_id": '22616467', "subject": "Trưởng phòng nhân sự 11", "content": "Nội dung email 11: Xây dựng và phát triển đội ngũ nhân tài."},
+    {"emp_id": '22846622', 'subject': "Chuyên viên SEO 12", "content": "Nội dung email 12: Tối ưu hóa công cụ tìm kiếm để tăng cường hiện diện trực tuyến."}
+]
 
-def get_device_id_for_emp(emp_id):
-    """Lấy device_id của thiết bị được gán cho một emp_id."""
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute(
-        "SELECT device_id FROM devices WHERE emp_id = ?",
-        (emp_id,)
-    )
-    result = cursor.fetchone()
-    conn.close()
-    return result["device_id"] if result else None
-
-def get_device_plugged_in_status(device_id):
-    """Lấy trạng thái plugged_in của một thiết bị."""
-    if device_id is None:
-        return 0 # Coi như không cắm nếu không có device_id
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute(
-        "SELECT plugged_in FROM devices WHERE device_id = ?",
-        (device_id,)
-    )
-    result = cursor.fetchone()
-    conn.close()
-    return result["plugged_in"] if result else 0 # Mặc định là 0 nếu không tìm thấy hoặc không có cột
-
-def get_distinct_emp_ids_with_pending_emails():
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute(
-        "SELECT DISTINCT emp_id FROM customers WHERE sent = 0"
-    )
-    emp_ids = [row["emp_id"] for row in cursor.fetchall()]
-    conn.close()
-    return emp_ids
-
-def get_next_pending_customer(emp_id):
-    """Lấy khách hàng chờ xử lý tiếp theo cho một emp_id."""
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute(
-        "SELECT customer_id FROM customers WHERE emp_id = ? AND sent = 0 ORDER BY customer_id LIMIT 1",
-        (emp_id,)
-    )
-    result = cursor.fetchone()
-    conn.close()
-    return result["customer_id"] if result else None
-
-def is_customer_sent(customer_id):
-    """Kiểm tra xem một customer đã được đánh dấu là đã gửi chưa."""
-    if customer_id is None:
-        return True # Không có customer trước đó, coi như đã xử lý
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute(
-        "SELECT sent FROM customers WHERE customer_id = ?",
-        (customer_id,)
-    )
-    result = cursor.fetchone()
-    conn.close()
-    return result["sent"] == 1 if result else False
-
-def process_next_email_for_emp(emp_id, last_processed_customer_info):
-    """
-    Xử lý email chờ xử lý tiếp theo cho một nhân viên.
-    Kiểm tra xem email đã xử lý trước đó cho nhân viên này đã được đánh dấu là đã gửi chưa.
-    Trả về ID của khách hàng vừa được xử lý, hoặc ID cũ nếu thất bại.
-    """
-    last_customer_id = last_processed_customer_info.get('customer_id')
-    last_html_ok = last_processed_customer_info.get('html_ok', True)
-
-    # Kiểm tra trạng thái plugged_in của thiết bị trước khi xử lý
-    device_id = get_device_id_for_emp(emp_id)
-    if device_id:
-        plugged_in_status = get_device_plugged_in_status(device_id)
-        if plugged_in_status == 0:
-            print(f"⚠️ Thiết bị {device_id} cho EMP_ID {emp_id} chưa được cắm. Bỏ qua xử lý email.")
-            return {'customer_id': last_customer_id, 'html_ok': last_html_ok}
-    else:
-        print(f"⚠️ Không tìm thấy thiết bị cho EMP_ID {emp_id}. Bỏ qua xử lý email.")
-        return {'customer_id': last_customer_id, 'html_ok': last_html_ok}
-
-    if not is_customer_sent(last_customer_id) or not last_html_ok:
-        print(f"🔴 Tác vụ trước đó cho EMP_ID {emp_id} (Customer ID: {last_customer_id}) chưa hoàn tất. Tạm dừng cho nhân viên này.")
-        return {'customer_id': last_customer_id, 'html_ok': last_html_ok}
-
-    customer_id = get_next_pending_customer(emp_id)
-
-    if customer_id is None:
-        # Không còn khách hàng nào cho nhân viên này, reset trạng thái
-        return {'customer_id': None, 'html_ok': True} 
-
-    print(f"\n▶️ Đang xử lý khách hàng ID: {customer_id} cho EMP_ID: {emp_id}...")
-
-    try:
-        # 1. Xử lý HTML
-        print("   - Bước 1: Xử lý HTML...")
-        simulator = HtmlRenderSimulator(EMP_ID=emp_id, customer_id=customer_id)
-        simulator.beautify_html()
-
-        if not simulator.html_processed:
-            print(f"   - ❌ Lỗi: Xử lý HTML thất bại cho customer ID: {customer_id}.")
-            return {'customer_id': last_customer_id, 'html_ok': False}
-
-        # 2. Gửi Email
-        print("   - Bước 2: Gửi email...")
-        sender = EmailSender(emp_id=emp_id)
-        sender.open_gmail()
-        success = sender.send_to_customer(customer_id)
-
-        if success:
-            print(f"   - ✅ Gửi email thành công cho customer ID: {customer_id}.")
-            return {'customer_id': customer_id, 'html_ok': True}
-        else:
-            print(f"   - ❌ Lỗi: Gửi email thất bại cho customer ID: {customer_id}.")
-            return {'customer_id': last_customer_id, 'html_ok': True}
-
-    except Exception as e:
-        print(f"   - ❌ Lỗi nghiêm trọng khi xử lý customer ID {customer_id}: {e}")
-        return {'customer_id': last_customer_id, 'html_ok': True}
-
-def main():
-    # Dictionary để theo dõi khách hàng cuối cùng được xử lý cho mỗi nhân viên
-    # Định dạng: { emp_id: {'customer_id': id, 'html_ok': True/False} }
-    last_processed_status = {}
-
-    while True:
-        print(f"\n--- Chạy kiểm tra lúc {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} ---")
-        emp_ids = get_distinct_emp_ids_with_pending_emails()
-
-        if not emp_ids:
-            print("ℹ️ Không có nhân viên nào có email cần gửi.")
-        else:
-            print(f"🔍 Tìm thấy {len(emp_ids)} nhân viên có email chờ xử lý: {emp_ids}")
-            for emp_id in emp_ids:
-                # Lấy trạng thái cuối cùng cho nhân viên này, hoặc mặc định là trạng thái sạch
-                last_status = last_processed_status.get(emp_id, {'customer_id': None, 'html_ok': True})
-                
-                # Xử lý một email và nhận trạng thái mới
-                new_status = process_next_email_for_emp(emp_id, last_status)
-                
-                # Cập nhật bản đồ trạng thái
-                last_processed_status[emp_id] = new_status
-
-        print(f"--- Hoàn thành chu kỳ, nghỉ 90 giây ---")
-        time.sleep(90)
-
-if __name__ == "__main__":
-    main()
+for template_data in templates_to_add:
+    response = requests.post(f'{BASE_URL}/set-template', json=template_data)
+    print(f"Response for emp_id {template_data['emp_id']}: {response.json()}")

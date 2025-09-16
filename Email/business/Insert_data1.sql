@@ -77,6 +77,12 @@ VALUES
 
 
 
-SELECT * 
-FROM devices
-ORDER BY device_name ASC;
+DELETE FROM customers
+WHERE customer_id IN (
+    SELECT customer_id
+    FROM customers
+    ORDER BY customer_id DESC
+    LIMIT 1
+);
+UPDATE devices SET emp_id = '22889521' 
+WHERE emp_id = '22885921'
