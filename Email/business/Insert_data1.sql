@@ -84,5 +84,12 @@ WHERE customer_id IN (
     ORDER BY customer_id DESC
     LIMIT 1
 );
-UPDATE devices SET emp_id = '22889521' 
-WHERE emp_id = '22885921'
+UPDATE email_accounts SET device_name = 'A00' 
+
+
+
+ALTER TABLE email_accounts 
+ADD COLUMN device_name TEXT DEFAULT 'A00';
+
+
+SELECT emp_id, device_name from devices
