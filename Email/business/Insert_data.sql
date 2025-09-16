@@ -32,8 +32,8 @@
 
 
 -- -- Insert data into email_accounts table
--- INSERT INTO email_accounts (emp_id, email_account, num_sent)
--- VALUES
+INSERT INTO email_accounts (emp_id, email_account, num_sent)
+VALUES
 -- ('22616467', 'hoanglinh.tuyendung1@gmail.com', 3),
 -- ('22616467', 'linhphnguyen.timviec365@gmail.com', 3),
 -- ('22616467', 'linhphnguyen1.timviec365@gmail.com', 1),
@@ -105,6 +105,12 @@
 -- ('22894754','lyvu04.timviec365@gmail.com',0),
 -- ('22894754','lyvu05.timviec365@gmail.com',0),
 -- ('22894754','lyvu06.timviec365@gmail.com',0);
+-- ('22615833','quynhdiepn8@gmail.com',0),
+-- ('22615833','tranhaily138@gmail.com',0),
+-- ('22615833','hoaianlee3030@gmail.com',0),
+-- ('22615833','nguyenphuongnga040@gmail.com',0),
+-- ('22615833','gialinhle348@gmail.com',0),
+-- ('22615833','ngongocduc721@gmail.com',0),
 
 
 

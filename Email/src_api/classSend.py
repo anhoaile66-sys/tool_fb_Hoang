@@ -15,7 +15,7 @@ class EmailSender:
         self.customer_id = customer_id
         
         # Lấy thông tin từ database
-        self.device_id = self._get_employee_device(self.emp_id)
+        self.device_id, self.device_brand = self._get_employee_device_info(self.emp_id)
         if not self.device_id:
             raise ValueError(f"Không tìm thấy device_id cho EMP_ID: {self.emp_id}")
         
@@ -31,14 +31,20 @@ class EmailSender:
         conn.row_factory = sqlite3.Row
         return conn
 
-    def _get_employee_device(self, emp_id):
-        """Lấy device_id từ bảng employees"""
+    def _get_employee_device_info(self, emp_id):
+        """Lấy device_id và device_brand từ bảng employees và devices"""
         conn = self._get_db_connection()
+        conn.row_factory = sqlite3.Row  # cho phép truy cập theo tên cột
         cursor = conn.cursor()
-        cursor.execute("SELECT device FROM employees WHERE emp_id = ?", (emp_id,))
+        cursor.execute("""
+            SELECT d.device_id AS device, d.brand
+            FROM devices d
+            WHERE d.emp_id = ?
+            LIMIT 1
+        """, (emp_id,))
         result = cursor.fetchone()
         conn.close()
-        return result["device"] if result else None
+        return (result["device"], result["brand"]) if result else (None, None)
     
     def _get_customer_data(self, customer_id):
         """Lấy thông tin customer từ database"""
@@ -82,18 +88,36 @@ class EmailSender:
             print("✅ Đã ở trong Gmail")
             return
 
-        self.d(resourceId="com.android.systemui:id/center_group").click()
-        time.sleep(1)
-        self.d.swipe_ext("up", scale=0.8)
-        time.sleep(1)
+        if self.device_brand == "Redmi":
+            # Thao tác mở Gmail trên Redmi
+            self.d(resourceId="com.android.systemui:id/center_group").click()
+            time.sleep(1)
+            self.d.swipe_ext("up", scale=0.8)
+            time.sleep(1)
 
-        self.d(resourceId="com.gogo.launcher:id/search_container_all_apps").click()
-        time.sleep(1)
-        self.d.send_keys("Gmail", clear=True)
-        time.sleep(1)
-        self.d(resourceId="com.gogo.launcher:id/icon").click()
-        time.sleep(2)
-        print("📩 Đang mở Gmail...")
+            self.d(resourceId="com.gogo.launcher:id/search_container_all_apps").click()
+            time.sleep(1)
+            self.d.send_keys("Gmail", clear=True)
+            time.sleep(1)
+            self.d(resourceId="com.gogo.launcher:id/icon").click()
+            time.sleep(2)
+            print("📩 Đang mở Gmail trên Redmi...")
+        elif self.device_brand == "Samsung":
+            # Thao tác mở Gmail trên Samsung
+            self.d(resourceId="com.android.systemui:id/center_group").click()
+            time.sleep(1)
+            self.d.swipe_ext("up", scale=0.8)
+            time.sleep(1)
+            self.d(resourceId="com.sec.android.app.launcher:id/app_search_edit_text_wrapper").click()
+            time.sleep(1)
+            self.d.send_keys("Gmail", clear=True)
+            time.sleep(1)
+            self.d(resourceId="com.sec.android.app.launcher:id/label", text="Gmail").click()
+            time.sleep(2)
+            # Ví dụ: self.d.app_start("com.google.android.gm")
+            print("📩 Đang mở Gmail trên Samsung...")
+        else:
+            raise ValueError(f"Thiết bị {self.device_brand} không được hỗ trợ.")
         
     def choose_account(self, name_acc):
         """Chọn tài khoản Gmail"""
@@ -102,34 +126,34 @@ class EmailSender:
             return
 
         try:
-            # Nhấp vào avatar để mở menu chọn tài khoản
-            self.d(resourceId="com.google.android.gm:id/og_apd_internal_image_view").click()
-            time.sleep(1.5)
+            if self.device_brand == "Redmi" or self.device_brand == "Samsung":
+                # Thao tác chọn tài khoản Gmail trên Redmi
+                self.d(resourceId="com.google.android.gm:id/og_apd_internal_image_view").click()
+                time.sleep(1.5)
 
-            # Kiểm tra xem tài khoản đang dùng có phải là name_acc không
-            try:
-                current_acc = self.d(resourceId="com.google.android.gm:id/og_bento_single_pane_account_menu_title_container").get_text()
-                if current_acc == name_acc:
-                    print(f"✅ Đã đang sử dụng tài khoản {name_acc}")
-                    self.d(resourceId="com.google.android.gm:id/og_bento_toolbar_close_button").click()
+                try:
+                    current_acc = self.d(resourceId="com.google.android.gm:id/og_bento_single_pane_account_menu_title_container").get_text()
+                    if current_acc == name_acc:
+                        print(f"✅ Đã đang sử dụng tài khoản {name_acc}")
+                        self.d(resourceId="com.google.android.gm:id/og_bento_toolbar_close_button").click()
+                        return
+                except Exception:
+                    pass
+
+                try:
+                    self.d(resourceId="com.google.android.gm:id/og_secondary_account_information", text=name_acc).click()
+                    print(f"📌 Chuyển sang tài khoản {name_acc}")
+                    time.sleep(2)
                     return
-            except Exception:
-                pass
+                except Exception:
+                    print(f"⚠️ Không tìm thấy tài khoản {name_acc}, giữ nguyên tài khoản hiện tại")
 
-            # Chọn tài khoản name_acc nếu có
-            try:
-                self.d(resourceId="com.google.android.gm:id/og_secondary_account_information", text=name_acc).click()
-                print(f"📌 Chuyển sang tài khoản {name_acc}")
-                time.sleep(2)
-                return
-            except Exception:
-                print(f"⚠️ Không tìm thấy tài khoản {name_acc}, giữ nguyên tài khoản hiện tại")
-
-            # Đóng menu nếu vẫn mở
-            try:
-                self.d.press("back")
-            except:
-                pass
+                try:
+                    self.d.press("back")
+                except:
+                    pass
+            else:
+                raise ValueError(f"Thiết bị {self.device_brand} không được hỗ trợ.")
 
         except Exception as e:
             print(f"⚠️ Lỗi khi chọn tài khoản: {e}")
@@ -140,57 +164,52 @@ class EmailSender:
             self.choose_account(name_acc=sender_email)
             time.sleep(1)
 
-            # Nhấn nút compose
-            self.d(resourceId="com.google.android.gm:id/compose_button").click()
-            time.sleep(2)
+            if self.device_brand == "Redmi" or self.device_brand == "Samsung":
+                # Thao tác soạn và gửi email trên Redmi
+                self.d(resourceId="com.google.android.gm:id/compose_button").click()
+                time.sleep(2)
 
-            # Nhập email người nhận
-            receiver = self.d.xpath(
-                '//*[@resource-id="com.google.android.gm:id/peoplekit_autocomplete_chip_group"]/android.widget.EditText[1]'
-            )
-            receiver.set_text(to_email)
-            time.sleep(1)
-
-            # Chọn email từ suggestion
-            try:
-                self.d.xpath(
-                    '//*[@resource-id="com.google.android.gm:id/peoplekit_listview_flattened_row"]/android.widget.RelativeLayout[2]'
-                ).click()
-                time.sleep(1)
-            except:
-                # Nếu không có suggestion, nhấn Tab hoặc Enter
-                self.d.press("tab")
+                receiver = self.d.xpath(
+                    '//*[@resource-id="com.google.android.gm:id/peoplekit_autocomplete_chip_group"]/android.widget.EditText[1]'
+                )
+                receiver.set_text(to_email)
                 time.sleep(1)
 
-            # Nhập subject
-            self.d(resourceId="com.google.android.gm:id/subject").set_text(subject)
-            time.sleep(1)
+                try:
+                    self.d.xpath(
+                        '//*[@resource-id="com.google.android.gm:id/peoplekit_listview_flattened_row"]/android.widget.RelativeLayout[2]'
+                    ).click()
+                    time.sleep(1)
+                except:
+                    self.d.press("tab")
+                    time.sleep(1)
 
-            # Dán content vào body email
-            x = self.width * 0.492
-            y = self.height * 0.372
-            self.d.long_click(x, y, duration=1.0)
-            time.sleep(1)
-            
-            # Kiểm tra và click vào tùy chọn "Dán"
-            if self.d(text="Dán").exists(timeout=3):
-                self.d(text="Dán").click()
-                print("✅ Đã dán nội dung email")
+                self.d(resourceId="com.google.android.gm:id/subject").set_text(subject)
+                time.sleep(1)
+
+                x = self.width * 0.492
+                y = self.height * 0.372
+                self.d.long_click(x, y, duration=1.0)
+                time.sleep(1)
+                
+                if self.d(text="Dán").exists(timeout=3):
+                    self.d(text="Dán").click()
+                    print("✅ Đã dán nội dung email")
+                else:
+                    print("⚠️ Không tìm thấy tùy chọn Dán, nhập thủ công")
+                    body_field = self.d(resourceId="com.google.android.gm:id/composearea_tap_trap_bottom")
+                    body_field.click()
+                    time.sleep(0.5)
+                    self.d.send_keys(content)
+
+                time.sleep(2)
+                
+                self.d(resourceId="com.google.android.gm:id/send").click()
+                time.sleep(3)
+                print(f"✅ Đã gửi email tới {to_email}")
+                return True
             else:
-                print("⚠️ Không tìm thấy tùy chọn Dán, nhập thủ công")
-                # Fallback: nhập trực tiếp content
-                body_field = self.d(resourceId="com.google.android.gm:id/composearea_tap_trap_bottom")
-                body_field.click()
-                time.sleep(0.5)
-                self.d.send_keys(content)
-
-            time.sleep(2)
-            
-            # Gửi email
-            self.d(resourceId="com.google.android.gm:id/send").click()
-            time.sleep(3)
-            print(f"✅ Đã gửi email tới {to_email}")
-            return True
+                raise ValueError(f"Thiết bị {self.device_brand} không được hỗ trợ.")
             
         except Exception as e:
             print(f"❌ Lỗi khi gửi email: {e}")

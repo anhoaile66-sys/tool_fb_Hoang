@@ -17,7 +17,7 @@ class HtmlRenderSimulator:
         self.DB_PATH = os.path.join(self.BASE_DIR, "..", "business", "businesses.db")
         
         # Get device info from employees table
-        self.device_id = self.get_device_id()
+        self.device_id, self.device_brand = self.get_device_info()
         self.d = u2.connect(self.device_id)
         self.width, self.height = self.d.window_size()
         
@@ -28,26 +28,33 @@ class HtmlRenderSimulator:
         if self.customer_id:
             self.load_customer_data()
 
-    def get_device_id(self):
-        """Lấy device_id từ bảng employees"""
+    def get_device_info(self):
+        """Lấy device_id và device_brand từ bảng employees và devices"""
         conn = None
         try:
             conn = sqlite3.connect(self.DB_PATH)
+            conn.row_factory = sqlite3.Row  # cho phép truy cập theo tên cột
             cursor = conn.cursor()
             
-            cursor.execute("SELECT device FROM employees WHERE emp_id = ?", (self.EMP_ID,))
+            cursor.execute("""
+                SELECT d.device_id AS device, d.brand
+                FROM devices d
+                WHERE d.emp_id = ?
+                LIMIT 1
+            """, (self.EMP_ID,))
             result = cursor.fetchone()
             
             if result:
-                return result[0]
+                return result["device"], result["brand"]
             else:
-                raise ValueError(f"Employee ID {self.EMP_ID} not found in database")
+                raise ValueError(f"Employee ID {self.EMP_ID} not found in database or no device assigned")
                 
         except sqlite3.Error as e:
             raise Exception(f"Database error: {e}")
         finally:
             if conn:
                 conn.close()
+
 
     def load_customer_data(self):
         """Load subject và content từ bảng customers"""
@@ -109,112 +116,220 @@ class HtmlRenderSimulator:
         Lưu ý khi mở app phải ở trong thẻ .html rồi 
         sử dụng weditor để dễ bề biết trước xpath
         """
-        self.d(resourceId="com.android.systemui:id/center_group").click()
-        time.sleep(1)
-        self.d.swipe_ext("up", scale=0.8)
-        time.sleep(1)
-        self.d(resourceId="com.gogo.launcher:id/search_container_all_apps").click()
-        time.sleep(1)
-        # tìm google, bắt buộc phải đăng nhập và hiện giao diện google rồi
-        self.d.send_keys("Google", clear=True)
-        time.sleep(1)
-        self.d(resourceId="com.gogo.launcher:id/icon", text="Google").click()
-        time.sleep(1)
-        print("Đang mở Google...")
+        if self.device_brand == "Redmi":
+            # Thao tác mở Google trên Redmi
+            self.d(resourceId="com.android.systemui:id/center_group").click()
+            time.sleep(1)
+            self.d.swipe_ext("up", scale=0.8)
+            time.sleep(1)
+            self.d(resourceId="com.gogo.launcher:id/search_container_all_apps").click()
+            time.sleep(1)
+            self.d.send_keys("Google", clear=True)
+            time.sleep(1)
+            self.d(resourceId="com.gogo.launcher:id/icon", text="Google").click()
+            time.sleep(1)
+            print("Đang mở Google trên Redmi...")
+        elif self.device_brand == "Samsung":
+            # Thao tác mở Google trên Samsung
+            self.d(resourceId="com.android.systemui:id/center_group").click()
+            time.sleep(1)
+            self.d.swipe_ext("up", scale=0.8)
+            time.sleep(1)
+            self.d(resourceId="com.sec.android.app.launcher:id/app_search_edit_text_wrapper").click()
+            time.sleep(1)
+            self.d.send_keys("Google", clear=True)
+            time.sleep(1)
+            self.d(resourceId="com.sec.android.app.launcher:id/label", text="Google").click()
+            time.sleep(1)
+            # Ví dụ: self.d.app_start("com.android.chrome") hoặc các thao tác khác
+            print("Đang mở Google trên Samsung...")
+        else:
+            raise ValueError(f"Thiết bị {self.device_brand} không được hỗ trợ.")
         
         self.search_html_online_viewer()
         
     def search_html_online_viewer(self):
         """Mở đúng website htmlonlineviewer"""
-        if self.d(resourceId="com.android.chrome:id/url_bar", textContains="html.onlineviewer.net").exists(timeout=2):
-            print("Đúng trang HTML Online Viewer rồi → clear luôn")
-            self.clear_old_html()
+        if self.device_brand == "Redmi":
+            # Thao tác tìm kiếm HTML Online Viewer trên Redmi
+            if self.d(resourceId="com.android.chrome:id/url_bar", textContains="html.onlineviewer.net").exists(timeout=2):
+                print("Đúng trang HTML Online Viewer rồi → clear luôn")
+                self.clear_old_html()
+            else:
+                self.d.xpath('//*[@resource-id="googleapp_facade_search_box"]/android.widget.TextView[1]').click()
+                time.sleep(1)  
+                self.d(resourceId="com.google.android.googlequicksearchbox:id/googleapp_search_box").click()
+                time.sleep(1)
+                self.d.send_keys("https://html.onlineviewer.net/", clear=True)
+                time.sleep(1)
+                self.d.xpath('//*[@resource-id="com.google.android.inputmethod.latin:id/key_pos_ime_action"]/android.widget.FrameLayout[1]/android.widget.ImageView[1]').click()
+                time.sleep(3)
+                self.clear_old_html()
+        elif self.device_brand == "Samsung":
+            # Thao tác tìm kiếm HTML Online Viewer trên Samsung
+            # Ví dụ: self.d.open_url("https://html.onlineviewer.net/")
+            print("Tìm kiếm HTML Online Viewer trên Samsung...")
+            if self.d(resourceId="com.android.chrome:id/url_bar", textContains="html.onlineviewer.net").exists(timeout=2):
+                print("Đúng trang HTML Online Viewer rồi → clear luôn")
+                self.clear_old_html()
+            else:
+                # Điền các thao tác cụ thể cho Samsung tại đây
+                self.d(resourceId="googleapp_facade_search_box").click()
+                time.sleep(1)
+                self.d.send_keys("https://html.onlineviewer.net/", clear=True)
+                time.sleep(1)
+                self.d.xpath('//*[@content-desc="Tìm kiếm"]/android.widget.ImageView[1]').click()
+                time.sleep(2)
+                self.clear_old_html()
+                
         else:
-            # nhấp tìm kiếm
-            self.d.xpath('//*[@resource-id="googleapp_facade_search_box"]/android.widget.TextView[1]').click()
-            time.sleep(1)
-            self.d(resourceId="com.google.android.googlequicksearchbox:id/googleapp_search_box").click()
-            # truyền tên miền 
-            self.d.send_keys("https://html.onlineviewer.net/", clear=True)
-            time.sleep(1)
-            self.d.xpath('//*[@resource-id="com.google.android.inputmethod.latin:id/key_pos_ime_action"]/android.widget.FrameLayout[1]/android.widget.ImageView[1]').click()
-            time.sleep(3)
-            self.clear_old_html()
+            raise ValueError(f"Thiết bị {self.device_brand} không được hỗ trợ.")
         
     def clear_old_html(self):
-        # 476, 0.21
-        x = self.width * 0.476
-        y = self.height * 0.210
-        self.d.long_click(x, y, duration=1.0)
-        time.sleep(1)
-        # 
-        if not self.d(resourceId="android:id/floating_toolbar_menu_item_text", text="Chọn tất cả").exists(timeout=2):
-            if self.d(resourceId="android:id/overflow").exists(timeout=2):
-                self.d(resourceId="android:id/overflow").click()
-                time.sleep(1)
-
-        # Click "Chọn tất cả" nếu có
-        if self.d(resourceId="android:id/floating_toolbar_menu_item_text", text="Chọn tất cả").exists(timeout=3):
-            self.d(resourceId="android:id/floating_toolbar_menu_item_text", text="Chọn tất cả").click()
-            time.sleep(1.5)
+        if self.device_brand == "Redmi":
+            # Thao tác xóa HTML cũ trên Redmi
+            x = self.width * 0.476
+            y = self.height * 0.210
+            self.d.long_click(x, y, duration=1.0)
+            time.sleep(1)
+            
+            if not self.d(resourceId="android:id/floating_toolbar_menu_item_text", text="Chọn tất cả").exists(timeout=2):
+                if self.d(resourceId="android:id/overflow").exists(timeout=2):
+                    self.d(resourceId="android:id/overflow").click()
+                    time.sleep(1)
+            if self.d(resourceId="android:id/floating_toolbar_menu_item_text", text="Chọn tất cả").exists(timeout=3):
+                self.d(resourceId="android:id/floating_toolbar_menu_item_text", text="Chọn tất cả").click()
+                time.sleep(1.5)
+            else:
+                print("Không tìm thấy tuỳ chọn Chọn tất cả")
+            self.d.long_click(x, y, duration=1.0)
+            time.sleep(1)
+            
+            if self.d(text="Cắt").exists(timeout=3):
+                self.d(text="Cắt").click()
+                time.sleep(1.5)
+                print("Đã xoá cũ")
+            else:
+                print("Không tìm thấy tuỳ chọn Cắt")
+                self.d.send_keys(self.BUSINESS_WRITEN_MAIL, clear=True)
+            self.d.send_keys(self.BUSINESS_WRITEN_MAIL)
+        elif self.device_brand == "Samsung":
+            # Thao tác xóa HTML cũ trên Samsung
+            x = self.width * 0.476
+            y = self.height * 0.210
+            self.d.long_click(x, y, duration=1.0)
+            time.sleep(1)
+            
+            if not self.d(resourceId="android:id/floating_toolbar_menu_item_text", text="Chọn tất cả").exists(timeout=2):
+                if self.d(resourceId="android:id/overflow").exists(timeout=2):
+                    self.d(resourceId="android:id/overflow").click()
+                    time.sleep(1)
+            if self.d(resourceId="android:id/floating_toolbar_menu_item_text", text="Chọn tất cả").exists(timeout=3):
+                self.d(resourceId="android:id/floating_toolbar_menu_item_text", text="Chọn tất cả").click()
+                time.sleep(1.5)
+            else:
+                print("Không tìm thấy tuỳ chọn Chọn tất cả")
+            self.d.long_click(x, y, duration=1.0)
+            time.sleep(1)
+            
+            if self.d(text="Cắt").exists(timeout=3):
+                self.d(text="Cắt").click()
+                time.sleep(1.5)
+                print("Đã xoá cũ")
+            else:
+                print("Không tìm thấy tuỳ chọn Cắt")
+                self.d.send_keys(self.BUSINESS_WRITEN_MAIL, clear=True)
+            self.d.send_keys(self.BUSINESS_WRITEN_MAIL)
+            # Ví dụ: self.d(resourceId="com.android.chrome:id/url_bar").long_click()
+            print("Xóa HTML cũ trên Samsung...")
         else:
-            print("Không tìm thấy tuỳ chọn Chọn tất cả")
-            # chọn tất rồi lại nhấn giữ để cắt
-        self.d.long_click(x, y, duration=1.0)
-        time.sleep(1)
-        
-        if self.d(text="Cắt").exists(timeout=3):
-            self.d(text="Cắt").click()
-            time.sleep(1.5)
-            print("Đã xoá cũ")
-        else:
-            print("Không tìm thấy tuỳ chọn Cắt")
-            self.d.send_keys(self.BUSINESS_WRITEN_MAIL, clear=True)
-        self.d.send_keys(self.BUSINESS_WRITEN_MAIL)
+            raise ValueError(f"Thiết bị {self.device_brand} không được hỗ trợ.")
         
     def compile_html(self):
         print("➡️ Bắt đầu compile_html (copy rendered text)...")
-        x = self.width * 0.678
-        y = self.height * 0.138
-        self.d.long_click(x, y, duration=1.0)
-        time.sleep(1)
+        if self.device_brand == "Redmi":
+            # Thao tác copy rendered text trên Redmi
+            x = self.width * 0.678
+            y = self.height * 0.138
+            self.d.long_click(x, y, duration=1.0)
+            time.sleep(1)
 
-        if not self.d(resourceId="android:id/floating_toolbar_menu_item_text", text="Chọn tất cả").exists(timeout=2):
-            if self.d(resourceId="android:id/overflow").exists(timeout=2):
-                print("Long click thành công")
-                self.d(resourceId="android:id/overflow").click()
-                time.sleep(1)
-                
-        # Click "Chọn tất cả" nếu có
-        elif self.d(resourceId="android:id/floating_toolbar_menu_item_text", text="Chọn tất cả").exists(timeout=3):
-            self.d(resourceId="android:id/floating_toolbar_menu_item_text", text="Chọn tất cả").click()
-            print("Long click được và chọn tất cả được")
-            time.sleep(1.5)
-        else:
-            print("Không nhấn được longclick???? Rõ code y hệt hàm clear mà")
-        
-        self.d.long_click(x, y, duration=1.0)
-        time.sleep(1)
-         
-        if self.d(text="Chọn tất cả").exists(timeout=3):
-            self.d(text="Chọn tất cả").click()
-            time.sleep(1.5)
-            if self.d(text="Sao chép").exists(timeout=3):
-                self.d(text="Sao chép").click()
+            if not self.d(resourceId="android:id/floating_toolbar_menu_item_text", text="Chọn tất cả").exists(timeout=2):
+                if self.d(resourceId="android:id/overflow").exists(timeout=2):
+                    print("Long click thành công")
+                    self.d(resourceId="android:id/overflow").click()
+                    time.sleep(1)
+                    
+            elif self.d(resourceId="android:id/floating_toolbar_menu_item_text", text="Chọn tất cả").exists(timeout=3):
+                self.d(resourceId="android:id/floating_toolbar_menu_item_text", text="Chọn tất cả").click()
+                print("Long click được và chọn tất cả được")
                 time.sleep(1.5)
-                print("✅ Đã sao chép rendered text")
+            else:
+                print("Không nhấn được longclick???? Rõ code y hệt hàm clear mà")
+            
+            self.d.long_click(x, y, duration=1.0)
+            time.sleep(1)
+            
+            if self.d(text="Chọn tất cả").exists(timeout=3):
+                self.d(text="Chọn tất cả").click()
+                time.sleep(1.5)
+                if self.d(text="Sao chép").exists(timeout=3):
+                    self.d(text="Sao chép").click()
+                    time.sleep(1.5)
+                    print("✅ Đã sao chép rendered text")
+            else:
+                print("❌ Không tìm thấy tuỳ chọn 'sao chép' trong compile_html")
+        elif self.device_brand == "Samsung":
+            # Thao tác copy rendered text trên Samsung
+            x = self.width * 0.678
+            y = self.height * 0.138
+            self.d.long_click(x, y, duration=1.0)
+            time.sleep(1)
+
+            if not self.d(resourceId="android:id/floating_toolbar_menu_item_text", text="Chọn tất cả").exists(timeout=2):
+                if self.d(resourceId="android:id/overflow").exists(timeout=2):
+                    print("Long click thành công")
+                    self.d(resourceId="android:id/overflow").click()
+                    time.sleep(1)
+                    
+            elif self.d(resourceId="android:id/floating_toolbar_menu_item_text", text="Chọn tất cả").exists(timeout=3):
+                self.d(resourceId="android:id/floating_toolbar_menu_item_text", text="Chọn tất cả").click()
+                print("Long click được và chọn tất cả được")
+                time.sleep(1.5)
+            else:
+                print("Không nhấn được longclick???? Rõ code y hệt hàm clear mà")
+            
+            self.d.long_click(x, y, duration=1.0)
+            time.sleep(1)
+            
+            if self.d(text="Chọn tất cả").exists(timeout=3):
+                self.d(text="Chọn tất cả").click()
+                time.sleep(1.5)
+                if self.d(text="Chép").exists(timeout=3):
+                    self.d(text="Chép").click()
+                    time.sleep(1.5)
+                    print("✅ Đã sao chép rendered text")
+            else:
+                print("❌ Không tìm thấy tuỳ chọn 'sao chép' trong compile_html")
+            print("Copy rendered text trên Samsung...")
         else:
-            print("❌ Không tìm thấy tuỳ chọn 'sao chép' trong compile_html")
-            # ảnh Cả cook tiếp nhé, đoạn này nếu cơ chế giữ để hiện menu nếu thay đổi thì toang, phải chinh lại mấy hàm này
+            raise ValueError(f"Thiết bị {self.device_brand} không được hỗ trợ.")
         
     def delete_recent_tab(self):
-        self.d(resourceId="com.android.systemui:id/recent_apps").click()
-        	# (0.476, 0.48)
-        time.sleep(1)
-        self.d.swipe(0.476, 0.74, 0.476, 0.0)
-        time.sleep(1)
-        self.d(resourceId="com.android.systemui:id/center_group").click()
-        time.sleep(1)
+        if self.device_brand == "Redmi":
+            # Thao tác xóa tab gần đây trên Redmi
+            self.d(resourceId="com.android.systemui:id/recent_apps").click()
+            time.sleep(1)
+            self.d.swipe(0.476, 0.74, 0.476, 0.0)
+            time.sleep(1)
+            self.d(resourceId="com.android.systemui:id/center_group").click()
+            time.sleep(1)
+        elif self.device_brand == "Samsung":
+            ### Chú thích điền gì ###
+            # Thao tác xóa tab gần đây trên Samsung
+            print("Xóa tab gần đây trên Samsung...")
+        else:
+            raise ValueError(f"Thiết bị {self.device_brand} không được hỗ trợ.")
         
 def run_simulator(EMP_ID, BUSINESS_SUBJECT_PATH, BUSINESS_WRITEN_MAIL_PATH, MODE):
     simulator = HtmlRenderSimulator(EMP_ID=EMP_ID, BUSINESS_SUBJECT_PATH=BUSINESS_SUBJECT_PATH, BUSINESS_WRITEN_MAIL_PATH=BUSINESS_WRITEN_MAIL_PATH, MODE=MODE)

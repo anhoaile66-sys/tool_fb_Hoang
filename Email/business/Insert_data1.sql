@@ -66,3 +66,6 @@ SELECT count(*) from devices
 SELECT emp_id, COUNT(device_id) AS device_count
 FROM devices
 GROUP BY emp_id;
+
+
+UPDATE devices SET plugged_in = 0

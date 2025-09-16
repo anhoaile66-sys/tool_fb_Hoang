@@ -26,9 +26,21 @@ def create_tables():
                 device_id TEXT PRIMARY KEY,      -- có thể là serial number từ adb
                 emp_id    TEXT NOT NULL,
                 brand     TEXT,
+                plugged_in INTEGER DEFAULT 0, -- 0 for not plugged in, 1 for plugged in
                 FOREIGN KEY (emp_id) REFERENCES employees(emp_id)
             )
         ''')
+        
+        # Add plugged_in column if it doesn't exist
+        cursor.execute('''
+            PRAGMA table_info(devices);
+        ''')
+        columns = [col[1] for col in cursor.fetchall()]
+        if 'plugged_in' not in columns:
+            cursor.execute('''
+                ALTER TABLE devices ADD COLUMN plugged_in INTEGER DEFAULT 0;
+            ''')
+            print("Added 'plugged_in' column to 'devices' table.")
 
         # Create customers table
         cursor.execute('''
@@ -118,4 +130,3 @@ def add_customer_safe(emp_id, customer_email, sent=0,subject=None, content=None,
 # add_customer_safe("22615833", "test@gmail.com", 1, "2025-09-10", "Test Subject", "Test Content")
 # add_customer_safe("22615833", "test@gmail.com", 1, None, "Test Subject", "Test Content")  # Should fail
 # add_customer_safe("22615833", "test@gmail.com", 1, "2025-09-11", "Test Subject", "Test Content")  # Should success
-
