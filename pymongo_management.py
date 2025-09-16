@@ -171,10 +171,11 @@ async def get_comment(user_id):
     # Lấy dữ liệu từ bản ghi mới nhất
     group_name = binh_luan_moi_nhat.get("Group_name")
     post_link = binh_luan_moi_nhat.get("Link-post")
-    Content = '\n'.join(binh_luan_moi_nhat.get("Content").split("\n")[1:])
+    Content = binh_luan_moi_nhat.get("Content")
     Comment = binh_luan_moi_nhat.get("Comment")
 
     # Thêm bản ghi vào bảng thống kê
+    print(Content)
     thong_ke_collection = get_async_collection("Thong-ke-binh-luan")
     await thong_ke_collection.insert_one({
         "Group_name": group_name,

@@ -12,7 +12,7 @@ async def log_out(driver):
     await go_to_home_page(driver)
 
     log_message(f"{driver.serial} - Đăng xuất")
-    menu = await my_find_element(driver, {("xpath", '//android.view.View[contains(@content-desc, "Menu")]')})
+    menu = await my_find_element(driver, {("xpath", '//*[contains(@content-desc, "Menu")]')})
     try:
         menu.click()
     except Exception:
