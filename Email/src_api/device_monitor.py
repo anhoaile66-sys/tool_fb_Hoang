@@ -15,7 +15,6 @@ def update_device_status():
     """
     Kiểm tra các thiết bị ADB đang cắm và cập nhật trạng thái 'plugged_in' trong DB.
     """
-    print(f"🔍 Đang kiểm tra trạng thái thiết bị ADB...")
     connected_serials = {d.serial for d in adbutils.adb.device_list()}
     
     conn = get_db_connection()

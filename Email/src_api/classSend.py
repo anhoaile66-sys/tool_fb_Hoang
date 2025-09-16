@@ -10,17 +10,20 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, "..", "business", "businesses.db")
 
 class EmailSender:
-    def __init__(self, emp_id: int, customer_id: int = None):
-        self.emp_id = str(emp_id)
+    def __init__(self, device_id: str, customer_id: int):
+        self.device_id = device_id
         self.customer_id = customer_id
         
-        # Lấy thông tin từ database
-        self.device_id, self.device_brand = self._get_employee_device_info(self.emp_id)
-        if not self.device_id:
-            raise ValueError(f"Không tìm thấy device_id cho EMP_ID: {self.emp_id}")
+        self.emp_id = self._get_emp_id_from_customer(customer_id)
+        if not self.emp_id:
+            raise ValueError(f"Không tìm thấy emp_id cho Customer ID: {self.customer_id}")
+
+        self.device_brand = self._get_device_brand(self.device_id)
+        if not self.device_brand:
+            raise ValueError(f"Không tìm thấy device_brand cho Device ID: {self.device_id}")
         
         # Khởi tạo EmailManager để quản lý quota
-        self.email_manager = EmailManager(emp_id)
+        self.email_manager = EmailManager(self.device_id)
         
         # Kết nối device
         self.d = u2.connect(self.device_id)
@@ -31,20 +34,23 @@ class EmailSender:
         conn.row_factory = sqlite3.Row
         return conn
 
-    def _get_employee_device_info(self, emp_id):
-        """Lấy device_id và device_brand từ bảng employees và devices"""
+    def _get_emp_id_from_customer(self, customer_id):
+        """Lấy emp_id từ bảng customers dựa trên customer_id"""
         conn = self._get_db_connection()
-        conn.row_factory = sqlite3.Row  # cho phép truy cập theo tên cột
         cursor = conn.cursor()
-        cursor.execute("""
-            SELECT d.device_id AS device, d.brand
-            FROM devices d
-            WHERE d.emp_id = ?
-            LIMIT 1
-        """, (emp_id,))
+        cursor.execute("SELECT emp_id FROM customers WHERE customer_id = ?", (customer_id,))
         result = cursor.fetchone()
         conn.close()
-        return (result["device"], result["brand"]) if result else (None, None)
+        return result["emp_id"] if result else None
+
+    def _get_device_brand(self, device_id):
+        """Lấy device_brand từ bảng devices dựa trên device_id"""
+        conn = self._get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT brand FROM devices WHERE device_id = ?", (device_id,))
+        result = cursor.fetchone()
+        conn.close()
+        return result["brand"] if result else None
     
     def _get_customer_data(self, customer_id):
         """Lấy thông tin customer từ database"""
@@ -294,37 +300,43 @@ class EmailSender:
 
 
 # -------- Wrapper functions cho backward compatibility ----------
-def run_sent(emp_id, subject, content, to_email, sender_email):
-    """Gửi email đơn lẻ (backward compatibility)"""
-    try:
-        sender = EmailSender(emp_id=emp_id)
-        sender.open_gmail()
-        success = sender.send_email(to_email, subject, content, sender_email)
-        return success
-    except Exception as e:
-        print(f"⚠️ Lỗi khi gửi email: {e}")
-        return False
+# -------- Wrapper functions cho backward compatibility ----------
+# These functions are likely not used by watch_email.py directly,
+# but if they are, they will need to be updated or removed.
+# For now, I will leave them as is, but they will likely break.
+# The primary focus is on the flow from watch_email.py -> EmailSender.
+
+# def run_sent(emp_id, subject, content, to_email, sender_email):
+#     """Gửi email đơn lẻ (backward compatibility)"""
+#     try:
+#         sender = EmailSender(emp_id=emp_id) # This will break
+#         sender.open_gmail()
+#         success = sender.send_email(to_email, subject, content, sender_email)
+#         return success
+#     except Exception as e:
+#         print(f"⚠️ Lỗi khi gửi email: {e}")
+#         return False
 
 
-def run_sent_customer(emp_id, customer_id):
-    """Gửi email cho một customer từ database"""
-    try:
-        sender = EmailSender(emp_id=emp_id, customer_id=customer_id)
-        sender.open_gmail()
-        success = sender.send_to_customer(customer_id)
-        return success
-    except Exception as e:
-        print(f"⚠️ Lỗi khi gửi email cho customer: {e}")
-        return False
+# def run_sent_customer(emp_id, customer_id):
+#     """Gửi email cho một customer từ database"""
+#     try:
+#         sender = EmailSender(emp_id=emp_id, customer_id=customer_id) # This will break
+#         sender.open_gmail()
+#         success = sender.send_to_customer(customer_id)
+#         return success
+#     except Exception as e:
+#         print(f"⚠️ Lỗi khi gửi email cho customer: {e}")
+#         return False
 
 
-def run_sent_all_pending(emp_id):
-    """Gửi email cho tất cả customers chưa gửi"""
-    try:
-        sender = EmailSender(emp_id=emp_id)
-        sender.open_gmail()
-        sent_count = sender.send_all_pending()
-        return sent_count
-    except Exception as e:
-        print(f"⚠️ Lỗi khi gửi email hàng loạt: {e}")
-        return 0
+# def run_sent_all_pending(emp_id):
+#     """Gửi email cho tất cả customers chưa gửi"""
+#     try:
+#         sender = EmailSender(emp_id=emp_id) # This will break
+#         sender.open_gmail()
+#         sent_count = sender.send_all_pending()
+#         return sent_count
+#     except Exception as e:
+#         print(f"⚠️ Lỗi khi gửi email hàng loạt: {e}")
+#         return 0

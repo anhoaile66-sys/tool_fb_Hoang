@@ -57,22 +57,27 @@ def create_tables():
             )
         ''')
         
+        # Drop email_accounts table if it exists to apply schema changes
+        cursor.execute('''
+            DROP TABLE IF EXISTS email_accounts;
+        ''')
+
         # Create email_accounts table - quản lý quota
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS email_accounts (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                emp_id TEXT NOT NULL,
+                device_id TEXT NOT NULL,
                 email_account TEXT NOT NULL,
                 num_sent INTEGER DEFAULT 0,
                 is_active BOOLEAN DEFAULT 1,
-                FOREIGN KEY (emp_id) REFERENCES employees (emp_id),
-                UNIQUE(emp_id, email_account)
+                FOREIGN KEY (device_id) REFERENCES devices (device_id),
+                UNIQUE(device_id, email_account)
             )
         ''')
         # Create indexes
         cursor.execute('CREATE INDEX IF NOT EXISTS idx_customers_emp_email_date ON customers(customer_email, emp_id, date)')
         cursor.execute('CREATE INDEX IF NOT EXISTS idx_customers_sent ON customers(sent)')
-        cursor.execute('CREATE INDEX IF NOT EXISTS idx_email_accounts_emp_id ON email_accounts(emp_id)')
+        cursor.execute('CREATE INDEX IF NOT EXISTS idx_email_accounts_device_id ON email_accounts(device_id)')
         conn.commit()
         print("Tables 'employees', 'devices', 'customers', and 'email_accounts' created successfully in business.db")
 

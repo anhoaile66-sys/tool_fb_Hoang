@@ -10,8 +10,8 @@ MAX_PER_DAY = 3
 ENABLE_RESET = False  # <-- bật True để auto reset mỗi ngày, False để test
 
 class EmailManager:
-    def __init__(self, emp_id: int):
-        self.emp_id = str(emp_id)
+    def __init__(self, device_id: str):
+        self.device_id = device_id
         self.today = datetime.now().strftime("%Y-%m-%d")
         if ENABLE_RESET:
             self._ensure_reset_today()
@@ -38,14 +38,14 @@ class EmailManager:
             
             if not last_reset or last_reset["value"] != self.today:
                 # Reset counters
-                cursor.execute("UPDATE email_accounts SET num_sent = 0 WHERE emp_id = ?", (self.emp_id,))
+                cursor.execute("UPDATE email_accounts SET num_sent = 0 WHERE device_id = ?", (self.device_id,))
                 # Cập nhật last_reset_date
                 cursor.execute(
                     "INSERT OR REPLACE INTO settings (key, value) VALUES ('last_reset_date', ?)",
                     (self.today,)
                 )
                 conn.commit()
-                print(f"🔄 Reset toàn bộ counter về 0 cho EMP_ID {self.emp_id} cho ngày {self.today}")
+                print(f"🔄 Reset toàn bộ counter về 0 cho DEVICE_ID {self.device_id} cho ngày {self.today}")
             else:
                 print(f"✅ Counter đã được reset hôm nay ({self.today})")
             
@@ -67,10 +67,10 @@ class EmailManager:
         cursor.execute(
             """SELECT email_account, id, num_sent 
                FROM email_accounts 
-               WHERE emp_id = ? AND is_active = 1 AND num_sent < ? 
+               WHERE device_id = ? AND is_active = 1 AND num_sent < ? 
                ORDER BY num_sent ASC 
                LIMIT 1""",
-            (self.emp_id, MAX_PER_DAY)
+            (self.device_id, MAX_PER_DAY)
         )
         account = cursor.fetchone()
         conn.close()
@@ -79,7 +79,7 @@ class EmailManager:
             print(f"📧 Sử dụng account: {account['email_account']} (đã gửi: {account['num_sent']}/{MAX_PER_DAY})")
             return account["email_account"]
         
-        print(f"❌ Không còn email account khả dụng cho EMP_ID {self.emp_id} (tất cả đã đạt limit {MAX_PER_DAY}/ngày)")
+        print(f"❌ Không còn email account khả dụng cho DEVICE_ID {self.device_id} (tất cả đã đạt limit {MAX_PER_DAY}/ngày)")
         return None
 
     def increase_counter(self, email_account):
@@ -92,14 +92,14 @@ class EmailManager:
             
             # Kiểm tra xem account có tồn tại không
             cursor.execute(
-                "SELECT num_sent FROM email_accounts WHERE emp_id = ? AND email_account = ?",
-                (self.emp_id, email_account)
+                "SELECT num_sent FROM email_accounts WHERE device_id = ? AND email_account = ?",
+                (self.device_id, email_account)
             )
             current_record = cursor.fetchone()
             
             if not current_record:
                 conn.close()
-                raise ValueError(f"Email account {email_account} không tồn tại cho EMP_ID {self.emp_id}")
+                raise ValueError(f"Email account {email_account} không tồn tại cho DEVICE_ID {self.device_id}")
             
             current_count = current_record["num_sent"]
             
@@ -109,15 +109,15 @@ class EmailManager:
             
             # Tăng counter
             cursor.execute(
-                "UPDATE email_accounts SET num_sent = num_sent + 1 WHERE emp_id = ? AND email_account = ?",
-                (self.emp_id, email_account)
+                "UPDATE email_accounts SET num_sent = num_sent + 1 WHERE device_id = ? AND email_account = ?",
+                (self.device_id, email_account)
             )
             conn.commit()
             
             # Lấy giá trị mới
             cursor.execute(
-                "SELECT num_sent FROM email_accounts WHERE emp_id = ? AND email_account = ?",
-                (self.emp_id, email_account)
+                "SELECT num_sent FROM email_accounts WHERE device_id = ? AND email_account = ?",
+                (self.device_id, email_account)
             )
             new_val = cursor.fetchone()["num_sent"]
             conn.close()
@@ -131,18 +131,18 @@ class EmailManager:
         cursor.execute(
             """SELECT email_account, num_sent, is_active 
                FROM email_accounts 
-               WHERE emp_id = ? 
+               WHERE device_id = ? 
                ORDER BY num_sent ASC""",
-            (self.emp_id,)
+            (self.device_id,)
         )
         accounts = cursor.fetchall()
         conn.close()
         
         if not accounts:
-            print(f"❌ Không tìm thấy email accounts cho EMP_ID {self.emp_id}")
+            print(f"❌ Không tìm thấy email accounts cho DEVICE_ID {self.device_id}")
             return []
         
-        print(f"📊 Trạng thái email accounts cho EMP_ID {self.emp_id}:")
+        print(f"📊 Trạng thái email accounts cho DEVICE_ID {self.device_id}:")
         status_list = []
         for account in accounts:
             status = "🟢 Active" if account["is_active"] else "🔴 Inactive"
@@ -170,13 +170,13 @@ class EmailManager:
             cursor = conn.cursor()
             
             cursor.execute(
-                "UPDATE email_accounts SET num_sent = 0 WHERE emp_id = ? AND email_account = ?",
-                (self.emp_id, email_account)
+                "UPDATE email_accounts SET num_sent = 0 WHERE device_id = ? AND email_account = ?",
+                (self.device_id, email_account)
             )
             
             if cursor.rowcount == 0:
                 conn.close()
-                raise ValueError(f"Email account {email_account} không tồn tại cho EMP_ID {self.emp_id}")
+                raise ValueError(f"Email account {email_account} không tồn tại cho DEVICE_ID {self.device_id}")
             
             conn.commit()
             conn.close()

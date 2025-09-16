@@ -4,6 +4,7 @@ import sqlite3
 from datetime import datetime
 from classSend import EmailSender
 from classHtmlRender import HtmlRenderSimulator
+from email_manager import EmailManager # Import EmailManager
 
 # --- Cấu hình ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -13,6 +14,21 @@ def get_db_connection():
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
+
+def get_plugged_in_device_for_emp(emp_id):
+    """
+    Kiểm tra xem có thiết bị nào đang cắm (plugged_in = 1) cho emp_id này không.
+    Trả về device_id đầu tiên tìm thấy hoặc None.
+    """
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        "SELECT device_id FROM devices WHERE emp_id = ? AND plugged_in = 1 LIMIT 1",
+        (emp_id,)
+    )
+    result = cursor.fetchone()
+    conn.close()
+    return result["device_id"] if result else None
 
 def get_distinct_emp_ids_with_pending_emails():
     conn = get_db_connection()
@@ -72,9 +88,21 @@ def process_next_email_for_emp(emp_id, last_processed_customer_info):
     print(f"\n▶️ Đang xử lý khách hàng ID: {customer_id} cho EMP_ID: {emp_id}...")
 
     try:
+        # Kiểm tra thiết bị đang cắm
+        plugged_in_device_id = get_plugged_in_device_for_emp(emp_id)
+        if not plugged_in_device_id:
+            print(f"   - ⚠️ Không có thiết bị nào đang cắm cho EMP_ID {emp_id}. Bỏ qua gửi email cho customer ID: {customer_id}.")
+            return {'customer_id': last_customer_id, 'html_ok': True} # Coi như đã xử lý để không bị lặp lại ngay lập tức
+
+        # Kiểm tra tài khoản email khả dụng
+        email_manager = EmailManager(device_id=plugged_in_device_id)
+        if not email_manager.has_available_accounts():
+            print(f"   - ⚠️ Không còn tài khoản email khả dụng cho DEVICE_ID {plugged_in_device_id}. Bỏ qua gửi email cho customer ID: {customer_id}.")
+            return {'customer_id': last_customer_id, 'html_ok': True} # Coi như đã xử lý để không bị lặp lại ngay lập tức
+
         # 1. Xử lý HTML
         print("   - Bước 1: Xử lý HTML...")
-        simulator = HtmlRenderSimulator(EMP_ID=emp_id, customer_id=customer_id)
+        simulator = HtmlRenderSimulator(device_id=plugged_in_device_id, customer_id=customer_id)
         simulator.beautify_html()
 
         if not simulator.html_processed:
@@ -83,7 +111,7 @@ def process_next_email_for_emp(emp_id, last_processed_customer_info):
 
         # 2. Gửi Email
         print("   - Bước 2: Gửi email...")
-        sender = EmailSender(emp_id=emp_id)
+        sender = EmailSender(device_id=plugged_in_device_id, customer_id=customer_id)
         sender.open_gmail()
         success = sender.send_to_customer(customer_id)
 

@@ -7,17 +7,23 @@ import sqlite3
 
 
 class HtmlRenderSimulator:
-    def __init__(self, EMP_ID: int, customer_id: int = None, MODE=2):
+    def __init__(self, device_id: str, customer_id: int, MODE=2):
         self.BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-        self.EMP_ID = str(EMP_ID)
+        self.device_id = device_id
         self.customer_id = customer_id
         self.MODE = MODE
         self.html_processed = False
         # Database path
         self.DB_PATH = os.path.join(self.BASE_DIR, "..", "business", "businesses.db")
         
-        # Get device info from employees table
-        self.device_id, self.device_brand = self.get_device_info()
+        self.EMP_ID = self._get_emp_id_from_customer(customer_id)
+        if not self.EMP_ID:
+            raise ValueError(f"Không tìm thấy emp_id cho Customer ID: {self.customer_id}")
+
+        self.device_brand = self._get_device_brand(self.device_id)
+        if not self.device_brand:
+            raise ValueError(f"Không tìm thấy device_brand cho Device ID: {self.device_id}")
+
         self.d = u2.connect(self.device_id)
         self.width, self.height = self.d.window_size()
         
@@ -25,42 +31,36 @@ class HtmlRenderSimulator:
         self.BUSINESS_SUBJECT = None
         self.BUSINESS_WRITEN_MAIL = None
         
-        if self.customer_id:
-            self.load_customer_data()
+        self.load_customer_data()
 
-    def get_device_info(self):
-        """Lấy device_id và device_brand từ bảng employees và devices"""
-        conn = None
-        try:
-            conn = sqlite3.connect(self.DB_PATH)
-            conn.row_factory = sqlite3.Row  # cho phép truy cập theo tên cột
-            cursor = conn.cursor()
-            
-            cursor.execute("""
-                SELECT d.device_id AS device, d.brand
-                FROM devices d
-                WHERE d.emp_id = ?
-                LIMIT 1
-            """, (self.EMP_ID,))
-            result = cursor.fetchone()
-            
-            if result:
-                return result["device"], result["brand"]
-            else:
-                raise ValueError(f"Employee ID {self.EMP_ID} not found in database or no device assigned")
-                
-        except sqlite3.Error as e:
-            raise Exception(f"Database error: {e}")
-        finally:
-            if conn:
-                conn.close()
+    def _get_db_connection(self):
+        conn = sqlite3.connect(self.DB_PATH)
+        conn.row_factory = sqlite3.Row
+        return conn
 
+    def _get_emp_id_from_customer(self, customer_id):
+        """Lấy emp_id từ bảng customers dựa trên customer_id"""
+        conn = self._get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT emp_id FROM customers WHERE customer_id = ?", (customer_id,))
+        result = cursor.fetchone()
+        conn.close()
+        return result["emp_id"] if result else None
+
+    def _get_device_brand(self, device_id):
+        """Lấy device_brand từ bảng devices dựa trên device_id"""
+        conn = self._get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT brand FROM devices WHERE device_id = ?", (device_id,))
+        result = cursor.fetchone()
+        conn.close()
+        return result["brand"] if result else None
 
     def load_customer_data(self):
         """Load subject và content từ bảng customers"""
         conn = None
         try:
-            conn = sqlite3.connect(self.DB_PATH)
+            conn = self._get_db_connection()
             cursor = conn.cursor()
             
             cursor.execute(
@@ -162,7 +162,7 @@ class HtmlRenderSimulator:
                 time.sleep(1)
                 self.d.send_keys("https://html.onlineviewer.net/", clear=True)
                 time.sleep(1)
-                self.d.xpath('//*[@resource-id="com.google.android.inputmethod.latin:id/key_pos_ime_action"]/android.widget.FrameLayout[1]/android.widget.ImageView[1]').click()
+                self.d.press("enter") 
                 time.sleep(3)
                 self.clear_old_html()
         elif self.device_brand == "Samsung":
@@ -178,7 +178,7 @@ class HtmlRenderSimulator:
                 time.sleep(1)
                 self.d.send_keys("https://html.onlineviewer.net/", clear=True)
                 time.sleep(1)
-                self.d.xpath('//*[@content-desc="Tìm kiếm"]/android.widget.ImageView[1]').click()
+                self.d.press("enter") 
                 time.sleep(2)
                 self.clear_old_html()
                 
@@ -331,6 +331,9 @@ class HtmlRenderSimulator:
         else:
             raise ValueError(f"Thiết bị {self.device_brand} không được hỗ trợ.")
         
-def run_simulator(EMP_ID, BUSINESS_SUBJECT_PATH, BUSINESS_WRITEN_MAIL_PATH, MODE):
-    simulator = HtmlRenderSimulator(EMP_ID=EMP_ID, BUSINESS_SUBJECT_PATH=BUSINESS_SUBJECT_PATH, BUSINESS_WRITEN_MAIL_PATH=BUSINESS_WRITEN_MAIL_PATH, MODE=MODE)
-    return simulator
+# The run_simulator wrapper function is likely not used by watch_email.py directly,
+# but if it is, it will need to be updated or removed.
+# For now, I will comment it out as it will likely break.
+# def run_simulator(EMP_ID, BUSINESS_SUBJECT_PATH, BUSINESS_WRITEN_MAIL_PATH, MODE):
+#     simulator = HtmlRenderSimulator(EMP_ID=EMP_ID, BUSINESS_SUBJECT_PATH=BUSINESS_SUBJECT_PATH, BUSINESS_WRITEN_MAIL_PATH=BUSINESS_WRITEN_MAIL_PATH, MODE=MODE)
+#     return simulator
