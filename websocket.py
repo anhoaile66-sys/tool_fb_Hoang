@@ -28,13 +28,17 @@ class WebSocketTaskHandler:
         """Lấy lệnh từ server và thực hiện"""
         commands = await self.get_commands(user_id)
         for command in commands:
-            params = command.get("params", {})
-            if command['type'] == 'post_to_group':
-                await post_to_group(driver, command['_id'], user_id, params.get("group_link", ""), params.get("content", ""), params.get("files", []))
-            if command['type'] == 'join_group':
-                await join_group(driver, command['_id'], user_id, params.get("group_link", ""))
-            if command['type'] == 'post_to_wall':
-                await post_to_wall(driver, command['_id'], user_id, params.get("content", ""), params.get("files", []))
+            try:    
+                params = command.get("params", {})
+                if command['type'] == 'post_to_group':
+                    await post_to_group(driver, command['_id'], user_id, params.get("group_link", ""), params.get("content", ""), params.get("files", []))
+                if command['type'] == 'join_group':
+                    await join_group(driver, command['_id'], user_id, params.get("group_link", ""))
+                if command['type'] == 'post_to_wall':
+                    await post_to_wall(driver, command['_id'], user_id, params.get("content", ""), params.get("files", []))
+            except Exception as e:
+                log_message(f"{driver.serial} - Lỗi khi thực hiện lệnh {command['type']}: {e}", logging.ERROR)
+                await pymongo_management.execute_command(command['_id'], f"Lỗi: {e}")
             await asyncio.sleep(random.uniform(4, 6))
 
     async def check_device_status(self, driver):
@@ -126,11 +130,9 @@ class WebSocketTaskHandler:
                             
                             # Xử lý message và tạo task
                             await self.handle_server_message(account, driver, message_type)
-                        except json.JSONDecodeError:
-                            log_message(f"Lỗi decode JSON từ WebSocket: {message}", logging.ERROR)
                         except Exception as e:
                             log_message(f"Error handling message: {e}", logging.ERROR)
-                            await self.update_device_status(driver, False)   
+                            await self.update_device_status(driver, False)
             except websockets.exceptions.ConnectionClosed:
                 log_message("WebSocket connection bị đóng. Sẽ thử kết nối lại...", logging.WARNING)
                 self.connected = False
