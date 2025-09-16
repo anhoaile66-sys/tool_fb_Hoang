@@ -68,4 +68,3 @@ FROM devices
 GROUP BY emp_id;
 
 
-UPDATE devices SET plugged_in = 0
