@@ -50,10 +50,8 @@ async def watch_reels(driver, duration=random.randint(2700,3600)):
         "tuyển dụng",
         "việc làm", 
         "tìm việc",
-        "hiring",
-        "job",
-        "career",
-        "recruitment",
+        "nhân sự",
+        "tuyển nhân viên", 
         "tuyển sinh",
         "cơ hội nghề nghiệp"
     ]
@@ -195,7 +193,5 @@ async def watch_reels(driver, duration=random.randint(2700,3600)):
         await asyncio.sleep(i)
     
     # Thoát về màn hình chính bằng cách back 4 lần
-    for _ in range(4):
-        driver.press("back")
-    await asyncio.sleep(random.uniform(1,2))
+    go_to_home_page(driver)
     log_message("Đã thoát về màn hình chính")

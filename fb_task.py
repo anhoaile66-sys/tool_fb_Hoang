@@ -30,7 +30,7 @@ async def fb_natural_task(driver, crm_id:str, account: str):
         ("Xem story", lambda: watch_story(driver)),
         ("Lướt fb", lambda: surf_fb(driver)),
         ("Kết bạn", lambda: add_friend(driver, crm_id)),
-        # ("Thăm tường bạn bè", lambda: load_facebook_friends_list_advanced(driver, driver.serial, True)),
+        ("Thăm tường bạn bè", lambda: load_facebook_friends_list_advanced(driver, driver.serial, True)),
         ("Bình luận thương hiệu", lambda: comment_recruitment_post(driver, account)),
         ("Thăm trang cá nhân", lambda: tham_trang_ca_nhan(driver)),
     ]
