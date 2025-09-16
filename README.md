@@ -21,7 +21,8 @@
 cd tool-fb-mobile
 
 # Chuong trinh Backend CRM
-python zalo_test_laptop_8001_newest.py
+python zalo_crm_main_newest.py
+python zalo_crm_base.py
 
 # Tool FB zalo
 python main.py
