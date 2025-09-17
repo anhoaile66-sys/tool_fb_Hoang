@@ -30,14 +30,11 @@ async def log_out(driver):
     log_out.click()
     log_message(f"{driver.serial} - Đang đăng xuất")
 
-    # Đợi hiện box lưu
     # Xác nhận lưu tài khoản(nếu có)
     save = await my_find_element(driver, {("text", "LƯU")}, 6)
-    if save == None:
-        log_message(f"{driver.serial} - Không thấy box lưu tài khoản", logging.WARNING)
-    else:
+    if save:
         save.click()
-        log_message(f"{driver.serial} - Lưu tài khoản")
+        log_message(f"{driver.serial} - Đã lưu tài khoản")
 
     # Xác nhận đăng xuất
     xac_nhan = await my_find_element(driver, {("text", "ĐĂNG XUẤT")}, 10)   
@@ -158,10 +155,10 @@ async def swap_account(driver, acc):
     save = await my_find_element(driver, {("text", "Lưu")})
     try:
         save.click()
-        log_message(f"{driver.serial} - Lưu tài khoản")
+        log_message(f"{driver.serial} - Đã lưu tài khoản")
         await asyncio.sleep(3)
     except Exception:
-        log_message(f"{driver.serial} - Không thấy box lưu tài khoản", logging.WARNING)
+        pass
 
     # Kiểm tra có yêu cầu quyền gì không
     while True:

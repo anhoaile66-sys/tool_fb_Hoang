@@ -392,7 +392,8 @@ async def device_supervisor(device_id: str):
             await asyncio.sleep(2.0)
             continue
         except Exception as e:
-            log_message(f"[{device_id}] Lỗi không mong muốn: {e}. Sẽ thử chạy lại sau.", logging.ERROR)
+            if still_alive(driver):
+                log_message(f"[{device_id}] Lỗi không mong muốn: {e}. Sẽ thử chạy lại sau.", logging.ERROR)
             await asyncio.sleep(5.0)
             continue
 

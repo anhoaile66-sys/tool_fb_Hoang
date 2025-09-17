@@ -10,7 +10,7 @@ async def post_to_wall(driver, command_id, user_id, content, files=None):
         for file in files:
             await toolfacebook_lib.push_file_to_device(driver.serial, file)
         driver.app_start("com.miui.gallery")
-    toolfacebook_lib.back_to_facebook(driver)
+    await toolfacebook_lib.back_to_facebook(driver)
     post_button = driver(text="Viết bài trên Facebook")
     await asyncio.sleep(2)
     if post_button.exists:

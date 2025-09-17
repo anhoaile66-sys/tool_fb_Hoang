@@ -71,7 +71,7 @@ class WebSocketTaskHandler:
                 }
                 await login.swap_account(driver, acc)
             # Nhận và thực hiện lệnh
-            await self.run_commands(driver, account['username'])
+            await self.run_commands(driver, account['account'])
             await self.update_device_status(driver, False)
             
     async def send_response(self, data: dict):

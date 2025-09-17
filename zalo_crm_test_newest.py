@@ -4423,6 +4423,9 @@ def api_update_data_1vs1_chat_box(d: u2.Device, data, document):
                         else:
                             data_update = {"num_phone_zalo": num_phone_zalo,
                                            "list_prior_chat_boxes": list_prior_chat_boxes}
+                    else:
+                        data_update = {"num_phone_zalo": num_phone_zalo,
+                                           "list_prior_chat_boxes": list_prior_chat_boxes}
                     update_base_document_json(
                         "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                     # retr =  {"result": result}
@@ -4447,8 +4450,9 @@ def api_update_data_gr_chat_box(d: u2.Device, data, document):
     list_mems = []
     for group in list_group:
         if group['name'] == name_ntd:
-            list_mems = group['list_mems']
-            break
+            if 'list_mems' in group.keys():
+                list_mems = group['list_mems']
+                break
     if (id_device in dict_devices and num_phone_zalo in dict_status_zalo.keys()):
         print("Đến đây chưa")
         if dict_status_zalo[num_phone_zalo] != '':
