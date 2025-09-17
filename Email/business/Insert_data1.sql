@@ -84,3 +84,11 @@ ADD COLUMN device_name TEXT DEFAULT 'A00';
 
 
 SELECT emp_id, device_name from devices
+
+UPDATE devices
+SET emp_id = '22911349'
+WHERE device_name IN ('A23','A24');
+
+UPDATE email_accounts
+SET emp_id = '22911349'
+WHERE device_name IN ('A23','A24');
