@@ -91,7 +91,7 @@ async def check_termux_api_installed(driver):
                 log_message(f"[{device_id}] Lỗi cài đặt Termux", logging.ERROR)
                 return False
         driver.app_start("com.termux")
-        await asyncio.sleep(5)
+        await asyncio.sleep(10)
         driver(resourceId="com.android.permissioncontroller:id/permission_allow_button").click()
         await asyncio.sleep(10)
     driver.app_start("com.termux")

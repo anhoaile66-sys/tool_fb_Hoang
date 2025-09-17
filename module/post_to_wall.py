@@ -35,7 +35,14 @@ async def post_to_wall(driver, command_id, user_id, content, files=None):
                 driver(scrollable=True).scroll.vert.backward()
             except:
                 pass
-        driver(text="ĐĂNG").click()
+        if driver(text="Đăng").exists:
+            driver(text="Đăng").click()
+        elif driver(description="Tiếp").exists:
+            driver(description="Tiếp").click()
+        else:
+            log_message(f"{driver.serial} - Đăng bài lên tường: Không tìm thấy nút Đăng", logging.WARNING)
+            await pymongo_management.execute_command(command_id, "Lỗi: Không tìm thấy nút Đăng")
+            return
         log_message(f"{driver.serial} - Đăng bài lên tường: Đã đăng bài viết lên tường", logging.INFO)
         await pymongo_management.execute_command(command_id, "Đã thực hiện")
         log_message(f"{driver.serial} - Đăng bài lên tường: Sau 10s sẽ kiểm tra trạng thái bài viết", logging.INFO)

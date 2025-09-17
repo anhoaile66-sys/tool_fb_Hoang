@@ -56,28 +56,32 @@ class WebSocketTaskHandler:
             json.dump(data, f)
 
     async def handle_server_message(self, account, driver, message_type):
-        """Xử lý message từ server và tạo task tương ứng"""
-        if message_type == "new_command_notification":
-            while True:
-                if await self.check_device_status(driver):
-                    break
-                await asyncio.sleep(5)
-            await self.update_device_status(driver, True)
-            if not account:
-                log_message(f"{driver.serial} - Thực hiện lệnh từ CRM: Không có user_id trong message", logging.WARNING)
-                return
-            await toolfacebook_lib.back_to_facebook(driver)
-            if not account['status']:
-                acc = {
-                    'name': account['name'],
-                    'account': account['account'],
-                    'password': account['password'],
-                }
-                await login.swap_account(driver, acc)
-            # Nhận và thực hiện lệnh
-            await self.run_commands(driver, account['account'])
+        try:
+            """Xử lý message từ server và tạo task tương ứng"""
+            if message_type == "new_command_notification":
+                while True:
+                    if await self.check_device_status(driver):
+                        break
+                    await asyncio.sleep(5)
+                await self.update_device_status(driver, True)
+                if not account:
+                    log_message(f"{driver.serial} - Thực hiện lệnh từ CRM: Không có user_id trong message", logging.WARNING)
+                    return
+                await toolfacebook_lib.back_to_facebook(driver)
+                if not account['status']:
+                    acc = {
+                        'name': account['name'],
+                        'account': account['account'],
+                        'password': account['password'],
+                    }
+                    await login.swap_account(driver, acc)
+                # Nhận và thực hiện lệnh
+                await self.run_commands(driver, account['account'])
+                await self.update_device_status(driver, False)
+        except Exception as e:
+            log_message(f"{driver.serial} - Lỗi xử lý message từ server: {e}", logging.ERROR)
             await self.update_device_status(driver, False)
-            
+
     async def send_response(self, data: dict):
         """Gửi response về server"""
         if self.websocket and self.connected:
@@ -129,7 +133,7 @@ class WebSocketTaskHandler:
                             account, driver = await self.get_account_and_driver(user_id)
                             
                             # Xử lý message và tạo task
-                            await self.handle_server_message(account, driver, message_type)
+                            asyncio.create_task(self.handle_server_message(account, driver, message_type))
                         except Exception as e:
                             log_message(f"Error handling message: {e}", logging.ERROR)
                             await self.update_device_status(driver, False)

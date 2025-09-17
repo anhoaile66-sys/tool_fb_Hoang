@@ -20,7 +20,7 @@ async def back_to_facebook(driver):
     await asyncio.sleep(0.5)
     driver(resourceId="com.android.systemui:id/back").click()
     driver.app_start("com.facebook.katana")
-    
+    driver.swipe_ext("down", scale=0.5)
 # Ấn vào ảnh mẫu trên màn hình
 async def click_template(driver, template, threshold = 0.8, scale_start = 50, scale_end = 150, scale_step = 10):
     await asyncio.sleep(1)
