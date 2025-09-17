@@ -67,15 +67,6 @@ SELECT emp_id, COUNT(device_id) AS device_count
 FROM devices
 GROUP BY emp_id;
 
-INSERT INTO email_accounts (emp_id, device_id, email_account, num_sent, is_active)
-VALUES 
-('22615833','R8YY70F5MKN','baochii2317@gmail.com',0,1),
-('22615833','R8YY70F5MKN','quynhmait829@gmail.com',0,1),
-('22615833','R8YY70F5MKN','anhlinhp0511@gmail.com',0,1),
-('22615833','R8YY70F5MKN','khanhgiangp13@gmail.com',0,1),
-('22615833','R8YY70F5MKN','huyentranp515@gmail.com',0,1);
-
-
 
 DELETE FROM customers
 WHERE customer_id IN (
