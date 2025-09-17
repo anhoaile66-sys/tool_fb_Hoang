@@ -277,8 +277,36 @@ VALUES
 -- ('22615833','EIFYAALRK7U4MRZ9','anthien.tuyendung365@gmail.com',0,1,'A20'),
 -- ('22615833','EIFYAALRK7U4MRZ9','gialinh365.myjob@gmail.com',0,1,'A20'),
 -- ('22615833','EIFYAALRK7U4MRZ9','hanlee.jobchat365@gmail.com',0,1,'A20'),
-
-
+('22615833','R8YY70F81TV','khuongduychat365@gmail.com',0,1,'A21'),
+('22615833','R8YY70F81TV','giaanh.vu365@gmail.com',0,1,'A21'),
+('22615833','R8YY70F81TV','haoanhtuyendung365@gmail.com',0,1,'A21'),
+('22615833','R8YY70F81TV','ngoclimyjob365@gmail.com',0,1,'A21'),
+('22615833','R8YY70F81TV','trieulongjobchat365@gmail.com',0,1,'A21'),
+('22615833','R8YY70F81TV','trathu365.tuyendung@gmail.com',0,1,'A21'),
+('22615833','69QGMN8PXWDYPNIF','linhngha120@gmail.com',0,1,'A22'),
+('22615833','69QGMN8PXWDYPNIF','vietcuongp840@gmail.com',0,1,'A22'),
+('22615833','69QGMN8PXWDYPNIF','nganle22a19@gmail.com',0,1,'A22'),
+('22615833','69QGMN8PXWDYPNIF','lanngoc98a@gmail.com',0,1,'A22'),
+('22615833','69QGMN8PXWDYPNIF','lductrung625@gmail.com',0,1,'A22'),
+('22615833','69QGMN8PXWDYPNIF','zangisme0712@gmail.com',0,1,'A22'),
+('22615833','69QGMN8PXWDYPNIF','ngocquyendo235@gmail.com',0,1,'A22'),
+('22615833','69QGMN8PXWDYPNIF','trlanhg177@gmail.com',0,1,'A22'),
+('22615833','IZDEGA8TFYXWRK9X','thuynd22a@gmail.com',0,1,'A23'),
+('22615833','IZDEGA8TFYXWRK9X','truongcong23a@gmail.com',0,1,'A23'),
+('22615833','IZDEGA8TFYXWRK9X','thuyduongmai327@gmail.com',0,1,'A23'),
+('22615833','IZDEGA8TFYXWRK9X','trinhnp5199@gmail.com',0,1,'A23'),
+('22615833','IZDEGA8TFYXWRK9X','thaituann599@gmail.com',0,1,'A23'),
+('22615833','IZDEGA8TFYXWRK9X','wynntrangg@gmail.com',0,1,'A23'),
+('22615833','IZDEGA8TFYXWRK9X','ngtulee11@gmail.com',0,1,'A23'),
+('22615833','IZDEGA8TFYXWRK9X','mlinhtr1999@gmail.com',0,1,'A23'),
+('22615833','IZDEGA8TFYXWRK9X','lnguyetminh22@gmail.com',0,1,'A23'),
+('22615833','R8YY70HCNRX','diemquynhtv365@gmail.com',0,1,'A24'),
+('22615833','R83Y50JZK6A','baochii2317@gmail.com',0,1,'A25'),
+('22615833','R83Y50JZK6A','quynhmait829@gmail.com',0,1,'A25'),
+('22615833','R83Y50JZK6A','anhhongp384@gmail.com',0,1,'A25'),
+('22615833','R83Y50JZK6A','anhlinhp0511@gmail.com',0,1,'A25'),
+('22615833','R83Y50JZK6A','khanhgiangp13@gmail.com',0,1,'A25'),
+('22615833','R83Y50JZK6A','huyentranp515@gmail.com',0,1,'A25');
 
 SELECT emp_id, device_id, device_name from devices
 
