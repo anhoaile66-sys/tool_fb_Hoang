@@ -110,15 +110,16 @@ async def delete_file(device_id, file_name, remote_path="/sdcard/Download/"):
 
 # Lấy nội dung clipboard
 async def get_clipboard_content(driver, app):
+    # Đường dẫn file trên thiết bị Android
+    remote_path = f"/sdcard/Download/clipboard.txt"
+
     driver.app_start("com.termux")
-    driver.send_keys("termux-clipboard-get > /sdcard/Download/clip.txt\n")
-    await asyncio.sleep(3)
+    driver.send_keys(f"termux-clipboard-get > {remote_path}\n")
+    await asyncio.sleep(6)
     driver.app_start(app)
     # Tên file lưu trên máy tính
     local_filename = "clipboard.txt"
-    # Đường dẫn file trên thiết bị Android
-    remote_path = "/sdcard/Download/clip.txt"
-
+    
     # Lệnh adb pull
     command = ["platform-tools/adb", "pull", remote_path, local_filename]
     subprocess.run(command, capture_output=True, text=True)

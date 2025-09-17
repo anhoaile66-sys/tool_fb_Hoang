@@ -39,7 +39,7 @@ async def my_find_element(d, locators, max_retries=3, nature_scroll_if_not_found
                     log_message(f"{d.serial} - Không hỗ trợ method: {method}", logging.ERROR)
                     continue
                 if element.exists:
-                    log_message(f"{d.serial} - Tìm thấy element với locator: {locator}")
+                    # log_message(f"{d.serial} - Tìm thấy element với locator: {locator}")
                     return element
             if nature_scroll_if_not_found:
                 await nature_scroll(d, isFast=True)

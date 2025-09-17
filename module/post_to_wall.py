@@ -25,7 +25,10 @@ async def post_to_wall(driver, command_id, user_id, content, files=None):
             await asyncio.sleep(2)
             driver(description="Chọn nhiều file").click()
             for i in range(len(files)):
-                driver.xpath(f'//android.widget.GridView/android.widget.Button[{i + 1}]/android.widget.Button[1]').click()
+                if driver.xpath(f'//android.widget.GridView/android.widget.Button[{i + 1}]/android.widget.Button[1]').exists:
+                    driver.xpath(f'//android.widget.GridView/android.widget.Button[{i + 1}]/android.widget.Button[1]').click()
+                else:
+                    driver.xpath(f'//android.widget.GridView/android.widget.Button[{i + 1}]/android.view.ViewGroup[1]').click()
             driver(text="Tiếp").click()
             await asyncio.sleep(2)
             try:
@@ -34,15 +37,17 @@ async def post_to_wall(driver, command_id, user_id, content, files=None):
                 pass
         driver(text="ĐĂNG").click()
         log_message(f"{driver.serial} - Đăng bài lên tường: Đã đăng bài viết lên tường", logging.INFO)
+        await pymongo_management.execute_command(command_id, "Đã thực hiện")
         log_message(f"{driver.serial} - Đăng bài lên tường: Sau 10s sẽ kiểm tra trạng thái bài viết", logging.INFO)
         await asyncio.sleep(10)
         await check_wall_post(driver, user_id)
     else:
         log_message(f"{driver.serial} - Đăng bài lên tường: Không tìm thấy nút Tạo bài viết", logging.WARNING)
+        await pymongo_management.execute_command(command_id, "Lỗi: Không tìm thấy nút Tạo bài viết")
     if files:
         for file in files:
             await toolfacebook_lib.delete_file(driver.serial, file)
-    await pymongo_management.execute_command(command_id, "Đã thực hiện")
+    
 
 async def check_wall_post(driver, user_id):
     posts = await pymongo_management.get_unapproved_wall_posts(user_id)

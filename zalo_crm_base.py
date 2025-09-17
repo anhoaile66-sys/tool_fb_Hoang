@@ -52,6 +52,7 @@ def get_list_friend_new():
         device_and_port = id_port[user_id]
 
     user_db = []
+    status = True
     for dp in device_and_port:
         ports = list(dp.keys())
         port = ports[0]
@@ -61,18 +62,21 @@ def get_list_friend_new():
                 zalo_data = json.load(f)
             with open(f'C:/Zalo_CRM/Zalo_base/device_status_{device_id}.json', 'r') as f:
                 device_status = json.load(f)
+                if 'update' in device_status.keys():
+                    status = device_status['update']
+            for zalo in zalo_data:
+                user_db.append({"num_phone_zalo": zalo['num_phone_zalo'], "status": zalo['status'], "user_name": zalo['name'], "avatar": zalo['ava'], "port": port})
         except Exception as e:
             print(e)
             pass
-        for zalo in zalo_data:
-            user_db.append({"num_phone_zalo": zalo['num_phone_zalo'], "status": zalo['status'], "user_name": zalo['name'], "avatar": zalo['ava'], "port": port})
 
-    return jsonify({'user_db': user_db, 'update': device_status['update']})
-
-#socketio.run(app, host="0.0.0.0", port=8000,
-#                 debug=True, use_reloader=False)
+    return jsonify({'user_db': user_db, 'update': status})
 
 
+socketio.run(app, host="0.0.0.0", port=8000,
+                 debug=True, use_reloader=False)
+
+'''
 socketio.run(
     app,
     host="0.0.0.0",
@@ -83,6 +87,7 @@ socketio.run(
     keyfile="ssl/privkey.pem",
     server_side=True
 )
+'''
 
     
     
