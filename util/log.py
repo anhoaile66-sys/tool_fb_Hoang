@@ -30,3 +30,5 @@ if not logger.handlers:
 def log_message(message, level=logging.INFO):
     """Ghi log ra file và terminal với định dạng chuẩn và màu sắc."""
     logger.log(level, message)
+
+logger.propagate = False

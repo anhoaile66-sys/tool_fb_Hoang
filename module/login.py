@@ -11,41 +11,41 @@ async def log_out(driver):
 
     await go_to_home_page(driver)
 
-    log_message(f"{driver.serial} - Đăng xuất")
+    log_message(f"[{driver.serial}] Đăng xuất")
     menu = await my_find_element(driver, {("xpath", '//*[contains(@content-desc, "Menu")]')})
     try:
         menu.click()
     except Exception:
-        log_message(f"{driver.serial} - Không tìm được nút menu", logging.ERROR)
+        log_message(f"[{driver.serial}] Không tìm được nút menu", logging.ERROR)
         return
     # Đợi chuyển sang tab menu
-    log_message(f"{driver.serial} - Vào menu")
+    log_message(f"[{driver.serial}] Vào menu")
 
     safe_flag = 20
     log_out = await my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đăng xuất"]')}, safe_flag, True)
     if log_out == None:
-        log_message(f"{driver.serial} - Không tìm được nút đăng xuất sau {safe_flag} lần thử",logging.ERROR)
+        log_message(f"[{driver.serial}] Không tìm được nút đăng xuất sau {safe_flag} lần thử",logging.ERROR)
         await go_to_home_page(driver)
         return
     log_out.click()
-    log_message(f"{driver.serial} - Đang đăng xuất")
+    log_message(f"[{driver.serial}] Đang đăng xuất")
 
     # Xác nhận lưu tài khoản(nếu có)
     save = await my_find_element(driver, {("text", "LƯU")}, 6)
     if save:
         save.click()
-        log_message(f"{driver.serial} - Đã lưu tài khoản")
+        log_message(f"[{driver.serial}] Đã lưu tài khoản")
 
     # Xác nhận đăng xuất
     xac_nhan = await my_find_element(driver, {("text", "ĐĂNG XUẤT")}, 10)   
     if xac_nhan == None:
-        log_message(f"{driver.serial} - Không tìm thấy box xác nhận đăng xuất", logging.ERROR)
+        log_message(f"[{driver.serial}] Không tìm thấy box xác nhận đăng xuất", logging.ERROR)
         return
     else:
         xac_nhan.click()
-        log_message(f"{driver.serial} - Xác nhận đăng xuất")
+        log_message(f"[{driver.serial}] Xác nhận đăng xuất")
     # Đợi load trang chọn tài khoản
-    log_message(f"{driver.serial} - Đăng xuất thành công")
+    log_message(f"[{driver.serial}] Đăng xuất thành công")
     await pymongo_management.update_statusFB(driver.serial, False)
 
 # Đăng nhập lần đầu
@@ -137,12 +137,12 @@ async def swap_account(driver, acc):
     await log_out(driver)
 
     # Đăng nhập
-    log_message(f"{driver.serial} - Bắt đầu đăng nhập vào tài khoản {name}")
+    log_message(f"[{driver.serial}] Bắt đầu đăng nhập vào tài khoản {name}")
     account = await my_find_element(driver, {("xpath", f'//android.view.View[@content-desc="{name}"]')}, 20)
     try:
         account.click()
     except Exception:
-        log_message(f"{driver.serial} - Không thể đăng nhập", logging.ERROR)
+        log_message(f"[{driver.serial}] Không thể đăng nhập", logging.ERROR)
         return
     # Tìm xem có bắt nhập mật khẩu lại không
     login = await my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đăng nhập"]')})
@@ -155,7 +155,7 @@ async def swap_account(driver, acc):
     save = await my_find_element(driver, {("text", "Lưu")})
     try:
         save.click()
-        log_message(f"{driver.serial} - Đã lưu tài khoản")
+        log_message(f"[{driver.serial}] Đã lưu tài khoản")
         await asyncio.sleep(3)
     except Exception:
         pass
@@ -170,5 +170,5 @@ async def swap_account(driver, acc):
 
     # Đợi vào màn hình chính
     await asyncio.sleep(6)
-    log_message(f"{driver.serial} - Đăng nhập thành công vào tài khoản {name}")
+    log_message(f"[{driver.serial}] Đăng nhập thành công vào tài khoản {name}")
     await pymongo_management.update_statusFB(username, True)

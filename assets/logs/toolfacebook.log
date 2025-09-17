@@ -42591,3 +42591,272 @@ PN59BMHYPFXCPN8T Thực hiện tác vụ: Xem reels
 2025-09-16 22:30:14,181 - INFO - Đang thử kết nối tới WebSocket server...
 2025-09-16 22:33:29,237 - INFO - ✅ Kết nối thành công với thiết bị: 69QGMN8PXWDYPNIF
 2025-09-16 22:33:29,421 - INFO - 🚀 Đã mở ứng dụng Facebook trên thiết bị: 69QGMN8PXWDYPNIF
+2025-09-17 07:57:28,577 - INFO - Đang thử kết nối tới WebSocket server...
+2025-09-17 07:57:28,922 - INFO - Đã kết nối thành công tới WebSocket server!
+2025-09-17 07:57:28,922 - INFO - Đã gửi tin nhắn đăng ký với clientId: 1498
+2025-09-17 07:57:28,922 - INFO - Nhận lệnh mới từ server - Type: welcome
+2025-09-17 07:57:30,212 - INFO - Nhận lệnh mới từ server - Type: registered
+2025-09-17 07:57:30,213 - INFO - Nhận lệnh mới từ server - Type: clientCount
+2025-09-17 07:57:58,188 - INFO - [69QGMN8PXWDYPNIF] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-17 07:57:58,313 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation hiện tại: 1
+2025-09-17 07:57:58,472 - INFO - [69QGMN8PXWDYPNIF] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-17 07:57:59,646 - INFO - [69QGMN8PXWDYPNIF] Auto-rotation đã được TẮT thành công!
+2025-09-17 07:57:59,647 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-17 07:57:59,648 - INFO - [69QGMN8PXWDYPNIF] Hoàn thành disable auto-rotation
+2025-09-17 07:57:59,648 - INFO - [69QGMN8PXWDYPNIF] Kiểm tra bật 1.1.1.1 (một lần)
+2025-09-17 07:58:04,087 - INFO - [69QGMN8PXWDYPNIF] One-time check 1.1.1.1 OK
+2025-09-17 07:58:04,087 - INFO - [69QGMN8PXWDYPNIF] Kiểm tra cài đặt Termux
+2025-09-17 07:58:18,945 - INFO - Đang đăng nhập vào tài khoản Thanh Nguyễn trên thiết bị 69QGMN8PXWDYPNIF
+2025-09-17 07:58:18,946 - INFO - Đang về trang chủ
+2025-09-17 07:58:19,647 - INFO - [69QGMN8PXWDYPNIF] Đã về trang chủ
+2025-09-17 07:58:19,647 - INFO - 69QGMN8PXWDYPNIF - Đăng xuất
+2025-09-17 07:58:21,177 - INFO - 69QGMN8PXWDYPNIF - Vào menu
+2025-09-17 07:58:28,236 - INFO - 69QGMN8PXWDYPNIF - Đang đăng xuất
+2025-09-17 07:58:36,025 - INFO - 69QGMN8PXWDYPNIF - Xác nhận đăng xuất
+2025-09-17 07:58:36,026 - INFO - 69QGMN8PXWDYPNIF - Đăng xuất thành công
+2025-09-17 07:58:36,717 - INFO - 69QGMN8PXWDYPNIF - Bắt đầu đăng nhập vào tài khoản Thanh Nguyễn
+2025-09-17 07:59:03,281 - INFO - 69QGMN8PXWDYPNIF - Đăng nhập thành công vào tài khoản Thanh Nguyễn
+2025-09-17 07:59:04,076 - INFO - 
+
+69QGMN8PXWDYPNIF Thực hiện tác vụ: Xem reels
+
+2025-09-17 07:59:04,076 - INFO - Bắt đầu watch reels tuyển dụng
+2025-09-17 07:59:04,076 - INFO - Đang về trang chủ
+2025-09-17 07:59:04,678 - INFO - [69QGMN8PXWDYPNIF] Đã về trang chủ
+2025-09-17 07:59:10,090 - INFO - Đang tìm nút Reels...
+2025-09-17 07:59:11,152 - INFO - Đã vào phần Reels
+2025-09-17 07:59:59,991 - INFO - Đang thử kết nối tới WebSocket server...
+2025-09-17 08:00:00,190 - INFO - Đã kết nối thành công tới WebSocket server!
+2025-09-17 08:00:00,191 - INFO - Đã gửi tin nhắn đăng ký với clientId: 1498
+2025-09-17 08:00:00,191 - INFO - Nhận lệnh mới từ server - Type: welcome
+2025-09-17 08:00:00,220 - INFO - Nhận lệnh mới từ server - Type: registered
+2025-09-17 08:00:00,221 - INFO - Nhận lệnh mới từ server - Type: clientCount
+2025-09-17 08:00:25,936 - INFO - [69QGMN8PXWDYPNIF] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-17 08:00:26,298 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation hiện tại: 1
+2025-09-17 08:00:26,430 - INFO - [69QGMN8PXWDYPNIF] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-17 08:00:27,590 - INFO - [69QGMN8PXWDYPNIF] Auto-rotation đã được TẮT thành công!
+2025-09-17 08:00:27,591 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-17 08:00:27,591 - INFO - [69QGMN8PXWDYPNIF] Hoàn thành disable auto-rotation
+2025-09-17 08:00:27,592 - INFO - [69QGMN8PXWDYPNIF] Kiểm tra bật 1.1.1.1 (một lần)
+2025-09-17 08:00:33,746 - INFO - [69QGMN8PXWDYPNIF] One-time check 1.1.1.1 OK
+2025-09-17 08:00:33,747 - INFO - [69QGMN8PXWDYPNIF] Kiểm tra cài đặt Termux
+2025-09-17 08:00:33,948 - INFO - [69QGMN8PXWDYPNIF] Cài đặt Termux và Termux:API
+2025-09-17 08:01:25,123 - INFO - Đang đăng nhập vào tài khoản Minh Thu trên thiết bị 69QGMN8PXWDYPNIF
+2025-09-17 08:01:25,123 - INFO - Đang về trang chủ
+2025-09-17 08:01:25,766 - INFO - [69QGMN8PXWDYPNIF] Đã về trang chủ
+2025-09-17 08:01:25,766 - INFO - 69QGMN8PXWDYPNIF - Đăng xuất
+2025-09-17 08:01:27,025 - INFO - 69QGMN8PXWDYPNIF - Vào menu
+2025-09-17 08:01:33,952 - INFO - 69QGMN8PXWDYPNIF - Đang đăng xuất
+2025-09-17 08:01:41,623 - INFO - 69QGMN8PXWDYPNIF - Xác nhận đăng xuất
+2025-09-17 08:01:41,623 - INFO - 69QGMN8PXWDYPNIF - Đăng xuất thành công
+2025-09-17 08:01:42,295 - INFO - 69QGMN8PXWDYPNIF - Bắt đầu đăng nhập vào tài khoản Minh Thu
+2025-09-17 08:02:11,374 - INFO - 69QGMN8PXWDYPNIF - Đăng nhập thành công vào tài khoản Minh Thu
+2025-09-17 08:02:12,136 - INFO - 
+
+69QGMN8PXWDYPNIF Thực hiện tác vụ: Lướt fb
+
+2025-09-17 08:02:12,136 - INFO - Lướt tin nhóm tuyển dụng
+2025-09-17 08:04:17,435 - INFO - Bắt đầu like post
+2025-09-17 08:04:35,739 - INFO - Đã thả cảm xúc Yêu thích
+2025-09-17 08:04:57,716 - WARNING - [69QGMN8PXWDYPNIF] ❌ Mất kết nối thiết bị, hủy task đang chạy.
+2025-09-17 08:27:39,451 - INFO - Đang thử kết nối tới WebSocket server...
+2025-09-17 08:27:39,562 - INFO - Đã kết nối thành công tới WebSocket server!
+2025-09-17 08:27:39,563 - INFO - Đã gửi tin nhắn đăng ký với clientId: 1498
+2025-09-17 08:27:39,564 - INFO - Nhận lệnh mới từ server - Type: welcome
+2025-09-17 08:27:39,577 - INFO - Nhận lệnh mới từ server - Type: registered
+2025-09-17 08:27:39,578 - INFO - Nhận lệnh mới từ server - Type: clientCount
+2025-09-17 08:27:48,544 - WARNING - [69QGMN8PXWDYPNIF] ✅ Không tìm thấy file status, tiếp tục chạy.
+2025-09-17 08:27:59,994 - INFO - [69QGMN8PXWDYPNIF] Kết nối thiết bị: Thành công.
+2025-09-17 08:28:05,403 - INFO - [69QGMN8PXWDYPNIF] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-17 08:28:05,557 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation hiện tại: 1
+2025-09-17 08:28:05,664 - INFO - [69QGMN8PXWDYPNIF] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-17 08:28:06,846 - INFO - [69QGMN8PXWDYPNIF] Auto-rotation đã được TẮT thành công!
+2025-09-17 08:28:06,847 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-17 08:28:06,848 - INFO - [69QGMN8PXWDYPNIF] Hoàn thành disable auto-rotation
+2025-09-17 08:28:06,848 - INFO - [69QGMN8PXWDYPNIF] Kiểm tra bật 1.1.1.1 (một lần)
+2025-09-17 08:28:13,779 - INFO - [69QGMN8PXWDYPNIF] One-time check 1.1.1.1 OK
+2025-09-17 08:28:13,780 - INFO - [69QGMN8PXWDYPNIF] Kiểm tra cài đặt Termux
+2025-09-17 08:28:31,766 - INFO - Đang đăng nhập vào tài khoản Anh Kim trên thiết bị 69QGMN8PXWDYPNIF
+2025-09-17 08:28:31,767 - INFO - Đang về trang chủ
+2025-09-17 08:28:32,120 - INFO - [69QGMN8PXWDYPNIF] Đã về trang chủ
+2025-09-17 08:28:32,121 - INFO - 69QGMN8PXWDYPNIF - Đăng xuất
+2025-09-17 08:28:33,166 - INFO - 69QGMN8PXWDYPNIF - Vào menu
+2025-09-17 08:28:39,711 - INFO - 69QGMN8PXWDYPNIF - Đang đăng xuất
+2025-09-17 08:28:47,333 - INFO - 69QGMN8PXWDYPNIF - Xác nhận đăng xuất
+2025-09-17 08:28:47,333 - INFO - 69QGMN8PXWDYPNIF - Đăng xuất thành công
+2025-09-17 08:28:47,429 - INFO - 69QGMN8PXWDYPNIF - Bắt đầu đăng nhập vào tài khoản Anh Kim
+2025-09-17 08:29:19,406 - INFO - 69QGMN8PXWDYPNIF - Đăng nhập thành công vào tài khoản Anh Kim
+2025-09-17 08:29:19,547 - INFO - 
+
+69QGMN8PXWDYPNIF Thực hiện tác vụ: Thăm trang cá nhân
+
+2025-09-17 08:30:31,148 - INFO - Đã hoàn thành lướt facebook
+2025-09-17 08:30:31,149 - INFO - Đang về trang chủ
+2025-09-17 08:30:36,902 - WARNING - [69QGMN8PXWDYPNIF] Không tìm được trang chủ
+2025-09-17 08:30:37,575 - INFO - [69QGMN8PXWDYPNIF] Đã về trang chủ
+2025-09-17 08:30:42,308 - INFO - Đang về trang chủ
+2025-09-17 08:30:42,813 - INFO - [69QGMN8PXWDYPNIF] Đã về trang chủ
+2025-09-17 08:30:42,814 - INFO - 
+
+69QGMN8PXWDYPNIF Thực hiện tác vụ: Xem story
+
+2025-09-17 08:30:42,814 - INFO - Bắt đầu watch story
+2025-09-17 08:30:42,814 - INFO - Đang về trang chủ
+2025-09-17 08:30:43,527 - INFO - [69QGMN8PXWDYPNIF] Đã về trang chủ
+2025-09-17 08:30:51,305 - INFO - Xem story
+2025-09-17 08:32:14,002 - INFO - Xem story chán rồi, té thôi
+2025-09-17 08:32:14,635 - INFO - Đã thoát trang story
+2025-09-17 08:32:19,949 - INFO - Đang về trang chủ
+2025-09-17 08:32:20,594 - INFO - [69QGMN8PXWDYPNIF] Đã về trang chủ
+2025-09-17 08:32:20,595 - INFO - 
+
+69QGMN8PXWDYPNIF Thực hiện tác vụ: Lướt fb
+
+2025-09-17 08:32:20,595 - INFO - Lướt tin nhóm tuyển dụng
+2025-09-17 08:32:52,443 - INFO - Bắt đầu comment post
+2025-09-17 08:33:50,011 - ERROR - Không tìm thấy element sau 10 roll
+2025-09-17 08:34:00,450 - ERROR - Không thể tìm được nút comment
+2025-09-17 08:34:17,309 - INFO - Bắt đầu like post
+2025-09-17 08:35:14,955 - ERROR - Không tìm thấy element sau 10 roll
+2025-09-17 08:35:25,752 - ERROR - Không thể tìm được nút like
+2025-09-17 08:37:06,609 - INFO - Bắt đầu like post
+2025-09-17 08:38:04,965 - ERROR - Không tìm thấy element sau 10 roll
+2025-09-17 08:38:17,052 - ERROR - Không thể tìm được nút like
+2025-09-17 08:40:01,072 - INFO - Bắt đầu like post
+2025-09-17 08:40:58,838 - ERROR - Không tìm thấy element sau 10 roll
+2025-09-17 08:41:06,077 - ERROR - Không thể tìm được nút like
+2025-09-17 08:42:38,154 - INFO - Bắt đầu like post
+2025-09-17 08:43:37,144 - ERROR - Không tìm thấy element sau 10 roll
+2025-09-17 08:43:44,037 - ERROR - Không thể tìm được nút like
+2025-09-17 08:44:24,942 - WARNING - [69QGMN8PXWDYPNIF] ✅ Không tìm thấy file status, tiếp tục chạy.
+2025-09-17 08:44:42,806 - INFO - [69QGMN8PXWDYPNIF] Kết nối thiết bị: Thành công.
+2025-09-17 08:44:47,509 - INFO - [69QGMN8PXWDYPNIF] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-17 08:44:47,674 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation hiện tại: 1
+2025-09-17 08:44:47,818 - INFO - [69QGMN8PXWDYPNIF] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-17 08:44:48,990 - INFO - [69QGMN8PXWDYPNIF] Auto-rotation đã được TẮT thành công!
+2025-09-17 08:44:48,990 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-17 08:44:48,990 - INFO - [69QGMN8PXWDYPNIF] Hoàn thành disable auto-rotation
+2025-09-17 08:44:48,991 - INFO - [69QGMN8PXWDYPNIF] Kiểm tra bật 1.1.1.1 (một lần)
+2025-09-17 08:44:53,413 - INFO - [69QGMN8PXWDYPNIF] One-time check 1.1.1.1 OK
+2025-09-17 08:44:53,413 - INFO - [69QGMN8PXWDYPNIF] Kiểm tra cài đặt Termux
+2025-09-17 08:45:08,296 - INFO - [69QGMN8PXWDYPNIF] Đang đăng nhập vào tài khoản Thanh Nguyễn
+2025-09-17 08:45:08,296 - INFO - [69QGMN8PXWDYPNIF] Về trang chủ
+2025-09-17 08:45:08,788 - INFO - [69QGMN8PXWDYPNIF] Đã về trang chủ
+2025-09-17 08:45:08,789 - INFO - [69QGMN8PXWDYPNIF] Đăng xuất
+2025-09-17 08:45:10,179 - INFO - [69QGMN8PXWDYPNIF] Vào menu
+2025-09-17 08:45:16,671 - INFO - [69QGMN8PXWDYPNIF] Đang đăng xuất
+2025-09-17 08:45:24,130 - INFO - [69QGMN8PXWDYPNIF] Xác nhận đăng xuất
+2025-09-17 08:45:24,130 - INFO - [69QGMN8PXWDYPNIF] Đăng xuất thành công
+2025-09-17 08:45:24,241 - INFO - [69QGMN8PXWDYPNIF] Bắt đầu đăng nhập vào tài khoản Thanh Nguyễn
+2025-09-17 08:45:51,851 - INFO - [69QGMN8PXWDYPNIF] Đăng nhập thành công vào tài khoản Thanh Nguyễn
+2025-09-17 08:45:52,112 - INFO - [69QGMN8PXWDYPNIF] Thực hiện tác vụ: Thăm trang cá nhân
+2025-09-17 08:46:46,054 - INFO - [69QGMN8PXWDYPNIF] Đã hoàn thành lướt facebook
+2025-09-17 08:46:46,054 - INFO - [69QGMN8PXWDYPNIF] Về trang chủ
+2025-09-17 08:46:51,225 - WARNING - [69QGMN8PXWDYPNIF] Không tìm được trang chủ
+2025-09-17 08:46:51,602 - INFO - [69QGMN8PXWDYPNIF] Đã về trang chủ
+2025-09-17 08:46:56,041 - INFO - [69QGMN8PXWDYPNIF] Về trang chủ
+2025-09-17 08:46:56,507 - INFO - [69QGMN8PXWDYPNIF] Đã về trang chủ
+2025-09-17 08:46:56,508 - INFO - [69QGMN8PXWDYPNIF] Thực hiện tác vụ: Xem reels
+2025-09-17 08:46:56,508 - INFO - Bắt đầu watch reels tuyển dụng
+2025-09-17 08:46:56,508 - INFO - [69QGMN8PXWDYPNIF] Về trang chủ
+2025-09-17 08:46:56,979 - INFO - [69QGMN8PXWDYPNIF] Đã về trang chủ
+2025-09-17 08:47:02,246 - INFO - Đang tìm nút Reels...
+2025-09-17 08:47:03,266 - INFO - Đã vào phần Reels
+2025-09-17 08:47:07,892 - INFO - Đã bấm nút tìm kiếm trong Reels
+2025-09-17 08:47:11,630 - INFO - Nhập từ khóa tìm kiếm: tuyển sinh
+2025-09-17 08:47:22,367 - INFO - Đã tìm kiếm với từ khóa: tuyển sinh
+2025-09-17 08:47:22,368 - INFO - Bắt đầu lướt reels tuyển dụng
+2025-09-17 08:47:45,102 - INFO - Đã bấm vào video đầu tiên
+2025-09-17 08:47:55,507 - INFO - Video tiếp theo
+2025-09-17 08:48:26,410 - INFO - Video tiếp theo
+2025-09-17 08:48:57,889 - INFO - Video tiếp theo
+2025-09-17 08:49:24,891 - INFO - Video tiếp theo
+2025-09-17 08:49:52,213 - INFO - Video tiếp theo
+2025-09-17 08:50:08,024 - INFO - Video tiếp theo
+2025-09-17 08:50:40,855 - INFO - Video tiếp theo
+2025-09-17 08:50:58,417 - INFO - Video tiếp theo
+2025-09-17 08:51:17,602 - INFO - Video tiếp theo
+2025-09-17 08:51:34,885 - INFO - Video tiếp theo
+2025-09-17 08:52:02,844 - INFO - Video tiếp theo
+2025-09-17 08:52:17,784 - INFO - Video tiếp theo
+2025-09-17 08:52:48,327 - INFO - Video tiếp theo
+2025-09-17 08:53:07,442 - INFO - Video tiếp theo
+2025-09-17 08:53:28,662 - INFO - Video tiếp theo
+2025-09-17 08:53:58,633 - INFO - Video tiếp theo
+2025-09-17 08:54:17,591 - INFO - Video tiếp theo
+2025-09-17 08:54:35,666 - INFO - Video tiếp theo
+2025-09-17 08:55:08,525 - INFO - Video tiếp theo
+2025-09-17 08:55:30,079 - INFO - Video tiếp theo
+2025-09-17 08:55:59,619 - INFO - Video tiếp theo
+2025-09-17 08:56:22,341 - INFO - Video tiếp theo
+2025-09-17 08:56:46,227 - INFO - Video tiếp theo
+2025-09-17 08:57:13,140 - INFO - Video tiếp theo
+2025-09-17 08:57:39,665 - INFO - Video tiếp theo
+2025-09-17 08:58:08,640 - INFO - Video tiếp theo
+2025-09-17 08:58:29,193 - INFO - Video tiếp theo
+2025-09-17 08:58:51,833 - INFO - Video tiếp theo
+2025-09-17 08:59:10,585 - INFO - Video tiếp theo
+2025-09-17 08:59:41,765 - INFO - Video tiếp theo
+2025-09-17 09:00:07,663 - INFO - Video tiếp theo
+2025-09-17 09:00:34,955 - INFO - Video tiếp theo
+2025-09-17 09:01:02,932 - INFO - Video tiếp theo
+2025-09-17 09:01:29,970 - INFO - Video tiếp theo
+2025-09-17 09:01:46,007 - INFO - Video tiếp theo
+2025-09-17 09:02:19,329 - INFO - Video tiếp theo
+2025-09-17 09:02:49,250 - INFO - Video tiếp theo
+2025-09-17 09:03:21,450 - INFO - Video tiếp theo
+2025-09-17 09:03:51,150 - INFO - Video tiếp theo
+2025-09-17 09:04:14,566 - INFO - Video tiếp theo
+2025-09-17 09:04:42,269 - INFO - Video tiếp theo
+2025-09-17 09:04:57,996 - INFO - Video tiếp theo
+2025-09-17 09:05:27,648 - INFO - Video tiếp theo
+2025-09-17 09:05:58,185 - INFO - Video tiếp theo
+2025-09-17 09:06:13,658 - INFO - Video tiếp theo
+2025-09-17 09:06:34,155 - INFO - Video tiếp theo
+2025-09-17 09:06:50,318 - INFO - Video tiếp theo
+2025-09-17 09:07:13,590 - INFO - Video tiếp theo
+2025-09-17 09:07:46,492 - INFO - Video tiếp theo
+2025-09-17 09:08:18,637 - INFO - Video tiếp theo
+2025-09-17 09:08:44,544 - INFO - Video tiếp theo
+2025-09-17 09:09:01,500 - INFO - Video tiếp theo
+2025-09-17 09:09:15,832 - INFO - Video tiếp theo
+2025-09-17 09:09:41,151 - INFO - Video tiếp theo
+2025-09-17 09:10:07,621 - INFO - Video tiếp theo
+2025-09-17 09:10:39,491 - INFO - Video tiếp theo
+2025-09-17 09:11:09,424 - INFO - Video tiếp theo
+2025-09-17 09:11:35,558 - INFO - Video tiếp theo
+2025-09-17 09:12:05,087 - INFO - Video tiếp theo
+2025-09-17 09:12:30,775 - INFO - Video tiếp theo
+2025-09-17 09:12:59,263 - INFO - Video tiếp theo
+2025-09-17 09:13:25,810 - INFO - Video tiếp theo
+2025-09-17 09:13:51,450 - INFO - Video tiếp theo
+2025-09-17 09:14:22,710 - INFO - Video tiếp theo
+2025-09-17 09:14:33,065 - INFO - ✅ Kết nối thành công với thiết bị: 69QGMN8PXWDYPNIF
+2025-09-17 09:14:33,253 - INFO - 🚀 Đã mở ứng dụng Facebook trên thiết bị: 69QGMN8PXWDYPNIF
+2025-09-17 09:14:46,602 - INFO - Video tiếp theo
+2025-09-17 09:14:55,528 - INFO - ✅ Kết nối thành công với thiết bị: 69QGMN8PXWDYPNIF
+2025-09-17 09:14:55,687 - INFO - 🚀 Đã mở ứng dụng Facebook trên thiết bị: 69QGMN8PXWDYPNIF
+2025-09-17 09:15:06,378 - INFO - Video tiếp theo
+2025-09-17 09:15:35,201 - INFO - Video tiếp theo
+2025-09-17 09:15:57,759 - INFO - Video tiếp theo
+2025-09-17 09:16:27,888 - INFO - Video tiếp theo
+2025-09-17 09:16:41,663 - INFO - Video tiếp theo
+2025-09-17 09:17:10,650 - INFO - Video tiếp theo
+2025-09-17 09:17:42,866 - INFO - Video tiếp theo
+2025-09-17 09:17:59,875 - INFO - Video tiếp theo
+2025-09-17 09:18:15,596 - INFO - Video tiếp theo
+2025-09-17 09:18:31,044 - INFO - Video tiếp theo
+2025-09-17 09:18:56,135 - INFO - Video tiếp theo
+2025-09-17 09:19:19,777 - INFO - Video tiếp theo
+2025-09-17 09:19:37,564 - INFO - Video tiếp theo
+2025-09-17 09:19:56,556 - INFO - Video tiếp theo
+2025-09-17 09:20:26,887 - INFO - Video tiếp theo
+2025-09-17 09:20:59,525 - INFO - Video tiếp theo
+2025-09-17 09:21:19,836 - INFO - Video tiếp theo
+2025-09-17 09:21:48,431 - INFO - Video tiếp theo
+2025-09-17 09:22:08,722 - INFO - Video tiếp theo
+2025-09-17 09:22:32,464 - INFO - Video tiếp theo
+2025-09-17 09:23:01,883 - INFO - Video tiếp theo
+2025-09-17 09:23:25,974 - INFO - Video tiếp theo
+2025-09-17 09:23:49,081 - INFO - Video tiếp theo
+2025-09-17 09:24:20,265 - INFO - Video tiếp theo

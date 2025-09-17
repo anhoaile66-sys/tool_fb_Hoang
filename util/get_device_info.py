@@ -43,7 +43,7 @@ def update_current_account(device_id, account):
         response = requests.patch(url, json=payload, timeout=10)
         response.raise_for_status()
         
-        print(f"Đã cập nhật current_account cho {device_id} → {account['account']}: {account['name']}")
+        # print(f"Đã cập nhật current_account cho {device_id} → {account['account']}: {account['name']}")
         return True
         
     except requests.exceptions.RequestException as e:

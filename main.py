@@ -37,7 +37,7 @@ TARGET_PACKAGES = {ZALO_PKG, FACEBOOK_PKG}
 
 # Một lần bật 1.1.1.1 cho mỗi device (per-process memory)
 _VPN_CHECKED = set()
-
+_STATUS_FILE_CHECK = set()
 
 # ======================= HÀM HỖ TRỢ =======================
 def _is_home_pkg(pkg: str) -> bool:
@@ -81,7 +81,7 @@ async def check_termux_api_installed(driver):
     log_message(f"[{device_id}] Kiểm tra cài đặt Termux")
     result = subprocess.run(["platform-tools/adb", "-s", device_id, "shell", "pm", "list", "packages"], capture_output=True, text=True)
     if not "com.termux" in result.stdout:
-        log_message(f"[{device_id}] Cài đặt Termux và Termux:API")
+        log_message(f"[{device_id}] Cài đặt Termux")
         subprocess.run(["platform-tools/adb", "-s", device_id, "install-multiple", "arm64-v8a/base.apk", "arm64-v8a/split_config.arm64_v8a.apk", "arm64-v8a/split_config.vi.apk", "arm64-v8a/split_config.xxhdpi.apk"])
         result = subprocess.run(["platform-tools/adb", "-s", device_id, "shell", "pm", "list", "packages"], capture_output=True, text=True)
         if not "com.termux" in result.stdout:
@@ -94,9 +94,8 @@ async def check_termux_api_installed(driver):
         await asyncio.sleep(5)
         driver(resourceId="com.android.permissioncontroller:id/permission_allow_button").click()
         await asyncio.sleep(10)
-        driver.send_keys("pkg install termux-api\n")
-        await asyncio.sleep(10)
     driver.app_start("com.termux")
+    driver.send_keys("pkg install termux-api\n")
     return True
 
 async def disable_auto_rotation(driver, device_id: str):
@@ -393,13 +392,15 @@ async def device_supervisor(device_id: str):
                     # Nếu 'active' là True, thiết bị sẽ bị tạm dừng
                     if device_status.get('active', False):
                         is_paused = True
+                    _STATUS_FILE_CHECK.discard(device_id)  # Đã tìm thấy file, xóa khỏi set
                 except FileNotFoundError:
                     # File không tồn tại, coi như không tạm dừng, cho phép chạy
-                    print(f"[{device_id}] ✅ Không tìm thấy file status, tiếp tục chạy.")
+                    if not device_id in _STATUS_FILE_CHECK:
+                        log_message(f"[{device_id}] ✅ Không tìm thấy file status, tiếp tục chạy.", logging.WARNING)
+                        _STATUS_FILE_CHECK.add(device_id)
                     pass
                 except Exception as e:
-                    # Lỗi đọc file, cũng cho phép chạy để tránh bị kẹt
-                    print(f"[{device_id}] ❌ Lỗi khi đọc file JSON: {e}. Sẽ tiếp tục chạy.")
+                    log_message(f"[{device_id}] ❌ Lỗi: {e}, tiếp tục chạy.", logging.WARNING)
 
                 if is_paused and task is not None:
                     if not task.done():

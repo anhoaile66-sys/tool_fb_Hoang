@@ -33,8 +33,6 @@ async def get_facebook_account_name(driver) -> str:
         await asyncio.sleep(3)
         
         # Bước 2: Click vào "Đi tới trang cá nhân"
-        print("👤 Tìm và click vào trang cá nhân...")
-        
         profile_locators = [
             ("desc", "Đi tới trang cá nhân"),
             ("desc", "Go to profile"),
