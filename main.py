@@ -10,7 +10,8 @@ import sys
 sys.stdout.reconfigure(encoding='utf-8')
 from id import DEVICE_LIST
 from util.log import log_message
-
+import main_lib
+import pymongo_management
 
 # ======================= CẤU HÌNH =======================
 HOME_PACKAGES = {
