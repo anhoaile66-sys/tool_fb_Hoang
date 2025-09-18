@@ -56,3 +56,4 @@ test.py
 *.swp
 *.swo
 /module/__pycache__
+assets/logs/toolfacebook.log

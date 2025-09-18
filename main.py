@@ -368,13 +368,16 @@ async def device_supervisor(device_id: str):
         except:
             pass
     task = None
+    temp_alive = True
     while True:
         try:
-            
             # ======================= NEW CODE BLOCK START =======================
             # Vòng lặp chờ, liên tục kiểm tra file status trước khi làm bất cứ điều gì
             while True:
                 still_alive = await check_driver(driver)
+                if not temp_alive and still_alive:
+                    log_message(f"[{device_id}] ✅ Kết nối thiết bị đã được khôi phục.", logging.INFO)
+                temp_alive = still_alive
                 if not still_alive:
                     if task is not None and not task.done():
                         task.cancel()
@@ -383,7 +386,6 @@ async def device_supervisor(device_id: str):
                     await asyncio.sleep(5.0)
                     driver = await asyncio.to_thread(u2.connect_usb, device_id)
                     continue
-
                 is_paused = False
                 device_status_path = f"C:/Zalo_CRM/Zalo_base/device_status_{device_id}.json"
                 try:
@@ -401,7 +403,6 @@ async def device_supervisor(device_id: str):
                     pass
                 except Exception as e:
                     log_message(f"[{device_id}] ❌ Lỗi: {e}, tiếp tục chạy.", logging.WARNING)
-
                 if is_paused and task is not None:
                     if not task.done():
                         task.cancel()
@@ -415,9 +416,7 @@ async def device_supervisor(device_id: str):
             
             if not status[device_id]:
                 task = asyncio.create_task(device_once(device_id))
-
-            # Sau khi xong 1 vòng, ngủ ngắn rồi tiếp tục vòng kế
-            await asyncio.sleep(random.uniform(5, 10))
+            await asyncio.sleep(2.0)
         except RestartThisDevice as e:
             log_message(f"[{device_id}] ↻ Watchdog yêu cầu RESTART — khởi động lại quy trình cho máy này.", logging.WARNING)
             await asyncio.sleep(2.0)
@@ -428,8 +427,6 @@ async def device_supervisor(device_id: str):
             await asyncio.sleep(5.0)
             continue
 
-
-# ======================= CHẠY TẤT CẢ THIẾT BỊ VỚI TASK MANAGER =======================
 async def run_all_devices():
     """Chạy tất cả device với Task Manager và WebSocket"""
     # Khởi động supervisor cho mỗi device
