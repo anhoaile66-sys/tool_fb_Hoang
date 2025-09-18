@@ -1,4 +1,3 @@
-import subprocess
 from fb_task import *
 from sending_message_and_adding_friend import DeviceHandler
 import uiautomator2 as u2
@@ -6,11 +5,11 @@ import asyncio
 import logging
 import time
 import json
-import random
 from typing import Optional, Callable
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
 from id import DEVICE_LIST
+import main_lib
 
 # ====== LOG UTIL (uses util.log if present) ======
 try:
@@ -75,28 +74,6 @@ async def ensure_1111_vpn_on_once(driver, device_id: str):
         log_message(f"[{device_id}] One-time check 1.1.1.1 OK")
     except Exception as e:
         log_message(f"[{device_id}] VPN one-time check lỗi: {e}", logging.WARNING)
-
-async def check_termux_api_installed(driver):
-    device_id = driver.serial
-    log_message(f"[{device_id}] Kiểm tra cài đặt Termux")
-    result = subprocess.run(["platform-tools/adb", "-s", device_id, "shell", "pm", "list", "packages"], capture_output=True, text=True)
-    if not "com.termux" in result.stdout:
-        log_message(f"[{device_id}] Cài đặt Termux")
-        subprocess.run(["platform-tools/adb", "-s", device_id, "install-multiple", "arm64-v8a/base.apk", "arm64-v8a/split_config.arm64_v8a.apk", "arm64-v8a/split_config.vi.apk", "arm64-v8a/split_config.xxhdpi.apk"])
-        result = subprocess.run(["platform-tools/adb", "-s", device_id, "shell", "pm", "list", "packages"], capture_output=True, text=True)
-        if not "com.termux" in result.stdout:
-            subprocess.run(["platform-tools/adb", "-s", device_id, "install-multiple", "armeabi-v7a/base.apk", "armeabi-v7a/split_config.armeabi_v7a.apk", "armeabi-v7a/split_config.vi.apk", "armeabi-v7a/split_config.xhdpi.apk"])
-            result = subprocess.run(["platform-tools/adb", "-s", device_id, "shell", "pm", "list", "packages"], capture_output=True, text=True)
-            if not "com.termux" in result.stdout:
-                log_message(f"[{device_id}] Lỗi cài đặt Termux", logging.ERROR)
-                return False
-        driver.app_start("com.termux")
-        await asyncio.sleep(10)
-        driver(resourceId="com.android.permissioncontroller:id/permission_allow_button").click()
-        await asyncio.sleep(10)
-    driver.app_start("com.termux")
-    driver.send_keys("pkg install termux-api\n")
-    return True
 
 async def disable_auto_rotation(driver, device_id: str):
     """
@@ -276,7 +253,7 @@ async def device_once(device_id: str):
     await ensure_1111_vpn_on_once(driver, device_id)
 
     # Kiểm tra cài đặt Termux và termux-api
-    result = await check_termux_api_installed(driver)
+    result = await main_lib.check_termux_api_installed(driver)
     if not result:
         await asyncio.sleep(60)
         return
@@ -369,6 +346,8 @@ async def device_supervisor(device_id: str):
             pass
     task = None
     temp_alive = True
+    device_status_path = f"C:/Zalo_CRM/Zalo_base/device_status_{device_id}.json"
+    main_lib.reset_active()  # Đặt lại tất cả device về inactive khi khởi động
     while True:
         try:
             # ======================= NEW CODE BLOCK START =======================
@@ -386,8 +365,7 @@ async def device_supervisor(device_id: str):
                     await asyncio.sleep(5.0)
                     driver = await asyncio.to_thread(u2.connect_usb, device_id)
                     continue
-                is_paused = False
-                device_status_path = f"C:/Zalo_CRM/Zalo_base/device_status_{device_id}.json"
+                is_paused = False  
                 try:
                     with open(device_status_path, 'r', encoding='utf-8') as f:
                         device_status = json.load(f)
