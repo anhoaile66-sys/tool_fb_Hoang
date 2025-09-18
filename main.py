@@ -9,14 +9,8 @@ from typing import Optional, Callable
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
 from id import DEVICE_LIST
-import main_lib
+from util.log import log_message
 
-# ====== LOG UTIL (uses util.log if present) ======
-try:
-    from util.log import log_message
-except Exception:
-    def log_message(msg: str, level=logging.INFO):
-        print(msg)
 
 # ======================= CẤU HÌNH =======================
 HOME_PACKAGES = {
@@ -410,6 +404,8 @@ async def run_all_devices():
     # Khởi động supervisor cho mỗi device
     tasks = [asyncio.create_task(device_supervisor(did)) for did in DEVICE_LIST]
     await asyncio.gather(*tasks)
+
+
 if __name__ == "__main__":
     try:
         asyncio.run(run_all_devices())
