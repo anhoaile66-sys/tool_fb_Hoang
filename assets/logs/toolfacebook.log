@@ -43189,3 +43189,478 @@ PN59BMHYPFXCPN8T Thực hiện tác vụ: Xem reels
 2025-09-17 11:40:19,610 - INFO - Bắt đầu comment post
 2025-09-17 11:40:47,850 - INFO - Đã comment
 2025-09-17 11:40:48,524 - INFO - Đã thoát giao diện comment
+2025-09-18 13:51:28,834 - WARNING - [7HYP4T4XTS4DXKCY] ✅ Không tìm thấy file status, tiếp tục chạy.
+2025-09-18 13:51:32,060 - WARNING - [CEIN4X45I7ZHFEFU] ✅ Không tìm thấy file status, tiếp tục chạy.
+2025-09-18 13:51:36,879 - WARNING - [IJP78949G69DKNHM] ✅ Không tìm thấy file status, tiếp tục chạy.
+2025-09-18 13:51:39,951 - WARNING - [QK8TEMKZMBYHPV6P] ✅ Không tìm thấy file status, tiếp tục chạy.
+2025-09-18 13:51:43,049 - WARNING - [EY5H9DJNIVNFH6OR] ✅ Không tìm thấy file status, tiếp tục chạy.
+2025-09-18 13:51:45,951 - WARNING - [Z5LVOF4PRGXGTS9H] ✅ Không tìm thấy file status, tiếp tục chạy.
+2025-09-18 13:51:49,007 - WARNING - [IZDEGA8TFYXWRK9X] ✅ Không tìm thấy file status, tiếp tục chạy.
+2025-09-18 13:51:52,104 - WARNING - [CQIZKJ8P59AY7DHI] ✅ Không tìm thấy file status, tiếp tục chạy.
+2025-09-18 13:51:57,952 - WARNING - [9PAM7DIFW87DOBEU] ✅ Không tìm thấy file status, tiếp tục chạy.
+2025-09-18 13:51:59,706 - WARNING - [R8YY70HCNRX] ✅ Không tìm thấy file status, tiếp tục chạy.
+2025-09-18 13:52:02,785 - WARNING - [UWJJOJLB85SO7LIZ] ✅ Không tìm thấy file status, tiếp tục chạy.
+2025-09-18 13:52:03,681 - INFO - [7HYP4T4XTS4DXKCY] Kết nối thiết bị: Thành công.
+2025-09-18 13:52:03,851 - INFO - [CEIN4X45I7ZHFEFU] Kết nối thiết bị: Thành công.
+2025-09-18 13:52:04,048 - INFO - [IJP78949G69DKNHM] Kết nối thiết bị: Thành công.
+2025-09-18 13:52:04,414 - INFO - [QK8TEMKZMBYHPV6P] Kết nối thiết bị: Thành công.
+2025-09-18 13:52:04,542 - INFO - [EY5H9DJNIVNFH6OR] Kết nối thiết bị: Thành công.
+2025-09-18 13:52:04,741 - INFO - [Z5LVOF4PRGXGTS9H] Kết nối thiết bị: Thành công.
+2025-09-18 13:52:07,321 - INFO - [IZDEGA8TFYXWRK9X] Kết nối thiết bị: Thành công.
+2025-09-18 13:52:07,353 - INFO - [CQIZKJ8P59AY7DHI] Kết nối thiết bị: Thành công.
+2025-09-18 13:52:07,389 - INFO - [9PAM7DIFW87DOBEU] Kết nối thiết bị: Thành công.
+2025-09-18 13:52:07,521 - INFO - [R8YY70HCNRX] Kết nối thiết bị: Thành công.
+2025-09-18 13:52:07,992 - INFO - [UWJJOJLB85SO7LIZ] Kết nối thiết bị: Thành công.
+2025-09-18 13:52:07,994 - INFO - [CEIN4X45I7ZHFEFU] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-18 13:52:08,130 - INFO - [CEIN4X45I7ZHFEFU] Trạng thái auto-rotation hiện tại: 1
+2025-09-18 13:52:08,278 - INFO - [CEIN4X45I7ZHFEFU] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-18 13:52:08,907 - INFO - [IJP78949G69DKNHM] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-18 13:52:09,041 - INFO - [IJP78949G69DKNHM] Trạng thái auto-rotation hiện tại: 1
+2025-09-18 13:52:09,161 - INFO - [IJP78949G69DKNHM] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-18 13:52:09,163 - INFO - [7HYP4T4XTS4DXKCY] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-18 13:52:09,304 - INFO - [7HYP4T4XTS4DXKCY] Trạng thái auto-rotation hiện tại: 1
+2025-09-18 13:52:09,465 - INFO - [7HYP4T4XTS4DXKCY] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-18 13:52:09,465 - INFO - [Z5LVOF4PRGXGTS9H] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-18 13:52:09,651 - INFO - [Z5LVOF4PRGXGTS9H] Trạng thái auto-rotation hiện tại: 1
+2025-09-18 13:52:09,799 - INFO - [Z5LVOF4PRGXGTS9H] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-18 13:52:09,799 - INFO - [EY5H9DJNIVNFH6OR] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-18 13:52:09,924 - INFO - [EY5H9DJNIVNFH6OR] Trạng thái auto-rotation hiện tại: 1
+2025-09-18 13:52:10,040 - INFO - [EY5H9DJNIVNFH6OR] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-18 13:52:10,041 - INFO - [QK8TEMKZMBYHPV6P] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-18 13:52:10,178 - INFO - [QK8TEMKZMBYHPV6P] Trạng thái auto-rotation hiện tại: 1
+2025-09-18 13:52:10,306 - INFO - [QK8TEMKZMBYHPV6P] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-18 13:52:10,444 - INFO - [CEIN4X45I7ZHFEFU] Auto-rotation đã được TẮT thành công!
+2025-09-18 13:52:10,444 - INFO - [CEIN4X45I7ZHFEFU] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-18 13:52:10,445 - INFO - [CEIN4X45I7ZHFEFU] Hoàn thành disable auto-rotation
+2025-09-18 13:52:10,446 - INFO - [CEIN4X45I7ZHFEFU] Kiểm tra bật 1.1.1.1 (một lần)
+2025-09-18 13:52:11,684 - INFO - [R8YY70HCNRX] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-18 13:52:11,793 - INFO - [R8YY70HCNRX] Trạng thái auto-rotation hiện tại: 1
+2025-09-18 13:52:11,903 - INFO - [R8YY70HCNRX] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-18 13:52:12,027 - INFO - [IJP78949G69DKNHM] Auto-rotation đã được TẮT thành công!
+2025-09-18 13:52:12,027 - INFO - [IJP78949G69DKNHM] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-18 13:52:12,027 - INFO - [IJP78949G69DKNHM] Hoàn thành disable auto-rotation
+2025-09-18 13:52:12,027 - INFO - [IJP78949G69DKNHM] Kiểm tra bật 1.1.1.1 (một lần)
+2025-09-18 13:52:13,287 - INFO - [7HYP4T4XTS4DXKCY] Auto-rotation đã được TẮT thành công!
+2025-09-18 13:52:13,287 - INFO - [7HYP4T4XTS4DXKCY] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-18 13:52:13,287 - INFO - [7HYP4T4XTS4DXKCY] Hoàn thành disable auto-rotation
+2025-09-18 13:52:13,287 - INFO - [7HYP4T4XTS4DXKCY] Kiểm tra bật 1.1.1.1 (một lần)
+2025-09-18 13:52:14,743 - INFO - [Z5LVOF4PRGXGTS9H] Auto-rotation đã được TẮT thành công!
+2025-09-18 13:52:14,743 - INFO - [Z5LVOF4PRGXGTS9H] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-18 13:52:14,743 - INFO - [Z5LVOF4PRGXGTS9H] Hoàn thành disable auto-rotation
+2025-09-18 13:52:14,743 - INFO - [Z5LVOF4PRGXGTS9H] Kiểm tra bật 1.1.1.1 (một lần)
+2025-09-18 13:52:16,379 - INFO - [EY5H9DJNIVNFH6OR] Auto-rotation đã được TẮT thành công!
+2025-09-18 13:52:16,379 - INFO - [EY5H9DJNIVNFH6OR] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-18 13:52:16,379 - INFO - [EY5H9DJNIVNFH6OR] Hoàn thành disable auto-rotation
+2025-09-18 13:52:16,379 - INFO - [EY5H9DJNIVNFH6OR] Kiểm tra bật 1.1.1.1 (một lần)
+2025-09-18 13:52:17,822 - INFO - [QK8TEMKZMBYHPV6P] Auto-rotation đã được TẮT thành công!
+2025-09-18 13:52:17,822 - INFO - [QK8TEMKZMBYHPV6P] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-18 13:52:17,822 - INFO - [QK8TEMKZMBYHPV6P] Hoàn thành disable auto-rotation
+2025-09-18 13:52:17,825 - INFO - [QK8TEMKZMBYHPV6P] Kiểm tra bật 1.1.1.1 (một lần)
+2025-09-18 13:52:19,082 - INFO - [IZDEGA8TFYXWRK9X] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-18 13:52:19,228 - INFO - [IZDEGA8TFYXWRK9X] Trạng thái auto-rotation hiện tại: 1
+2025-09-18 13:52:19,393 - INFO - [IZDEGA8TFYXWRK9X] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-18 13:52:19,393 - INFO - [9PAM7DIFW87DOBEU] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-18 13:52:19,521 - INFO - [9PAM7DIFW87DOBEU] Trạng thái auto-rotation hiện tại: 1
+2025-09-18 13:52:19,671 - INFO - [9PAM7DIFW87DOBEU] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-18 13:52:19,671 - INFO - [CQIZKJ8P59AY7DHI] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-18 13:52:19,807 - INFO - [CQIZKJ8P59AY7DHI] Trạng thái auto-rotation hiện tại: 1
+2025-09-18 13:52:19,932 - INFO - [CQIZKJ8P59AY7DHI] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-18 13:52:19,934 - INFO - [UWJJOJLB85SO7LIZ] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-18 13:52:20,072 - INFO - [UWJJOJLB85SO7LIZ] Trạng thái auto-rotation hiện tại: 1
+2025-09-18 13:52:20,187 - INFO - [UWJJOJLB85SO7LIZ] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-18 13:52:20,368 - INFO - [R8YY70HCNRX] Auto-rotation đã được TẮT thành công!
+2025-09-18 13:52:20,368 - INFO - [R8YY70HCNRX] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-18 13:52:20,368 - INFO - [R8YY70HCNRX] Hoàn thành disable auto-rotation
+2025-09-18 13:52:20,372 - INFO - [R8YY70HCNRX] Kiểm tra bật 1.1.1.1 (một lần)
+2025-09-18 13:52:21,706 - INFO - [CEIN4X45I7ZHFEFU] One-time check 1.1.1.1 OK
+2025-09-18 13:52:21,706 - INFO - [CEIN4X45I7ZHFEFU] Kiểm tra cài đặt Termux
+2025-09-18 13:52:24,862 - INFO - [IJP78949G69DKNHM] One-time check 1.1.1.1 OK
+2025-09-18 13:52:24,862 - INFO - [IJP78949G69DKNHM] Kiểm tra cài đặt Termux
+2025-09-18 13:52:28,719 - INFO - [7HYP4T4XTS4DXKCY] One-time check 1.1.1.1 OK
+2025-09-18 13:52:28,733 - INFO - [7HYP4T4XTS4DXKCY] Kiểm tra cài đặt Termux
+2025-09-18 13:52:32,219 - INFO - [Z5LVOF4PRGXGTS9H] One-time check 1.1.1.1 OK
+2025-09-18 13:52:32,221 - INFO - [Z5LVOF4PRGXGTS9H] Kiểm tra cài đặt Termux
+2025-09-18 13:52:32,420 - INFO - [Z5LVOF4PRGXGTS9H] Cài đặt Termux
+2025-09-18 13:52:39,612 - INFO - [IZDEGA8TFYXWRK9X] Auto-rotation đã được TẮT thành công!
+2025-09-18 13:52:39,612 - INFO - [IZDEGA8TFYXWRK9X] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-18 13:52:39,612 - INFO - [IZDEGA8TFYXWRK9X] Hoàn thành disable auto-rotation
+2025-09-18 13:52:39,612 - INFO - [IZDEGA8TFYXWRK9X] Kiểm tra bật 1.1.1.1 (một lần)
+2025-09-18 13:52:41,249 - INFO - [EY5H9DJNIVNFH6OR] One-time check 1.1.1.1 OK
+2025-09-18 13:52:41,249 - INFO - [EY5H9DJNIVNFH6OR] Kiểm tra cài đặt Termux
+2025-09-18 13:52:44,328 - INFO - [9PAM7DIFW87DOBEU] Auto-rotation đã được TẮT thành công!
+2025-09-18 13:52:44,328 - INFO - [9PAM7DIFW87DOBEU] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-18 13:52:44,328 - INFO - [9PAM7DIFW87DOBEU] Hoàn thành disable auto-rotation
+2025-09-18 13:52:44,328 - INFO - [9PAM7DIFW87DOBEU] Kiểm tra bật 1.1.1.1 (một lần)
+2025-09-18 13:52:48,262 - INFO - [CQIZKJ8P59AY7DHI] Auto-rotation đã được TẮT thành công!
+2025-09-18 13:52:48,262 - INFO - [CQIZKJ8P59AY7DHI] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-18 13:52:48,262 - INFO - [CQIZKJ8P59AY7DHI] Hoàn thành disable auto-rotation
+2025-09-18 13:52:48,262 - INFO - [CQIZKJ8P59AY7DHI] Kiểm tra bật 1.1.1.1 (một lần)
+2025-09-18 13:52:49,677 - INFO - [UWJJOJLB85SO7LIZ] Auto-rotation đã được TẮT thành công!
+2025-09-18 13:52:49,677 - INFO - [UWJJOJLB85SO7LIZ] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-18 13:52:49,677 - INFO - [UWJJOJLB85SO7LIZ] Hoàn thành disable auto-rotation
+2025-09-18 13:52:49,677 - INFO - [UWJJOJLB85SO7LIZ] Kiểm tra bật 1.1.1.1 (một lần)
+2025-09-18 13:52:51,202 - INFO - [QK8TEMKZMBYHPV6P] One-time check 1.1.1.1 OK
+2025-09-18 13:52:51,202 - INFO - [QK8TEMKZMBYHPV6P] Kiểm tra cài đặt Termux
+2025-09-18 13:52:54,896 - INFO - [R8YY70HCNRX] One-time check 1.1.1.1 OK
+2025-09-18 13:52:54,896 - INFO - [R8YY70HCNRX] Kiểm tra cài đặt Termux
+2025-09-18 13:52:57,749 - INFO - [CEIN4X45I7ZHFEFU] Đang đăng nhập vào tài khoản Hoàng Khoa
+2025-09-18 13:52:57,754 - INFO - [CEIN4X45I7ZHFEFU] Về trang chủ
+2025-09-18 13:52:58,257 - INFO - [CEIN4X45I7ZHFEFU] Đã về trang chủ
+2025-09-18 13:52:58,260 - INFO - [CEIN4X45I7ZHFEFU] Đăng xuất
+2025-09-18 13:52:59,568 - INFO - [CEIN4X45I7ZHFEFU] Vào menu
+2025-09-18 13:53:01,218 - INFO - [IJP78949G69DKNHM] Đang đăng nhập vào tài khoản Tú Uyên
+2025-09-18 13:53:01,218 - INFO - [IJP78949G69DKNHM] Về trang chủ
+2025-09-18 13:53:01,481 - INFO - [IJP78949G69DKNHM] Đã về trang chủ
+2025-09-18 13:53:01,483 - INFO - [IJP78949G69DKNHM] Đăng xuất
+2025-09-18 13:53:02,330 - INFO - [IJP78949G69DKNHM] Vào menu
+2025-09-18 13:53:04,181 - INFO - [7HYP4T4XTS4DXKCY] Đang đăng nhập vào tài khoản Nguyễn Thị Ánh
+2025-09-18 13:53:04,181 - INFO - [7HYP4T4XTS4DXKCY] Về trang chủ
+2025-09-18 13:53:04,547 - INFO - [7HYP4T4XTS4DXKCY] Đã về trang chủ
+2025-09-18 13:53:04,547 - INFO - [7HYP4T4XTS4DXKCY] Đăng xuất
+2025-09-18 13:53:05,533 - INFO - [7HYP4T4XTS4DXKCY] Vào menu
+2025-09-18 13:53:07,270 - INFO - [IZDEGA8TFYXWRK9X] One-time check 1.1.1.1 OK
+2025-09-18 13:53:07,270 - INFO - [IZDEGA8TFYXWRK9X] Kiểm tra cài đặt Termux
+2025-09-18 13:53:10,549 - INFO - [9PAM7DIFW87DOBEU] One-time check 1.1.1.1 OK
+2025-09-18 13:53:10,549 - INFO - [9PAM7DIFW87DOBEU] Kiểm tra cài đặt Termux
+2025-09-18 13:53:16,504 - INFO - [CQIZKJ8P59AY7DHI] One-time check 1.1.1.1 OK
+2025-09-18 13:53:16,504 - INFO - [CQIZKJ8P59AY7DHI] Kiểm tra cài đặt Termux
+2025-09-18 13:53:20,360 - INFO - [UWJJOJLB85SO7LIZ] One-time check 1.1.1.1 OK
+2025-09-18 13:53:20,374 - INFO - [UWJJOJLB85SO7LIZ] Kiểm tra cài đặt Termux
+2025-09-18 13:53:24,777 - INFO - [EY5H9DJNIVNFH6OR] Đang đăng nhập vào tài khoản Huyền Trang
+2025-09-18 13:53:24,777 - INFO - [EY5H9DJNIVNFH6OR] Về trang chủ
+2025-09-18 13:53:25,051 - INFO - [EY5H9DJNIVNFH6OR] Đã về trang chủ
+2025-09-18 13:53:25,051 - INFO - [EY5H9DJNIVNFH6OR] Đăng xuất
+2025-09-18 13:53:25,779 - INFO - [EY5H9DJNIVNFH6OR] Vào menu
+2025-09-18 13:53:29,105 - INFO - [QK8TEMKZMBYHPV6P] Đang đăng nhập vào tài khoản Lưu Thư
+2025-09-18 13:53:29,105 - INFO - [QK8TEMKZMBYHPV6P] Về trang chủ
+2025-09-18 13:53:29,501 - INFO - [QK8TEMKZMBYHPV6P] Đã về trang chủ
+2025-09-18 13:53:29,501 - INFO - [QK8TEMKZMBYHPV6P] Đăng xuất
+2025-09-18 13:53:30,344 - INFO - [QK8TEMKZMBYHPV6P] Vào menu
+2025-09-18 13:53:31,890 - INFO - [R8YY70HCNRX] Đang đăng nhập vào tài khoản Diễm Quỳnh
+2025-09-18 13:53:31,890 - INFO - [R8YY70HCNRX] Về trang chủ
+2025-09-18 13:53:32,157 - INFO - [R8YY70HCNRX] Đã về trang chủ
+2025-09-18 13:53:32,160 - INFO - [R8YY70HCNRX] Đăng xuất
+2025-09-18 13:53:32,870 - INFO - [R8YY70HCNRX] Vào menu
+2025-09-18 13:53:36,765 - INFO - [IZDEGA8TFYXWRK9X] Đang đăng nhập vào tài khoản Anh Minh
+2025-09-18 13:53:36,765 - INFO - [IZDEGA8TFYXWRK9X] Về trang chủ
+2025-09-18 13:53:37,239 - INFO - [IZDEGA8TFYXWRK9X] Đã về trang chủ
+2025-09-18 13:53:37,239 - INFO - [IZDEGA8TFYXWRK9X] Đăng xuất
+2025-09-18 13:53:38,287 - INFO - [IZDEGA8TFYXWRK9X] Vào menu
+2025-09-18 13:53:40,544 - INFO - [9PAM7DIFW87DOBEU] Đang đăng nhập vào tài khoản Mai Lê
+2025-09-18 13:53:40,544 - INFO - [9PAM7DIFW87DOBEU] Về trang chủ
+2025-09-18 13:53:40,946 - INFO - [9PAM7DIFW87DOBEU] Đã về trang chủ
+2025-09-18 13:53:40,946 - INFO - [9PAM7DIFW87DOBEU] Đăng xuất
+2025-09-18 13:53:41,949 - INFO - [9PAM7DIFW87DOBEU] Vào menu
+2025-09-18 13:53:46,030 - INFO - [CEIN4X45I7ZHFEFU] Đang đăng xuất
+2025-09-18 13:53:47,966 - INFO - [IJP78949G69DKNHM] Đang đăng xuất
+2025-09-18 13:53:48,669 - INFO - [CQIZKJ8P59AY7DHI] Đang đăng nhập vào tài khoản Hoa Mai
+2025-09-18 13:53:48,669 - INFO - [CQIZKJ8P59AY7DHI] Về trang chủ
+2025-09-18 13:53:49,066 - INFO - [CQIZKJ8P59AY7DHI] Đã về trang chủ
+2025-09-18 13:53:49,066 - INFO - [CQIZKJ8P59AY7DHI] Đăng xuất
+2025-09-18 13:53:50,254 - INFO - [CQIZKJ8P59AY7DHI] Vào menu
+2025-09-18 13:53:53,077 - INFO - [7HYP4T4XTS4DXKCY] Đang đăng xuất
+2025-09-18 13:53:53,896 - INFO - [UWJJOJLB85SO7LIZ] Đang đăng nhập vào tài khoản Nguyễn Lai
+2025-09-18 13:53:53,898 - INFO - [UWJJOJLB85SO7LIZ] Về trang chủ
+2025-09-18 13:53:54,272 - INFO - [UWJJOJLB85SO7LIZ] Đã về trang chủ
+2025-09-18 13:53:54,272 - INFO - [UWJJOJLB85SO7LIZ] Đăng xuất
+2025-09-18 13:53:55,382 - INFO - [UWJJOJLB85SO7LIZ] Vào menu
+2025-09-18 13:53:57,436 - INFO - [Z5LVOF4PRGXGTS9H] Đang đăng nhập vào tài khoản Ngọc Vi
+2025-09-18 13:53:57,436 - INFO - [Z5LVOF4PRGXGTS9H] Về trang chủ
+2025-09-18 13:53:58,078 - INFO - [Z5LVOF4PRGXGTS9H] Đã về trang chủ
+2025-09-18 13:53:58,082 - INFO - [Z5LVOF4PRGXGTS9H] Đăng xuất
+2025-09-18 13:53:59,533 - INFO - [Z5LVOF4PRGXGTS9H] Vào menu
+2025-09-18 13:54:03,352 - INFO - [QK8TEMKZMBYHPV6P] Đang đăng xuất
+2025-09-18 13:54:04,663 - INFO - [R8YY70HCNRX] Đang đăng xuất
+2025-09-18 13:54:11,940 - INFO - [Z5LVOF4PRGXGTS9H] Đang đăng xuất
+2025-09-18 13:54:13,748 - INFO - [EY5H9DJNIVNFH6OR] Đang đăng xuất
+2025-09-18 13:54:16,564 - INFO - [IZDEGA8TFYXWRK9X] Đang đăng xuất
+2025-09-18 13:54:17,934 - INFO - [9PAM7DIFW87DOBEU] Đang đăng xuất
+2025-09-18 13:54:19,681 - INFO - [CQIZKJ8P59AY7DHI] Đang đăng xuất
+2025-09-18 13:54:22,906 - INFO - [CEIN4X45I7ZHFEFU] Xác nhận đăng xuất
+2025-09-18 13:54:22,906 - INFO - [CEIN4X45I7ZHFEFU] Đăng xuất thành công
+2025-09-18 13:54:23,874 - INFO - [IJP78949G69DKNHM] Xác nhận đăng xuất
+2025-09-18 13:54:23,878 - INFO - [IJP78949G69DKNHM] Đăng xuất thành công
+2025-09-18 13:54:24,099 - INFO - [CEIN4X45I7ZHFEFU] Bắt đầu đăng nhập vào tài khoản Hoàng Khoa
+2025-09-18 13:54:25,387 - INFO - [IJP78949G69DKNHM] Bắt đầu đăng nhập vào tài khoản Tú Uyên
+2025-09-18 13:54:26,669 - INFO - [7HYP4T4XTS4DXKCY] Xác nhận đăng xuất
+2025-09-18 13:54:26,669 - INFO - [7HYP4T4XTS4DXKCY] Đăng xuất thành công
+2025-09-18 13:54:27,204 - INFO - [7HYP4T4XTS4DXKCY] Bắt đầu đăng nhập vào tài khoản Nguyễn Thị Ánh
+2025-09-18 13:54:29,947 - INFO - [QK8TEMKZMBYHPV6P] Xác nhận đăng xuất
+2025-09-18 13:54:29,947 - INFO - [QK8TEMKZMBYHPV6P] Đăng xuất thành công
+2025-09-18 13:54:32,662 - INFO - [QK8TEMKZMBYHPV6P] Bắt đầu đăng nhập vào tài khoản Lưu Thư
+2025-09-18 13:54:32,998 - WARNING - [R8YY70F5MKN] ✅ Không tìm thấy file status, tiếp tục chạy.
+2025-09-18 13:54:33,724 - INFO - [R8YY70HCNRX] Xác nhận đăng xuất
+2025-09-18 13:54:33,728 - INFO - [R8YY70HCNRX] Đăng xuất thành công
+2025-09-18 13:54:35,617 - INFO - [UWJJOJLB85SO7LIZ] Đang đăng xuất
+2025-09-18 13:54:37,655 - INFO - [R8YY70HCNRX] Bắt đầu đăng nhập vào tài khoản Diễm Quỳnh
+2025-09-18 13:54:38,672 - WARNING - [EM4DYTEITCCYJNFU] ✅ Không tìm thấy file status, tiếp tục chạy.
+2025-09-18 13:54:38,812 - WARNING - [F6NZ5LRKWWGACYQ8] ✅ Không tìm thấy file status, tiếp tục chạy.
+2025-09-18 13:54:42,011 - INFO - [Z5LVOF4PRGXGTS9H] Xác nhận đăng xuất
+2025-09-18 13:54:42,011 - INFO - [Z5LVOF4PRGXGTS9H] Đăng xuất thành công
+2025-09-18 13:54:42,150 - WARNING - [7DXCUKKB6DVWDAQO] ✅ Không tìm thấy file status, tiếp tục chạy.
+2025-09-18 13:54:42,150 - INFO - [R8YY70F5MKN] Kết nối thiết bị: Thành công.
+2025-09-18 13:54:43,792 - INFO - [EY5H9DJNIVNFH6OR] Xác nhận đăng xuất
+2025-09-18 13:54:43,792 - INFO - [EY5H9DJNIVNFH6OR] Đăng xuất thành công
+2025-09-18 13:54:43,958 - INFO - [EM4DYTEITCCYJNFU] Kết nối thiết bị: Thành công.
+2025-09-18 13:54:43,974 - INFO - [Z5LVOF4PRGXGTS9H] Bắt đầu đăng nhập vào tài khoản Ngọc Vi
+2025-09-18 13:54:46,860 - INFO - [F6NZ5LRKWWGACYQ8] Kết nối thiết bị: Thành công.
+2025-09-18 13:54:48,388 - INFO - [7DXCUKKB6DVWDAQO] Kết nối thiết bị: Thành công.
+2025-09-18 13:54:48,388 - INFO - [EY5H9DJNIVNFH6OR] Bắt đầu đăng nhập vào tài khoản Huyền Trang
+2025-09-18 13:54:48,627 - INFO - [R8YY70F5MKN] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-18 13:54:48,745 - INFO - [R8YY70F5MKN] Trạng thái auto-rotation hiện tại: 1
+2025-09-18 13:54:48,845 - INFO - [R8YY70F5MKN] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-18 13:54:50,157 - INFO - [IZDEGA8TFYXWRK9X] Xác nhận đăng xuất
+2025-09-18 13:54:50,157 - INFO - [IZDEGA8TFYXWRK9X] Đăng xuất thành công
+2025-09-18 13:54:50,725 - INFO - [9PAM7DIFW87DOBEU] Xác nhận đăng xuất
+2025-09-18 13:54:50,741 - INFO - [9PAM7DIFW87DOBEU] Đăng xuất thành công
+2025-09-18 13:54:53,763 - INFO - [CQIZKJ8P59AY7DHI] Xác nhận đăng xuất
+2025-09-18 13:54:53,763 - INFO - [CQIZKJ8P59AY7DHI] Đăng xuất thành công
+2025-09-18 13:54:53,775 - INFO - [EM4DYTEITCCYJNFU] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-18 13:54:53,931 - INFO - [EM4DYTEITCCYJNFU] Trạng thái auto-rotation hiện tại: 1
+2025-09-18 13:54:54,080 - INFO - [EM4DYTEITCCYJNFU] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-18 13:54:54,083 - INFO - [IZDEGA8TFYXWRK9X] Bắt đầu đăng nhập vào tài khoản Anh Minh
+2025-09-18 13:54:55,979 - INFO - [9PAM7DIFW87DOBEU] Bắt đầu đăng nhập vào tài khoản Mai Lê
+2025-09-18 13:54:57,108 - INFO - [F6NZ5LRKWWGACYQ8] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-18 13:54:57,277 - INFO - [F6NZ5LRKWWGACYQ8] Trạng thái auto-rotation hiện tại: 1
+2025-09-18 13:54:57,399 - INFO - [F6NZ5LRKWWGACYQ8] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-18 13:54:57,399 - INFO - [7DXCUKKB6DVWDAQO] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-18 13:54:57,524 - INFO - [7DXCUKKB6DVWDAQO] Trạng thái auto-rotation hiện tại: 1
+2025-09-18 13:54:57,667 - INFO - [7DXCUKKB6DVWDAQO] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-18 13:54:59,571 - INFO - [R8YY70F5MKN] Auto-rotation đã được TẮT thành công!
+2025-09-18 13:54:59,571 - INFO - [R8YY70F5MKN] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-18 13:54:59,571 - INFO - [R8YY70F5MKN] Hoàn thành disable auto-rotation
+2025-09-18 13:54:59,571 - INFO - [R8YY70F5MKN] Kiểm tra bật 1.1.1.1 (một lần)
+2025-09-18 13:55:01,311 - INFO - [CQIZKJ8P59AY7DHI] Bắt đầu đăng nhập vào tài khoản Hoa Mai
+2025-09-18 13:55:03,720 - INFO - [EM4DYTEITCCYJNFU] Auto-rotation đã được TẮT thành công!
+2025-09-18 13:55:03,720 - INFO - [EM4DYTEITCCYJNFU] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-18 13:55:03,720 - INFO - [EM4DYTEITCCYJNFU] Hoàn thành disable auto-rotation
+2025-09-18 13:55:03,720 - INFO - [EM4DYTEITCCYJNFU] Kiểm tra bật 1.1.1.1 (một lần)
+2025-09-18 13:55:06,513 - INFO - [F6NZ5LRKWWGACYQ8] Auto-rotation đã được TẮT thành công!
+2025-09-18 13:55:06,513 - INFO - [F6NZ5LRKWWGACYQ8] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-18 13:55:06,513 - INFO - [F6NZ5LRKWWGACYQ8] Hoàn thành disable auto-rotation
+2025-09-18 13:55:06,513 - INFO - [F6NZ5LRKWWGACYQ8] Kiểm tra bật 1.1.1.1 (một lần)
+2025-09-18 13:55:07,963 - INFO - [7DXCUKKB6DVWDAQO] Auto-rotation đã được TẮT thành công!
+2025-09-18 13:55:07,963 - INFO - [7DXCUKKB6DVWDAQO] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-18 13:55:07,963 - INFO - [7DXCUKKB6DVWDAQO] Hoàn thành disable auto-rotation
+2025-09-18 13:55:07,963 - INFO - [7DXCUKKB6DVWDAQO] Kiểm tra bật 1.1.1.1 (một lần)
+2025-09-18 13:55:10,471 - INFO - [R8YY70F5MKN] One-time check 1.1.1.1 OK
+2025-09-18 13:55:10,471 - INFO - [R8YY70F5MKN] Kiểm tra cài đặt Termux
+2025-09-18 13:55:16,864 - INFO - [EM4DYTEITCCYJNFU] One-time check 1.1.1.1 OK
+2025-09-18 13:55:16,877 - INFO - [EM4DYTEITCCYJNFU] Kiểm tra cài đặt Termux
+2025-09-18 13:55:21,466 - INFO - [F6NZ5LRKWWGACYQ8] One-time check 1.1.1.1 OK
+2025-09-18 13:55:21,466 - INFO - [F6NZ5LRKWWGACYQ8] Kiểm tra cài đặt Termux
+2025-09-18 13:55:21,665 - INFO - [F6NZ5LRKWWGACYQ8] Cài đặt Termux
+2025-09-18 13:55:32,800 - INFO - [7DXCUKKB6DVWDAQO] One-time check 1.1.1.1 OK
+2025-09-18 13:55:32,808 - INFO - [7DXCUKKB6DVWDAQO] Kiểm tra cài đặt Termux
+2025-09-18 13:55:33,003 - INFO - [7DXCUKKB6DVWDAQO] Cài đặt Termux
+2025-09-18 13:55:40,227 - WARNING - [IZDEGA8TFYXWRK9X] ❌ Mất kết nối thiết bị, hủy task đang chạy.
+2025-09-18 13:55:40,421 - ERROR - Lỗi AdbError: device 'CQIZKJ8P59AY7DHI' not found
+2025-09-18 13:55:40,559 - ERROR - Lỗi AdbError: device 'CQIZKJ8P59AY7DHI' not found
+2025-09-18 13:55:40,681 - ERROR - Lỗi AdbError: device 'CQIZKJ8P59AY7DHI' not found
+2025-09-18 13:55:40,766 - ERROR - Lỗi AdbError: device 'Z5LVOF4PRGXGTS9H' not found
+2025-09-18 13:55:40,896 - ERROR - Lỗi AdbError: device 'Z5LVOF4PRGXGTS9H' not found
+2025-09-18 13:55:41,025 - ERROR - Lỗi AdbError: device '7HYP4T4XTS4DXKCY' not found
+2025-09-18 13:55:41,025 - ERROR - [7HYP4T4XTS4DXKCY] Không thể đăng nhập
+2025-09-18 13:55:41,516 - INFO - [7HYP4T4XTS4DXKCY] Thực hiện tác vụ: Kết bạn
+2025-09-18 13:55:41,516 - INFO - Bắt đầu kết bạn
+2025-09-18 13:55:41,795 - INFO - Lấy được response
+2025-09-18 13:55:41,823 - ERROR - [7HYP4T4XTS4DXKCY] Lỗi trong quá trình chạy: device '7HYP4T4XTS4DXKCY' not found
+2025-09-18 13:55:42,468 - WARNING - [UWJJOJLB85SO7LIZ] ❌ Mất kết nối thiết bị, hủy task đang chạy.
+2025-09-18 13:55:42,662 - WARNING - [69QGMN8PXWDYPNIF] ✅ Không tìm thấy file status, tiếp tục chạy.
+2025-09-18 13:55:43,068 - WARNING - [Z5LVOF4PRGXGTS9H] ❌ Mất kết nối thiết bị, hủy task đang chạy.
+2025-09-18 13:55:43,166 - WARNING - [CQIZKJ8P59AY7DHI] ❌ Mất kết nối thiết bị, hủy task đang chạy.
+2025-09-18 13:55:43,416 - INFO - [R8YY70F5MKN] Đang đăng nhập vào tài khoản Nguyễn Thị Loan
+2025-09-18 13:55:43,416 - INFO - [R8YY70F5MKN] Về trang chủ
+2025-09-18 13:55:44,280 - INFO - [EM4DYTEITCCYJNFU] Đang đăng nhập vào tài khoản Lin Lin
+2025-09-18 13:55:44,280 - INFO - [EM4DYTEITCCYJNFU] Về trang chủ
+2025-09-18 13:55:44,894 - INFO - [EM4DYTEITCCYJNFU] Đã về trang chủ
+2025-09-18 13:55:44,894 - INFO - [EM4DYTEITCCYJNFU] Đăng xuất
+2025-09-18 13:55:46,412 - INFO - [EM4DYTEITCCYJNFU] Vào menu
+2025-09-18 13:55:52,610 - INFO - [69QGMN8PXWDYPNIF] Kết nối thiết bị: Thành công.
+2025-09-18 13:55:55,667 - INFO - [EM4DYTEITCCYJNFU] Đang đăng xuất
+2025-09-18 13:55:57,785 - INFO - [69QGMN8PXWDYPNIF] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-18 13:55:57,975 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation hiện tại: 1
+2025-09-18 13:55:58,121 - INFO - [69QGMN8PXWDYPNIF] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-18 13:55:58,274 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-18 13:56:02,141 - INFO - [IZDEGA8TFYXWRK9X] Kết nối thiết bị: Thành công.
+2025-09-18 13:56:02,276 - INFO - [69QGMN8PXWDYPNIF] Auto-rotation đã được TẮT thành công!
+2025-09-18 13:56:02,276 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-18 13:56:02,278 - INFO - [69QGMN8PXWDYPNIF] Hoàn thành disable auto-rotation
+2025-09-18 13:56:02,278 - INFO - [69QGMN8PXWDYPNIF] Kiểm tra bật 1.1.1.1 (một lần)
+2025-09-18 13:56:04,255 - INFO - [UWJJOJLB85SO7LIZ] Kết nối thiết bị: Thành công.
+2025-09-18 13:56:06,716 - INFO - [CEIN4X45I7ZHFEFU] Đăng nhập thành công vào tài khoản Hoàng Khoa
+2025-09-18 13:56:06,723 - INFO - [IZDEGA8TFYXWRK9X] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-18 13:56:06,725 - INFO - [Z5LVOF4PRGXGTS9H] Kết nối thiết bị: Thành công.
+2025-09-18 13:56:06,725 - INFO - [CQIZKJ8P59AY7DHI] Kết nối thiết bị: Thành công.
+2025-09-18 13:56:06,857 - INFO - [IZDEGA8TFYXWRK9X] Trạng thái auto-rotation hiện tại: 1
+2025-09-18 13:56:07,003 - INFO - [IZDEGA8TFYXWRK9X] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-18 13:56:07,070 - INFO - [IJP78949G69DKNHM] Đăng nhập thành công vào tài khoản Tú Uyên
+2025-09-18 13:56:07,930 - INFO - [69QGMN8PXWDYPNIF] One-time check 1.1.1.1 OK
+2025-09-18 13:56:07,930 - INFO - [69QGMN8PXWDYPNIF] Kiểm tra cài đặt Termux
+2025-09-18 13:56:12,591 - INFO - [CEIN4X45I7ZHFEFU] Thực hiện tác vụ: Thăm tường bạn bè
+2025-09-18 13:56:14,957 - INFO - [IJP78949G69DKNHM] Thực hiện tác vụ: Bình luận thương hiệu
+2025-09-18 13:56:14,959 - INFO - [UWJJOJLB85SO7LIZ] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-18 13:56:15,110 - INFO - [UWJJOJLB85SO7LIZ] Trạng thái auto-rotation hiện tại: 1
+2025-09-18 13:56:15,282 - INFO - [UWJJOJLB85SO7LIZ] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-18 13:56:15,282 - INFO - [Z5LVOF4PRGXGTS9H] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-18 13:56:15,436 - INFO - [Z5LVOF4PRGXGTS9H] Trạng thái auto-rotation hiện tại: 1
+2025-09-18 13:56:15,605 - INFO - [Z5LVOF4PRGXGTS9H] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-18 13:56:15,609 - INFO - [CQIZKJ8P59AY7DHI] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-18 13:56:15,759 - INFO - [CQIZKJ8P59AY7DHI] Trạng thái auto-rotation hiện tại: 1
+2025-09-18 13:56:15,907 - INFO - [CQIZKJ8P59AY7DHI] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-18 13:56:16,230 - INFO - [IZDEGA8TFYXWRK9X] Auto-rotation đã được TẮT thành công!
+2025-09-18 13:56:16,230 - INFO - [IZDEGA8TFYXWRK9X] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-18 13:56:16,230 - INFO - [IZDEGA8TFYXWRK9X] Hoàn thành disable auto-rotation
+2025-09-18 13:56:16,230 - INFO - [IZDEGA8TFYXWRK9X] Kiểm tra cài đặt Termux
+2025-09-18 13:56:18,870 - INFO - [R8YY70HCNRX] Đăng nhập thành công vào tài khoản Diễm Quỳnh
+2025-09-18 13:56:18,995 - INFO - [QK8TEMKZMBYHPV6P] Đăng nhập thành công vào tài khoản Lưu Thư
+2025-09-18 13:56:20,009 - INFO - [F6NZ5LRKWWGACYQ8] Đang đăng nhập vào tài khoản Viecbasaunam Tim
+2025-09-18 13:56:20,013 - INFO - [F6NZ5LRKWWGACYQ8] Về trang chủ
+2025-09-18 13:56:20,498 - INFO - [F6NZ5LRKWWGACYQ8] Đã về trang chủ
+2025-09-18 13:56:20,498 - INFO - [F6NZ5LRKWWGACYQ8] Đăng xuất
+2025-09-18 13:56:21,518 - INFO - [F6NZ5LRKWWGACYQ8] Vào menu
+2025-09-18 13:56:22,978 - INFO - [UWJJOJLB85SO7LIZ] Auto-rotation đã được TẮT thành công!
+2025-09-18 13:56:22,978 - INFO - [UWJJOJLB85SO7LIZ] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-18 13:56:22,978 - INFO - [UWJJOJLB85SO7LIZ] Hoàn thành disable auto-rotation
+2025-09-18 13:56:22,978 - INFO - [UWJJOJLB85SO7LIZ] Kiểm tra cài đặt Termux
+2025-09-18 13:56:26,342 - INFO - [Z5LVOF4PRGXGTS9H] Auto-rotation đã được TẮT thành công!
+2025-09-18 13:56:26,342 - INFO - [Z5LVOF4PRGXGTS9H] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-18 13:56:26,342 - INFO - [Z5LVOF4PRGXGTS9H] Hoàn thành disable auto-rotation
+2025-09-18 13:56:26,342 - INFO - [Z5LVOF4PRGXGTS9H] Kiểm tra cài đặt Termux
+2025-09-18 13:56:28,977 - INFO - [CQIZKJ8P59AY7DHI] Auto-rotation đã được TẮT thành công!
+2025-09-18 13:56:28,977 - INFO - [CQIZKJ8P59AY7DHI] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-18 13:56:28,977 - INFO - [CQIZKJ8P59AY7DHI] Hoàn thành disable auto-rotation
+2025-09-18 13:56:28,977 - INFO - [CQIZKJ8P59AY7DHI] Kiểm tra cài đặt Termux
+2025-09-18 13:56:33,107 - INFO - [7DXCUKKB6DVWDAQO] Đang đăng nhập vào tài khoản Mẫn Nhi
+2025-09-18 13:56:33,109 - INFO - [7DXCUKKB6DVWDAQO] Về trang chủ
+2025-09-18 13:56:33,437 - INFO - [7DXCUKKB6DVWDAQO] Đã về trang chủ
+2025-09-18 13:56:33,437 - INFO - [7DXCUKKB6DVWDAQO] Đăng xuất
+2025-09-18 13:56:34,355 - INFO - [7DXCUKKB6DVWDAQO] Vào menu
+2025-09-18 13:56:35,903 - INFO - [QK8TEMKZMBYHPV6P] Thực hiện tác vụ: Lướt fb
+2025-09-18 13:56:35,903 - INFO - Lướt tin nhóm tuyển dụng
+2025-09-18 13:56:36,241 - INFO - [R8YY70HCNRX] Thực hiện tác vụ: Kết bạn
+2025-09-18 13:56:36,254 - INFO - Bắt đầu kết bạn
+2025-09-18 13:56:36,442 - INFO - Lấy được response
+2025-09-18 13:56:36,575 - WARNING - IJP78949G69DKNHM - ⚠️ Bình luận thương hiệu: Đã đạt KPI, không thể lấy bình luận
+2025-09-18 13:56:36,575 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-18 13:56:37,110 - INFO - [69QGMN8PXWDYPNIF] Đang đăng nhập vào tài khoản Anh Kim
+2025-09-18 13:56:37,127 - INFO - [69QGMN8PXWDYPNIF] Về trang chủ
+2025-09-18 13:56:37,565 - INFO - [69QGMN8PXWDYPNIF] Đã về trang chủ
+2025-09-18 13:56:37,565 - INFO - [69QGMN8PXWDYPNIF] Đăng xuất
+2025-09-18 13:56:38,484 - INFO - [69QGMN8PXWDYPNIF] Vào menu
+2025-09-18 13:56:41,309 - INFO - [IZDEGA8TFYXWRK9X] Đang đăng nhập vào tài khoản Anh Minh
+2025-09-18 13:56:41,309 - INFO - [IZDEGA8TFYXWRK9X] Về trang chủ
+2025-09-18 13:56:42,036 - INFO - [IZDEGA8TFYXWRK9X] Đã về trang chủ
+2025-09-18 13:56:42,036 - INFO - [IZDEGA8TFYXWRK9X] Đăng xuất
+2025-09-18 13:56:43,487 - INFO - [IZDEGA8TFYXWRK9X] Vào menu
+2025-09-18 13:56:45,835 - INFO - [EM4DYTEITCCYJNFU] Xác nhận đăng xuất
+2025-09-18 13:56:45,835 - INFO - [EM4DYTEITCCYJNFU] Đăng xuất thành công
+2025-09-18 13:56:46,865 - INFO - [UWJJOJLB85SO7LIZ] Đang đăng nhập vào tài khoản Nguyễn Lai
+2025-09-18 13:56:46,865 - INFO - [UWJJOJLB85SO7LIZ] Về trang chủ
+2025-09-18 13:56:47,421 - INFO - [UWJJOJLB85SO7LIZ] Đã về trang chủ
+2025-09-18 13:56:47,421 - INFO - [UWJJOJLB85SO7LIZ] Đăng xuất
+2025-09-18 13:56:48,961 - INFO - [UWJJOJLB85SO7LIZ] Vào menu
+2025-09-18 13:56:53,415 - INFO - [IJP78949G69DKNHM] Về trang chủ
+2025-09-18 13:56:53,790 - INFO - [IJP78949G69DKNHM] Đã về trang chủ
+2025-09-18 13:56:53,790 - INFO - [IJP78949G69DKNHM] Thực hiện tác vụ: Thăm trang cá nhân
+2025-09-18 13:56:55,637 - INFO - [Z5LVOF4PRGXGTS9H] Đang đăng nhập vào tài khoản Ngọc Vi
+2025-09-18 13:56:55,637 - INFO - [Z5LVOF4PRGXGTS9H] Về trang chủ
+2025-09-18 13:56:56,269 - INFO - [Z5LVOF4PRGXGTS9H] Đã về trang chủ
+2025-09-18 13:56:56,269 - INFO - [Z5LVOF4PRGXGTS9H] Đăng xuất
+2025-09-18 13:56:57,615 - INFO - [Z5LVOF4PRGXGTS9H] Vào menu
+2025-09-18 13:56:59,433 - INFO - [9PAM7DIFW87DOBEU] Đăng nhập thành công vào tài khoản Mai Lê
+2025-09-18 13:56:59,493 - INFO - [EY5H9DJNIVNFH6OR] Đăng nhập thành công vào tài khoản Huyền Trang
+2025-09-18 13:57:00,459 - INFO - [CQIZKJ8P59AY7DHI] Đang đăng nhập vào tài khoản Hoa Mai
+2025-09-18 13:57:00,459 - INFO - [CQIZKJ8P59AY7DHI] Về trang chủ
+2025-09-18 13:57:01,051 - INFO - [CQIZKJ8P59AY7DHI] Đã về trang chủ
+2025-09-18 13:57:01,051 - INFO - [CQIZKJ8P59AY7DHI] Đăng xuất
+2025-09-18 13:57:02,357 - INFO - [CQIZKJ8P59AY7DHI] Vào menu
+2025-09-18 13:57:04,259 - INFO - [EM4DYTEITCCYJNFU] Bắt đầu đăng nhập vào tài khoản Lin Lin
+2025-09-18 13:57:06,496 - INFO - [9PAM7DIFW87DOBEU] Thực hiện tác vụ: Xem story
+2025-09-18 13:57:06,496 - INFO - Bắt đầu watch story
+2025-09-18 13:57:06,496 - INFO - [9PAM7DIFW87DOBEU] Về trang chủ
+2025-09-18 13:57:06,729 - INFO - [9PAM7DIFW87DOBEU] Đã về trang chủ
+2025-09-18 13:57:06,784 - INFO - [EY5H9DJNIVNFH6OR] Thực hiện tác vụ: Thăm trang cá nhân
+2025-09-18 13:57:12,323 - INFO - [7DXCUKKB6DVWDAQO] Đang đăng xuất
+2025-09-18 13:57:14,364 - INFO - Đã gửi lời mời kết bạn
+2025-09-18 13:57:15,873 - INFO - [69QGMN8PXWDYPNIF] Đang đăng xuất
+2025-09-18 13:57:19,056 - INFO - [IZDEGA8TFYXWRK9X] Đang đăng xuất
+2025-09-18 13:57:20,396 - INFO - Xem story
+2025-09-18 13:57:25,405 - INFO - [F6NZ5LRKWWGACYQ8] Đang đăng xuất
+2025-09-18 13:57:27,545 - INFO - [Z5LVOF4PRGXGTS9H] Đang đăng xuất
+2025-09-18 13:57:30,654 - INFO - [R8YY70HCNRX] Về trang chủ
+2025-09-18 13:57:33,565 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-18 13:57:33,840 - INFO - [R8YY70F5MKN] Đã về trang chủ
+2025-09-18 13:57:33,840 - INFO - [R8YY70F5MKN] Đăng xuất
+2025-09-18 13:57:34,450 - INFO - [R8YY70F5MKN] Vào menu
+2025-09-18 13:57:42,035 - INFO - [UWJJOJLB85SO7LIZ] Đang đăng xuất
+2025-09-18 13:57:46,566 - INFO - [CQIZKJ8P59AY7DHI] Đang đăng xuất
+2025-09-18 13:57:48,222 - INFO - [R8YY70F5MKN] Đang đăng xuất
+2025-09-18 13:57:54,691 - WARNING - [R8YY70HCNRX] Không tìm được trang chủ
+2025-09-18 13:57:55,592 - INFO - [7DXCUKKB6DVWDAQO] Xác nhận đăng xuất
+2025-09-18 13:57:55,592 - INFO - [7DXCUKKB6DVWDAQO] Đăng xuất thành công
+2025-09-18 13:57:57,456 - INFO - [7DXCUKKB6DVWDAQO] Bắt đầu đăng nhập vào tài khoản Mẫn Nhi
+2025-09-18 13:57:58,815 - INFO - [69QGMN8PXWDYPNIF] Xác nhận đăng xuất
+2025-09-18 13:57:58,817 - INFO - [69QGMN8PXWDYPNIF] Đăng xuất thành công
+2025-09-18 13:57:59,837 - INFO - [IZDEGA8TFYXWRK9X] Xác nhận đăng xuất
+2025-09-18 13:57:59,837 - INFO - [IZDEGA8TFYXWRK9X] Đăng xuất thành công
+2025-09-18 13:58:03,178 - INFO - [F6NZ5LRKWWGACYQ8] Xác nhận đăng xuất
+2025-09-18 13:58:03,178 - INFO - [F6NZ5LRKWWGACYQ8] Đăng xuất thành công
+2025-09-18 13:58:05,837 - INFO - [Z5LVOF4PRGXGTS9H] Xác nhận đăng xuất
+2025-09-18 13:58:05,839 - INFO - [Z5LVOF4PRGXGTS9H] Đăng xuất thành công
+2025-09-18 13:58:08,574 - INFO - [69QGMN8PXWDYPNIF] Bắt đầu đăng nhập vào tài khoản Anh Kim
+2025-09-18 13:58:09,980 - INFO - [IZDEGA8TFYXWRK9X] Bắt đầu đăng nhập vào tài khoản Anh Minh
+2025-09-18 13:58:11,799 - INFO - [F6NZ5LRKWWGACYQ8] Bắt đầu đăng nhập vào tài khoản Viecbasaunam Tim
+2025-09-18 13:58:11,986 - INFO - [Z5LVOF4PRGXGTS9H] Bắt đầu đăng nhập vào tài khoản Ngọc Vi
+2025-09-18 13:58:20,927 - INFO - [UWJJOJLB85SO7LIZ] Xác nhận đăng xuất
+2025-09-18 13:58:20,927 - INFO - [UWJJOJLB85SO7LIZ] Đăng xuất thành công
+2025-09-18 13:58:21,173 - WARNING - [R8YY70HCNRX] Không tìm được trang chủ
+2025-09-18 13:58:21,446 - INFO - [R8YY70HCNRX] Đã về trang chủ
+2025-09-18 13:58:22,319 - INFO - [CQIZKJ8P59AY7DHI] Xác nhận đăng xuất
+2025-09-18 13:58:22,319 - INFO - [CQIZKJ8P59AY7DHI] Đăng xuất thành công
+2025-09-18 13:58:26,442 - INFO - [R8YY70F5MKN] Xác nhận đăng xuất
+2025-09-18 13:58:26,445 - INFO - [R8YY70F5MKN] Đăng xuất thành công
+2025-09-18 13:58:26,449 - INFO - [UWJJOJLB85SO7LIZ] Bắt đầu đăng nhập vào tài khoản Nguyễn Lai
+2025-09-18 13:58:28,725 - INFO - [CQIZKJ8P59AY7DHI] Bắt đầu đăng nhập vào tài khoản Hoa Mai
+2025-09-18 13:58:33,410 - INFO - [R8YY70F5MKN] Bắt đầu đăng nhập vào tài khoản Nguyễn Thị Loan
+2025-09-18 13:58:34,688 - INFO - [R8YY70HCNRX] Về trang chủ
+2025-09-18 13:58:35,145 - INFO - [R8YY70HCNRX] Đã về trang chủ
+2025-09-18 13:58:35,145 - INFO - [R8YY70HCNRX] Thực hiện tác vụ: Bình luận thương hiệu
+2025-09-18 13:58:42,189 - INFO - [EM4DYTEITCCYJNFU] Đăng nhập thành công vào tài khoản Lin Lin
+2025-09-18 13:58:42,647 - WARNING - R8YY70HCNRX - ⚠️ Bình luận thương hiệu: Đã đạt KPI, không thể lấy bình luận
+2025-09-18 13:58:54,909 - INFO - [EM4DYTEITCCYJNFU] Thực hiện tác vụ: Kết bạn
+2025-09-18 13:58:54,909 - INFO - Bắt đầu kết bạn
+2025-09-18 13:58:55,618 - INFO - Lấy được response
+2025-09-18 13:58:59,886 - INFO - [R8YY70HCNRX] Về trang chủ
+2025-09-18 13:59:00,235 - INFO - [R8YY70HCNRX] Đã về trang chủ
+2025-09-18 13:59:00,237 - INFO - [R8YY70HCNRX] Thực hiện tác vụ: Xem story
+2025-09-18 13:59:00,237 - INFO - Bắt đầu watch story
+2025-09-18 13:59:00,237 - INFO - [R8YY70HCNRX] Về trang chủ
+2025-09-18 13:59:00,509 - INFO - [R8YY70HCNRX] Đã về trang chủ
+2025-09-18 13:59:06,103 - INFO - Xem story chán rồi, té thôi
+2025-09-18 13:59:06,685 - INFO - Đã thoát trang story
+2025-09-18 13:59:09,599 - INFO - Xem story
+2025-09-18 13:59:16,156 - INFO - [9PAM7DIFW87DOBEU] Về trang chủ
+2025-09-18 13:59:16,456 - INFO - [9PAM7DIFW87DOBEU] Đã về trang chủ
+2025-09-18 13:59:16,458 - INFO - [9PAM7DIFW87DOBEU] Thực hiện tác vụ: Bình luận thương hiệu
+2025-09-18 13:59:20,003 - INFO - [IJP78949G69DKNHM] Bắt đầu like post
+2025-09-18 13:59:20,738 - WARNING - 9PAM7DIFW87DOBEU - ⚠️ Bình luận thương hiệu: Đã đạt KPI, không thể lấy bình luận
+2025-09-18 13:59:22,717 - INFO - Đã gửi lời mời kết bạn
+2025-09-18 13:59:25,542 - INFO - [9PAM7DIFW87DOBEU] Về trang chủ
+2025-09-18 13:59:25,911 - INFO - [9PAM7DIFW87DOBEU] Đã về trang chủ
+2025-09-18 13:59:25,911 - INFO - [9PAM7DIFW87DOBEU] Thực hiện tác vụ: Lướt fb
+2025-09-18 13:59:25,911 - INFO - Lướt tin nhóm tuyển dụng
+2025-09-18 13:59:29,087 - INFO - [IZDEGA8TFYXWRK9X] Đăng nhập thành công vào tài khoản Anh Minh
+2025-09-18 13:59:29,104 - INFO - [7DXCUKKB6DVWDAQO] Đăng nhập thành công vào tài khoản Mẫn Nhi
+2025-09-18 13:59:29,104 - INFO - [69QGMN8PXWDYPNIF] Đăng nhập thành công vào tài khoản Anh Kim
+2025-09-18 13:59:29,117 - INFO - [EM4DYTEITCCYJNFU] Về trang chủ
+2025-09-18 13:59:39,937 - INFO - [7DXCUKKB6DVWDAQO] Thực hiện tác vụ: Lướt fb
+2025-09-18 13:59:39,937 - INFO - Lướt tin nhóm tuyển dụng
+2025-09-18 13:59:50,167 - INFO - [IZDEGA8TFYXWRK9X] Thực hiện tác vụ: Bình luận thương hiệu
+2025-09-18 14:00:00,184 - INFO - [69QGMN8PXWDYPNIF] Thực hiện tác vụ: Lướt fb
+2025-09-18 14:00:00,184 - INFO - Lướt tin nhóm tuyển dụng
+2025-09-18 14:00:08,608 - WARNING - IZDEGA8TFYXWRK9X - ⚠️ Bình luận thương hiệu: Đã đạt KPI, không thể lấy bình luận
+2025-09-18 14:00:13,874 - INFO - [UWJJOJLB85SO7LIZ] Đăng nhập thành công vào tài khoản Nguyễn Lai
+2025-09-18 14:00:13,876 - INFO - [CQIZKJ8P59AY7DHI] Đăng nhập thành công vào tài khoản Hoa Mai
+2025-09-18 14:00:13,880 - INFO - [R8YY70F5MKN] Đăng nhập thành công vào tài khoản Nguyễn Thị Loan
+2025-09-18 14:00:25,021 - INFO - [UWJJOJLB85SO7LIZ] Thực hiện tác vụ: Thăm trang cá nhân
