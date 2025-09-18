@@ -466,16 +466,36 @@ async def update_statusFB(username, statusFB):
     if statusFB:
         result = await collection.update_one(
             {"accounts.account": username},
-            {"$set": {"accounts.$[elem].status": True}},
+            {"$set": {
+                "accounts.$[elem].status": True,
+                "current_account": username
+                }
+            },
             array_filters=[{"elem.account": username}]
         )
     else:
         result = await collection.update_many(
             {"device_id": username},
-            {"$set": {"accounts.$[].status": False}}
+            {"$set": {
+                "accounts.$[].status": False,
+                "current_account": ""}
+            }
         )
     if result.matched_count == 0:
         return {'message': '❌ Thiết bị không tồn tại'}, logging.ERROR
     if result.modified_count == 0:
         return {'message': '⚠️ Trạng thái Facebook không thay đổi'}, logging.WARNING
     return {'message': '✅ Cập nhật trạng thái Facebook thành công'}, logging.INFO
+
+async def update_device_status(device_id, status):
+    """Cập nhật trạng thái hoạt động của thiết bị."""
+    collection = get_async_collection("devices")
+    result = await collection.update_one(
+        {"device_id": device_id},
+        {"$set": {"status": status}}
+    )
+    if result.matched_count == 0:
+        return {'message': '❌ Thiết bị không tồn tại'}, logging.ERROR
+    if result.modified_count == 0:
+        return {'message': '⚠️ Trạng thái thiết bị không thay đổi'}, logging.WARNING
+    return {'message': '✅ Cập nhật trạng thái thiết bị thành công'}, logging.INFO

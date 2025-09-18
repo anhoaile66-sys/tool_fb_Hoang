@@ -167,8 +167,8 @@ async def swap_account(driver, acc):
             skip.click()
         else:
             break
+    await pymongo_management.update_statusFB(username, True)
 
     # Đợi vào màn hình chính
     await asyncio.sleep(6)
     log_message(f"[{driver.serial}] Đăng nhập thành công vào tài khoản {name}")
-    await pymongo_management.update_statusFB(username, True)

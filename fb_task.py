@@ -81,7 +81,6 @@ async def run_on_device_original(driver):
                 i-=1
             log_message(f"[{device_id}] Đang đăng nhập vào tài khoản {this_account['name']}", logging.INFO)
             await swap_account(driver, this_account)
-            update_current_account(device_id, this_account)
             account = device['current_account']
         # tasks nuôi fb
         await fb_natural_task(driver, crm_id, account)
