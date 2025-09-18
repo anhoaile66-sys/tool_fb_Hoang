@@ -289,7 +289,7 @@ async def device_once(device_id: str):
         phase_provider=lambda: current_phase["value"],
     )
     await watchdog.start()
-
+    await pymongo_management.update_device_status(device_id, True)  # Cập nhật thiết bị thành online
     try:
 
         # ===== PHA FACEBOOK =====
@@ -414,5 +414,6 @@ if __name__ == "__main__":
         asyncio.run(run_all_devices())
     except KeyboardInterrupt:
         print("[!] Dừng bằng bàn phím (KeyboardInterrupt)")
+        asyncio.run(pymongo_management.update_device_status(None, False))  # Cập nhật tất cả thiết bị thành offline
     except Exception as e:
         log_message(f"Lỗi chạy chính: {e}", logging.ERROR)
