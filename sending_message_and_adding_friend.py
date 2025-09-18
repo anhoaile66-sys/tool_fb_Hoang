@@ -1,3 +1,4 @@
+import asyncio
 import uiautomator2 as u2
 import time
 import random
@@ -326,18 +327,18 @@ class DeviceHandler:
         # Nếu có nhiều tài khoản, hãy điền [{ "username": "..."}]
         self.accounts = []
 
-    def connect(self):
+    async def connect(self):
         try:
             log_message(f"[{self.device_id}] Kết nối thiết bị: Thành công.")
-            pymongo_management.update_device_status(self.device_id, True)
+            await pymongo_management.update_device_status(self.device_id, True)
             self.d.press("home")
-            time.sleep(1)
+            await asyncio.sleep(1)
             self.cleanup_background_apps()
             return True
         except Exception as e:
             print(
                 f"[❌] Không thể kết nối với thiết bị {self.device_id}. Lỗi: {e}")
-            pymongo_management.update_device_status(self.device_id, False)
+            await pymongo_management.update_device_status(self.device_id, False)
             return False
 
     def cleanup_background_apps(self):

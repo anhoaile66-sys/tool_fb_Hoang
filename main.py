@@ -238,7 +238,7 @@ async def device_once(device_id: str):
     # Kết nối thiết bị
     driver = await asyncio.to_thread(u2.connect_usb, device_id)
     handler = DeviceHandler(driver, device_id)
-    await asyncio.to_thread(handler.connect)
+    await handler.connect()
     
     # Tắt chế độ tự động xoay màn hình
     await disable_auto_rotation(driver, device_id)
@@ -350,13 +350,13 @@ async def device_supervisor(device_id: str):
                 still_alive = await check_driver(driver)
                 if not temp_alive and still_alive:
                     log_message(f"[{device_id}] ✅ Kết nối thiết bị đã được khôi phục.", logging.INFO)
-                    pymongo_management.update_device_status(device_id, True)
+                    await pymongo_management.update_device_status(device_id, True)
                 temp_alive = still_alive
                 if not still_alive:
                     if task is not None and not task.done():
                         task.cancel()
                         log_message(f"[{device_id}] ❌ Mất kết nối thiết bị, hủy task đang chạy.", logging.WARNING)
-                        pymongo_management.update_device_status(device_id, False)
+                        await pymongo_management.update_device_status(device_id, False)
                     status[device_id] = False
                     await asyncio.sleep(5.0)
                     driver = await asyncio.to_thread(u2.connect_usb, device_id)
