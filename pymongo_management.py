@@ -490,10 +490,16 @@ async def update_statusFB(username, statusFB):
 async def update_device_status(device_id, status):
     """Cập nhật trạng thái hoạt động của thiết bị."""
     collection = get_async_collection("devices")
-    result = await collection.update_one(
-        {"device_id": device_id},
-        {"$set": {"status": status}}
-    )
+    if device_id is None:
+        result = await collection.update_many(
+            {},
+            {"$set": {"status": status}}
+        )
+    else:   
+        result = await collection.update_one(
+            {"device_id": device_id},
+            {"$set": {"status": status}}
+        )
     if result.matched_count == 0:
         return {'message': '❌ Thiết bị không tồn tại'}, logging.ERROR
     if result.modified_count == 0:

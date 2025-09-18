@@ -330,7 +330,6 @@ class DeviceHandler:
     async def connect(self):
         try:
             log_message(f"[{self.device_id}] Kết nối thiết bị: Thành công.")
-            await pymongo_management.update_device_status(self.device_id, True)
             self.d.press("home")
             await asyncio.sleep(1)
             self.cleanup_background_apps()
