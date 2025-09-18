@@ -35,6 +35,7 @@ async def post_to_wall(driver, command_id, user_id, content, files=None):
                 driver(scrollable=True).scroll.vert.backward()
             except:
                 pass
+        await asyncio.sleep(2)
         if driver(text="Đăng").exists:
             driver(text="Đăng").click()
         elif driver(description="Tiếp").exists:
