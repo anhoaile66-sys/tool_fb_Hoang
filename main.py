@@ -8,8 +8,9 @@ import json
 from typing import Optional, Callable
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
-from module.id import DEVICE_LIST
-from util.log import log_message
+
+from module import *
+from util import *
 import main_lib
 import pymongo_management
 

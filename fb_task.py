@@ -2,8 +2,6 @@ import asyncio
 from module.fb_friends import load_facebook_friends_list_advanced
 from util import *
 from module import *
-import requests
-import json
 
 # Thoát app, xóa cache khi chờ task
 async def clear_app(driver):
@@ -56,7 +54,6 @@ async def run_on_device_original(driver):
 
         device = load_device_account(device_id)
 
-
         if device == {}:
             log_message(f"[{device_id}] Không tìm thấy dữ liệu cho thiết bị", logging.WARNING)
             crm_id = "22615833"
@@ -67,12 +64,13 @@ async def run_on_device_original(driver):
             # last_time = device['time_logged_in']
             # if (last_time != '0') and (datetime.fromisoformat(last_time) + timedelta(hours=random.randint(4,6))) < datetime.now():
                 # Đủ thời gian, chuyển tài khoản
+            account_count = device['accountCount']
             i=0
             for acc in device['accounts']:
                 i+=1
                 if acc['account'] == device['current_account']:
                     break
-            if i==3: i=0
+            if i==account_count: i=0
             for acc in device['accounts']:
                 if i==0:
                     device['current_account'] = acc['account']
@@ -86,4 +84,4 @@ async def run_on_device_original(driver):
         await fb_natural_task(driver, crm_id, account)
         # await share_post(driver, text=random.choice(SHARES))
     except Exception as e:
-        log_message(f"[{driver.serial}] Lỗi trong quá trình chạy: {e}", logging.ERROR)
+        log_message(f"[{driver.serial}] Lỗi trong quá trình chạy: {type(e).__name__}\n {e}", logging.ERROR)
