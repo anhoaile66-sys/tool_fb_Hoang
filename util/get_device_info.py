@@ -15,7 +15,6 @@ def load_device_account(device_id):
         
         response = requests.post(url, json=payload, timeout=10)
         response.raise_for_status()
-        
         device_data = response.json()
         
         results = device_data['results']
@@ -77,5 +76,4 @@ def get_device():
         device_list.append(device.get("device_id"))
     return device_list
 
-DEVICE_LIST = get_device()
 

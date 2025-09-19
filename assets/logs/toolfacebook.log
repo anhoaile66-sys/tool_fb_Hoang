@@ -44583,3 +44583,749 @@ Bằng cấp/chứng chỉ liên quan (photo)
 2025-09-19 09:03:27,803 - INFO - [7HYP4T4XTS4DXKCY] Về trang chủ
 2025-09-19 09:03:28,179 - INFO - [7HYP4T4XTS4DXKCY] Đã về trang chủ
 2025-09-19 09:03:28,180 - INFO - [7HYP4T4XTS4DXKCY] Thực hiện tác vụ: Thăm tường bạn bè
+2025-09-19 09:08:43,422 - INFO - ✅ Lấy thành công 25 devices từ API
+2025-09-19 09:08:50,090 - WARNING - [8HMN4T9575HAQWLN] ✅ Không tìm thấy file status, tiếp tục chạy.
+2025-09-19 09:08:57,957 - INFO - [8HMN4T9575HAQWLN] Kết nối thiết bị: Thành công.
+2025-09-19 09:09:02,309 - INFO - [8HMN4T9575HAQWLN] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-19 09:09:02,428 - INFO - [8HMN4T9575HAQWLN] Trạng thái auto-rotation hiện tại: 1
+2025-09-19 09:09:02,559 - INFO - [8HMN4T9575HAQWLN] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-19 09:09:03,729 - INFO - [8HMN4T9575HAQWLN] Auto-rotation đã được TẮT thành công!
+2025-09-19 09:09:03,729 - INFO - [8HMN4T9575HAQWLN] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-19 09:09:03,730 - INFO - [8HMN4T9575HAQWLN] Hoàn thành disable auto-rotation
+2025-09-19 09:09:03,731 - INFO - [8HMN4T9575HAQWLN] Kiểm tra bật 1.1.1.1 (một lần)
+2025-09-19 09:09:08,101 - INFO - [8HMN4T9575HAQWLN] One-time check 1.1.1.1 OK
+2025-09-19 09:09:08,102 - INFO - [8HMN4T9575HAQWLN] Kiểm tra cài đặt Termux
+2025-09-19 09:09:22,755 - INFO - [8HMN4T9575HAQWLN] Đang đăng nhập vào tài khoản Hải Yến Timviec
+2025-09-19 09:09:22,755 - INFO - [8HMN4T9575HAQWLN] Về trang chủ
+2025-09-19 09:09:23,072 - INFO - [8HMN4T9575HAQWLN] Đã về trang chủ
+2025-09-19 09:09:23,073 - INFO - [8HMN4T9575HAQWLN] Đăng xuất
+2025-09-19 09:09:24,043 - INFO - [8HMN4T9575HAQWLN] Vào menu
+2025-09-19 09:09:30,440 - INFO - [8HMN4T9575HAQWLN] Đang đăng xuất
+2025-09-19 09:09:37,846 - INFO - [8HMN4T9575HAQWLN] Xác nhận đăng xuất
+2025-09-19 09:09:37,849 - INFO - [8HMN4T9575HAQWLN] Đăng xuất thành công
+2025-09-19 09:09:38,112 - INFO - [8HMN4T9575HAQWLN] Bắt đầu đăng nhập vào tài khoản Hải Yến Timviec
+2025-09-19 09:10:05,831 - INFO - [8HMN4T9575HAQWLN] Đăng nhập thành công vào tài khoản Hải Yến Timviec
+2025-09-19 09:10:05,833 - INFO - [8HMN4T9575HAQWLN] Thực hiện tác vụ: Xem reels
+2025-09-19 09:10:05,833 - INFO - Bắt đầu watch reels tuyển dụng
+2025-09-19 09:10:05,834 - INFO - [8HMN4T9575HAQWLN] Về trang chủ
+2025-09-19 09:10:06,226 - INFO - [8HMN4T9575HAQWLN] Đã về trang chủ
+2025-09-19 09:10:11,439 - INFO - Đang tìm nút Reels...
+2025-09-19 09:10:12,334 - INFO - Đã vào phần Reels
+2025-09-19 09:10:16,832 - INFO - Đã bấm nút tìm kiếm trong Reels
+2025-09-19 09:10:20,379 - INFO - Nhập từ khóa tìm kiếm: tuyển nhân viên
+2025-09-19 09:40:09,688 - INFO - ✅ Lấy thành công 25 devices từ API
+2025-09-19 09:40:16,895 - WARNING - [8HMN4T9575HAQWLN] ✅ Không tìm thấy file status, tiếp tục chạy.
+2025-09-19 09:40:24,711 - INFO - [8HMN4T9575HAQWLN] Kết nối thiết bị: Thành công.
+2025-09-19 09:40:29,166 - INFO - [8HMN4T9575HAQWLN] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-19 09:40:29,279 - INFO - [8HMN4T9575HAQWLN] Trạng thái auto-rotation hiện tại: 1
+2025-09-19 09:40:29,406 - INFO - [8HMN4T9575HAQWLN] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-19 09:40:30,566 - INFO - [8HMN4T9575HAQWLN] Auto-rotation đã được TẮT thành công!
+2025-09-19 09:40:30,566 - INFO - [8HMN4T9575HAQWLN] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-19 09:40:30,566 - INFO - [8HMN4T9575HAQWLN] Hoàn thành disable auto-rotation
+2025-09-19 09:40:30,567 - INFO - [8HMN4T9575HAQWLN] Kiểm tra bật 1.1.1.1 (một lần)
+2025-09-19 09:40:35,021 - INFO - [8HMN4T9575HAQWLN] One-time check 1.1.1.1 OK
+2025-09-19 09:40:35,021 - INFO - [8HMN4T9575HAQWLN] Kiểm tra cài đặt Termux
+2025-09-19 09:40:48,976 - INFO - [8HMN4T9575HAQWLN] Đang đăng nhập vào tài khoản Nguyễn Khánh Vy
+2025-09-19 09:40:48,976 - INFO - [8HMN4T9575HAQWLN] Về trang chủ
+2025-09-19 09:40:49,384 - INFO - [8HMN4T9575HAQWLN] Đã về trang chủ
+2025-09-19 09:40:49,385 - INFO - [8HMN4T9575HAQWLN] Đăng xuất
+2025-09-19 09:40:50,289 - INFO - [8HMN4T9575HAQWLN] Vào menu
+2025-09-19 09:40:56,777 - INFO - [8HMN4T9575HAQWLN] Đang đăng xuất
+2025-09-19 09:41:04,126 - INFO - [8HMN4T9575HAQWLN] Xác nhận đăng xuất
+2025-09-19 09:41:04,129 - INFO - [8HMN4T9575HAQWLN] Đăng xuất thành công
+2025-09-19 09:41:04,780 - INFO - [8HMN4T9575HAQWLN] Bắt đầu đăng nhập vào tài khoản Nguyễn Khánh Vy
+2025-09-19 09:41:31,519 - INFO - [8HMN4T9575HAQWLN] Đăng nhập thành công vào tài khoản Nguyễn Khánh Vy
+2025-09-19 09:41:31,520 - INFO - [8HMN4T9575HAQWLN] Thực hiện tác vụ: Kết bạn
+2025-09-19 09:41:31,521 - INFO - Bắt đầu kết bạn
+2025-09-19 09:41:31,678 - INFO - Lấy được response
+2025-09-19 09:41:56,336 - INFO - Đã gửi lời mời kết bạn
+2025-09-19 09:42:01,302 - INFO - [8HMN4T9575HAQWLN] Về trang chủ
+2025-09-19 09:42:06,699 - WARNING - [8HMN4T9575HAQWLN] Không tìm được trang chủ
+2025-09-19 09:42:07,153 - INFO - [8HMN4T9575HAQWLN] Đã về trang chủ
+2025-09-19 09:42:11,852 - INFO - [8HMN4T9575HAQWLN] Về trang chủ
+2025-09-19 09:42:12,226 - INFO - [8HMN4T9575HAQWLN] Đã về trang chủ
+2025-09-19 09:42:12,227 - INFO - [8HMN4T9575HAQWLN] Thực hiện tác vụ: Lướt fb
+2025-09-19 09:42:12,227 - INFO - Lướt tin nhóm tuyển dụng
+2025-09-19 09:43:28,810 - INFO - Bắt đầu comment post
+2025-09-19 09:44:06,132 - INFO - Đã comment
+2025-09-19 09:44:06,608 - INFO - Đã thoát giao diện comment
+2025-09-19 09:44:14,114 - INFO - Bắt đầu like post
+2025-09-19 09:44:36,410 - INFO - Đã thả cảm xúc Yêu thích
+2025-09-19 09:46:23,906 - INFO - Bắt đầu like post
+2025-09-19 09:46:35,342 - INFO - Đã thả cảm xúc Yêu thích
+2025-09-19 09:48:20,601 - INFO - Bắt đầu like post
+2025-09-19 09:48:35,572 - INFO - Đã thả cảm xúc Thương thương
+2025-09-19 09:50:26,030 - INFO - Bắt đầu like post
+2025-09-19 09:50:43,350 - INFO - Đã thả cảm xúc Thích
+2025-09-19 09:51:43,434 - INFO - Bắt đầu comment post
+2025-09-19 09:52:12,249 - INFO - Đã comment
+2025-09-19 09:52:12,912 - INFO - Đã thoát giao diện comment
+2025-09-19 09:53:22,193 - INFO - Bắt đầu like post
+2025-09-19 09:53:40,719 - INFO - Đã thả cảm xúc Yêu thích
+2025-09-19 09:55:50,103 - INFO - Bắt đầu like post
+2025-09-19 09:56:01,786 - INFO - Đã thả cảm xúc Thương thương
+2025-09-19 09:57:54,857 - INFO - Bắt đầu like post
+2025-09-19 09:58:11,946 - INFO - Đã thả cảm xúc Thích
+2025-09-19 09:59:48,359 - INFO - Đã hoàn thành lướt facebook
+2025-09-19 09:59:48,361 - INFO - [8HMN4T9575HAQWLN] Về trang chủ
+2025-09-19 09:59:53,797 - WARNING - [8HMN4T9575HAQWLN] Không tìm được trang chủ
+2025-09-19 09:59:54,109 - INFO - [8HMN4T9575HAQWLN] Đã về trang chủ
+2025-09-19 09:59:58,733 - INFO - [8HMN4T9575HAQWLN] Về trang chủ
+2025-09-19 09:59:59,085 - INFO - [8HMN4T9575HAQWLN] Đã về trang chủ
+2025-09-19 09:59:59,086 - INFO - [8HMN4T9575HAQWLN] Thực hiện tác vụ: Xem story
+2025-09-19 09:59:59,086 - INFO - Bắt đầu watch story
+2025-09-19 09:59:59,086 - INFO - [8HMN4T9575HAQWLN] Về trang chủ
+2025-09-19 09:59:59,365 - INFO - [8HMN4T9575HAQWLN] Đã về trang chủ
+2025-09-19 10:00:05,962 - INFO - Xem story
+2025-09-19 10:01:31,649 - INFO - Xem story chán rồi, té thôi
+2025-09-19 10:01:32,167 - INFO - Đã thoát trang story
+2025-09-19 10:01:37,865 - INFO - [8HMN4T9575HAQWLN] Về trang chủ
+2025-09-19 10:01:38,152 - INFO - [8HMN4T9575HAQWLN] Đã về trang chủ
+2025-09-19 10:01:38,154 - INFO - [8HMN4T9575HAQWLN] Thực hiện tác vụ: Xem reels
+2025-09-19 10:01:38,154 - INFO - Bắt đầu watch reels tuyển dụng
+2025-09-19 10:01:38,155 - INFO - [8HMN4T9575HAQWLN] Về trang chủ
+2025-09-19 10:01:38,487 - INFO - [8HMN4T9575HAQWLN] Đã về trang chủ
+2025-09-19 10:01:45,475 - INFO - Đang tìm nút Reels...
+2025-09-19 10:01:46,247 - INFO - Đã vào phần Reels
+2025-09-19 10:01:51,891 - INFO - Đã bấm nút tìm kiếm trong Reels
+2025-09-19 10:01:55,904 - INFO - Nhập từ khóa tìm kiếm: tuyển sinh
+2025-09-19 10:02:05,865 - INFO - Đã tìm kiếm với từ khóa: tuyển sinh
+2025-09-19 10:02:05,865 - INFO - Bắt đầu lướt reels tuyển dụng
+2025-09-19 10:02:37,623 - INFO - Video tiếp theo
+2025-09-19 10:03:03,144 - INFO - Video tiếp theo
+2025-09-19 10:03:35,166 - INFO - Video tiếp theo
+2025-09-19 10:03:50,712 - INFO - Video tiếp theo
+2025-09-19 10:17:07,177 - INFO - ✅ Lấy thành công 25 devices từ API
+2025-09-19 10:17:14,163 - INFO - [7HYP4T4XTS4DXKCY]🔗 Đã kết nối
+2025-09-19 10:17:17,218 - INFO - [CEIN4X45I7ZHFEFU]🔗 Đã kết nối
+2025-09-19 10:17:20,304 - INFO - [8HMN4T9575HAQWLN]🔗 Đã kết nối
+2025-09-19 10:17:21,980 - ERROR - [EY5H9DJNIVNFH6OR]❌ Lỗi kết nối thiết bị:ConnectError: device EY5H9DJNIVNFH6OR not online
+2025-09-19 10:17:21,980 - ERROR - [EM4DYTEITCCYJNFU]❌ Lỗi kết nối thiết bị:ConnectError: device EM4DYTEITCCYJNFU not online
+2025-09-19 10:17:21,981 - ERROR - [QK8TEMKZMBYHPV6P]❌ Lỗi kết nối thiết bị:ConnectError: device QK8TEMKZMBYHPV6P not online
+2025-09-19 10:17:21,982 - ERROR - [F6NZ5LRKWWGACYQ8]❌ Lỗi kết nối thiết bị:ConnectError: device F6NZ5LRKWWGACYQ8 not online
+2025-09-19 10:17:21,982 - ERROR - [7HYP4T4XTS4DXKCY]❌ Lỗi khi chạy task nuôi: TypeError: expected string or bytes-like object, got 'tuple'
+2025-09-19 10:17:21,982 - ERROR - [CEIN4X45I7ZHFEFU]❌ Lỗi khi chạy task nuôi: TypeError: expected string or bytes-like object, got 'tuple'
+2025-09-19 10:17:21,983 - ERROR - [8HMN4T9575HAQWLN]❌ Lỗi khi chạy task nuôi: TypeError: expected string or bytes-like object, got 'tuple'
+2025-09-19 10:17:21,995 - ERROR - [R83Y50JZK6A]❌ Lỗi kết nối thiết bị:ConnectError: device R83Y50JZK6A not online
+2025-09-19 10:17:22,013 - ERROR - [9PAM7DIFW87DOBEU]❌ Lỗi kết nối thiết bị:ConnectError: device 9PAM7DIFW87DOBEU not online
+2025-09-19 10:17:22,014 - ERROR - [IJP78949G69DKNHM]❌ Lỗi kết nối thiết bị:ConnectError: device IJP78949G69DKNHM not online
+2025-09-19 10:17:22,028 - ERROR - [69QGMN8PXWDYPNIF]❌ Lỗi kết nối thiết bị:ConnectError: device 69QGMN8PXWDYPNIF not online
+2025-09-19 10:17:22,029 - ERROR - [R8YY70F81TV]❌ Lỗi kết nối thiết bị:ConnectError: device R8YY70F81TV not online
+2025-09-19 10:17:22,030 - ERROR - [R8YY70HCNRX]❌ Lỗi kết nối thiết bị:ConnectError: device R8YY70HCNRX not online
+2025-09-19 10:17:22,031 - ERROR - [MJZDFY896TMJBUPN]❌ Lỗi kết nối thiết bị:ConnectError: device MJZDFY896TMJBUPN not online
+2025-09-19 10:17:22,032 - ERROR - [EQLNQ8O7EQCQPFXG]❌ Lỗi kết nối thiết bị:ConnectError: device EQLNQ8O7EQCQPFXG not online
+2025-09-19 10:17:22,042 - ERROR - [YH9TSS7XCMPFZHNR]❌ Lỗi kết nối thiết bị:ConnectError: device YH9TSS7XCMPFZHNR not online
+2025-09-19 10:17:22,073 - ERROR - [IZDEGA8TFYXWRK9X]❌ Lỗi kết nối thiết bị:ConnectError: device IZDEGA8TFYXWRK9X not online
+2025-09-19 10:17:22,089 - ERROR - [PN59BMHYPFXCPN8T]❌ Lỗi kết nối thiết bị:ConnectError: device PN59BMHYPFXCPN8T not online
+2025-09-19 10:17:22,105 - ERROR - [CQIZKJ8P59AY7DHI]❌ Lỗi kết nối thiết bị:ConnectError: device CQIZKJ8P59AY7DHI not online
+2025-09-19 10:17:22,120 - ERROR - [Z5LVOF4PRGXGTS9H]❌ Lỗi kết nối thiết bị:ConnectError: device Z5LVOF4PRGXGTS9H not online
+2025-09-19 10:17:23,347 - INFO - [UWJJOJLB85SO7LIZ]🔗 Đã kết nối
+2025-09-19 10:17:23,349 - ERROR - [UWJJOJLB85SO7LIZ]❌ Lỗi khi chạy task nuôi: TypeError: expected string or bytes-like object, got 'tuple'
+2025-09-19 10:17:27,469 - ERROR - [TSPNH6GYZLPJBY6X]❌ Lỗi kết nối thiết bị:ConnectError: device TSPNH6GYZLPJBY6X not online
+2025-09-19 10:17:30,559 - ERROR - [7DXCUKKB6DVWDAQO]❌ Lỗi kết nối thiết bị:ConnectError: device 7DXCUKKB6DVWDAQO not online
+2025-09-19 10:17:32,304 - ERROR - [R8YY70F5MKN]❌ Lỗi kết nối thiết bị:ConnectError: device R8YY70F5MKN not online
+2025-09-19 10:17:32,351 - ERROR - [EIFYAALRK7U4MRZ9]❌ Lỗi kết nối thiết bị:ConnectError: device EIFYAALRK7U4MRZ9 not online
+2025-09-19 10:21:58,022 - INFO - ✅ Lấy thành công 25 devices từ API
+2025-09-19 10:22:04,137 - INFO - [7HYP4T4XTS4DXKCY]🔗 Đã kết nối
+2025-09-19 10:22:06,098 - INFO - [CEIN4X45I7ZHFEFU]🔗 Đã kết nối
+2025-09-19 10:22:08,105 - INFO - [8HMN4T9575HAQWLN]🔗 Đã kết nối
+2025-09-19 10:22:11,142 - INFO - [UWJJOJLB85SO7LIZ]🔗 Đã kết nối
+2025-09-19 10:22:12,530 - ERROR - [YH9TSS7XCMPFZHNR]❌ Lỗi kết nối thiết bị:ConnectError: device YH9TSS7XCMPFZHNR not online
+2025-09-19 10:22:12,532 - ERROR - [IZDEGA8TFYXWRK9X]❌ Lỗi kết nối thiết bị:ConnectError: device IZDEGA8TFYXWRK9X not online
+2025-09-19 10:22:12,532 - ERROR - [7HYP4T4XTS4DXKCY]❌ Lỗi khi chạy task nuôi: TypeError: expected string or bytes-like object, got 'tuple'
+2025-09-19 10:22:12,533 - ERROR - [CEIN4X45I7ZHFEFU]❌ Lỗi khi chạy task nuôi: TypeError: expected string or bytes-like object, got 'tuple'
+2025-09-19 10:22:12,533 - ERROR - [8HMN4T9575HAQWLN]❌ Lỗi khi chạy task nuôi: TypeError: expected string or bytes-like object, got 'tuple'
+2025-09-19 10:22:12,534 - ERROR - [UWJJOJLB85SO7LIZ]❌ Lỗi khi chạy task nuôi: TypeError: expected string or bytes-like object, got 'tuple'
+2025-09-19 10:22:12,545 - ERROR - [F6NZ5LRKWWGACYQ8]❌ Lỗi kết nối thiết bị:ConnectError: device F6NZ5LRKWWGACYQ8 not online
+2025-09-19 10:22:12,546 - ERROR - [69QGMN8PXWDYPNIF]❌ Lỗi kết nối thiết bị:ConnectError: device 69QGMN8PXWDYPNIF not online
+2025-09-19 10:22:12,561 - ERROR - [QK8TEMKZMBYHPV6P]❌ Lỗi kết nối thiết bị:ConnectError: device QK8TEMKZMBYHPV6P not online
+2025-09-19 10:22:12,562 - ERROR - [EM4DYTEITCCYJNFU]❌ Lỗi kết nối thiết bị:ConnectError: device EM4DYTEITCCYJNFU not online
+2025-09-19 10:22:12,563 - ERROR - [9PAM7DIFW87DOBEU]❌ Lỗi kết nối thiết bị:ConnectError: device 9PAM7DIFW87DOBEU not online
+2025-09-19 10:22:12,563 - ERROR - [MJZDFY896TMJBUPN]❌ Lỗi kết nối thiết bị:ConnectError: device MJZDFY896TMJBUPN not online
+2025-09-19 10:22:12,576 - ERROR - [EY5H9DJNIVNFH6OR]❌ Lỗi kết nối thiết bị:ConnectError: device EY5H9DJNIVNFH6OR not online
+2025-09-19 10:22:12,576 - ERROR - [EQLNQ8O7EQCQPFXG]❌ Lỗi kết nối thiết bị:ConnectError: device EQLNQ8O7EQCQPFXG not online
+2025-09-19 10:22:12,577 - ERROR - [Z5LVOF4PRGXGTS9H]❌ Lỗi kết nối thiết bị:ConnectError: device Z5LVOF4PRGXGTS9H not online
+2025-09-19 10:22:12,578 - ERROR - [PN59BMHYPFXCPN8T]❌ Lỗi kết nối thiết bị:ConnectError: device PN59BMHYPFXCPN8T not online
+2025-09-19 10:22:12,578 - ERROR - [R8YY70HCNRX]❌ Lỗi kết nối thiết bị:ConnectError: device R8YY70HCNRX not online
+2025-09-19 10:22:12,590 - ERROR - [R8YY70F81TV]❌ Lỗi kết nối thiết bị:ConnectError: device R8YY70F81TV not online
+2025-09-19 10:22:12,606 - ERROR - [IJP78949G69DKNHM]❌ Lỗi kết nối thiết bị:ConnectError: device IJP78949G69DKNHM not online
+2025-09-19 10:22:12,623 - ERROR - [CQIZKJ8P59AY7DHI]❌ Lỗi kết nối thiết bị:ConnectError: device CQIZKJ8P59AY7DHI not online
+2025-09-19 10:22:12,623 - ERROR - [R83Y50JZK6A]❌ Lỗi kết nối thiết bị:ConnectError: device R83Y50JZK6A not online
+2025-09-19 10:22:16,446 - ERROR - [TSPNH6GYZLPJBY6X]❌ Lỗi kết nối thiết bị:ConnectError: device TSPNH6GYZLPJBY6X not online
+2025-09-19 10:22:18,437 - ERROR - [7DXCUKKB6DVWDAQO]❌ Lỗi kết nối thiết bị:ConnectError: device 7DXCUKKB6DVWDAQO not online
+2025-09-19 10:22:21,488 - ERROR - [R8YY70F5MKN]❌ Lỗi kết nối thiết bị:ConnectError: device R8YY70F5MKN not online
+2025-09-19 10:22:22,852 - ERROR - [EIFYAALRK7U4MRZ9]❌ Lỗi kết nối thiết bị:ConnectError: device EIFYAALRK7U4MRZ9 not online
+2025-09-19 10:23:17,231 - INFO - ✅ Lấy thành công 25 devices từ API
+2025-09-19 10:23:23,872 - INFO - [7HYP4T4XTS4DXKCY]🔗 Đã kết nối
+2025-09-19 10:23:25,835 - INFO - [CEIN4X45I7ZHFEFU]🔗 Đã kết nối
+2025-09-19 10:23:27,770 - INFO - [8HMN4T9575HAQWLN]🔗 Đã kết nối
+2025-09-19 10:23:30,800 - INFO - [UWJJOJLB85SO7LIZ]🔗 Đã kết nối
+2025-09-19 10:23:32,157 - ERROR - [R8YY70F81TV]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:23:32,158 - ERROR - [CQIZKJ8P59AY7DHI]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:23:32,159 - ERROR - [7HYP4T4XTS4DXKCY]❌ Lỗi khi chạy task nuôi: TypeError: expected string or bytes-like object, got 'tuple'
+2025-09-19 10:23:32,160 - ERROR - [CEIN4X45I7ZHFEFU]❌ Lỗi khi chạy task nuôi: TypeError: expected string or bytes-like object, got 'tuple'
+2025-09-19 10:23:32,160 - ERROR - [8HMN4T9575HAQWLN]❌ Lỗi khi chạy task nuôi: TypeError: expected string or bytes-like object, got 'tuple'
+2025-09-19 10:23:32,161 - ERROR - [UWJJOJLB85SO7LIZ]❌ Lỗi khi chạy task nuôi: TypeError: expected string or bytes-like object, got 'tuple'
+2025-09-19 10:23:32,188 - ERROR - [YH9TSS7XCMPFZHNR]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:23:32,204 - ERROR - [EQLNQ8O7EQCQPFXG]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:23:32,219 - ERROR - [IZDEGA8TFYXWRK9X]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:23:32,220 - ERROR - [EY5H9DJNIVNFH6OR]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:23:32,220 - ERROR - [IJP78949G69DKNHM]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:23:32,221 - ERROR - [PN59BMHYPFXCPN8T]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:23:32,221 - ERROR - [F6NZ5LRKWWGACYQ8]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:23:32,221 - ERROR - [69QGMN8PXWDYPNIF]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:23:32,235 - ERROR - [Z5LVOF4PRGXGTS9H]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:23:32,236 - ERROR - [R8YY70HCNRX]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:23:32,250 - ERROR - [EM4DYTEITCCYJNFU]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:23:32,251 - ERROR - [9PAM7DIFW87DOBEU]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:23:32,252 - ERROR - [QK8TEMKZMBYHPV6P]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:23:32,266 - ERROR - [R83Y50JZK6A]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:23:32,281 - ERROR - [MJZDFY896TMJBUPN]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:23:36,155 - ERROR - [TSPNH6GYZLPJBY6X]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:23:38,092 - ERROR - [7DXCUKKB6DVWDAQO]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:23:41,156 - ERROR - [R8YY70F5MKN]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:23:42,473 - ERROR - [EIFYAALRK7U4MRZ9]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:24:54,640 - INFO - ✅ Lấy thành công 25 devices từ API
+2025-09-19 10:25:00,685 - INFO - [7HYP4T4XTS4DXKCY]🔗 Đã kết nối
+2025-09-19 10:25:03,245 - INFO - [CEIN4X45I7ZHFEFU]🔗 Đã kết nối
+2025-09-19 10:25:05,173 - INFO - [8HMN4T9575HAQWLN]🔗 Đã kết nối
+2025-09-19 10:25:08,250 - INFO - [UWJJOJLB85SO7LIZ]🔗 Đã kết nối
+2025-09-19 10:25:08,971 - ERROR - [CQIZKJ8P59AY7DHI]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:25:09,018 - ERROR - [69QGMN8PXWDYPNIF]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:25:09,019 - ERROR - [QK8TEMKZMBYHPV6P]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:25:09,034 - ERROR - [MJZDFY896TMJBUPN]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:25:09,034 - ERROR - [PN59BMHYPFXCPN8T]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:25:09,035 - ERROR - [F6NZ5LRKWWGACYQ8]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:25:09,035 - ERROR - [IJP78949G69DKNHM]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:25:09,049 - ERROR - [EM4DYTEITCCYJNFU]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:25:09,064 - ERROR - [EY5H9DJNIVNFH6OR]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:25:09,065 - ERROR - [EQLNQ8O7EQCQPFXG]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:25:09,065 - ERROR - [Z5LVOF4PRGXGTS9H]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:25:09,080 - ERROR - [9PAM7DIFW87DOBEU]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:25:09,080 - ERROR - [R8YY70F81TV]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:25:09,081 - ERROR - [IZDEGA8TFYXWRK9X]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:25:09,094 - ERROR - [YH9TSS7XCMPFZHNR]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:25:09,142 - ERROR - [R83Y50JZK6A]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:25:09,173 - ERROR - [R8YY70HCNRX]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:25:13,522 - ERROR - [TSPNH6GYZLPJBY6X]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:25:15,420 - ERROR - [7DXCUKKB6DVWDAQO]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:25:18,540 - ERROR - [R8YY70F5MKN]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:25:19,281 - ERROR - [EIFYAALRK7U4MRZ9]⛓️‍💥 Lỗi kết nối thiết bị: ConnectionError
+2025-09-19 10:25:20,734 - INFO - [UWJJOJLB85SO7LIZ] Thực hiện tác vụ: Xem reels
+2025-09-19 10:25:20,736 - INFO - Bắt đầu watch reels tuyển dụng
+2025-09-19 10:25:20,737 - INFO - [UWJJOJLB85SO7LIZ] Về trang chủ
+2025-09-19 10:25:22,069 - INFO - [8HMN4T9575HAQWLN] Thực hiện tác vụ: Xem reels
+2025-09-19 10:25:22,070 - INFO - Bắt đầu watch reels tuyển dụng
+2025-09-19 10:25:22,071 - INFO - [8HMN4T9575HAQWLN] Về trang chủ
+2025-09-19 10:25:22,433 - INFO - [CEIN4X45I7ZHFEFU] Thực hiện tác vụ: Xem reels
+2025-09-19 10:25:22,434 - INFO - Bắt đầu watch reels tuyển dụng
+2025-09-19 10:25:22,435 - INFO - [CEIN4X45I7ZHFEFU] Về trang chủ
+2025-09-19 10:25:23,898 - INFO - [7HYP4T4XTS4DXKCY] Thực hiện tác vụ: Xem reels
+2025-09-19 10:25:23,899 - INFO - Bắt đầu watch reels tuyển dụng
+2025-09-19 10:25:23,900 - INFO - [7HYP4T4XTS4DXKCY] Về trang chủ
+2025-09-19 10:25:24,427 - INFO - [7HYP4T4XTS4DXKCY] Đã về trang chủ
+2025-09-19 10:25:28,860 - WARNING - [UWJJOJLB85SO7LIZ] Không tìm được trang chủ
+2025-09-19 10:25:29,012 - WARNING - [8HMN4T9575HAQWLN] Không tìm được trang chủ
+2025-09-19 10:25:29,862 - WARNING - [CEIN4X45I7ZHFEFU] Không tìm được trang chủ
+2025-09-19 10:25:30,254 - INFO - [CEIN4X45I7ZHFEFU] Đã về trang chủ
+2025-09-19 10:25:31,255 - INFO - Đang tìm nút Reels...
+2025-09-19 10:25:32,292 - INFO - Đã vào phần Reels
+2025-09-19 10:25:34,649 - WARNING - [UWJJOJLB85SO7LIZ] Không tìm được trang chủ
+2025-09-19 10:25:34,891 - WARNING - [8HMN4T9575HAQWLN] Không tìm được trang chủ
+2025-09-19 10:25:38,160 - INFO - Đã bấm nút tìm kiếm trong Reels
+2025-09-19 10:25:38,162 - INFO - Đang tìm nút Reels...
+2025-09-19 10:25:39,440 - INFO - Đã vào phần Reels
+2025-09-19 10:25:42,018 - INFO - Nhập từ khóa tìm kiếm: tìm việc
+2025-09-19 10:25:42,562 - WARNING - [UWJJOJLB85SO7LIZ] Không tìm được trang chủ
+2025-09-19 10:25:42,973 - WARNING - [8HMN4T9575HAQWLN] Không tìm được trang chủ
+2025-09-19 10:25:45,003 - INFO - Đã bấm nút tìm kiếm trong Reels
+2025-09-19 10:25:47,961 - INFO - Nhập từ khóa tìm kiếm: tuyển dụng
+2025-09-19 10:25:48,895 - WARNING - [UWJJOJLB85SO7LIZ] Không tìm được trang chủ
+2025-09-19 10:25:49,234 - INFO - [UWJJOJLB85SO7LIZ] Đã về trang chủ
+2025-09-19 10:25:49,686 - WARNING - [8HMN4T9575HAQWLN] Không tìm được trang chủ
+2025-09-19 10:25:50,004 - INFO - [8HMN4T9575HAQWLN] Đã về trang chủ
+2025-09-19 10:25:52,419 - INFO - Đã tìm kiếm với từ khóa: tìm việc
+2025-09-19 10:25:52,421 - INFO - Bắt đầu lướt reels tuyển dụng
+2025-09-19 10:25:55,747 - INFO - Đang tìm nút Reels...
+2025-09-19 10:25:56,718 - INFO - Đã vào phần Reels
+2025-09-19 10:25:56,720 - INFO - Đang tìm nút Reels...
+2025-09-19 10:25:57,710 - INFO - Đã vào phần Reels
+2025-09-19 10:25:57,712 - INFO - Đã tìm kiếm với từ khóa: tuyển dụng
+2025-09-19 10:25:57,713 - INFO - Bắt đầu lướt reels tuyển dụng
+2025-09-19 10:26:00,554 - INFO - Đã bấm nút tìm kiếm trong Reels
+2025-09-19 10:26:02,106 - INFO - Đã bấm nút tìm kiếm trong Reels
+2025-09-19 10:26:03,749 - INFO - Nhập từ khóa tìm kiếm: tuyển sinh
+2025-09-19 10:26:06,050 - INFO - Nhập từ khóa tìm kiếm: tuyển dụng
+2025-09-19 10:26:13,387 - INFO - Đã tìm kiếm với từ khóa: tuyển sinh
+2025-09-19 10:26:13,387 - INFO - Bắt đầu lướt reels tuyển dụng
+2025-09-19 10:26:14,598 - INFO - Đã tìm kiếm với từ khóa: tuyển dụng
+2025-09-19 10:26:14,600 - INFO - Bắt đầu lướt reels tuyển dụng
+2025-09-19 10:26:19,827 - INFO - Đã bấm vào video đầu tiên
+2025-09-19 10:26:29,768 - INFO - Đã bấm vào video đầu tiên
+2025-09-19 10:26:29,769 - INFO - Video tiếp theo
+2025-09-19 10:26:30,128 - INFO - Video tiếp theo
+2025-09-19 10:26:36,897 - INFO - Đã bấm vào video đầu tiên
+2025-09-19 10:26:38,595 - INFO - Video tiếp theo
+2025-09-19 10:26:45,071 - INFO - Video tiếp theo
+2025-09-19 10:26:47,012 - INFO - Video tiếp theo
+2025-09-19 10:26:51,677 - INFO - Video tiếp theo
+2025-09-19 10:26:55,589 - INFO - Video tiếp theo
+2025-09-19 10:27:00,301 - INFO - Video tiếp theo
+2025-09-19 10:27:13,096 - INFO - Video tiếp theo
+2025-09-19 10:27:14,952 - INFO - Video tiếp theo
+2025-09-19 10:27:17,948 - INFO - Video tiếp theo
+2025-09-19 10:27:19,234 - INFO - Video tiếp theo
+2025-09-19 10:27:36,468 - INFO - Video tiếp theo
+2025-09-19 10:27:40,523 - INFO - Video tiếp theo
+2025-09-19 10:27:41,058 - INFO - Video tiếp theo
+2025-09-19 10:27:41,937 - INFO - Video tiếp theo
+2025-09-19 10:27:56,220 - INFO - Video tiếp theo
+2025-09-19 10:27:59,221 - INFO - Video tiếp theo
+2025-09-19 10:28:01,951 - INFO - Video tiếp theo
+2025-09-19 10:28:06,821 - INFO - Video tiếp theo
+2025-09-19 10:28:13,632 - INFO - Video tiếp theo
+2025-09-19 10:28:21,964 - INFO - Video tiếp theo
+2025-09-19 10:28:28,265 - INFO - Video tiếp theo
+2025-09-19 10:28:28,899 - INFO - Video tiếp theo
+2025-09-19 10:28:43,613 - INFO - Video tiếp theo
+2025-09-19 10:28:45,227 - INFO - Video tiếp theo
+2025-09-19 10:28:47,715 - INFO - Video tiếp theo
+2025-09-19 10:28:48,247 - INFO - Video tiếp theo
+2025-09-19 10:28:58,327 - INFO - Video tiếp theo
+2025-09-19 10:29:07,581 - INFO - Video tiếp theo
+2025-09-19 10:29:12,196 - INFO - Video tiếp theo
+2025-09-19 10:29:16,720 - INFO - Video tiếp theo
+2025-09-19 10:29:24,769 - INFO - Video tiếp theo
+2025-09-19 10:29:34,276 - INFO - Video tiếp theo
+2025-09-19 10:29:40,540 - INFO - Video tiếp theo
+2025-09-19 10:29:42,213 - INFO - Video tiếp theo
+2025-09-19 10:29:46,766 - INFO - Video tiếp theo
+2025-09-19 10:29:58,503 - INFO - Video tiếp theo
+2025-09-19 10:30:01,275 - INFO - Video tiếp theo
+2025-09-19 10:30:08,604 - INFO - Video tiếp theo
+2025-09-19 10:30:20,331 - INFO - Video tiếp theo
+2025-09-19 10:30:26,272 - INFO - Video tiếp theo
+2025-09-19 10:30:28,835 - INFO - Video tiếp theo
+2025-09-19 10:30:34,262 - INFO - Video tiếp theo
+2025-09-19 10:30:39,841 - INFO - Video tiếp theo
+2025-09-19 10:30:46,511 - INFO - Video tiếp theo
+2025-09-19 10:30:52,917 - ERROR - [UWJJOJLB85SO7LIZ]❌ Lỗi khi chạy task nuôi: AdbError: device 'UWJJOJLB85SO7LIZ' not found
+2025-09-19 10:31:01,215 - INFO - Video tiếp theo
+2025-09-19 10:31:03,066 - INFO - Video tiếp theo
+2025-09-19 10:31:06,255 - ERROR - [8HMN4T9575HAQWLN]❌ Lỗi khi chạy task nuôi: AdbError: device '8HMN4T9575HAQWLN' not found
+2025-09-19 10:31:17,807 - INFO - Video tiếp theo
+2025-09-19 10:31:20,157 - INFO - Video tiếp theo
+2025-09-19 10:31:35,686 - INFO - Video tiếp theo
+2025-09-19 10:31:50,609 - INFO - Video tiếp theo
+2025-09-19 10:31:58,238 - INFO - Video tiếp theo
+2025-09-19 10:32:13,613 - INFO - Video tiếp theo
+2025-09-19 10:32:29,832 - INFO - Video tiếp theo
+2025-09-19 10:32:36,011 - INFO - Video tiếp theo
+2025-09-19 10:32:58,603 - INFO - Video tiếp theo
+2025-09-19 10:33:00,442 - INFO - Video tiếp theo
+2025-09-19 10:33:17,427 - INFO - Video tiếp theo
+2025-09-19 10:33:28,516 - INFO - Video tiếp theo
+2025-09-19 10:33:44,086 - INFO - Video tiếp theo
+2025-09-19 10:33:49,076 - INFO - Video tiếp theo
+2025-09-19 10:34:02,060 - INFO - Video tiếp theo
+2025-09-19 11:08:31,931 - INFO - ✅ Lấy thành công 25 devices từ API
+2025-09-19 11:11:59,530 - INFO - ✅ Lấy thành công 25 devices từ API
+2025-09-19 11:12:07,090 - INFO - [EY5H9DJNIVNFH6OR]🔗 Đã kết nối
+2025-09-19 11:12:09,591 - INFO - [UWJJOJLB85SO7LIZ]🔗 Đã kết nối
+2025-09-19 11:12:14,203 - ERROR - [PN59BMHYPFXCPN8T]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 11:12:14,217 - ERROR - [EM4DYTEITCCYJNFU]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 11:12:14,220 - ERROR - [IJP78949G69DKNHM]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 11:12:14,234 - ERROR - [9PAM7DIFW87DOBEU]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 11:12:14,236 - ERROR - [R83Y50JZK6A]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 11:12:14,238 - ERROR - [69QGMN8PXWDYPNIF]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 11:12:14,239 - ERROR - [7HYP4T4XTS4DXKCY]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 11:12:14,249 - ERROR - [CQIZKJ8P59AY7DHI]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 11:12:14,264 - ERROR - [CEIN4X45I7ZHFEFU]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 11:12:14,265 - ERROR - [R8YY70HCNRX]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 11:12:14,280 - ERROR - [R8YY70F81TV]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 11:12:14,296 - ERROR - [IZDEGA8TFYXWRK9X]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 11:12:14,296 - ERROR - [MJZDFY896TMJBUPN]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 11:12:14,297 - ERROR - [8HMN4T9575HAQWLN]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 11:12:14,328 - ERROR - [YH9TSS7XCMPFZHNR]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 11:12:14,328 - ERROR - [Z5LVOF4PRGXGTS9H]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 11:12:14,343 - ERROR - [EQLNQ8O7EQCQPFXG]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 11:12:14,344 - ERROR - [QK8TEMKZMBYHPV6P]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 11:12:14,345 - ERROR - [F6NZ5LRKWWGACYQ8]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 11:12:16,733 - INFO - [R8YY70F5MKN]🔗 Đã kết nối
+2025-09-19 11:12:19,912 - ERROR - [TSPNH6GYZLPJBY6X]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 11:12:24,494 - ERROR - [EIFYAALRK7U4MRZ9]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 11:12:24,556 - ERROR - [7DXCUKKB6DVWDAQO]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 11:12:25,813 - INFO - [EY5H9DJNIVNFH6OR] Thực hiện tác vụ: Xem story
+2025-09-19 11:12:25,814 - INFO - Bắt đầu watch story
+2025-09-19 11:12:25,815 - INFO - [EY5H9DJNIVNFH6OR] Về trang chủ
+2025-09-19 11:12:26,387 - INFO - [EY5H9DJNIVNFH6OR] Đã về trang chủ
+2025-09-19 11:12:27,864 - INFO - [UWJJOJLB85SO7LIZ] Thực hiện tác vụ: Xem story
+2025-09-19 11:12:27,864 - INFO - Bắt đầu watch story
+2025-09-19 11:12:27,865 - INFO - [UWJJOJLB85SO7LIZ] Về trang chủ
+2025-09-19 11:12:31,221 - INFO - [R8YY70F5MKN] Thực hiện tác vụ: Xem story
+2025-09-19 11:12:31,222 - INFO - Bắt đầu watch story
+2025-09-19 11:12:31,222 - INFO - [R8YY70F5MKN] Về trang chủ
+2025-09-19 11:12:34,258 - INFO - Xem story
+2025-09-19 11:12:34,984 - WARNING - [UWJJOJLB85SO7LIZ] Không tìm được trang chủ
+2025-09-19 11:12:39,519 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 11:12:41,648 - WARNING - [UWJJOJLB85SO7LIZ] Không tìm được trang chủ
+2025-09-19 11:12:44,437 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 11:12:44,592 - INFO - [R8YY70F5MKN] Đã về trang chủ
+2025-09-19 11:12:46,427 - WARNING - [UWJJOJLB85SO7LIZ] Không tìm được trang chủ
+2025-09-19 11:12:50,258 - INFO - Xem story
+2025-09-19 11:12:52,371 - WARNING - [UWJJOJLB85SO7LIZ] Không tìm được trang chủ
+2025-09-19 11:12:57,903 - WARNING - [UWJJOJLB85SO7LIZ] Không tìm được trang chủ
+2025-09-19 11:12:58,254 - INFO - [UWJJOJLB85SO7LIZ] Đã về trang chủ
+2025-09-19 11:13:04,555 - INFO - Xem story
+2025-09-19 11:14:01,083 - INFO - Xem story chán rồi, té thôi
+2025-09-19 11:14:01,602 - INFO - Đã thoát trang story
+2025-09-19 11:14:06,283 - INFO - [EY5H9DJNIVNFH6OR] Về trang chủ
+2025-09-19 11:14:06,638 - INFO - [EY5H9DJNIVNFH6OR] Đã về trang chủ
+2025-09-19 11:14:06,640 - INFO - [EY5H9DJNIVNFH6OR] Hoàn thành 1 chuỗi task
+2025-09-19 11:14:16,062 - INFO - Xem story chán rồi, té thôi
+2025-09-19 11:14:16,552 - INFO - Đã thoát trang story
+2025-09-19 11:14:21,323 - INFO - [R8YY70F5MKN] Về trang chủ
+2025-09-19 11:14:21,599 - INFO - [R8YY70F5MKN] Đã về trang chủ
+2025-09-19 11:14:21,601 - INFO - [R8YY70F5MKN] Hoàn thành 1 chuỗi task
+2025-09-19 11:14:30,299 - INFO - Xem story chán rồi, té thôi
+2025-09-19 11:14:30,935 - INFO - Đã thoát trang story
+2025-09-19 11:14:35,676 - INFO - [UWJJOJLB85SO7LIZ] Về trang chủ
+2025-09-19 11:14:36,001 - INFO - [UWJJOJLB85SO7LIZ] Đã về trang chủ
+2025-09-19 11:14:36,002 - INFO - [UWJJOJLB85SO7LIZ] Hoàn thành 1 chuỗi task
+2025-09-19 13:39:20,980 - INFO - ✅ Lấy thành công 25 devices từ API
+2025-09-19 13:39:28,351 - INFO - [R8YY70HCNRX]🔗 Đã kết nối
+2025-09-19 13:39:31,403 - INFO - [EY5H9DJNIVNFH6OR]🔗 Đã kết nối
+2025-09-19 13:39:34,483 - INFO - [UWJJOJLB85SO7LIZ]🔗 Đã kết nối
+2025-09-19 13:39:36,207 - ERROR - [CEIN4X45I7ZHFEFU]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:39:36,210 - ERROR - [IJP78949G69DKNHM]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:39:36,224 - ERROR - [IZDEGA8TFYXWRK9X]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:39:36,226 - ERROR - [YH9TSS7XCMPFZHNR]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:39:36,237 - ERROR - [7HYP4T4XTS4DXKCY]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:39:36,238 - ERROR - [R83Y50JZK6A]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:39:36,253 - ERROR - [EM4DYTEITCCYJNFU]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:39:36,253 - ERROR - [8HMN4T9575HAQWLN]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:39:36,255 - ERROR - [EQLNQ8O7EQCQPFXG]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:39:36,255 - ERROR - [QK8TEMKZMBYHPV6P]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:39:36,268 - ERROR - [Z5LVOF4PRGXGTS9H]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:39:36,268 - ERROR - [69QGMN8PXWDYPNIF]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:39:36,268 - ERROR - [MJZDFY896TMJBUPN]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:39:36,284 - ERROR - [R8YY70F81TV]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:39:36,285 - ERROR - [CQIZKJ8P59AY7DHI]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:39:36,285 - ERROR - [9PAM7DIFW87DOBEU]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:39:36,316 - ERROR - [F6NZ5LRKWWGACYQ8]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:39:36,347 - ERROR - [PN59BMHYPFXCPN8T]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:39:38,681 - INFO - [R8YY70F5MKN]🔗 Đã kết nối
+2025-09-19 13:39:41,675 - ERROR - [TSPNH6GYZLPJBY6X]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:39:44,790 - ERROR - [7DXCUKKB6DVWDAQO]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:39:46,494 - ERROR - [EIFYAALRK7U4MRZ9]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:39:46,964 - INFO - [EY5H9DJNIVNFH6OR] Đang đăng nhập vào tài khoản Huyền Trang Tuyendung
+2025-09-19 13:39:46,965 - INFO - [EY5H9DJNIVNFH6OR] Về trang chủ
+2025-09-19 13:39:49,614 - INFO - [R8YY70F5MKN] Đang đăng nhập vào tài khoản Nguyễn Thị Loan
+2025-09-19 13:39:49,614 - INFO - [R8YY70F5MKN] Về trang chủ
+2025-09-19 13:39:51,401 - INFO - [UWJJOJLB85SO7LIZ] Đang đăng nhập vào tài khoản Bùi Nhất
+2025-09-19 13:39:51,401 - INFO - [UWJJOJLB85SO7LIZ] Về trang chủ
+2025-09-19 13:39:51,886 - INFO - [UWJJOJLB85SO7LIZ] Đã về trang chủ
+2025-09-19 13:39:51,887 - INFO - [UWJJOJLB85SO7LIZ] Đăng xuất
+2025-09-19 13:39:52,997 - INFO - [UWJJOJLB85SO7LIZ] Vào menu
+2025-09-19 13:39:55,252 - INFO - [R8YY70HCNRX] Đang đăng nhập vào tài khoản Ngọc Hoa
+2025-09-19 13:39:55,253 - INFO - [R8YY70HCNRX] Về trang chủ
+2025-09-19 13:39:56,206 - WARNING - [EY5H9DJNIVNFH6OR] Không tìm được trang chủ
+2025-09-19 13:39:58,386 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:40:01,897 - WARNING - [R8YY70HCNRX] Không tìm được trang chủ
+2025-09-19 13:40:02,281 - INFO - [R8YY70HCNRX] Đã về trang chủ
+2025-09-19 13:40:02,282 - INFO - [R8YY70HCNRX] Đăng xuất
+2025-09-19 13:40:02,922 - INFO - [R8YY70HCNRX] Vào menu
+2025-09-19 13:40:04,385 - WARNING - [EY5H9DJNIVNFH6OR] Không tìm được trang chủ
+2025-09-19 13:40:04,753 - INFO - [EY5H9DJNIVNFH6OR] Đã về trang chủ
+2025-09-19 13:40:04,754 - INFO - [EY5H9DJNIVNFH6OR] Đăng xuất
+2025-09-19 13:40:05,881 - INFO - [EY5H9DJNIVNFH6OR] Vào menu
+2025-09-19 13:40:09,168 - INFO - [UWJJOJLB85SO7LIZ] Đang đăng xuất
+2025-09-19 13:40:09,654 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:40:10,665 - INFO - [R8YY70HCNRX] Đang đăng xuất
+2025-09-19 13:40:13,626 - INFO - [EY5H9DJNIVNFH6OR] Đang đăng xuất
+2025-09-19 13:40:16,567 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:40:19,237 - INFO - [UWJJOJLB85SO7LIZ] Xác nhận đăng xuất
+2025-09-19 13:40:19,238 - INFO - [UWJJOJLB85SO7LIZ] Đăng xuất thành công
+2025-09-19 13:40:19,819 - INFO - [R8YY70HCNRX] Xác nhận đăng xuất
+2025-09-19 13:40:19,820 - INFO - [R8YY70HCNRX] Đăng xuất thành công
+2025-09-19 13:40:19,826 - INFO - [UWJJOJLB85SO7LIZ] Bắt đầu đăng nhập vào tài khoản Bùi Nhất
+2025-09-19 13:40:20,968 - INFO - [R8YY70HCNRX] Bắt đầu đăng nhập vào tài khoản Ngọc Hoa
+2025-09-19 13:40:22,749 - INFO - [EY5H9DJNIVNFH6OR] Xác nhận đăng xuất
+2025-09-19 13:40:22,750 - INFO - [EY5H9DJNIVNFH6OR] Đăng xuất thành công
+2025-09-19 13:40:22,889 - INFO - [EY5H9DJNIVNFH6OR] Bắt đầu đăng nhập vào tài khoản Huyền Trang Tuyendung
+2025-09-19 13:40:24,678 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:40:33,153 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:40:38,364 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:40:43,550 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:40:48,003 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:40:48,615 - INFO - [R8YY70HCNRX] Đăng nhập thành công vào tài khoản Ngọc Hoa
+2025-09-19 13:40:48,616 - INFO - [R8YY70HCNRX] Thực hiện tác vụ: Xem story
+2025-09-19 13:40:48,617 - INFO - Bắt đầu watch story
+2025-09-19 13:40:48,617 - INFO - [R8YY70HCNRX] Về trang chủ
+2025-09-19 13:40:48,817 - INFO - [R8YY70HCNRX] Đã về trang chủ
+2025-09-19 13:40:48,882 - INFO - [UWJJOJLB85SO7LIZ] Đăng nhập thành công vào tài khoản Bùi Nhất
+2025-09-19 13:40:48,883 - INFO - [UWJJOJLB85SO7LIZ] Thực hiện tác vụ: Xem story
+2025-09-19 13:40:48,884 - INFO - Bắt đầu watch story
+2025-09-19 13:40:48,884 - INFO - [UWJJOJLB85SO7LIZ] Về trang chủ
+2025-09-19 13:40:49,102 - INFO - [UWJJOJLB85SO7LIZ] Đã về trang chủ
+2025-09-19 13:40:52,653 - INFO - [EY5H9DJNIVNFH6OR] Đăng nhập thành công vào tài khoản Huyền Trang Tuyendung
+2025-09-19 13:40:52,655 - INFO - [EY5H9DJNIVNFH6OR] Thực hiện tác vụ: Xem story
+2025-09-19 13:40:52,655 - INFO - Bắt đầu watch story
+2025-09-19 13:40:52,656 - INFO - [EY5H9DJNIVNFH6OR] Về trang chủ
+2025-09-19 13:40:52,891 - INFO - [EY5H9DJNIVNFH6OR] Đã về trang chủ
+2025-09-19 13:40:52,894 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:40:55,585 - INFO - Xem story
+2025-09-19 13:40:57,116 - INFO - Xem story
+2025-09-19 13:40:59,502 - INFO - Xem story
+2025-09-19 13:41:00,827 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:41:04,555 - ERROR - [R8YY70F5MKN] Không tìm được homepage sau 10 lần thử
+2025-09-19 13:41:04,556 - INFO - [R8YY70F5MKN] Đăng xuất
+2025-09-19 13:41:05,142 - INFO - [R8YY70F5MKN] Vào menu
+2025-09-19 13:42:17,653 - INFO - Xem story chán rồi, té thôi
+2025-09-19 13:42:18,076 - INFO - Đã thoát trang story
+2025-09-19 13:42:19,192 - INFO - Xem story chán rồi, té thôi
+2025-09-19 13:42:19,741 - INFO - Đã thoát trang story
+2025-09-19 13:42:20,211 - INFO - Xem story chán rồi, té thôi
+2025-09-19 13:42:20,735 - INFO - Đã thoát trang story
+2025-09-19 13:42:24,089 - INFO - [R8YY70HCNRX] Về trang chủ
+2025-09-19 13:42:24,354 - INFO - [R8YY70HCNRX] Đã về trang chủ
+2025-09-19 13:42:24,355 - INFO - [R8YY70HCNRX] Hoàn thành 1 chuỗi task
+2025-09-19 13:42:24,642 - INFO - [UWJJOJLB85SO7LIZ] Về trang chủ
+2025-09-19 13:42:24,930 - INFO - [UWJJOJLB85SO7LIZ] Đã về trang chủ
+2025-09-19 13:42:24,931 - INFO - [UWJJOJLB85SO7LIZ] Hoàn thành 1 chuỗi task
+2025-09-19 13:42:25,640 - INFO - [EY5H9DJNIVNFH6OR] Về trang chủ
+2025-09-19 13:42:25,819 - INFO - [EY5H9DJNIVNFH6OR] Đã về trang chủ
+2025-09-19 13:42:25,820 - INFO - [EY5H9DJNIVNFH6OR] Hoàn thành 1 chuỗi task
+2025-09-19 13:42:36,078 - ERROR - [R8YY70F5MKN] Không tìm được nút đăng xuất sau 20 lần thử
+2025-09-19 13:42:36,079 - INFO - [R8YY70F5MKN] Về trang chủ
+2025-09-19 13:42:40,566 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:42:45,379 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:42:49,840 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:42:54,733 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:42:59,143 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:43:04,006 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:43:08,414 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:43:13,338 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:43:17,771 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:43:22,537 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:43:25,851 - ERROR - [R8YY70F5MKN] Không tìm được homepage sau 10 lần thử
+2025-09-19 13:43:25,853 - INFO - [R8YY70F5MKN] Bắt đầu đăng nhập vào tài khoản Nguyễn Thị Loan
+2025-09-19 13:43:48,037 - ERROR - [R8YY70F5MKN] Không thể đăng nhập
+2025-09-19 13:43:48,038 - INFO - [R8YY70F5MKN] Thực hiện tác vụ: Xem story
+2025-09-19 13:43:48,038 - INFO - Bắt đầu watch story
+2025-09-19 13:43:48,039 - INFO - [R8YY70F5MKN] Về trang chủ
+2025-09-19 13:43:52,440 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:43:57,296 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:44:01,806 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:44:06,631 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:44:11,095 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:44:16,201 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:44:20,669 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:44:25,472 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:44:29,866 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:44:34,718 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:44:38,051 - ERROR - [R8YY70F5MKN] Không tìm được homepage sau 10 lần thử
+2025-09-19 13:44:47,127 - ERROR - Không thể tìm được story
+2025-09-19 13:44:52,778 - INFO - [R8YY70F5MKN] Về trang chủ
+2025-09-19 13:44:57,237 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:45:02,035 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:45:06,472 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:45:11,204 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:45:15,622 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:45:20,526 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:45:24,948 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:45:29,957 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:45:34,417 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:45:39,315 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:45:42,588 - ERROR - [R8YY70F5MKN] Không tìm được homepage sau 10 lần thử
+2025-09-19 13:45:42,589 - INFO - [R8YY70F5MKN] Hoàn thành 1 chuỗi task
+2025-09-19 13:48:32,063 - INFO - ✅ Lấy thành công 25 devices từ API
+2025-09-19 13:48:37,268 - INFO - [R8YY70HCNRX]🔗 Đã kết nối
+2025-09-19 13:48:39,776 - INFO - [EY5H9DJNIVNFH6OR]🔗 Đã kết nối
+2025-09-19 13:48:42,251 - INFO - [UWJJOJLB85SO7LIZ]🔗 Đã kết nối
+2025-09-19 13:48:46,203 - ERROR - [7HYP4T4XTS4DXKCY]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:48:46,204 - ERROR - [Z5LVOF4PRGXGTS9H]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:48:46,219 - ERROR - [EQLNQ8O7EQCQPFXG]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:48:46,221 - ERROR - [8HMN4T9575HAQWLN]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:48:46,222 - ERROR - [IZDEGA8TFYXWRK9X]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:48:46,234 - ERROR - [69QGMN8PXWDYPNIF]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:48:46,236 - ERROR - [9PAM7DIFW87DOBEU]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:48:46,249 - ERROR - [PN59BMHYPFXCPN8T]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:48:46,249 - ERROR - [YH9TSS7XCMPFZHNR]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:48:46,249 - ERROR - [CQIZKJ8P59AY7DHI]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:48:46,250 - ERROR - [R83Y50JZK6A]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:48:46,264 - ERROR - [R8YY70F81TV]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:48:46,265 - ERROR - [QK8TEMKZMBYHPV6P]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:48:46,265 - ERROR - [F6NZ5LRKWWGACYQ8]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:48:46,265 - ERROR - [EM4DYTEITCCYJNFU]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:48:46,280 - ERROR - [MJZDFY896TMJBUPN]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:48:46,313 - ERROR - [CEIN4X45I7ZHFEFU]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:48:46,357 - ERROR - [IJP78949G69DKNHM]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:48:47,557 - INFO - [R8YY70F5MKN]🔗 Đã kết nối
+2025-09-19 13:48:49,995 - ERROR - [TSPNH6GYZLPJBY6X]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:48:52,591 - ERROR - [7DXCUKKB6DVWDAQO]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:48:56,438 - ERROR - [EIFYAALRK7U4MRZ9]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError
+2025-09-19 13:48:57,744 - INFO - [UWJJOJLB85SO7LIZ] Đang đăng nhập vào tài khoản Bùi Nhất
+2025-09-19 13:48:57,744 - INFO - [UWJJOJLB85SO7LIZ] Về trang chủ
+2025-09-19 13:48:58,089 - INFO - [UWJJOJLB85SO7LIZ] Đã về trang chủ
+2025-09-19 13:48:58,090 - INFO - [UWJJOJLB85SO7LIZ] Đăng xuất
+2025-09-19 13:48:59,109 - INFO - [UWJJOJLB85SO7LIZ] Vào menu
+2025-09-19 13:49:00,438 - INFO - [R8YY70F5MKN] Đang đăng nhập vào tài khoản Nguyễn Thị Loan
+2025-09-19 13:49:00,439 - INFO - [R8YY70F5MKN] Về trang chủ
+2025-09-19 13:49:00,683 - INFO - [EY5H9DJNIVNFH6OR] Đang đăng nhập vào tài khoản Huyền Trang
+2025-09-19 13:49:00,684 - INFO - [EY5H9DJNIVNFH6OR] Về trang chủ
+2025-09-19 13:49:01,160 - INFO - [EY5H9DJNIVNFH6OR] Đã về trang chủ
+2025-09-19 13:49:01,161 - INFO - [EY5H9DJNIVNFH6OR] Đăng xuất
+2025-09-19 13:49:02,089 - INFO - [EY5H9DJNIVNFH6OR] Vào menu
+2025-09-19 13:49:03,547 - INFO - [R8YY70HCNRX] Đang đăng nhập vào tài khoản Quỳnh Diễm
+2025-09-19 13:49:03,547 - INFO - [R8YY70HCNRX] Về trang chủ
+2025-09-19 13:49:07,865 - ERROR - [R8YY70HCNRX] Lỗi trong quá trình chạy: RemoteDisconnected
+ Remote end closed connection without response
+2025-09-19 13:49:07,867 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:49:11,577 - INFO - [UWJJOJLB85SO7LIZ] Đang đăng xuất
+2025-09-19 13:49:13,196 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:49:14,277 - INFO - [EY5H9DJNIVNFH6OR] Đang đăng xuất
+2025-09-19 13:49:18,588 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:49:20,173 - INFO - [UWJJOJLB85SO7LIZ] Xác nhận đăng xuất
+2025-09-19 13:49:20,174 - INFO - [UWJJOJLB85SO7LIZ] Đăng xuất thành công
+2025-09-19 13:49:20,417 - INFO - [UWJJOJLB85SO7LIZ] Bắt đầu đăng nhập vào tài khoản Bùi Nhất
+2025-09-19 13:49:26,312 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:49:32,153 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:49:36,966 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:49:37,483 - ERROR - [EY5H9DJNIVNFH6OR] Không tìm thấy box xác nhận đăng xuất
+2025-09-19 13:49:37,484 - INFO - [EY5H9DJNIVNFH6OR] Bắt đầu đăng nhập vào tài khoản Huyền Trang
+2025-09-19 13:49:41,850 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:49:46,469 - INFO - [UWJJOJLB85SO7LIZ] Đăng nhập thành công vào tài khoản Bùi Nhất
+2025-09-19 13:49:46,471 - INFO - [UWJJOJLB85SO7LIZ] Thực hiện tác vụ: Xem story
+2025-09-19 13:49:46,471 - INFO - Bắt đầu watch story
+2025-09-19 13:49:46,472 - INFO - [UWJJOJLB85SO7LIZ] Về trang chủ
+2025-09-19 13:49:46,825 - INFO - [UWJJOJLB85SO7LIZ] Đã về trang chủ
+2025-09-19 13:49:47,140 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:49:52,108 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:49:54,609 - INFO - Xem story
+2025-09-19 13:49:58,381 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:50:02,183 - ERROR - [R8YY70F5MKN] Không tìm được homepage sau 10 lần thử
+2025-09-19 13:50:02,183 - INFO - [R8YY70F5MKN] Đăng xuất
+2025-09-19 13:50:04,470 - ERROR - [EY5H9DJNIVNFH6OR] Không thể đăng nhập
+2025-09-19 13:50:04,472 - INFO - [EY5H9DJNIVNFH6OR] Thực hiện tác vụ: Xem story
+2025-09-19 13:50:04,473 - INFO - Bắt đầu watch story
+2025-09-19 13:50:04,473 - INFO - [EY5H9DJNIVNFH6OR] Về trang chủ
+2025-09-19 13:50:06,031 - ERROR - [R8YY70F5MKN] Không tìm được nút menu
+2025-09-19 13:50:06,033 - INFO - [R8YY70F5MKN] Bắt đầu đăng nhập vào tài khoản Nguyễn Thị Loan
+2025-09-19 13:50:10,458 - WARNING - [EY5H9DJNIVNFH6OR] Không tìm được trang chủ
+2025-09-19 13:50:16,484 - WARNING - [EY5H9DJNIVNFH6OR] Không tìm được trang chủ
+2025-09-19 13:50:22,042 - WARNING - [EY5H9DJNIVNFH6OR] Không tìm được trang chủ
+2025-09-19 13:50:28,069 - WARNING - [EY5H9DJNIVNFH6OR] Không tìm được trang chủ
+2025-09-19 13:50:33,883 - WARNING - [EY5H9DJNIVNFH6OR] Không tìm được trang chủ
+2025-09-19 13:50:35,473 - ERROR - [R8YY70F5MKN] Không thể đăng nhập
+2025-09-19 13:50:35,473 - INFO - [R8YY70F5MKN] Thực hiện tác vụ: Xem story
+2025-09-19 13:50:35,474 - INFO - Bắt đầu watch story
+2025-09-19 13:50:35,474 - INFO - [R8YY70F5MKN] Về trang chủ
+2025-09-19 13:50:39,947 - WARNING - [EY5H9DJNIVNFH6OR] Không tìm được trang chủ
+2025-09-19 13:50:41,558 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:50:45,960 - WARNING - [EY5H9DJNIVNFH6OR] Không tìm được trang chủ
+2025-09-19 13:50:47,688 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:50:52,164 - WARNING - [EY5H9DJNIVNFH6OR] Không tìm được trang chủ
+2025-09-19 13:50:53,946 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:50:58,458 - WARNING - [EY5H9DJNIVNFH6OR] Không tìm được trang chủ
+2025-09-19 13:50:59,946 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:51:04,425 - WARNING - [EY5H9DJNIVNFH6OR] Không tìm được trang chủ
+2025-09-19 13:51:06,170 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:51:07,896 - INFO - Xem story chán rồi, té thôi
+2025-09-19 13:51:08,439 - INFO - Đã thoát trang story
+2025-09-19 13:51:08,491 - ERROR - [EY5H9DJNIVNFH6OR] Không tìm được homepage sau 10 lần thử
+2025-09-19 13:51:10,984 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:51:13,834 - INFO - [UWJJOJLB85SO7LIZ] Về trang chủ
+2025-09-19 13:51:14,190 - INFO - [UWJJOJLB85SO7LIZ] Đã về trang chủ
+2025-09-19 13:51:14,191 - INFO - [UWJJOJLB85SO7LIZ] Hoàn thành 1 chuỗi task
+2025-09-19 13:51:15,503 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:51:18,764 - ERROR - Không thể tìm được story
+2025-09-19 13:51:20,492 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:51:22,941 - INFO - [EY5H9DJNIVNFH6OR] Về trang chủ
+2025-09-19 13:51:24,989 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:51:28,907 - WARNING - [EY5H9DJNIVNFH6OR] Không tìm được trang chủ
+2025-09-19 13:51:30,482 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:51:34,979 - WARNING - [EY5H9DJNIVNFH6OR] Không tìm được trang chủ
+2025-09-19 13:51:35,280 - ERROR - [R8YY70F5MKN] Không tìm được homepage sau 10 lần thử
+2025-09-19 13:51:41,105 - WARNING - [EY5H9DJNIVNFH6OR] Không tìm được trang chủ
+2025-09-19 13:51:45,749 - ERROR - Không thể tìm được story
+2025-09-19 13:51:46,752 - WARNING - [EY5H9DJNIVNFH6OR] Không tìm được trang chủ
+2025-09-19 13:51:50,189 - INFO - [R8YY70F5MKN] Về trang chủ
+2025-09-19 13:51:52,764 - WARNING - [EY5H9DJNIVNFH6OR] Không tìm được trang chủ
+2025-09-19 13:51:55,688 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:51:58,820 - WARNING - [EY5H9DJNIVNFH6OR] Không tìm được trang chủ
+2025-09-19 13:52:01,884 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:52:04,907 - WARNING - [EY5H9DJNIVNFH6OR] Không tìm được trang chủ
+2025-09-19 13:52:07,865 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:52:11,006 - WARNING - [EY5H9DJNIVNFH6OR] Không tìm được trang chủ
+2025-09-19 13:52:13,950 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:52:17,021 - WARNING - [EY5H9DJNIVNFH6OR] Không tìm được trang chủ
+2025-09-19 13:52:19,901 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:52:23,001 - WARNING - [EY5H9DJNIVNFH6OR] Không tìm được trang chủ
+2025-09-19 13:52:25,975 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:52:26,975 - ERROR - [EY5H9DJNIVNFH6OR] Không tìm được homepage sau 10 lần thử
+2025-09-19 13:52:26,977 - INFO - [EY5H9DJNIVNFH6OR] Hoàn thành 1 chuỗi task
+2025-09-19 13:52:30,421 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:52:35,271 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:52:39,725 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:52:44,566 - WARNING - [R8YY70F5MKN] Không tìm được trang chủ
+2025-09-19 13:52:47,925 - ERROR - [R8YY70F5MKN] Không tìm được homepage sau 10 lần thử
+2025-09-19 13:52:47,930 - INFO - [R8YY70F5MKN] Hoàn thành 1 chuỗi task
+2025-09-19 15:13:00,728 - INFO - ✅ Lấy thành công 25 devices từ API
+2025-09-19 15:14:27,052 - INFO - ✅ Lấy thành công 25 devices từ API
+2025-09-19 15:16:27,572 - INFO - ✅ Lấy thành công 25 devices từ API
+2025-09-19 15:29:44,482 - INFO - ✅ Lấy thành công 25 devices từ API
+2025-09-19 15:56:05,549 - INFO - ✅ Lấy thành công 25 devices từ API
+2025-09-19 15:56:10,314 - INFO - Đọc danh sách thiết bị kết nối qua ADB
+2025-09-19 15:56:10,348 - INFO - Thiết bị: 7DXCUKKB6DVWDAQO, Trạng thái: device
+2025-09-19 15:56:10,348 - INFO - Thiết bị: 9PAM7DIFW87DOBEU, Trạng thái: device
+2025-09-19 15:56:10,348 - INFO - Thiết bị: CQIZKJ8P59AY7DHI, Trạng thái: device
+2025-09-19 15:56:10,348 - INFO - Thiết bị: EY5H9DJNIVNFH6OR, Trạng thái: device
+2025-09-19 15:59:54,981 - INFO - ✅ Lấy thành công 25 devices từ API
+2025-09-19 15:59:59,250 - INFO - Đọc danh sách thiết bị kết nối qua ADB
+2025-09-19 15:59:59,282 - INFO - Thiết bị: [7DXCUKKB6DVWDAQO], Trạng thái: device
+2025-09-19 15:59:59,282 - INFO - 📱 Thiết bị [7DXCUKKB6DVWDAQO] đã kết nối và sẵn sàng
+2025-09-19 15:59:59,282 - INFO - Thiết bị: [9PAM7DIFW87DOBEU], Trạng thái: device
+2025-09-19 15:59:59,282 - INFO - 📱 Thiết bị [9PAM7DIFW87DOBEU] đã kết nối và sẵn sàng
+2025-09-19 15:59:59,282 - INFO - Thiết bị: [CQIZKJ8P59AY7DHI], Trạng thái: device
+2025-09-19 15:59:59,282 - INFO - 📱 Thiết bị [CQIZKJ8P59AY7DHI] đã kết nối và sẵn sàng
+2025-09-19 15:59:59,282 - INFO - Thiết bị: [EY5H9DJNIVNFH6OR], Trạng thái: device
+2025-09-19 15:59:59,282 - INFO - 📱 Thiết bị [EY5H9DJNIVNFH6OR] đã kết nối và sẵn sàng
+2025-09-19 16:01:00,308 - INFO - ✅ Lấy thành công 25 devices từ API
+2025-09-19 16:01:04,608 - INFO - Đọc danh sách thiết bị kết nối qua ADB
+2025-09-19 16:01:04,647 - INFO - Thiết bị: [7DXCUKKB6DVWDAQO], Trạng thái: device
+2025-09-19 16:01:04,647 - INFO - 📱 Thiết bị [7DXCUKKB6DVWDAQO] đã kết nối và sẵn sàng
+2025-09-19 16:01:04,647 - INFO - Thiết bị: [9PAM7DIFW87DOBEU], Trạng thái: device
+2025-09-19 16:01:04,647 - INFO - 📱 Thiết bị [9PAM7DIFW87DOBEU] đã kết nối và sẵn sàng
+2025-09-19 16:01:04,647 - INFO - Thiết bị: [CQIZKJ8P59AY7DHI], Trạng thái: device
+2025-09-19 16:01:04,647 - INFO - 📱 Thiết bị [CQIZKJ8P59AY7DHI] đã kết nối và sẵn sàng
+2025-09-19 16:01:04,647 - INFO - Thiết bị: [EY5H9DJNIVNFH6OR], Trạng thái: device
+2025-09-19 16:01:04,647 - INFO - 📱 Thiết bị [EY5H9DJNIVNFH6OR] đã kết nối và sẵn sàng
+2025-09-19 16:07:30,021 - INFO - Đọc danh sách thiết bị kết nối qua ADB
+2025-09-19 16:07:30,055 - INFO - Thiết bị: [7DXCUKKB6DVWDAQO], Trạng thái: device
+2025-09-19 16:07:30,055 - INFO - 📱 Thiết bị [7DXCUKKB6DVWDAQO] đã kết nối và sẵn sàng
+2025-09-19 16:07:30,055 - INFO - Thiết bị: [9PAM7DIFW87DOBEU], Trạng thái: device
+2025-09-19 16:07:30,055 - INFO - 📱 Thiết bị [9PAM7DIFW87DOBEU] đã kết nối và sẵn sàng
+2025-09-19 16:07:30,055 - INFO - Thiết bị: [CQIZKJ8P59AY7DHI], Trạng thái: device
+2025-09-19 16:07:30,055 - INFO - 📱 Thiết bị [CQIZKJ8P59AY7DHI] đã kết nối và sẵn sàng
+2025-09-19 16:07:30,055 - INFO - Thiết bị: [EY5H9DJNIVNFH6OR], Trạng thái: device
+2025-09-19 16:07:30,055 - INFO - 📱 Thiết bị [EY5H9DJNIVNFH6OR] đã kết nối và sẵn sàng
+2025-09-19 16:12:28,630 - INFO - Đọc danh sách thiết bị kết nối qua ADB
+2025-09-19 16:15:24,974 - INFO - ✅ Lấy thành công 25 devices từ API
+2025-09-19 16:15:29,377 - INFO - Đọc danh sách thiết bị kết nối qua ADB
+2025-09-19 16:18:21,650 - INFO - Đọc danh sách thiết bị kết nối qua ADB
+2025-09-19 16:18:21,673 - INFO - ✅ Lấy thành công 4 devices từ ADB
+2025-09-19 16:18:21,673 - INFO - Đọc danh sách thiết bị kết nối qua ADB
+2025-09-19 16:18:21,702 - INFO - ✅ Lấy thành công 4 devices từ ADB
+2025-09-19 16:19:59,240 - INFO - Đọc danh sách thiết bị kết nối qua ADB
+2025-09-19 16:19:59,272 - INFO - ✅ Lấy thành công 4 devices từ ADB
+2025-09-19 16:20:39,713 - INFO - Đọc danh sách thiết bị kết nối qua ADB
+2025-09-19 16:20:39,746 - INFO - 📱 Lấy thành công 4 devices từ ADB
+2025-09-19 16:20:58,092 - INFO - Đọc danh sách thiết bị kết nối qua ADB
+2025-09-19 16:20:58,130 - INFO - 📱 Lấy thành công 4 devices từ ADB
+2025-09-19 16:21:04,067 - INFO - [9PAM7DIFW87DOBEU]🔗 Đã kết nối
+2025-09-19 16:21:13,508 - ERROR - Lỗi chạy chính: name 'load_device_status' is not defined
+2025-09-19 16:21:20,030 - INFO - Đọc danh sách thiết bị kết nối qua ADB
+2025-09-19 16:21:20,078 - INFO - 📱 Lấy thành công 4 devices từ ADB
+2025-09-19 16:21:24,916 - INFO - [9PAM7DIFW87DOBEU]🔗 Đã kết nối
+2025-09-19 16:21:30,948 - ERROR - Lỗi chạy chính: name 'load_device_status' is not defined
