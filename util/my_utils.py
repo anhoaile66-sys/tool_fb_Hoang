@@ -157,7 +157,7 @@ async def go_to_home_page(driver):
             return None
         driver.press("back")
         await asyncio.sleep(1)
-        log_message(f"[{driver.serial}] Không tìm được trang chủ", logging.WARNING)
+        # log_message(f"[{driver.serial}] Không tìm được trang chủ", logging.WARNING)
         safe_count -= 1
     log_message(f"[{driver.serial}] Đã về trang chủ")
     return element

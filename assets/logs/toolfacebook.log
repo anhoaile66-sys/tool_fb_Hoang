@@ -45329,3 +45329,114 @@ Bằng cấp/chứng chỉ liên quan (photo)
 2025-09-19 16:21:20,078 - INFO - 📱 Lấy thành công 4 devices từ ADB
 2025-09-19 16:21:24,916 - INFO - [9PAM7DIFW87DOBEU]🔗 Đã kết nối
 2025-09-19 16:21:30,948 - ERROR - Lỗi chạy chính: name 'load_device_status' is not defined
+2025-09-19 16:27:22,842 - INFO - Đọc danh sách thiết bị kết nối qua ADB
+2025-09-19 16:27:22,864 - INFO - 📱 Lấy thành công 4 devices từ ADB
+2025-09-19 16:27:24,914 - INFO - [CQIZKJ8P59AY7DHI]🔗 Đã kết nối
+2025-09-19 16:27:26,940 - INFO - [7DXCUKKB6DVWDAQO]🔗 Đã kết nối
+2025-09-19 16:27:31,662 - INFO - [9PAM7DIFW87DOBEU]🔗 Đã kết nối
+2025-09-19 16:27:34,767 - INFO - [EY5H9DJNIVNFH6OR]🔗 Đã kết nối
+2025-09-19 16:27:39,292 - INFO - [CQIZKJ8P59AY7DHI] Đang đăng nhập vào tài khoản Hoa Mai
+2025-09-19 16:27:39,305 - INFO - [CQIZKJ8P59AY7DHI] Về trang chủ
+2025-09-19 16:27:40,985 - INFO - [7DXCUKKB6DVWDAQO] Đang đăng nhập vào tài khoản Linh Nhi
+2025-09-19 16:27:40,985 - INFO - [7DXCUKKB6DVWDAQO] Về trang chủ
+2025-09-19 16:27:45,431 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:27:47,331 - INFO - [9PAM7DIFW87DOBEU] Đang đăng nhập vào tài khoản Vũ Quỳnh Chi
+2025-09-19 16:27:47,347 - INFO - [9PAM7DIFW87DOBEU] Về trang chủ
+2025-09-19 16:27:47,732 - INFO - [9PAM7DIFW87DOBEU] Đã về trang chủ
+2025-09-19 16:27:47,732 - INFO - [9PAM7DIFW87DOBEU] Đăng xuất
+2025-09-19 16:27:48,759 - INFO - [9PAM7DIFW87DOBEU] Vào menu
+2025-09-19 16:27:50,409 - WARNING - [7DXCUKKB6DVWDAQO] Không tìm được trang chủ
+2025-09-19 16:27:53,480 - INFO - [EY5H9DJNIVNFH6OR] Đang đăng nhập vào tài khoản Huyền Trang Tuyendung
+2025-09-19 16:27:53,481 - INFO - [EY5H9DJNIVNFH6OR] Về trang chủ
+2025-09-19 16:27:58,173 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:27:59,584 - WARNING - [7DXCUKKB6DVWDAQO] Không tìm được trang chủ
+2025-09-19 16:28:00,020 - INFO - [7DXCUKKB6DVWDAQO] Đã về trang chủ
+2025-09-19 16:28:00,020 - INFO - [7DXCUKKB6DVWDAQO] Đăng xuất
+2025-09-19 16:28:01,172 - INFO - [7DXCUKKB6DVWDAQO] Vào menu
+2025-09-19 16:28:02,492 - WARNING - [EY5H9DJNIVNFH6OR] Không tìm được trang chủ
+2025-09-19 16:28:02,880 - INFO - [EY5H9DJNIVNFH6OR] Đã về trang chủ
+2025-09-19 16:28:02,880 - INFO - [EY5H9DJNIVNFH6OR] Đăng xuất
+2025-09-19 16:28:06,732 - INFO - [9PAM7DIFW87DOBEU] Đang đăng xuất
+2025-09-19 16:28:07,657 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:28:09,211 - INFO - [7DXCUKKB6DVWDAQO] Đang đăng xuất
+2025-09-19 16:28:09,777 - ERROR - [EY5H9DJNIVNFH6OR] Không tìm được nút menu
+2025-09-19 16:28:09,777 - INFO - [EY5H9DJNIVNFH6OR] Bắt đầu đăng nhập vào tài khoản Huyền Trang Tuyendung
+2025-09-19 16:28:15,224 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:28:17,229 - INFO - [9PAM7DIFW87DOBEU] Xác nhận đăng xuất
+2025-09-19 16:28:17,230 - INFO - [9PAM7DIFW87DOBEU] Đăng xuất thành công
+2025-09-19 16:28:17,987 - INFO - [9PAM7DIFW87DOBEU] Bắt đầu đăng nhập vào tài khoản Vũ Quỳnh Chi
+2025-09-19 16:28:19,599 - INFO - [7DXCUKKB6DVWDAQO] Xác nhận đăng xuất
+2025-09-19 16:28:19,599 - INFO - [7DXCUKKB6DVWDAQO] Đăng xuất thành công
+2025-09-19 16:28:19,931 - INFO - [7DXCUKKB6DVWDAQO] Bắt đầu đăng nhập vào tài khoản Linh Nhi
+2025-09-19 16:28:24,211 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:28:33,473 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:28:39,910 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:28:46,182 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:28:46,577 - ERROR - [EY5H9DJNIVNFH6OR] Không thể đăng nhập
+2025-09-19 16:28:46,579 - INFO - [EY5H9DJNIVNFH6OR] Thực hiện tác vụ: Xem story
+2025-09-19 16:28:46,581 - INFO - Bắt đầu watch story
+2025-09-19 16:28:46,581 - INFO - [EY5H9DJNIVNFH6OR] Về trang chủ
+2025-09-19 16:28:46,965 - INFO - [EY5H9DJNIVNFH6OR] Đã về trang chủ
+2025-09-19 16:28:51,182 - INFO - [9PAM7DIFW87DOBEU] Đăng nhập thành công vào tài khoản Vũ Quỳnh Chi
+2025-09-19 16:28:51,182 - INFO - [9PAM7DIFW87DOBEU] Thực hiện tác vụ: Xem story
+2025-09-19 16:28:51,182 - INFO - Bắt đầu watch story
+2025-09-19 16:28:51,182 - INFO - [9PAM7DIFW87DOBEU] Về trang chủ
+2025-09-19 16:28:51,351 - INFO - [9PAM7DIFW87DOBEU] Đã về trang chủ
+2025-09-19 16:28:51,955 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:28:52,468 - INFO - [7DXCUKKB6DVWDAQO] Đăng nhập thành công vào tài khoản Linh Nhi
+2025-09-19 16:28:52,470 - INFO - [7DXCUKKB6DVWDAQO] Thực hiện tác vụ: Xem story
+2025-09-19 16:28:52,470 - INFO - Bắt đầu watch story
+2025-09-19 16:28:52,470 - INFO - [7DXCUKKB6DVWDAQO] Về trang chủ
+2025-09-19 16:28:52,845 - INFO - [7DXCUKKB6DVWDAQO] Đã về trang chủ
+2025-09-19 16:28:54,364 - INFO - Xem story
+2025-09-19 16:28:59,212 - INFO - Xem story
+2025-09-19 16:28:59,901 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:29:01,232 - INFO - Xem story
+2025-09-19 16:29:04,679 - ERROR - [CQIZKJ8P59AY7DHI] Không tìm được homepage sau 10 lần thử
+2025-09-19 16:29:04,679 - INFO - [CQIZKJ8P59AY7DHI] Đăng xuất
+2025-09-19 16:29:08,300 - ERROR - [CQIZKJ8P59AY7DHI] Không tìm được nút menu
+2025-09-19 16:29:08,300 - INFO - [CQIZKJ8P59AY7DHI] Bắt đầu đăng nhập vào tài khoản Hoa Mai
+2025-09-19 16:29:32,468 - ERROR - [CQIZKJ8P59AY7DHI] Không thể đăng nhập
+2025-09-19 16:29:32,468 - INFO - [CQIZKJ8P59AY7DHI] Thực hiện tác vụ: Xem story
+2025-09-19 16:29:32,469 - INFO - Bắt đầu watch story
+2025-09-19 16:29:32,469 - INFO - [CQIZKJ8P59AY7DHI] Về trang chủ
+2025-09-19 16:29:38,215 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:29:44,036 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:29:49,764 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:29:55,452 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:30:01,222 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:30:07,012 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:30:12,704 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:30:15,429 - INFO - Xem story chán rồi, té thôi
+2025-09-19 16:30:16,008 - INFO - Đã thoát trang story
+2025-09-19 16:30:17,910 - INFO - Xem story chán rồi, té thôi
+2025-09-19 16:30:18,480 - INFO - Đã thoát trang story
+2025-09-19 16:30:18,480 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:30:18,922 - INFO - Xem story chán rồi, té thôi
+2025-09-19 16:30:19,467 - INFO - Đã thoát trang story
+2025-09-19 16:30:21,586 - INFO - [EY5H9DJNIVNFH6OR] Về trang chủ
+2025-09-19 16:30:21,954 - INFO - [EY5H9DJNIVNFH6OR] Đã về trang chủ
+2025-09-19 16:30:21,954 - INFO - [EY5H9DJNIVNFH6OR] Hoàn thành 1 chuỗi task
+2025-09-19 16:30:23,437 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:30:24,346 - INFO - [9PAM7DIFW87DOBEU] Về trang chủ
+2025-09-19 16:30:24,581 - INFO - [9PAM7DIFW87DOBEU] Đã về trang chủ
+2025-09-19 16:30:24,581 - INFO - [9PAM7DIFW87DOBEU] Hoàn thành 1 chuỗi task
+2025-09-19 16:30:25,295 - INFO - [7DXCUKKB6DVWDAQO] Về trang chủ
+2025-09-19 16:30:25,732 - INFO - [7DXCUKKB6DVWDAQO] Đã về trang chủ
+2025-09-19 16:30:25,732 - INFO - [7DXCUKKB6DVWDAQO] Hoàn thành 1 chuỗi task
+2025-09-19 16:30:29,180 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:30:32,777 - ERROR - [CQIZKJ8P59AY7DHI] Không tìm được homepage sau 10 lần thử
+2025-09-19 16:30:42,506 - ERROR - Không thể tìm được story
+2025-09-19 16:30:47,474 - INFO - [CQIZKJ8P59AY7DHI] Về trang chủ
+2025-09-19 16:30:53,223 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:30:58,972 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:31:04,731 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:31:10,382 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:31:16,023 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:31:20,730 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:31:26,475 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:31:32,199 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:31:37,997 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:31:43,682 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
+2025-09-19 16:31:47,201 - ERROR - [CQIZKJ8P59AY7DHI] Không tìm được homepage sau 10 lần thử
+2025-09-19 16:31:47,201 - INFO - [CQIZKJ8P59AY7DHI] Hoàn thành 1 chuỗi task
