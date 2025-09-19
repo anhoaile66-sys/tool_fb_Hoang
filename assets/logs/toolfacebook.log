@@ -44365,6 +44365,7 @@ Bằng cấp/chứng chỉ liên quan (photo)
 2025-09-18 17:32:08,050 - INFO - Nhận lệnh mới từ server - Type: clientCount
 2025-09-18 17:39:42,911 - INFO - Nhận lệnh mới từ server - Type: client_disconnected
 2025-09-18 17:39:42,911 - INFO - Nhận lệnh mới từ server - Type: clientCount
+<<<<<<< HEAD
 2025-09-19 08:17:01,352 - WARNING - [7HYP4T4XTS4DXKCY] ✅ Không tìm thấy file status, tiếp tục chạy.
 2025-09-19 08:17:04,494 - WARNING - [8HMN4T9575HAQWLN] ✅ Không tìm thấy file status, tiếp tục chạy.
 2025-09-19 08:17:07,779 - WARNING - [UWJJOJLB85SO7LIZ] ✅ Không tìm thấy file status, tiếp tục chạy.
@@ -45440,3 +45441,229 @@ Bằng cấp/chứng chỉ liên quan (photo)
 2025-09-19 16:31:43,682 - WARNING - [CQIZKJ8P59AY7DHI] Không tìm được trang chủ
 2025-09-19 16:31:47,201 - ERROR - [CQIZKJ8P59AY7DHI] Không tìm được homepage sau 10 lần thử
 2025-09-19 16:31:47,201 - INFO - [CQIZKJ8P59AY7DHI] Hoàn thành 1 chuỗi task
+=======
+2025-09-19 08:42:22,143 - INFO - Đang thử kết nối tới WebSocket server...
+2025-09-19 08:42:22,299 - INFO - Đã kết nối thành công tới WebSocket server!
+2025-09-19 08:42:22,300 - INFO - Đã gửi tin nhắn đăng ký với clientId: 1498
+2025-09-19 08:42:22,300 - INFO - Nhận lệnh mới từ server - Type: welcome
+2025-09-19 08:42:22,310 - INFO - Nhận lệnh mới từ server - Type: registered
+2025-09-19 08:42:22,311 - INFO - Nhận lệnh mới từ server - Type: clientCount
+2025-09-19 08:42:47,974 - INFO - [69QGMN8PXWDYPNIF] Kết nối thiết bị: Thành công.
+2025-09-19 08:42:55,694 - INFO - [69QGMN8PXWDYPNIF] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-19 08:42:55,887 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation hiện tại: 1
+2025-09-19 08:42:56,042 - INFO - [69QGMN8PXWDYPNIF] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-19 08:42:57,206 - INFO - [69QGMN8PXWDYPNIF] Auto-rotation đã được TẮT thành công!
+2025-09-19 08:42:57,206 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-19 08:42:57,206 - INFO - [69QGMN8PXWDYPNIF] Hoàn thành disable auto-rotation
+2025-09-19 08:42:57,206 - INFO - [69QGMN8PXWDYPNIF] Kiểm tra bật 1.1.1.1 (một lần)
+2025-09-19 08:43:02,304 - INFO - [69QGMN8PXWDYPNIF] One-time check 1.1.1.1 OK
+2025-09-19 08:43:02,304 - INFO - [69QGMN8PXWDYPNIF] Kiểm tra cài đặt Termux
+2025-09-19 08:43:16,950 - INFO - [69QGMN8PXWDYPNIF] Đang đăng nhập vào tài khoản Thanh Nguyễn
+2025-09-19 08:43:16,951 - INFO - [69QGMN8PXWDYPNIF] Về trang chủ
+2025-09-19 08:43:23,261 - WARNING - [69QGMN8PXWDYPNIF] Không tìm được trang chủ
+2025-09-19 08:43:29,056 - WARNING - [69QGMN8PXWDYPNIF] Không tìm được trang chủ
+2025-09-19 08:43:34,819 - WARNING - [69QGMN8PXWDYPNIF] Không tìm được trang chủ
+2025-09-19 08:43:40,635 - WARNING - [69QGMN8PXWDYPNIF] Không tìm được trang chủ
+2025-09-19 08:43:46,334 - WARNING - [69QGMN8PXWDYPNIF] Không tìm được trang chủ
+2025-09-19 08:43:52,137 - WARNING - [69QGMN8PXWDYPNIF] Không tìm được trang chủ
+2025-09-19 08:43:57,643 - WARNING - [69QGMN8PXWDYPNIF] Không tìm được trang chủ
+2025-09-19 08:44:03,263 - WARNING - [69QGMN8PXWDYPNIF] Không tìm được trang chủ
+2025-09-19 08:44:07,840 - INFO - [69QGMN8PXWDYPNIF] Đã về trang chủ
+2025-09-19 08:44:07,841 - INFO - [69QGMN8PXWDYPNIF] Đăng xuất
+2025-09-19 08:44:09,269 - INFO - [69QGMN8PXWDYPNIF] Vào menu
+2025-09-19 08:44:20,257 - INFO - [69QGMN8PXWDYPNIF] Đang đăng xuất
+2025-09-19 08:44:27,864 - INFO - [69QGMN8PXWDYPNIF] Xác nhận đăng xuất
+2025-09-19 08:44:27,864 - INFO - [69QGMN8PXWDYPNIF] Đăng xuất thành công
+2025-09-19 08:44:27,941 - INFO - [69QGMN8PXWDYPNIF] Bắt đầu đăng nhập vào tài khoản Thanh Nguyễn
+2025-09-19 08:44:54,921 - INFO - [69QGMN8PXWDYPNIF] Đăng nhập thành công vào tài khoản Thanh Nguyễn
+2025-09-19 08:44:54,922 - INFO - [69QGMN8PXWDYPNIF] Thực hiện tác vụ: Kết bạn
+2025-09-19 08:44:54,922 - INFO - Bắt đầu kết bạn
+2025-09-19 08:44:54,976 - INFO - Lấy được response
+2025-09-19 08:44:54,976 - ERROR - Có lỗi trong khi gọi API
+2025-09-19 08:44:54,976 - ERROR - [69QGMN8PXWDYPNIF] Lỗi trong quá trình chạy: cannot access local variable 'fb_link' where it is not associated with a value
+2025-09-19 08:45:08,899 - WARNING - [69QGMN8PXWDYPNIF] ❌ Mất kết nối thiết bị, hủy task đang chạy.
+2025-09-19 08:45:24,040 - INFO - [69QGMN8PXWDYPNIF] ✅ Kết nối thiết bị đã được khôi phục.
+2025-09-19 08:45:24,758 - INFO - [69QGMN8PXWDYPNIF] Kết nối thiết bị: Thành công.
+2025-09-19 08:45:29,293 - INFO - [69QGMN8PXWDYPNIF] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-19 08:45:29,414 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation hiện tại: 1
+2025-09-19 08:45:29,577 - INFO - [69QGMN8PXWDYPNIF] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-19 08:45:30,707 - INFO - [69QGMN8PXWDYPNIF] Auto-rotation đã được TẮT thành công!
+2025-09-19 08:45:30,708 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-19 08:45:30,708 - INFO - [69QGMN8PXWDYPNIF] Hoàn thành disable auto-rotation
+2025-09-19 08:45:30,708 - INFO - [69QGMN8PXWDYPNIF] Kiểm tra cài đặt Termux
+2025-09-19 08:45:47,232 - INFO - [69QGMN8PXWDYPNIF] Đang đăng nhập vào tài khoản Minh Thu
+2025-09-19 08:45:47,233 - INFO - [69QGMN8PXWDYPNIF] Về trang chủ
+2025-09-19 08:45:47,693 - INFO - [69QGMN8PXWDYPNIF] Đã về trang chủ
+2025-09-19 08:45:47,693 - INFO - [69QGMN8PXWDYPNIF] Đăng xuất
+2025-09-19 08:45:48,872 - INFO - [69QGMN8PXWDYPNIF] Vào menu
+2025-09-19 08:46:05,982 - INFO - [69QGMN8PXWDYPNIF] Đang đăng xuất
+2025-09-19 08:46:13,558 - INFO - [69QGMN8PXWDYPNIF] Xác nhận đăng xuất
+2025-09-19 08:46:13,559 - INFO - [69QGMN8PXWDYPNIF] Đăng xuất thành công
+2025-09-19 08:46:13,649 - INFO - [69QGMN8PXWDYPNIF] Bắt đầu đăng nhập vào tài khoản Minh Thu
+2025-09-19 08:46:41,975 - INFO - [69QGMN8PXWDYPNIF] Đăng nhập thành công vào tài khoản Minh Thu
+2025-09-19 08:46:41,975 - INFO - [69QGMN8PXWDYPNIF] Thực hiện tác vụ: Lướt fb
+2025-09-19 08:46:41,977 - INFO - Lướt tin nhóm tuyển dụng
+2025-09-19 08:47:20,518 - INFO - Bắt đầu comment post
+2025-09-19 08:47:52,209 - INFO - Đã comment
+2025-09-19 08:47:52,942 - INFO - Đã thoát giao diện comment
+2025-09-19 08:48:07,425 - INFO - Bắt đầu like post
+2025-09-19 08:48:21,580 - INFO - Đã thả cảm xúc Thương thương
+2025-09-19 08:50:12,168 - INFO - Bắt đầu like post
+2025-09-19 08:50:29,768 - INFO - Đã thả cảm xúc Yêu thích
+2025-09-19 08:52:25,524 - INFO - Bắt đầu like post
+2025-09-19 08:52:35,622 - INFO - Nhận lệnh mới từ server - Type: new_command_notification
+2025-09-19 08:52:35,623 - INFO - User nhận lệnh: 0962453658
+2025-09-19 08:52:36,716 - INFO - Đã thả cảm xúc Thương thương
+2025-09-19 08:52:46,033 - ERROR - Error handling message: device 7HYP4T4XTS4DXKCY not online
+2025-09-19 08:52:46,042 - ERROR - Lỗi kết nối WebSocket: cannot access local variable 'driver' where it is not associated with a value. Sẽ thử kết nối lại...
+2025-09-19 08:52:46,042 - INFO - Đợi 5 giây trước khi kết nối lại WebSocket...
+2025-09-19 08:52:51,048 - INFO - Đang thử kết nối tới WebSocket server...
+2025-09-19 08:52:51,185 - INFO - Đã kết nối thành công tới WebSocket server!
+2025-09-19 08:52:51,186 - INFO - Đã gửi tin nhắn đăng ký với clientId: 1498
+2025-09-19 08:52:51,186 - INFO - Nhận lệnh mới từ server - Type: welcome
+2025-09-19 08:52:51,195 - INFO - Nhận lệnh mới từ server - Type: registered
+2025-09-19 08:52:51,195 - INFO - Nhận lệnh mới từ server - Type: clientCount
+2025-09-19 08:53:40,085 - INFO - Nhận lệnh mới từ server - Type: new_command_notification
+2025-09-19 08:53:40,085 - INFO - User nhận lệnh: 0902859182
+2025-09-19 08:53:41,941 - WARNING - [69QGMN8PXWDYPNIF] ⏸️ Phát hiện tạm dừng từ file status, hủy task đang chạy.
+2025-09-19 08:53:44,022 - WARNING - [69QGMN8PXWDYPNIF] ⏸️ Phát hiện tạm dừng từ file status, hủy task đang chạy.
+2025-09-19 08:53:47,459 - INFO - [69QGMN8PXWDYPNIF] Về trang chủ
+2025-09-19 08:53:47,993 - INFO - [69QGMN8PXWDYPNIF] Đã về trang chủ
+2025-09-19 08:53:47,994 - INFO - [69QGMN8PXWDYPNIF] Đăng xuất
+2025-09-19 08:53:49,222 - INFO - [69QGMN8PXWDYPNIF] Vào menu
+2025-09-19 08:53:55,434 - INFO - [69QGMN8PXWDYPNIF] Đang đăng xuất
+2025-09-19 08:54:02,889 - INFO - [69QGMN8PXWDYPNIF] Xác nhận đăng xuất
+2025-09-19 08:54:02,889 - INFO - [69QGMN8PXWDYPNIF] Đăng xuất thành công
+2025-09-19 08:54:03,106 - INFO - [69QGMN8PXWDYPNIF] Bắt đầu đăng nhập vào tài khoản Thanh Nguyễn
+2025-09-19 08:54:27,230 - ERROR - [69QGMN8PXWDYPNIF] Không thể đăng nhập
+2025-09-19 08:54:33,946 - WARNING - 69QGMN8PXWDYPNIF - Đăng bài lên tường: Không tìm thấy nút Tạo bài viết
+2025-09-19 08:54:43,441 - INFO - [69QGMN8PXWDYPNIF] Kết nối thiết bị: Thành công.
+2025-09-19 08:54:47,746 - INFO - [69QGMN8PXWDYPNIF] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-19 08:54:47,877 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation hiện tại: 1
+2025-09-19 08:54:48,030 - INFO - [69QGMN8PXWDYPNIF] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-19 08:54:49,155 - INFO - [69QGMN8PXWDYPNIF] Auto-rotation đã được TẮT thành công!
+2025-09-19 08:54:49,155 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-19 08:54:49,155 - INFO - [69QGMN8PXWDYPNIF] Hoàn thành disable auto-rotation
+2025-09-19 08:54:49,155 - INFO - [69QGMN8PXWDYPNIF] Kiểm tra cài đặt Termux
+2025-09-19 08:55:03,507 - ERROR - [69QGMN8PXWDYPNIF] Lỗi trong quá trình chạy: cannot access local variable 'this_account' where it is not associated with a value
+2025-09-19 08:55:09,350 - WARNING - [69QGMN8PXWDYPNIF] ❌ Mất kết nối thiết bị, hủy task đang chạy.
+2025-09-19 08:55:58,432 - INFO - Nhận lệnh mới từ server - Type: new_command_notification
+2025-09-19 08:55:58,433 - INFO - User nhận lệnh: 0902859182
+2025-09-19 08:56:06,444 - INFO - [69QGMN8PXWDYPNIF] Về trang chủ
+2025-09-19 08:56:12,150 - WARNING - [69QGMN8PXWDYPNIF] Không tìm được trang chủ
+2025-09-19 08:56:18,842 - WARNING - [69QGMN8PXWDYPNIF] Không tìm được trang chủ
+2025-09-19 08:56:24,435 - WARNING - [69QGMN8PXWDYPNIF] Không tìm được trang chủ
+2025-09-19 08:56:29,347 - WARNING - [69QGMN8PXWDYPNIF] Không tìm được trang chủ
+2025-09-19 08:56:35,072 - WARNING - [69QGMN8PXWDYPNIF] Không tìm được trang chủ
+2025-09-19 08:56:35,178 - ERROR - Lỗi AdbError: device '69QGMN8PXWDYPNIF' not found
+2025-09-19 08:56:35,263 - ERROR - 69QGMN8PXWDYPNIF - Lỗi xử lý message từ server: device '69QGMN8PXWDYPNIF' not found
+2025-09-19 08:58:51,785 - INFO - [69QGMN8PXWDYPNIF] Kết nối thiết bị: Thành công.
+2025-09-19 08:58:55,825 - INFO - [69QGMN8PXWDYPNIF] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-19 08:58:55,949 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation hiện tại: 1
+2025-09-19 08:58:56,084 - INFO - [69QGMN8PXWDYPNIF] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-19 08:58:57,216 - INFO - [69QGMN8PXWDYPNIF] Auto-rotation đã được TẮT thành công!
+2025-09-19 08:58:57,216 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-19 08:58:57,217 - INFO - [69QGMN8PXWDYPNIF] Hoàn thành disable auto-rotation
+2025-09-19 08:58:57,217 - INFO - [69QGMN8PXWDYPNIF] Kiểm tra bật 1.1.1.1 (một lần)
+2025-09-19 08:59:01,582 - INFO - [69QGMN8PXWDYPNIF] One-time check 1.1.1.1 OK
+2025-09-19 08:59:01,582 - INFO - [69QGMN8PXWDYPNIF] Kiểm tra cài đặt Termux
+2025-09-19 08:59:16,298 - ERROR - [69QGMN8PXWDYPNIF] Lỗi trong quá trình chạy: cannot access local variable 'this_account' where it is not associated with a value
+2025-09-19 08:59:43,340 - INFO - [69QGMN8PXWDYPNIF] Kết nối thiết bị: Thành công.
+2025-09-19 08:59:47,791 - INFO - [69QGMN8PXWDYPNIF] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-19 08:59:47,954 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation hiện tại: 1
+2025-09-19 08:59:48,129 - INFO - [69QGMN8PXWDYPNIF] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-19 08:59:49,283 - INFO - [69QGMN8PXWDYPNIF] Auto-rotation đã được TẮT thành công!
+2025-09-19 08:59:49,283 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-19 08:59:49,283 - INFO - [69QGMN8PXWDYPNIF] Hoàn thành disable auto-rotation
+2025-09-19 08:59:49,283 - INFO - [69QGMN8PXWDYPNIF] Kiểm tra cài đặt Termux
+2025-09-19 09:00:06,512 - ERROR - [69QGMN8PXWDYPNIF] Lỗi trong quá trình chạy: cannot access local variable 'this_account' where it is not associated with a value
+2025-09-19 09:00:27,128 - INFO - [69QGMN8PXWDYPNIF] Kết nối thiết bị: Thành công.
+2025-09-19 09:00:31,455 - INFO - [69QGMN8PXWDYPNIF] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-19 09:00:31,587 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation hiện tại: 1
+2025-09-19 09:00:31,728 - INFO - [69QGMN8PXWDYPNIF] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-19 09:00:32,878 - INFO - [69QGMN8PXWDYPNIF] Auto-rotation đã được TẮT thành công!
+2025-09-19 09:00:32,878 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-19 09:00:32,878 - INFO - [69QGMN8PXWDYPNIF] Hoàn thành disable auto-rotation
+2025-09-19 09:00:32,879 - INFO - [69QGMN8PXWDYPNIF] Kiểm tra cài đặt Termux
+2025-09-19 09:00:45,667 - ERROR - [69QGMN8PXWDYPNIF] Lỗi trong quá trình chạy: cannot access local variable 'this_account' where it is not associated with a value
+2025-09-19 09:01:59,173 - INFO - [69QGMN8PXWDYPNIF] Kết nối thiết bị: Thành công.
+2025-09-19 09:02:03,547 - INFO - [69QGMN8PXWDYPNIF] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-19 09:02:03,680 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation hiện tại: 1
+2025-09-19 09:02:03,838 - INFO - [69QGMN8PXWDYPNIF] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-19 09:02:05,002 - INFO - [69QGMN8PXWDYPNIF] Auto-rotation đã được TẮT thành công!
+2025-09-19 09:02:05,002 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-19 09:02:05,002 - INFO - [69QGMN8PXWDYPNIF] Hoàn thành disable auto-rotation
+2025-09-19 09:02:05,002 - INFO - [69QGMN8PXWDYPNIF] Kiểm tra bật 1.1.1.1 (một lần)
+2025-09-19 09:02:09,413 - INFO - [69QGMN8PXWDYPNIF] One-time check 1.1.1.1 OK
+2025-09-19 09:02:09,414 - INFO - [69QGMN8PXWDYPNIF] Kiểm tra cài đặt Termux
+2025-09-19 09:02:25,732 - ERROR - [69QGMN8PXWDYPNIF] Lỗi trong quá trình chạy: cannot access local variable 'this_account' where it is not associated with a value
+2025-09-19 09:02:50,510 - WARNING - [69QGMN8PXWDYPNIF] ❌ Mất kết nối thiết bị, hủy task đang chạy.
+2025-09-19 09:03:03,145 - INFO - [69QGMN8PXWDYPNIF] ✅ Kết nối thiết bị đã được khôi phục.
+2025-09-19 09:03:07,931 - INFO - [69QGMN8PXWDYPNIF] Kết nối thiết bị: Thành công.
+2025-09-19 09:03:12,315 - INFO - [69QGMN8PXWDYPNIF] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-19 09:03:12,466 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation hiện tại: 1
+2025-09-19 09:03:12,622 - INFO - [69QGMN8PXWDYPNIF] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-19 09:03:13,771 - INFO - [69QGMN8PXWDYPNIF] Auto-rotation đã được TẮT thành công!
+2025-09-19 09:03:13,771 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-19 09:03:13,771 - INFO - [69QGMN8PXWDYPNIF] Hoàn thành disable auto-rotation
+2025-09-19 09:03:13,771 - INFO - [69QGMN8PXWDYPNIF] Kiểm tra cài đặt Termux
+2025-09-19 09:03:28,142 - ERROR - [69QGMN8PXWDYPNIF] Lỗi trong quá trình chạy: cannot access local variable 'this_account' where it is not associated with a value
+2025-09-19 09:03:53,302 - INFO - [69QGMN8PXWDYPNIF] Kết nối thiết bị: Thành công.
+2025-09-19 09:03:57,547 - INFO - [69QGMN8PXWDYPNIF] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-19 09:03:57,706 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation hiện tại: 1
+2025-09-19 09:03:57,834 - INFO - [69QGMN8PXWDYPNIF] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-19 09:03:58,993 - INFO - [69QGMN8PXWDYPNIF] Auto-rotation đã được TẮT thành công!
+2025-09-19 09:03:58,993 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-19 09:03:58,993 - INFO - [69QGMN8PXWDYPNIF] Hoàn thành disable auto-rotation
+2025-09-19 09:03:58,993 - INFO - [69QGMN8PXWDYPNIF] Kiểm tra cài đặt Termux
+2025-09-19 09:04:11,518 - ERROR - [69QGMN8PXWDYPNIF] Lỗi trong quá trình chạy: cannot access local variable 'this_account' where it is not associated with a value
+2025-09-19 09:04:19,664 - WARNING - [69QGMN8PXWDYPNIF] ❌ Mất kết nối thiết bị, hủy task đang chạy.
+2025-09-19 09:04:27,648 - INFO - [69QGMN8PXWDYPNIF] ✅ Kết nối thiết bị đã được khôi phục.
+2025-09-19 09:04:30,575 - INFO - [69QGMN8PXWDYPNIF] Kết nối thiết bị: Thành công.
+2025-09-19 09:04:34,985 - INFO - [69QGMN8PXWDYPNIF] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-19 09:04:35,116 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation hiện tại: 1
+2025-09-19 09:04:35,283 - INFO - [69QGMN8PXWDYPNIF] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-19 09:04:36,438 - INFO - [69QGMN8PXWDYPNIF] Auto-rotation đã được TẮT thành công!
+2025-09-19 09:04:36,438 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-19 09:04:36,438 - INFO - [69QGMN8PXWDYPNIF] Hoàn thành disable auto-rotation
+2025-09-19 09:04:36,438 - INFO - [69QGMN8PXWDYPNIF] Kiểm tra cài đặt Termux
+2025-09-19 09:04:52,429 - ERROR - [69QGMN8PXWDYPNIF] Lỗi trong quá trình chạy: cannot access local variable 'this_account' where it is not associated with a value
+2025-09-19 09:05:02,196 - INFO - Nhận lệnh mới từ server - Type: new_command_notification
+2025-09-19 09:05:02,196 - INFO - User nhận lệnh: 0902859182
+2025-09-19 09:05:03,953 - WARNING - [69QGMN8PXWDYPNIF] ⏸️ Phát hiện tạm dừng từ file status, hủy task đang chạy.
+2025-09-19 09:05:07,588 - INFO - [69QGMN8PXWDYPNIF] Về trang chủ
+2025-09-19 09:05:08,678 - INFO - [69QGMN8PXWDYPNIF] Đã về trang chủ
+2025-09-19 09:05:08,678 - INFO - [69QGMN8PXWDYPNIF] Đăng xuất
+2025-09-19 09:05:11,741 - INFO - [69QGMN8PXWDYPNIF] Vào menu
+2025-09-19 09:05:18,374 - INFO - [69QGMN8PXWDYPNIF] Đang đăng xuất
+2025-09-19 09:05:25,946 - INFO - [69QGMN8PXWDYPNIF] Xác nhận đăng xuất
+2025-09-19 09:05:25,946 - INFO - [69QGMN8PXWDYPNIF] Đăng xuất thành công
+2025-09-19 09:05:26,132 - INFO - [69QGMN8PXWDYPNIF] Bắt đầu đăng nhập vào tài khoản Thanh Nguyễn
+2025-09-19 09:05:53,949 - INFO - [69QGMN8PXWDYPNIF] Đăng nhập thành công vào tài khoản Thanh Nguyễn
+2025-09-19 09:06:08,733 - WARNING - 69QGMN8PXWDYPNIF - Đăng bài lên tường: Không tìm thấy nút Đăng
+2025-09-19 09:06:19,156 - INFO - [69QGMN8PXWDYPNIF] Kết nối thiết bị: Thành công.
+2025-09-19 09:06:23,543 - INFO - [69QGMN8PXWDYPNIF] Tắt chế độ tự động xoay màn hình hệ thống
+2025-09-19 09:06:23,700 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation hiện tại: 1
+2025-09-19 09:06:23,862 - INFO - [69QGMN8PXWDYPNIF] Đã gửi lệnh tắt auto-rotation qua settings
+2025-09-19 09:06:25,014 - INFO - [69QGMN8PXWDYPNIF] Auto-rotation đã được TẮT thành công!
+2025-09-19 09:06:25,014 - INFO - [69QGMN8PXWDYPNIF] Trạng thái auto-rotation cuối: TẮT ✅
+2025-09-19 09:06:25,014 - INFO - [69QGMN8PXWDYPNIF] Hoàn thành disable auto-rotation
+2025-09-19 09:06:25,014 - INFO - [69QGMN8PXWDYPNIF] Kiểm tra cài đặt Termux
+2025-09-19 09:06:40,111 - INFO - [69QGMN8PXWDYPNIF] Đang đăng nhập vào tài khoản Minh Thu
+2025-09-19 09:06:40,111 - INFO - [69QGMN8PXWDYPNIF] Về trang chủ
+2025-09-19 09:06:41,695 - INFO - [69QGMN8PXWDYPNIF] Đã về trang chủ
+2025-09-19 09:06:41,695 - INFO - [69QGMN8PXWDYPNIF] Đăng xuất
+2025-09-19 09:06:42,634 - INFO - [69QGMN8PXWDYPNIF] Vào menu
+2025-09-19 09:06:49,996 - INFO - [69QGMN8PXWDYPNIF] Đang đăng xuất
+2025-09-19 09:06:57,618 - INFO - [69QGMN8PXWDYPNIF] Xác nhận đăng xuất
+2025-09-19 09:06:57,618 - INFO - [69QGMN8PXWDYPNIF] Đăng xuất thành công
+2025-09-19 09:06:57,723 - INFO - [69QGMN8PXWDYPNIF] Bắt đầu đăng nhập vào tài khoản Minh Thu
+2025-09-19 09:07:25,837 - INFO - [69QGMN8PXWDYPNIF] Đăng nhập thành công vào tài khoản Minh Thu
+2025-09-19 09:07:25,838 - INFO - [69QGMN8PXWDYPNIF] Thực hiện tác vụ: Thăm tường bạn bè
+2025-09-19 09:08:39,454 - INFO - ✅ Đã lưu dữ liệu 49 bạn bè vào base_banbe\69QGMN8PXWDYPNIF_Minh_Thu_banbe.json
+2025-09-19 09:08:39,850 - INFO - 🔄 Thăm bạn 1/10: Lê Văn Bắc
+2025-09-19 09:08:39,850 - INFO - 👀 Đang thăm tường: Lê Văn Bắc
+2025-09-19 09:08:43,912 - INFO - ✅ Đã lưu dữ liệu 49 bạn bè vào base_banbe\69QGMN8PXWDYPNIF_Minh_Thu_banbe.json
+2025-09-19 09:08:43,913 - INFO - 📜 Lướt tường với 13 lần và tương tác
+2025-09-19 09:09:25,885 - INFO - Bắt đầu like post
+>>>>>>> 0c4ce57f02ced28bc4283592ca7665d1bb423dc7
