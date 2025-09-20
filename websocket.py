@@ -73,7 +73,11 @@ class WebSocketTaskHandler:
                         'account': account['account'],
                         'password': account['password'],
                     }
-                    await login.swap_account(driver, acc)
+                    success = await login.swap_account(driver, acc)
+                    if not success:
+                        await pymongo_management
+                        await self.update_device_status(driver, False)
+                        return
                 # Nhận và thực hiện lệnh
                 await self.run_commands(driver, account['account'])
                 await self.update_device_status(driver, False)

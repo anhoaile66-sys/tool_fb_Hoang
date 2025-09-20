@@ -46,7 +46,7 @@ async def log_out(driver):
         log_message(f"[{driver.serial}] Xác nhận đăng xuất")
     # Đợi load trang chọn tài khoản
     log_message(f"[{driver.serial}] Đăng xuất thành công")
-    await pymongo_management.update_statusFB(driver.serial, False)
+    await pymongo_management.update_statusFB(driver.serial, "Offline")
 
 # Đăng nhập lần đầu
 async def login_facebook(driver, acc):
@@ -121,7 +121,7 @@ async def login_facebook(driver, acc):
     # Đợi load trang chủ
     await asyncio.sleep(20)
     log_message("Đăng nhập thành công")
-    await pymongo_management.update_statusFB(account, True)
+    await pymongo_management.update_statusFB(account, "Online")
     return True
 
 async def check_logged_in(driver):
@@ -193,12 +193,14 @@ async def swap_account(driver, acc):
             skip.click()
         else:
             break
-    await pymongo_management.update_statusFB(username, True)
+    
 
     # Đợi vào màn hình chính
     if await check_logged_in(driver):
         log_message(f"[{driver.serial}] Đăng nhập thành công vào tài khoản {name}")
+        await pymongo_management.update_statusFB(username, "Online")
         return True
     else:
         log_message(f"[{driver.serial}] Đăng nhập thất bại vào tài khoản {name}", logging.ERROR)
+        await pymongo_management.update_statusFB(username, "Crash")
         return False

@@ -463,23 +463,23 @@ async def get_account_by_username(username):
 async def update_statusFB(username, statusFB):
     """Cập nhật trạng thái Facebook của thiết bị."""
     collection = get_async_collection("devices")
-    if statusFB:
-        result = await collection.update_one(
-            {"accounts.account": username},
-            {"$set": {
-                "accounts.$[elem].status": True,
-                "current_account": username
-                }
-            },
-            array_filters=[{"elem.account": username}]
-        )
-    else:
+    if statusFB == "Offline":
         result = await collection.update_many(
             {"device_id": username},
             {"$set": {
-                "accounts.$[].status": False,
+                "accounts.$[elem].status": "Offline",
                 "current_account": ""}
-            }
+            },
+            array_filters=[{"elem.status": "Online"}]
+        )
+    else:
+        result = await collection.update_one(
+            {"accounts.account": username},
+            {"$set": {
+                "accounts.$[elem].status": statusFB,
+                "current_account": ""}
+            },
+            array_filters=[{"elem.account": username}]
         )
     if result.matched_count == 0:
         return {'message': '❌ Thiết bị không tồn tại'}, logging.ERROR
