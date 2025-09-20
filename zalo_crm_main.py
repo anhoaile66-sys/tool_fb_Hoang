@@ -27,7 +27,7 @@ import os
 import re
 import json
 import adbutils
-from PIL import Image
+from PIL import Image, ImageFilter
 import io
 
 load_dotenv()
@@ -134,7 +134,7 @@ id_port = {
     "22846622":[{"A21": "R8YY70F81TV"}], #Thu Trà
     "22891672":[{"A12": "MJZDFY896TMJBUPN"}], #Phạm Linh Chi
     "22907106":[{"A25": "R83Y50JZK6A"}], #Vân Anh
-    "22862103":[{"A08": "CQIZKJ8P59AY7DHI"}, {"A04": "7HYP4T4XTS4DXKCY"}], #Thằng đẻ ra ứng dụng
+    "22862103":[{"A08": "CQIZKJ8P59AY7DHI"}, {"A04": "7HYP4T4XTS4DXKCY"}, {"A01": "R8YY70F5MKN"}], #Thằng đẻ ra ứng dụng
     "22858638":[{"A02": "7DXCUKKB6DVWDAQO"}, {"A05": "UWJJOJLB85SO7LIZ"}, {"A09": "9PAM7DIFW87DOBEU"}] #Phạm Huy dùng để test
 
 }
@@ -144,6 +144,7 @@ for device_id in dict_device_and_phone.keys():
         dict_status_zalo[phone_zalo] = ""
         dict_status_update_pvp[phone_zalo] = 0
         dict_phone_device[phone_zalo] = device_id
+
 
 # dict_devices = [dv for dv in dict_device_and_phone.keys()]
 
@@ -632,7 +633,7 @@ def get_list_invite_friends_u2(d: u2.Device, max_friends: int = 100, scroll_dela
     try:
         d(resourceId="com.zing.zalo:id/maintab_contact").click()
         eventlet.sleep(1.0)
-    except (UiObjectNotFoundError, TimeoutError) as e:
+    except Exception as e:
         if retire > 0:
             get_list_invite_friends_u2(d, retire=retire-1)
         else:
@@ -646,9 +647,12 @@ def get_list_invite_friends_u2(d: u2.Device, max_friends: int = 100, scroll_dela
     try:
         d(resourceId="com.zing.zalo:id/suggest_friend_request").click()
         eventlet.sleep(1.0)
-        d.xpath("//android.widget.TextView[@text='XEM THÊM']").click()
-        eventlet.sleep(1.0)
-    except (UiObjectNotFoundError, TimeoutError) as e:
+        try:
+            d.xpath("//android.widget.TextView[@text='XEM THÊM']").click()
+            eventlet.sleep(1.0)
+        except Exception as e:
+            pass
+    except Exception as e:
         if retire > 0:
             get_list_invite_friends_u2(d, retire=retire-1)
         else:
@@ -660,6 +664,10 @@ def get_list_invite_friends_u2(d: u2.Device, max_friends: int = 100, scroll_dela
             "//*[@resource-id='com.zing.zalo:id/info_contact_row']").all()
         print(len(items))
         id = 1
+
+        if len(items) == 0:
+            break
+
         # start=1 để khớp với indexing 1-based của XPath
         for idx, it in enumerate(items, start=1):
             # Sáu xử lý lấy text theo từng field
@@ -731,6 +739,9 @@ def get_list_invite_friends_u2(d: u2.Device, max_friends: int = 100, scroll_dela
             })
 
         if len(invite_friends) >= max_friends:
+            break
+
+        if len(invite_friends) == 0:
             break
 
         # Kiểm tra có nội dung mới không
@@ -1131,8 +1142,8 @@ def api_get_list_invite_friend(data_body):
                 except Exception as e:
                     result = [-1]
                 dict_status_zalo[num_phone_zalo] = ""
-                if len(result) > 0:
-                    result = [box['name'] for box in result]
+                #if len(result) > 0:
+                    #result = [box['name'] for box in result]
                 return result
             
 @app.route('/api_get_list_users', methods=['POST', 'GET'])
@@ -1879,8 +1890,7 @@ def get_list_unseen_chat_boxes_new():
                                  "num_phone_zalo": num_phone_zalo})
     if len(docs) > 0:
         document = docs[0]
-    else:
-        print(num_phone_zalo)
+
 # docs giờ là một list chứa mọi document tìm được
     id_device = document['id_device']
     now_phone_zalo[id_device] = num_phone_zalo
@@ -2057,13 +2067,13 @@ def handle_chat_pvp(data):
                     if not check_ex:
                         while not d.xpath('//*[@text="Ưu tiên"]').exists:
                             if d.xpath('//*[@text="Zalo"]').exists:
-                                try:
+                                #try:
                                     d.xpath(
                                         '//*[@text="Zalo"]').click()
                                     while not d(resourceId="com.zing.zalo:id/maintab_message").exists:
                                         eventlet.sleep(0.05)
-                                except Exception:
-                                    pass
+                                #except Exception:
+                                #    pass
                             else:
                                 d.press("back")
                                 eventlet.sleep(0.1)
@@ -2183,10 +2193,6 @@ def handle_chat_pvp(data):
                 # emit("receive_chat_view_status",{"status":"Cuộc hội thoại bắt đầu", "name_ntd": name_ntd}, room=room)
                 if not already_sent(num_send_phone_zalo):
                     log_sent(num_send_phone_zalo)
-                dict_status_zalo[num_phone_zalo] = ""
-                del dict_queue_device[id_device][0]
-                if len(dict_queue_device[id_device]) == 0:
-                    dict_id_chat[id_device] = ""
                 print("Cuộc hội thoại bắt đầu chưa")
                 emit("receive_chat_view_status", {
                      "status": "Cuộc hội thoại bắt đầu"}, room=room)
@@ -2222,13 +2228,13 @@ def handle_chat_pvp(data):
                     if not check_ex:
                         while not d.xpath('//*[@text="Ưu tiên"]').exists:
                             if d.xpath('//*[@text="Zalo"]').exists:
-                                try:
+                                #try:
                                     d.xpath(
                                         '//*[@text="Zalo"]').click()
                                     while not d(resourceId="com.zing.zalo:id/maintab_message").exists:
                                         eventlet.sleep(0.05)
-                                except Exception:
-                                    pass
+                                #except Exception:
+                                #    pass
                             else:
                                 d.press("back")
                                 eventlet.sleep(0.1)
@@ -2394,10 +2400,6 @@ def handle_chat_pvp(data):
 
                 join_room(room)
                 # emit("receive status",{"status":"Cuộc hội thoại bắt đầu"}, room=room)
-                dict_status_zalo[num_phone_zalo] = ""
-                del dict_queue_device[id_device][0]
-                if len(dict_queue_device[id_device]) == 0:
-                    dict_id_chat[id_device] = ""
                 print("Cuộc hội thoại bắt đầu")
                 emit("receive_chat_view_status", {
                      "status": "Cuộc hội thoại bắt đầu"}, room=room)
@@ -2407,7 +2409,10 @@ def handle_chat_pvp(data):
             del dict_queue_device[id_device][0]
             if len(dict_queue_device[id_device]) == 0:
                 dict_id_chat[id_device] = ""
+            return False
         
+        dict_status_zalo[num_phone_zalo] = ""
+        del dict_queue_device[id_device][0]
         if len(dict_queue_device[id_device]) == 0:
             dict_id_chat[id_device] = ""
 
@@ -2631,7 +2636,7 @@ def api_find_new_friend():
                 buf = io.BytesIO()
                 img.save(buf, format="JPEG",
                         optimize=True, quality=75)
-                avatar_64 = base64.b64encode(
+                avatar_b64 = base64.b64encode(
                     buf.getvalue()).decode("ascii")
                 
                 if not already_sent_number(AVA_NUMBER_PATH):
@@ -3257,7 +3262,7 @@ def get_data_chat_boxes_u2(d: u2.Device, gr_or_pvp: str, time_and_mes, max_scrol
 
                         cropped = img.crop((left, top, right, bottom))
 
-                        cropped_small = cropped.resize((200, 200), resample=Image.LANCZOS)
+                        cropped_small = cropped.filter(ImageFilter.UnsharpMask(radius=1, percent=120, threshold=3))
 
                         buf = io.BytesIO()
                         cropped_small.save(buf, format="PNG")
@@ -3303,7 +3308,7 @@ def get_data_chat_boxes_u2(d: u2.Device, gr_or_pvp: str, time_and_mes, max_scrol
 
                         cropped = img.crop((left, top, right, bottom))
 
-                        cropped_small = cropped.resize((200, 200), resample=Image.LANCZOS)
+                        cropped_small = cropped.filter(ImageFilter.UnsharpMask(radius=1, percent=120, threshold=3))
 
                         buf = io.BytesIO()
                         cropped_small.save(buf, format="PNG")
@@ -3612,7 +3617,7 @@ def get_data_chat_boxes_u2(d: u2.Device, gr_or_pvp: str, time_and_mes, max_scrol
                             bottom = 0 + int(height * bottom_rate)
                             print(bottom)
                             cropped = img.crop((left, top, right, bottom))
-                            cropped_small = cropped.resize((200, 200), resample=Image.LANCZOS)
+                            cropped_small = cropped.filter(ImageFilter.UnsharpMask(radius=1, percent=120, threshold=3))
 
                             buf = io.BytesIO()
                             cropped_small.save(buf, format="PNG")
@@ -3637,7 +3642,7 @@ def get_data_chat_boxes_u2(d: u2.Device, gr_or_pvp: str, time_and_mes, max_scrol
                             img = iv.screenshot()
                             #max_w, max_h = 200, 200
                             # nhanh, giữ tỉ lệ gốc :contentReference[oaicite:1]{index=1}
-                            cropped_small = img.resize((200, 200), resample=Image.LANCZOS)
+                            cropped_small = img
 
                             buf = io.BytesIO()
                             cropped_small.save(buf, format="PNG")
@@ -3693,7 +3698,7 @@ def get_data_chat_boxes_u2(d: u2.Device, gr_or_pvp: str, time_and_mes, max_scrol
                             bottom = 0 + int(height * bottom_rate)
                             print(bottom)
                             cropped = img.crop((left, top, right, bottom))
-                            cropped_small = cropped.resize((200, 200), resample=Image.LANCZOS)
+                            cropped_small = cropped.filter(ImageFilter.UnsharpMask(radius=1, percent=120, threshold=3))
 
                             buf = io.BytesIO()
                             cropped_small.save(buf, format="PNG")
@@ -3718,7 +3723,7 @@ def get_data_chat_boxes_u2(d: u2.Device, gr_or_pvp: str, time_and_mes, max_scrol
                             img = iv.screenshot()
                             max_w, max_h = 200, 200
                             # nhanh, giữ tỉ lệ gốc :contentReference[oaicite:1]{index=1}
-                            cropped_small = img.resize((200, 200), resample=Image.LANCZOS)
+                            cropped_small = img
 
                             buf = io.BytesIO()
                             cropped_small.save(buf, format="PNG")
@@ -4081,7 +4086,7 @@ def get_data_chat_boxes_1vs1_u2(d: u2.Device, time_and_mes, max_scroll: int = 5,
 
                     cropped = img.crop((left, top, right, bottom))
 
-                    cropped_small = cropped.resize((200, 200), resample=Image.LANCZOS)
+                    cropped_small = cropped.filter(ImageFilter.UnsharpMask(radius=1, percent=120, threshold=3))
 
                     buf = io.BytesIO()
                     cropped_small.save(buf, format="PNG")
@@ -4166,7 +4171,7 @@ def get_data_chat_boxes_1vs1_u2(d: u2.Device, time_and_mes, max_scroll: int = 5,
                         bottom = 0 + int(height * bottom_rate)
                         print(bottom)
                         cropped = img.crop((left, top, right, bottom))
-                        cropped_small = cropped.resize((200, 200), resample=Image.LANCZOS)
+                        cropped_small = cropped.filter(ImageFilter.UnsharpMask(radius=1, percent=120, threshold=3))
 
                         buf = io.BytesIO()
                         cropped_small.save(buf, format="PNG")
@@ -4191,7 +4196,7 @@ def get_data_chat_boxes_1vs1_u2(d: u2.Device, time_and_mes, max_scroll: int = 5,
                         img = iv.screenshot()
                         max_w, max_h = 200, 200
                         # nhanh, giữ tỉ lệ gốc :contentReference[oaicite:1]{index=1}
-                        cropped_small = img.resize((200, 200), resample=Image.LANCZOS)
+                        cropped_small = img
 
                         buf = io.BytesIO()
                         cropped_small.save(buf, format="PNG")
@@ -4421,7 +4426,7 @@ def get_data_chat_boxes_gr_u2(d: u2.Device, time_and_mes, list_mems, max_scroll:
 
                     cropped = img.crop((left, top, right, bottom))
 
-                    cropped_small = cropped.resize((200, 200), resample=Image.LANCZOS)
+                    cropped_small = cropped.filter(ImageFilter.UnsharpMask(radius=1, percent=120, threshold=3))
 
                     buf = io.BytesIO()
                     cropped_small.save(buf, format="PNG")
@@ -4543,7 +4548,7 @@ def get_data_chat_boxes_gr_u2(d: u2.Device, time_and_mes, list_mems, max_scroll:
                         bottom = 0 + int(height * bottom_rate)
                         print(bottom)
                         cropped = img.crop((left, top, right, bottom))
-                        cropped_small = cropped.resize((200, 200), resample=Image.LANCZOS)
+                        cropped_small = cropped.filter(ImageFilter.UnsharpMask(radius=1, percent=120, threshold=3))
 
                         buf = io.BytesIO()
                         cropped_small.save(buf, format="PNG")
@@ -4568,7 +4573,7 @@ def get_data_chat_boxes_gr_u2(d: u2.Device, time_and_mes, list_mems, max_scroll:
                         img = iv.screenshot()
                         max_w, max_h = 200, 200
                         # nhanh, giữ tỉ lệ gốc :contentReference[oaicite:1]{index=1}
-                        cropped_small = img.resize((200, 200), resample=Image.LANCZOS)
+                        cropped_small = img
 
                         buf = io.BytesIO()
                         cropped_small.save(buf, format="PNG")
@@ -4659,8 +4664,9 @@ def get_data_chat_boxes_gr_u2(d: u2.Device, time_and_mes, list_mems, max_scroll:
 
 #    if len(chat[f'{name_sender}']) > 0:
 #        data_chat_box.append(chat)
+    ck_st = False
     if len(list_data_chat) > 0:
-        ck_sender = True
+        ck_st = True
         data_chat_box = list_data_chat
         rever_data_chat_box = data_chat_box[::-1]
     else:
@@ -4670,7 +4676,7 @@ def get_data_chat_boxes_gr_u2(d: u2.Device, time_and_mes, list_mems, max_scroll:
                 rever_data_chat_box[i][key] = rever_data_chat_box[i][key][::-1]
     print("Dữ liệu đoan chat thu thập được là: ", rever_data_chat_box)
 
-    return rever_data_chat_box, lst_time_str, lst_message, ck_sender
+    return rever_data_chat_box, lst_time_str, lst_message, ck_st
 
 # @app.route('/api_update_data_one_chat_box', methods=['POST', 'GET'])
 
@@ -4810,7 +4816,7 @@ def api_update_data_one_chat_box(data, gr_or_pvp="pvp", on_chat=False, update=Fa
                                 # chat_num.click()
                                 eventlet.sleep(1.0)
                             except Exception as e:
-                                print(Ellipsis)
+                                print('Ellipsis')
                                 pass
                             '''
                      for friend in list_friend:
@@ -7242,14 +7248,14 @@ def api_log_in_status(id_device):
 
         # print("Các tên tài khoản zalo hiện tại là", zalo_name)
         for id in range(len(name_zalos)):
-            if name_zalos[id] == "Thêm tài khoản":
+            if "Thêm tài khoản" in name_zalos[id] or name_zalos[id] == "Thêm tài khoản":
                 del name_zalos[id]
                 break
 
         for id in range(len(name_zalos)):
-            #if name_zalos[id] == "Thêm tài khoản":
-            #    continue
-            # zalo_data[id]['status'] = True
+            if name_zalos[id] == "Thêm tài khoản":
+                continue
+            zalo_data[id]['status'] = True
             d.app_start("com.zing.zalo", stop=True)
             eventlet.sleep(1)
             d(resourceId="com.zing.zalo:id/maintab_metab").click()
@@ -7471,7 +7477,7 @@ def api_log_in_status(id_device):
                 with open(f"C:/Zalo_CRM/Zalo_base/Zalo_data_login_path_{id_device}.json", 'w', encoding="utf-8") as f:
                     json.dump(zalo_data, f, ensure_ascii=False, indent=4)
 
-            if id < len(zalo_data)-1:
+            if id < len(name_zalos)-1:
                 try:
                     d = switch_account(d, name_zalos[id+1])
                     status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{id_device}", {
