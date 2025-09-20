@@ -8,6 +8,7 @@ import os
 import numpy as np
 from util import log_message
 import logging
+from util import go_to_home_page
 
 # Truy cập 1 trang facebook qua link
 def redirect_to(driver, link):
@@ -15,12 +16,8 @@ def redirect_to(driver, link):
 
 # Trở về trang chủ của facebook
 async def back_to_facebook(driver):
-    driver(resourceId="com.android.systemui:id/back").click()
-    redirect_to(driver, "https://www.facebook.com")
-    await asyncio.sleep(0.5)
-    driver(resourceId="com.android.systemui:id/back").click()
-    driver.app_start("com.facebook.katana")
-    driver.swipe_ext("down", scale=0.5)
+    return await go_to_home_page(driver)
+        
 # Ấn vào ảnh mẫu trên màn hình
 async def click_template(driver, template, threshold = 0.8, scale_start = 50, scale_end = 150, scale_step = 10):
     await asyncio.sleep(1)

@@ -64,9 +64,9 @@ async def check_wall_post(driver, user_id):
     contents = {}
     for post in posts:
         contents[post['content']] = post
-    await toolfacebook_lib.back_to_facebook(driver)
+    home_page = await toolfacebook_lib.back_to_facebook(driver)
     await asyncio.sleep(1)
-    driver.xpath('//*[@resource-id="android:id/list"]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]').click()
+    home_page.click()
     start_time = asyncio.get_event_loop().time()
     while toolfacebook_lib.is_screen_changed(driver) and asyncio.get_event_loop().time() - start_time < 300:
         xml = driver.dump_hierarchy()
