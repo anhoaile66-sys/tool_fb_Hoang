@@ -124,17 +124,43 @@ async def login_facebook(driver, acc):
     await pymongo_management.update_statusFB(account, True)
     return True
 
+async def check_logged_in(driver):
+    """
+    Kiểm tra trạng thái đăng nhập của tài khoản trên thiết bị
+    
+    """
+    # Mở ứng dụng Facebook
+    driver.app_start("com.facebook.katana")
+    home = await my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')}, 10, back_if_not_found=True)
+    if home is not None:
+        return True
+    else:
+        return False
 # Hàm đăng nhập vào tài khoản đã lưu
 async def swap_account(driver, acc):
     """
     Đăng nhập vào tài khoản facebook đã lưu sẵn
     
     """
+    # Mở ứng dụng Facebook
+    driver.app_start("com.facebook.katana")
+
+    # Lấy thông tin tài khoản
     name = acc['name']
     username = acc['account']
     password = acc['password']
-    # Đăng xuất
-    await log_out(driver)
+
+    # Đăng xuất nếu đã đăng nhập
+    if await check_logged_in(driver):
+        await log_out(driver)
+    else:
+        help_button = await my_find_element(driver, {("text", "Trợ giúp")}, 3)
+        if help_button:
+            help_button.click()
+            await asyncio.sleep(3)
+            log_out_btn = await my_find_element(driver, {("xpath", '//*[@content-desc[contains(., "Đăng xuất")]]')})
+            log_out_btn.click()
+            (await my_find_element(driver, {("text", "ĐĂNG XUẤT")})).click()
 
     # Đăng nhập
     log_message(f"[{driver.serial}] Bắt đầu đăng nhập vào tài khoản {name}")
@@ -170,5 +196,9 @@ async def swap_account(driver, acc):
     await pymongo_management.update_statusFB(username, True)
 
     # Đợi vào màn hình chính
-    await asyncio.sleep(6)
-    log_message(f"[{driver.serial}] Đăng nhập thành công vào tài khoản {name}")
+    if await check_logged_in(driver):
+        log_message(f"[{driver.serial}] Đăng nhập thành công vào tài khoản {name}")
+        return True
+    else:
+        log_message(f"[{driver.serial}] Đăng nhập thất bại vào tài khoản {name}", logging.ERROR)
+        return False

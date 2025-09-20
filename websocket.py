@@ -67,7 +67,6 @@ class WebSocketTaskHandler:
                 if not account:
                     log_message(f"{driver.serial} - Thực hiện lệnh từ CRM: Không có user_id trong message", logging.WARNING)
                     return
-                await toolfacebook_lib.back_to_facebook(driver)
                 if not account['status']:
                     acc = {
                         'name': account['name'],

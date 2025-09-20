@@ -20,7 +20,7 @@ async def type_text_input(element, text):
     log_message(f"Đã nhập: {text}")
 
 # Tìm element thỏa mãn
-async def my_find_element(d, locators, max_retries=3, nature_scroll_if_not_found=False):
+async def my_find_element(d, locators, max_retries=3, nature_scroll_if_not_found=False, back_if_not_found = False):
     try:
         for _ in range(max_retries):
             for locator in locators:
@@ -43,6 +43,8 @@ async def my_find_element(d, locators, max_retries=3, nature_scroll_if_not_found
                     return element
             if nature_scroll_if_not_found:
                 await nature_scroll(d, isFast=True)
+            if back_if_not_found:
+                d.press("back")
             await asyncio.sleep(1)
     except Exception as e:
         log_message(f"Lỗi {type(e).__name__}: {e}", logging.ERROR)
@@ -150,14 +152,9 @@ async def go_to_home_page(driver):
     Trở về đầu trang để tìm các tác vụ khác
     """
     log_message(f"[{driver.serial}] Về trang chủ")
-    safe_count = 10
-    while (element := await my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')})) == None:
-        if not safe_count:
-            log_message(f"[{driver.serial}] Không tìm được homepage sau 10 lần thử", logging.ERROR)
-            return None
-        driver.press("back")
-        await asyncio.sleep(1)
-        # log_message(f"[{driver.serial}] Không tìm được trang chủ", logging.WARNING)
-        safe_count -= 1
+    element = await my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')}, 10, back_if_not_found=True)
+    if element:
+        log_message(f"[{driver.serial}] Không tìm được homepage sau 10 lần thử", logging.ERROR)
+        return None
     log_message(f"[{driver.serial}] Đã về trang chủ")
     return element
