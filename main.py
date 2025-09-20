@@ -235,8 +235,6 @@ async def device_once(device_id: str):
       - Watchdog chạy nền
       - Pha 'zalo' (một vòng) -> Pha 'facebook'
     """
-    global status
-    status[device_id] = True
     # Kết nối thiết bị
     driver = await asyncio.to_thread(u2.connect_usb, device_id)
     handler = DeviceHandler(driver, device_id)
@@ -314,11 +312,6 @@ async def device_once(device_id: str):
     finally:
         await watchdog.stop()
 
-    status[device_id] = False
-
-status = {}  # device_id -> bool (đang chạy hay không)
-
-
 async def check_driver(driver):
     try:
         _ = driver.info
@@ -332,8 +325,6 @@ async def device_supervisor(device_id: str):
       - Nếu watchdog yêu cầu restart -> chạy lại from-scratch chỉ cho thiết bị đó.
       - Không ảnh hưởng các thiết bị khác.
     """
-    global status
-    status[device_id] = False
     while True:
         try:
             driver = await asyncio.to_thread(u2.connect_usb, device_id)
@@ -359,7 +350,6 @@ async def device_supervisor(device_id: str):
                         task.cancel()
                         log_message(f"[{device_id}] ❌ Mất kết nối thiết bị, hủy task đang chạy.", logging.WARNING)
                         await pymongo_management.update_device_status(device_id, False)
-                    status[device_id] = False
                     await asyncio.sleep(5.0)
                     driver = await asyncio.to_thread(u2.connect_usb, device_id)
                     continue
@@ -383,14 +373,13 @@ async def device_supervisor(device_id: str):
                     if not task.done():
                         task.cancel()
                         log_message(f"[{device_id}] ⏸️ Phát hiện tạm dừng từ file status, hủy task đang chạy.", logging.WARNING)
-                    status[device_id] = False
                     await asyncio.sleep(2)
                     continue
                 else:
                     break
             # ======================= NEW CODE BLOCK END =======================
             
-            if not status[device_id]:
+            if task is None or task.done():
                 task = asyncio.create_task(device_once(device_id))
             await asyncio.sleep(2.0)
         except RestartThisDevice as e:
@@ -398,7 +387,7 @@ async def device_supervisor(device_id: str):
             await asyncio.sleep(2.0)
             continue
         except Exception as e:
-            if still_alive(driver):
+            if await check_driver(driver):
                 log_message(f"[{device_id}] Lỗi không mong muốn: {e}. Sẽ thử chạy lại sau.", logging.ERROR)
             await asyncio.sleep(5.0)
             continue
@@ -418,3 +407,4 @@ if __name__ == "__main__":
         asyncio.run(pymongo_management.update_device_status(None, False))  # Cập nhật tất cả thiết bị thành offline
     except Exception as e:
         log_message(f"Lỗi chạy chính: {e}", logging.ERROR)
+        asyncio.run(pymongo_management.update_device_status(None, False))  # Cập nhật tất cả thiết bị thành offline
