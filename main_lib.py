@@ -22,21 +22,19 @@ async def install_termux(driver):
         subprocess.run([WINDOW_ADB_PATH, "-s", device_id, "install-multiple", "arm64-v8a/base.apk", "arm64-v8a/split_config.arm64_v8a.apk", "arm64-v8a/split_config.vi.apk", "arm64-v8a/split_config.xxhdpi.apk"])
     else:
         subprocess.run([LINUX_ADB_PATH, "-s", device_id, "install-multiple", "arm64-v8a/base.apk", "arm64-v8a/split_config.arm64_v8a.apk", "arm64-v8a/split_config.vi.apk", "arm64-v8a/split_config.xxhdpi.apk"])
-    if not check_termux(driver):
+    if not await check_termux(driver):
         if os.name == 'nt':
             subprocess.run([WINDOW_ADB_PATH, "-s", device_id, "install-multiple", "armeabi-v7a/base.apk", "armeabi-v7a/split_config.armeabi_v7a.apk", "armeabi-v7a/split_config.vi.apk", "armeabi-v7a/split_config.xhdpi.apk"])
         else:
             subprocess.run([LINUX_ADB_PATH, "-s", device_id, "install-multiple", "armeabi-v7a/base.apk", "armeabi-v7a/split_config.armeabi_v7a.apk", "armeabi-v7a/split_config.vi.apk", "armeabi-v7a/split_config.xhdpi.apk"])
-        if not check_termux(driver):
+        if not await check_termux(driver):
             log_message(f"[{device_id}] Lỗi cài đặt Termux", logging.ERROR)
             return False
         
 async def check_termux_api_installed(driver):
     device_id = driver.serial
     log_message(f"[{device_id}] Kiểm tra cài đặt Termux")
-    check_termux_installed = await check_termux(driver)
-
-    if not check_termux_installed:
+    if not await check_termux(driver):
         log_message(f"[{device_id}] Cài đặt Termux")
         if not await install_termux(driver):
             return False
