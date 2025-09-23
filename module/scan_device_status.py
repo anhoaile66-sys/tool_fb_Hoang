@@ -1,7 +1,9 @@
 import subprocess
 from util import *
 
-ADB_PATH = r".\platform-tools\adb.exe"
+WINDOW_ADB_PATH = r".\platform-tools\adb.exe"
+LINUX_ADB_PATH = "adb"
+# LINUX_ADB_PATH = r"./platform-tools/adb.exe"
 
 def scan_connected_devices():
     """
@@ -9,12 +11,19 @@ def scan_connected_devices():
     """
     log_message("Đọc danh sách thiết bị kết nối qua ADB")
     try:
-        result = subprocess.run([ADB_PATH, "devices"],
-                                capture_output=True,
-                                text=True,
-                                timeout=10,
-                                encoding='utf-8')
-        
+        try:
+            result = subprocess.run([LINUX_ADB_PATH, "devices"],
+                                    capture_output=True,
+                                    text=True,
+                                    timeout=10,
+                                    encoding='utf-8')
+        except Exception:
+            result = subprocess.run([WINDOW_ADB_PATH, "devices"],
+                                    capture_output=True,
+                                    text=True,
+                                    timeout=10,
+                                    encoding='utf-8')
+
         device_list = []
         # Bỏ dòng đầu tiên
         lines = result.stdout.strip().split('\n')[1:]

@@ -58,5 +58,5 @@ test.py
 /module/__pycache__
 assets/logs/toolfacebook.log
 
-#venv
+# venv
 tool_venv/
