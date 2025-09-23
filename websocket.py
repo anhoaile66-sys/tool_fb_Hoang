@@ -43,16 +43,16 @@ class WebSocketTaskHandler:
 
     async def check_device_status(self, driver):
         # Lấy status từ file json tại thư mục Zalo_base
-        with open(f'C:/Zalo_CRM/Zalo_base/device_status_{driver.serial}.json', 'r') as f:
+        with open(f'Zalo_CRM/Zalo_base/device_status_{driver.serial}.json', 'r') as f:
             device_status = json.load(f).get('active', False)
         return not device_status
     
     async def update_device_status(self, driver, status: bool):
         # Cập nhật status vào file json tại thư mục Zalo_base
-        with open(f'C:/Zalo_CRM/Zalo_base/device_status_{driver.serial}.json', 'r') as f:
+        with open(f'Zalo_CRM/Zalo_base/device_status_{driver.serial}.json', 'r') as f:
             data = json.load(f)
             data['active'] = status
-        with open(f'C:/Zalo_CRM/Zalo_base/device_status_{driver.serial}.json', 'w') as f:
+        with open(f'Zalo_CRM/Zalo_base/device_status_{driver.serial}.json', 'w') as f:
             json.dump(data, f)
 
     async def handle_server_message(self, account, driver, message_type):

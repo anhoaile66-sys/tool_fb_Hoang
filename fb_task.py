@@ -24,13 +24,13 @@ async def clear_app(driver):
 
 async def fb_natural_task(driver, crm_id:str, account: str):
     actions = [
-        # ("Xem reels", lambda: watch_reels(driver)), # Đã test oke
+        ("Xem reels", lambda: watch_reels(driver)), # Đã test oke
         ("Xem story", lambda: watch_story(driver)),
-        # ("Lướt fb", lambda: surf_fb(driver)),
-        # ("Kết bạn", lambda: add_friend(driver, crm_id)),
-        # ("Thăm tường bạn bè", lambda: load_facebook_friends_list_advanced(driver, driver.serial, True)),
-        # ("Bình luận thương hiệu", lambda: comment_recruitment_post(driver, account)),
-        # ("Thăm trang cá nhân", lambda: tham_trang_ca_nhan(driver)),
+        ("Lướt fb", lambda: surf_fb(driver)),
+        ("Kết bạn", lambda: add_friend(driver, crm_id)),
+        ("Thăm tường bạn bè", lambda: load_facebook_friends_list_advanced(driver, driver.serial, True)),
+        ("Bình luận thương hiệu", lambda: comment_recruitment_post(driver, account)),
+        ("Thăm trang cá nhân", lambda: tham_trang_ca_nhan(driver)),
     ]
     # Random hóa thứ tự các hành động
     random.shuffle(actions)
