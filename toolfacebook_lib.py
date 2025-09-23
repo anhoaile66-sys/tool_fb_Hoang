@@ -147,9 +147,12 @@ async def extract_post_link(driver, post):
     for node in post.iter():
         if node.attrib.get("text") == "Chia sẻ" or node.attrib.get("content-desc") == "Chia sẻ":
             bounds = parse_number(node.attrib.get("bounds"))
-            print(bounds)
             driver.click((bounds[0] + bounds[2]) // 2, (bounds[1] + bounds[3]) // 2)
     await asyncio.sleep(1)
+    if driver(text="Sao chép liên kết").exists:
+        driver(text="Sao chép liên kết").click()
+        return await get_clipboard_content(driver, "com.facebook.katana")
+
     width, height = driver.window_size()
 
     start_x = width * 0.9   # gần mép phải
