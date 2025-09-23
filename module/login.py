@@ -19,7 +19,7 @@ async def log_out(driver):
         log_message(f"[{driver.serial}] Không tìm được nút menu", logging.ERROR)
         return
     # Đợi chuyển sang tab menu
-    log_message(f"[{driver.serial}] Vào menu")
+    log_message(f"[{driver.serial}] Trạng thái: Menu")
 
     safe_flag = 20
     log_out = await my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đăng xuất"]')}, safe_flag, True)
@@ -43,7 +43,6 @@ async def log_out(driver):
         return
     else:
         xac_nhan.click()
-        log_message(f"[{driver.serial}] Xác nhận đăng xuất")
     # Đợi load trang chọn tài khoản
     log_message(f"[{driver.serial}] Đăng xuất thành công")
     await pymongo_management.update_statusFB(driver.serial, "Offline")

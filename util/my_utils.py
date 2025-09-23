@@ -151,10 +151,9 @@ async def go_to_home_page(driver):
     """
     Trở về đầu trang để tìm các tác vụ khác
     """
-    log_message(f"[{driver.serial}] Về trang chủ")
     element = await my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')}, 10, back_if_not_found=True)
-    if element:
+    if element is None:
         log_message(f"[{driver.serial}] Không tìm được homepage sau 10 lần thử", logging.ERROR)
         return None
-    log_message(f"[{driver.serial}] Đã về trang chủ")
+    log_message(f"[{driver.serial}] Trạng thái: Homepage")
     return element
