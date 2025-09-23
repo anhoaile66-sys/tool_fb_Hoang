@@ -9,6 +9,7 @@ import numpy as np
 from util import log_message
 import logging
 from util import go_to_home_page
+from util.const_values import *
 
 # Truy cập 1 trang facebook qua link
 def redirect_to(driver, link):
@@ -85,13 +86,23 @@ async def delete_local_file(file_name):
 async def push_file_to_device(device_id, file_name, remote_path="/sdcard/Download/"):
     try:
         await download_file_from_server(file_name)
-        await asyncio.to_thread(subprocess.run, ["platform-tools\\adb", "-s", device_id, "push", "Files/" + file_name, remote_path + file_name], check=True)
-        await asyncio.to_thread(subprocess.run, [
-            "platform-tools\\adb", "-s", device_id,
-            "shell", "am", "broadcast",
-            "-a", "android.intent.action.MEDIA_SCANNER_SCAN_FILE",
-            "-d", f"file://{remote_path + file_name}"
-        ], check=True)
+        if os.name == 'nt':
+            await asyncio.to_thread(subprocess.run, [WINDOW_ADB_PATH, "-s", device_id, "push", "Files/" + file_name, remote_path + file_name], check=True)
+            await asyncio.to_thread(subprocess.run, [
+                WINDOW_ADB_PATH, "-s", device_id,
+                "shell", "am", "broadcast",
+                "-a", "android.intent.action.MEDIA_SCANNER_SCAN_FILE",
+                "-d", f"file://{remote_path + file_name}"
+            ], check=True)
+        else:
+            await asyncio.to_thread(subprocess.run, [LINUX_ADB_PATH, "-s", device_id, "push", "Files/" + file_name, remote_path + file_name], check=True)
+            await asyncio.to_thread(subprocess.run, [
+                LINUX_ADB_PATH, "-s", device_id,
+                "shell", "am", "broadcast",
+                "-a", "android.intent.action.MEDIA_SCANNER_SCAN_FILE",
+                "-d", f"file://{remote_path + file_name}"
+            ], check=True)
+        
     except subprocess.CalledProcessError:
         log_message(f"{device_id} - ⚠️ File không tồn tại hoặc không thể đẩy: {remote_path + file_name}", logging.WARNING)
     finally:
@@ -100,7 +111,10 @@ async def push_file_to_device(device_id, file_name, remote_path="/sdcard/Downloa
 # Xóa file trên thiết bị
 async def delete_file(device_id, file_name, remote_path="/sdcard/Download/"):
     try:
-        await asyncio.to_thread(subprocess.run, ["platform-tools\\adb", "-s", device_id, "shell", f"rm '{remote_path + file_name}'"], check=True)
+        if os.name == 'nt':
+            await asyncio.to_thread(subprocess.run, [WINDOW_ADB_PATH, "-s", device_id, "shell", f"rm '{remote_path + file_name}'"], check=True)
+        else:
+            await asyncio.to_thread(subprocess.run, [LINUX_ADB_PATH, "-s", device_id, "shell", f"rm '{remote_path + file_name}'"], check=True)
         print(f"{device_id} - ✅ Đã xóa file: {remote_path + file_name}")
     except subprocess.CalledProcessError:
         print(f"{device_id} - ⚠️ File không tồn tại hoặc không thể xóa: {remote_path + file_name}")
@@ -118,7 +132,10 @@ async def get_clipboard_content(driver, app):
     local_filename = "clipboard.txt"
     
     # Lệnh adb pull
-    command = ["platform-tools/adb", "pull", remote_path, local_filename]
+    if os.name == 'nt':
+        command = [WINDOW_ADB_PATH, "pull", remote_path, local_filename]
+    else:
+        command = [LINUX_ADB_PATH, "pull", remote_path, local_filename]
     subprocess.run(command, capture_output=True, text=True)
 
     # Mở file được pull về và đọc nội dung

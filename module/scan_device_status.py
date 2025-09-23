@@ -1,10 +1,6 @@
 import subprocess
 from util import *
 
-WINDOW_ADB_PATH = r".\platform-tools\adb.exe"
-LINUX_ADB_PATH = "adb"
-# LINUX_ADB_PATH = r"./platform-tools/adb.exe"
-
 def scan_connected_devices():
     """
     Quét các thiết bị đang kết nối qua adb, trả về danh sách device_id

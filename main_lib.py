@@ -4,8 +4,6 @@ import json
 import os
 import glob
 
-WINDOW_ADB_PATH = "platform-tools/adb"
-LINUX_ADB_PATH = "adb"
 async def check_termux(driver):
     device_id = driver.serial
     if os.name == 'nt':
