@@ -12,7 +12,7 @@ async def check_termux(driver):
         result = subprocess.run([WINDOW_ADB_PATH, "-s", device_id, "shell", "pm", "list", "packages"], capture_output=True, text=True)
     else:
         result = subprocess.run([LINUX_ADB_PATH, "-s", device_id, "shell", "pm", "list", "packages"], capture_output=True, text=True)
-    if "com.termux.api" in result.stdout:
+    if "com.termux" in result.stdout:
         return True
     else:
         return False
