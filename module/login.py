@@ -19,7 +19,7 @@ async def log_out(driver):
         log_message(f"[{driver.serial}] Không tìm được nút menu", logging.ERROR)
         return
     # Đợi chuyển sang tab menu
-    log_message(f"[{driver.serial}] Vào menu")
+    log_message(f"[{driver.serial}] Trạng thái: Menu")
 
     safe_flag = 20
     log_out = await my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đăng xuất"]')}, safe_flag, True)
@@ -43,10 +43,9 @@ async def log_out(driver):
         return
     else:
         xac_nhan.click()
-        log_message(f"[{driver.serial}] Xác nhận đăng xuất")
     # Đợi load trang chọn tài khoản
     log_message(f"[{driver.serial}] Đăng xuất thành công")
-    await pymongo_management.update_statusFB(driver.serial, False)
+    await pymongo_management.update_statusFB(driver.serial, "Offline")
 
 # Đăng nhập lần đầu
 async def login_facebook(driver, acc):
@@ -121,20 +120,46 @@ async def login_facebook(driver, acc):
     # Đợi load trang chủ
     await asyncio.sleep(20)
     log_message("Đăng nhập thành công")
-    await pymongo_management.update_statusFB(account, True)
+    await pymongo_management.update_statusFB(account, "Online")
     return True
 
+async def check_logged_in(driver):
+    """
+    Kiểm tra trạng thái đăng nhập của tài khoản trên thiết bị
+    
+    """
+    # Mở ứng dụng Facebook
+    driver.app_start("com.facebook.katana")
+    home = await my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')}, 10, back_if_not_found=True)
+    if home is not None:
+        return True
+    else:
+        return False
 # Hàm đăng nhập vào tài khoản đã lưu
 async def swap_account(driver, acc):
     """
     Đăng nhập vào tài khoản facebook đã lưu sẵn
     
     """
+    # Mở ứng dụng Facebook
+    driver.app_start("com.facebook.katana")
+
+    # Lấy thông tin tài khoản
     name = acc['name']
     username = acc['account']
     password = acc['password']
-    # Đăng xuất
-    await log_out(driver)
+
+    # Đăng xuất nếu đã đăng nhập
+    if await check_logged_in(driver):
+        await log_out(driver)
+    else:
+        help_button = await my_find_element(driver, {("text", "Trợ giúp")}, 3)
+        if help_button:
+            help_button.click()
+            await asyncio.sleep(3)
+            log_out_btn = await my_find_element(driver, {("xpath", '//*[@content-desc[contains(., "Đăng xuất")]]')})
+            log_out_btn.click()
+            (await my_find_element(driver, {("text", "ĐĂNG XUẤT")})).click()
 
     # Đăng nhập
     log_message(f"[{driver.serial}] Bắt đầu đăng nhập vào tài khoản {name}")
@@ -167,8 +192,14 @@ async def swap_account(driver, acc):
             skip.click()
         else:
             break
-    await pymongo_management.update_statusFB(username, True)
+    
 
     # Đợi vào màn hình chính
-    await asyncio.sleep(6)
-    log_message(f"[{driver.serial}] Đăng nhập thành công vào tài khoản {name}")
+    if await check_logged_in(driver):
+        log_message(f"[{driver.serial}] Đăng nhập thành công vào tài khoản {name}")
+        await pymongo_management.update_statusFB(username, "Online")
+        return True
+    else:
+        log_message(f"[{driver.serial}] Đăng nhập thất bại vào tài khoản {name}", logging.ERROR)
+        await pymongo_management.update_statusFB(username, "Crash")
+        return False

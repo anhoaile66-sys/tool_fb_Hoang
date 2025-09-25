@@ -8,6 +8,8 @@ import os
 import numpy as np
 from util import log_message
 import logging
+from util import go_to_home_page
+from util.const_values import *
 
 # Truy cập 1 trang facebook qua link
 def redirect_to(driver, link):
@@ -15,12 +17,8 @@ def redirect_to(driver, link):
 
 # Trở về trang chủ của facebook
 async def back_to_facebook(driver):
-    driver(resourceId="com.android.systemui:id/back").click()
-    redirect_to(driver, "https://www.facebook.com")
-    await asyncio.sleep(0.5)
-    driver(resourceId="com.android.systemui:id/back").click()
-    driver.app_start("com.facebook.katana")
-    driver.swipe_ext("down", scale=0.5)
+    return await go_to_home_page(driver)
+        
 # Ấn vào ảnh mẫu trên màn hình
 async def click_template(driver, template, threshold = 0.8, scale_start = 50, scale_end = 150, scale_step = 10):
     await asyncio.sleep(1)
@@ -88,13 +86,23 @@ async def delete_local_file(file_name):
 async def push_file_to_device(device_id, file_name, remote_path="/sdcard/Download/"):
     try:
         await download_file_from_server(file_name)
-        await asyncio.to_thread(subprocess.run, ["platform-tools\\adb", "-s", device_id, "push", "Files/" + file_name, remote_path + file_name], check=True)
-        await asyncio.to_thread(subprocess.run, [
-            "platform-tools\\adb", "-s", device_id,
-            "shell", "am", "broadcast",
-            "-a", "android.intent.action.MEDIA_SCANNER_SCAN_FILE",
-            "-d", f"file://{remote_path + file_name}"
-        ], check=True)
+        if os.name == 'nt':
+            await asyncio.to_thread(subprocess.run, [WINDOW_ADB_PATH, "-s", device_id, "push", "Files/" + file_name, remote_path + file_name], check=True)
+            await asyncio.to_thread(subprocess.run, [
+                WINDOW_ADB_PATH, "-s", device_id,
+                "shell", "am", "broadcast",
+                "-a", "android.intent.action.MEDIA_SCANNER_SCAN_FILE",
+                "-d", f"file://{remote_path + file_name}"
+            ], check=True)
+        else:
+            await asyncio.to_thread(subprocess.run, [LINUX_ADB_PATH, "-s", device_id, "push", "Files/" + file_name, remote_path + file_name], check=True)
+            await asyncio.to_thread(subprocess.run, [
+                LINUX_ADB_PATH, "-s", device_id,
+                "shell", "am", "broadcast",
+                "-a", "android.intent.action.MEDIA_SCANNER_SCAN_FILE",
+                "-d", f"file://{remote_path + file_name}"
+            ], check=True)
+        
     except subprocess.CalledProcessError:
         log_message(f"{device_id} - ⚠️ File không tồn tại hoặc không thể đẩy: {remote_path + file_name}", logging.WARNING)
     finally:
@@ -103,7 +111,10 @@ async def push_file_to_device(device_id, file_name, remote_path="/sdcard/Downloa
 # Xóa file trên thiết bị
 async def delete_file(device_id, file_name, remote_path="/sdcard/Download/"):
     try:
-        await asyncio.to_thread(subprocess.run, ["platform-tools\\adb", "-s", device_id, "shell", f"rm '{remote_path + file_name}'"], check=True)
+        if os.name == 'nt':
+            await asyncio.to_thread(subprocess.run, [WINDOW_ADB_PATH, "-s", device_id, "shell", f"rm '{remote_path + file_name}'"], check=True)
+        else:
+            await asyncio.to_thread(subprocess.run, [LINUX_ADB_PATH, "-s", device_id, "shell", f"rm '{remote_path + file_name}'"], check=True)
         print(f"{device_id} - ✅ Đã xóa file: {remote_path + file_name}")
     except subprocess.CalledProcessError:
         print(f"{device_id} - ⚠️ File không tồn tại hoặc không thể xóa: {remote_path + file_name}")
@@ -121,7 +132,10 @@ async def get_clipboard_content(driver, app):
     local_filename = "clipboard.txt"
     
     # Lệnh adb pull
-    command = ["platform-tools/adb", "pull", remote_path, local_filename]
+    if os.name == 'nt':
+        command = [WINDOW_ADB_PATH, "pull", remote_path, local_filename]
+    else:
+        command = [LINUX_ADB_PATH, "pull", remote_path, local_filename]
     subprocess.run(command, capture_output=True, text=True)
 
     # Mở file được pull về và đọc nội dung
@@ -133,9 +147,12 @@ async def extract_post_link(driver, post):
     for node in post.iter():
         if node.attrib.get("text") == "Chia sẻ" or node.attrib.get("content-desc") == "Chia sẻ":
             bounds = parse_number(node.attrib.get("bounds"))
-            print(bounds)
             driver.click((bounds[0] + bounds[2]) // 2, (bounds[1] + bounds[3]) // 2)
     await asyncio.sleep(1)
+    if driver(text="Sao chép liên kết").exists:
+        driver(text="Sao chép liên kết").click()
+        return await get_clipboard_content(driver, "com.facebook.katana")
+
     width, height = driver.window_size()
 
     start_x = width * 0.9   # gần mép phải

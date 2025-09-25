@@ -36,13 +36,13 @@ async def post_to_wall(driver, command_id, user_id, content, files=None):
             except:
                 pass
         await asyncio.sleep(2)
-        if driver(text="Đăng").exists:
-            driver(text="Đăng").click()
-        elif driver(description="Tiếp").exists:
-            driver(description="Tiếp").click()
+        if driver(description="TIẾP").exists:
+            driver(description="TIẾP").click()
+        if driver(text="ĐĂNG").exists:
+            driver(text="ĐĂNG").click()
         else:
-            log_message(f"{driver.serial} - Đăng bài lên tường: Không tìm thấy nút Đăng", logging.WARNING)
-            await pymongo_management.execute_command(command_id, "Lỗi: Không tìm thấy nút Đăng")
+            log_message(f"{driver.serial} - Đăng bài lên tường: Không tìm thấy nút ĐĂNG", logging.WARNING)
+            await pymongo_management.execute_command(command_id, "Lỗi: Không tìm thấy nút ĐĂNG")
             return
         log_message(f"{driver.serial} - Đăng bài lên tường: Đã đăng bài viết lên tường", logging.INFO)
         await pymongo_management.execute_command(command_id, "Đã thực hiện")
@@ -64,9 +64,9 @@ async def check_wall_post(driver, user_id):
     contents = {}
     for post in posts:
         contents[post['content']] = post
-    await toolfacebook_lib.back_to_facebook(driver)
+    home_page = await toolfacebook_lib.back_to_facebook(driver)
     await asyncio.sleep(1)
-    driver.xpath('//*[@resource-id="android:id/list"]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]').click()
+    home_page.click()
     start_time = asyncio.get_event_loop().time()
     while toolfacebook_lib.is_screen_changed(driver) and asyncio.get_event_loop().time() - start_time < 300:
         xml = driver.dump_hierarchy()

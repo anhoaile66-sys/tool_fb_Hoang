@@ -43,16 +43,16 @@ class WebSocketTaskHandler:
 
     async def check_device_status(self, driver):
         # Lấy status từ file json tại thư mục Zalo_base
-        with open(f'C:/Zalo_CRM/Zalo_base/device_status_{driver.serial}.json', 'r') as f:
+        with open(f'Zalo_CRM/Zalo_base/device_status_{driver.serial}.json', 'r') as f:
             device_status = json.load(f).get('active', False)
         return not device_status
     
     async def update_device_status(self, driver, status: bool):
         # Cập nhật status vào file json tại thư mục Zalo_base
-        with open(f'C:/Zalo_CRM/Zalo_base/device_status_{driver.serial}.json', 'r') as f:
+        with open(f'Zalo_CRM/Zalo_base/device_status_{driver.serial}.json', 'r') as f:
             data = json.load(f)
             data['active'] = status
-        with open(f'C:/Zalo_CRM/Zalo_base/device_status_{driver.serial}.json', 'w') as f:
+        with open(f'Zalo_CRM/Zalo_base/device_status_{driver.serial}.json', 'w') as f:
             json.dump(data, f)
 
     async def handle_server_message(self, account, driver, message_type):
@@ -67,14 +67,17 @@ class WebSocketTaskHandler:
                 if not account:
                     log_message(f"{driver.serial} - Thực hiện lệnh từ CRM: Không có user_id trong message", logging.WARNING)
                     return
-                await toolfacebook_lib.back_to_facebook(driver)
                 if not account['status']:
                     acc = {
                         'name': account['name'],
                         'account': account['account'],
                         'password': account['password'],
                     }
-                    await login.swap_account(driver, acc)
+                    success = await login.swap_account(driver, acc)
+                    if not success:
+                        await pymongo_management
+                        await self.update_device_status(driver, False)
+                        return
                 # Nhận và thực hiện lệnh
                 await self.run_commands(driver, account['account'])
                 await self.update_device_status(driver, False)

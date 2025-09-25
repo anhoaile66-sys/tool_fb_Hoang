@@ -57,3 +57,9 @@ test.py
 *.swo
 /module/__pycache__
 assets/logs/toolfacebook.log
+
+# venv
+tool_venv/
+
+# base
+Zalo_CRM/

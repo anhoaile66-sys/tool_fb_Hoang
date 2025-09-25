@@ -10,3 +10,4 @@ from .scan_fb import *
 from .post_to_wall import *
 from .fb_friends import *
 from .tham_trang_ca_nhan import *
+from .scan_device_status import *

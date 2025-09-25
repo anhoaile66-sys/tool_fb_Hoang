@@ -4,20 +4,38 @@ import json
 import os
 import glob
 
+async def check_termux(driver):
+    device_id = driver.serial
+    if os.name == 'nt':
+        result = subprocess.run([WINDOW_ADB_PATH, "-s", device_id, "shell", "pm", "list", "packages"], capture_output=True, text=True)
+    else:
+        result = subprocess.run([LINUX_ADB_PATH, "-s", device_id, "shell", "pm", "list", "packages"], capture_output=True, text=True)
+    if "com.termux" in result.stdout:
+        return True
+    else:
+        return False
+async def install_termux(driver):
+    device_id = driver.serial
+    if os.name == 'nt':
+        subprocess.run([WINDOW_ADB_PATH, "-s", device_id, "install-multiple", "arm64-v8a/base.apk", "arm64-v8a/split_config.arm64_v8a.apk", "arm64-v8a/split_config.vi.apk", "arm64-v8a/split_config.xxhdpi.apk"])
+    else:
+        subprocess.run([LINUX_ADB_PATH, "-s", device_id, "install-multiple", "arm64-v8a/base.apk", "arm64-v8a/split_config.arm64_v8a.apk", "arm64-v8a/split_config.vi.apk", "arm64-v8a/split_config.xxhdpi.apk"])
+    if not await check_termux(driver):
+        if os.name == 'nt':
+            subprocess.run([WINDOW_ADB_PATH, "-s", device_id, "install-multiple", "armeabi-v7a/base.apk", "armeabi-v7a/split_config.armeabi_v7a.apk", "armeabi-v7a/split_config.vi.apk", "armeabi-v7a/split_config.xhdpi.apk"])
+        else:
+            subprocess.run([LINUX_ADB_PATH, "-s", device_id, "install-multiple", "armeabi-v7a/base.apk", "armeabi-v7a/split_config.armeabi_v7a.apk", "armeabi-v7a/split_config.vi.apk", "armeabi-v7a/split_config.xhdpi.apk"])
+        if not await check_termux(driver):
+            log_message(f"[{device_id}] Lỗi cài đặt Termux", logging.ERROR)
+            return False
+        
 async def check_termux_api_installed(driver):
     device_id = driver.serial
     log_message(f"[{device_id}] Kiểm tra cài đặt Termux")
-    result = subprocess.run(["platform-tools/adb", "-s", device_id, "shell", "pm", "list", "packages"], capture_output=True, text=True)
-    if not "com.termux" in result.stdout:
+    if not await check_termux(driver):
         log_message(f"[{device_id}] Cài đặt Termux")
-        subprocess.run(["platform-tools/adb", "-s", device_id, "install-multiple", "arm64-v8a/base.apk", "arm64-v8a/split_config.arm64_v8a.apk", "arm64-v8a/split_config.vi.apk", "arm64-v8a/split_config.xxhdpi.apk"])
-        result = subprocess.run(["platform-tools/adb", "-s", device_id, "shell", "pm", "list", "packages"], capture_output=True, text=True)
-        if not "com.termux" in result.stdout:
-            subprocess.run(["platform-tools/adb", "-s", device_id, "install-multiple", "armeabi-v7a/base.apk", "armeabi-v7a/split_config.armeabi_v7a.apk", "armeabi-v7a/split_config.vi.apk", "armeabi-v7a/split_config.xhdpi.apk"])
-            result = subprocess.run(["platform-tools/adb", "-s", device_id, "shell", "pm", "list", "packages"], capture_output=True, text=True)
-            if not "com.termux" in result.stdout:
-                log_message(f"[{device_id}] Lỗi cài đặt Termux", logging.ERROR)
-                return False
+        if not await install_termux(driver):
+            return False
         driver.app_start("com.termux")
         await asyncio.sleep(10)
         driver(resourceId="com.android.permissioncontroller:id/permission_allow_button").click()
@@ -28,7 +46,7 @@ async def check_termux_api_installed(driver):
 
 async def reset_active():
     # Đường dẫn tới thư mục chứa các file JSON
-    folder_path = "C:/Zalo_CRM/Zalo_base"
+    folder_path = "Zalo_CRM/Zalo_base"
 
     # Tìm tất cả các file có dạng device_status_*.json
     json_files = glob.glob(os.path.join(folder_path, "device_status_*.json"))

@@ -6,7 +6,7 @@ import logging
 from util import *
 from module import *
 from collections import deque
-from id import DEVICE_LIST
+
 
 USER_ACCOUNT_FILE = "user_account.json"
 DEVICES_FOLDER = "devices"

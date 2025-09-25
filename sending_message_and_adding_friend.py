@@ -769,7 +769,7 @@ class DeviceHandler:
             print(f"[{self.device_id}][❌] Lỗi khi xử lý {phone_number}: {e}")
             self.d.press("home")
             time.sleep(2)
-            return False, message, friend_or_not, name_zaloF
+            return False, message, friend_or_not, name_zalo
 
     def extract_profile_info(self, phone_number, original_info):
         """Trích xuất thông tin profile Zalo và kết hợp với dữ liệu gốc"""
