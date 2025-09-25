@@ -44,6 +44,7 @@ dict_proxy = {"103.82.133.213:13501:sp08-13501:PBTQX": True,
 dict_status_zalo = {}
 dict_status_update_pvp = {}
 dict_phone_device = {}
+dict_id_chat = {}
 LOG_FILE = "sent_log.txt"
 file_lock = Lock()
 
@@ -66,6 +67,7 @@ except Exception:
 dict_device_and_phone = {}
 dict_process_id = {}
 dict_queue_device = {}
+dict_new_friend = {}
 
 dict_device_and_phone = {
     "R5CW71JT8GT": ["0867956826"],
@@ -101,8 +103,6 @@ for device_id in dict_device_and_phone.keys():
         dict_status_zalo[phone_zalo] = ""
         dict_status_update_pvp[phone_zalo] = 0
         dict_phone_device[phone_zalo] = device_id
-    dict_process_id[device_id] = 0
-    dict_queue_device[device_id] = []
 
 dict_devices = [dv for dv in dict_device_and_phone.keys()]
 
@@ -279,7 +279,7 @@ def switch_account(d: u2.Device, name, retire=3):
     return d
 
 
-def get_list_friends_u2(d: u2.Device, max_friends: int = 150, scroll_delay: float = 1.0, retire=3, has_update=False, friend_name=[]):
+def get_list_friends_u2(d: u2.Device, max_friends: int = 150, scroll_delay: float = 1.0, retire=3, has_update=False, friend_name=[], num_phone_zalo="", list_friend_old=[]):
     """
     Lấy toàn bộ bạn bè từ tab Danh bạ trên Zalo Android bằng uiautomator2.
     - d: uiautomator2 Device
@@ -374,6 +374,15 @@ def get_list_friends_u2(d: u2.Device, max_friends: int = 150, scroll_delay: floa
                             "ava": avatar_b64,
                             "day_of_birth": bd
                         })
+                    
+                        result = friends
+
+                        if has_update and len(result) % 20 == 0:
+                            result += list_friend_old
+                        data_update = {"list_friend": result,
+                                   "num_phone_zalo": num_phone_zalo}
+                        update_base_document_json(
+                            "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
 
                     d(resourceId="android:id/home").click()
                     eventlet.sleep(1.0)
@@ -822,22 +831,10 @@ def api_get_list_friend(data_body, check_get_lf):
                 dict_status_zalo[num_phone_zalo] = "get_list_friend"
                 try:
                     result = get_list_friends_u2(
-                        d, max_friends=50, has_update=check_get_lf, friend_name=friend_name)
+                        d, max_friends=50, has_update=check_get_lf, friend_name=friend_name, num_phone_zalo=num_phone_zalo, list_friend_old=list_friend_old)
                     print("Kết quả trả về là ", result)
 
-            # dict_zalo_online[room][id_driver]["list_friend"] = result
-            # with open(data_login_path, 'w') as json_file:
-            #     json.dump(dict_zalo_online, json_file, indent=4)
-                    if check_get_lf:
-                        result += list_friend_old
-                    data_update = {"list_friend": result,
-                                   "num_phone_zalo": num_phone_zalo}
-                    update_base_document_json(
-                        "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
-                # collection_data_login_path.update_one(result[room][id_driver])
-                # print ("danh sach fr :" , result)
-                # emit("list_friend", {"num_phone_zalo": num_phone_zalo, "list_friend":result}, room=room)
-                # print('list_friend:', result)
+
                 except Exception as e:
                     print("Lỗi xaỷ ra khi cào bb", e)
                     result = list_friend_old
@@ -1469,8 +1466,10 @@ def api_update_list_unseen_chat_boxes(data):
     print(id_device)
     try:
         d = u2.connect(id_device)
+        device_connect[id_device] = True
     except Exception as e:
         print("Thiết bị đã ngắt kết nối")
+        device_connect[id_device] = False
         return False
     if (id_device in dict_devices and num_phone_zalo in dict_status_zalo.keys()):
         print("Đến đây chưa")
@@ -1673,6 +1672,12 @@ def handle_chat_pvp(data):
 
 # docs giờ là một list chứa mọi document tìm được
     id_device = document['id_device']
+    if dict_id_chat[id_device] != "" and dict_id_chat[id_device] != room:
+        join_room(room)
+        emit("receive_device_status", {
+                "status": "Thiết bị đang có người sử dụng", 'name_ntd': name}, room=room)
+        return False
+    dict_id_chat[id_device] = room
     dict_process_id[id_device] += 1
     id_process = dict_process_id[id_device]
     dict_queue_device[id_device].append(id_process)
@@ -1731,6 +1736,8 @@ def handle_chat_pvp(data):
                 print("Chuyển tài khoản thất bại", id_device)
                 dict_status_zalo[num_phone_zalo] = ""
                 del dict_queue_device[id_device][0]
+                if len(dict_queue_device[id_device]) == 0:
+                    dict_id_chat[id_device] = ""
                 return False
                 # dict_status_zalo[num_phone_zalo] = "handle_chat_pvp"
         try:
@@ -1739,10 +1746,14 @@ def handle_chat_pvp(data):
             device_connect[id_device] = True
         except Exception as e:
             print("Thiết bị đã ngắt kết nối", id_device)
-            emit("busy", {
-                "status": dict_status_zalo[num_phone_zalo], 'name_ntd': name}, room=room)
+            device_connect[id_device] = False
+            join_room(room)
+            emit("receive_device_status", {
+                "status": "Thiết bị đã ngắt kết nối", 'name_ntd': name}, room=room)
             dict_status_zalo[num_phone_zalo] = ""
             del dict_queue_device[id_device][0]
+            if len(dict_queue_device[id_device]) == 0:
+                dict_id_chat[id_device] = ""
             return False
         try:
             with open(f'C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json', 'r') as f:
@@ -1758,13 +1769,20 @@ def handle_chat_pvp(data):
                     eventlet.sleep(0.05)
         except Exception as e:
             print("Thiết bị đã ngắt kết nối", id_device)
-            emit("busy", {
-                "status": dict_status_zalo[num_phone_zalo], 'name_ntd': name}, room=room)
+            device_connect[id_device] = False
+            join_room(room)
+            emit("receive_device_status", {
+                "status": "Thiết bị đã ngắt kết nối", 'name_ntd': name}, room=room)
             dict_status_zalo[num_phone_zalo] = ""
             del dict_queue_device[id_device][0]
+            if len(dict_queue_device[id_device]) == 0:
+                dict_id_chat[id_device] = ""
             return False
 
         try:
+
+            if name in dict_new_friend.keys():
+                num_send_phone_zalo = dict_new_friend[name]['phone']
 
             if num_send_phone_zalo != "":
                 name_ntd = ""
@@ -1825,6 +1843,8 @@ def handle_chat_pvp(data):
                             print(e)
                             dict_status_zalo[num_phone_zalo] = ""
                             del dict_queue_device[id_device][0]
+                            if len(dict_queue_device[id_device]) == 0:
+                                dict_id_chat[id_device] = ""
                             emit("receive_chat_view_status", {
                                  "status": "Mở chat thất bại, hãy thử mở lại", "name_ntd": name}, room=room)
                             return False
@@ -1839,6 +1859,8 @@ def handle_chat_pvp(data):
                                  "status": "Số điện thoại chưa tạo tài khoản zalo", "name_ntd": name}, room=room)
                             dict_status_zalo[num_phone_zalo] = ""
                             del dict_queue_device[id_device][0]
+                            if len(dict_queue_device[id_device]) == 0:
+                                dict_id_chat[id_device] = ""
                             return False
 
                         try:
@@ -1855,8 +1877,10 @@ def handle_chat_pvp(data):
                             resourceId="com.zing.zalo:id/action_bar_title").get_text()
                     except Exception as e:
                         print(e)
-                        dict_status_zalo[num_message] = ""
+                        dict_status_zalo[num_phone_zalo] = ""
                         del dict_queue_device[id_device][0]
+                        if len(dict_queue_device[id_device]) == 0:
+                            dict_id_chat[id_device] = ""
                         emit("receive_chat_view_status", {
                              "status": "Mở chat thất bại, hãy thử mở lại", "name_ntd": name}, room=room)
                         return False
@@ -1878,9 +1902,9 @@ def handle_chat_pvp(data):
                             list_prior_chat_boxes[id]['friend_or_not'] = friend_or_not
                             check = True
                             break
-                    if not check:
-                        list_prior_chat_boxes.append(
-                            {"name": name_ntd, "phone": num_send_phone_zalo, "time": "", "message": "", "status": "seen", "friend_or_not": "no", "data_chat_box": []})
+                    #if not check:
+                    #    list_prior_chat_boxes.append(
+                    #        {"name": name_ntd, "phone": num_send_phone_zalo, "time": "", "message": "", "status": "seen", "friend_or_not": "no", "data_chat_box": []})
                     data_update = {"num_phone_zalo": num_phone_zalo,
                                    "list_prior_chat_boxes": list_prior_chat_boxes}
                     update_base_document_json(
@@ -1901,6 +1925,8 @@ def handle_chat_pvp(data):
                     log_sent(num_send_phone_zalo)
                 dict_status_zalo[num_phone_zalo] = ""
                 del dict_queue_device[id_device][0]
+                if len(dict_queue_device[id_device]) == 0:
+                    dict_id_chat[id_device] = ""
                 print("Cuộc hội thoại bắt đầu chưa")
                 emit("receive_chat_view_status", {
                      "status": "Cuộc hội thoại bắt đầu"}, room=room)
@@ -1954,8 +1980,10 @@ def handle_chat_pvp(data):
                             eventlet.sleep(0.1)
                         except Exception as e:
                             print(e)
-                            dict_status_zalo[num_message] = ""
+                            dict_status_zalo[num_phone_zalo] = ""
                             del dict_queue_device[id_device][0]
+                            if len(dict_queue_device[id_device]) == 0:
+                                dict_id_chat[id_device] = ""
                             emit("receive_chat_view_status", {
                                  "status": "Mở chat thất bại, hãy thử mở lại", "name_ntd": name}, room=room)
                             return False
@@ -1986,6 +2014,8 @@ def handle_chat_pvp(data):
                                  "status": "Tài khoản không tồn tại"}, room=room)
                             dict_status_zalo[num_phone_zalo] = ""
                             del dict_queue_device[id_device][0]
+                            if len(dict_queue_device[id_device]) == 0:
+                                dict_id_chat[id_device] = ""
                             print("Có lỗi à cậu")
                             return False
 
@@ -2054,6 +2084,8 @@ def handle_chat_pvp(data):
                 # emit("receive status",{"status":"Cuộc hội thoại bắt đầu"}, room=room)
                 dict_status_zalo[num_phone_zalo] = ""
                 del dict_queue_device[id_device][0]
+                if len(dict_queue_device[id_device]) == 0:
+                    dict_id_chat[id_device] = ""
                 print("Cuộc hội thoại bắt đầu")
                 emit("receive_chat_view_status", {
                      "status": "Cuộc hội thoại bắt đầu"}, room=room)
@@ -2061,6 +2093,11 @@ def handle_chat_pvp(data):
             print(e)
             dict_status_zalo[num_phone_zalo] = ""
             del dict_queue_device[id_device][0]
+            if len(dict_queue_device[id_device]) == 0:
+                dict_id_chat[id_device] = ""
+        
+        if len(dict_queue_device[id_device]) == 0:
+            dict_id_chat[id_device] = ""
 
         dict_status_update_pvp[num_phone_zalo] = 2
         handle_chat_view(d, num_phone_zalo)
@@ -2069,6 +2106,7 @@ def handle_chat_pvp(data):
 @app.route('/find_new_friend', methods=['POST', 'GET'])
 def api_find_new_friend():
     data = request.form
+    room = data.get('id_chat', '')
     num_phone_zalo = data.get('num_phone_zalo')
     num_send_phone_zalo = data.get('num_send_phone_zalo')
     # global now_phone_zalo
@@ -2088,6 +2126,9 @@ def api_find_new_friend():
 
 # docs giờ là một list chứa mọi document tìm được
     id_device = document['id_device']
+    if dict_id_chat[id_device] != "" and dict_id_chat[id_device] != room:
+        return jsonify({'status': "Thiết bị đang có người sử dụng"})
+    dict_id_chat[id_device] = room
     dict_process_id[id_device] += 1
     id_process = dict_process_id[id_device]
     dict_queue_device[id_device].append(id_process)
@@ -2118,16 +2159,31 @@ def api_find_new_friend():
 
         dict_status_update_pvp[num_phone_zalo] = 1
         dict_status_zalo[num_phone_zalo] = "find_new_friend"
-        doc = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+
+        try:
+            doc = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
             "num_phone_zalo": num_phone_zalo})[0]
+        except Exception as e:
+            dict_status_zalo[num_phone_zalo] = ""
+            del dict_queue_device[id_device][0]
+            if len(dict_queue_device[id_device]) == 0:
+                dict_id_chat[id_device] = ""
+                return jsonify({"status": "Có lỗi xảy ra"})
         if not doc['status']:
-            docs = get_base_id_zalo_json(
+            try:
+                docs = get_base_id_zalo_json(
                 "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
-            current_phone = ""
-            for it in docs:
-                if it['status']:
-                    current_phone = it['num_phone_zalo']
-                    break
+                current_phone = ""
+                for it in docs:
+                    if it['status']:
+                        current_phone = it['num_phone_zalo']
+                        break
+            except Exception as e:
+                dict_status_zalo[num_phone_zalo] = ""
+                del dict_queue_device[id_device][0]
+                if len(dict_queue_device[id_device]) == 0:
+                    dict_id_chat[id_device] = ""
+                return jsonify({"status": "Có lỗi xảy ra"})
             # if current_phone != "":
             #    status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
             #                                       "num_phone_zalo": current_phone, "status": False})
@@ -2151,6 +2207,8 @@ def api_find_new_friend():
                 print("Chuyển tài khoản thất bại", id_device)
                 dict_status_zalo[num_phone_zalo] = ""
                 del dict_queue_device[id_device][0]
+                if len(dict_queue_device[id_device]) == 0:
+                    dict_id_chat[id_device] = ""
                 return jsonify({"status": "Chuyển tài khoản thất bại"})
         try:
             d = u2.connect(id_device)
@@ -2158,8 +2216,11 @@ def api_find_new_friend():
             device_connect[id_device] = True
         except Exception as e:
             print("Thiết bị đã ngắt kết nối", id_device)
+            device_connect[id_device] = False
             dict_status_zalo[num_phone_zalo] = ""
             del dict_queue_device[id_device][0]
+            if len(dict_queue_device[id_device]) == 0:
+                dict_id_chat[id_device] = ""
             return jsonify({"status": "Thiết bị đã ngắt kết nối"})
 
         with open(f'C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json', 'r') as f:
@@ -2217,31 +2278,15 @@ def api_find_new_friend():
                     eventlet.sleep(0.1)
                 # time.sleep(1.0)
                     d.send_keys(f"{num_send_phone_zalo}", clear=True)
-                # time.sleep(1.0)
-                except Exception as e:
-                    print(e)
-                    dict_status_zalo[num_message] = ""
-                    del dict_queue_device[id_device][0]
-                    return jsonify({"status": "Bận rồi ông cháu ơi"})
 
-                try:
                     chat_num = d(
                         resourceId="com.zing.zalo:id/btn_search_result")
                     chat_num.click()
-                    # eventlet.sleep(1.0)
-                except Exception:
-                    dict_status_zalo[num_phone_zalo] = ""
-                    del dict_queue_device[id_device][0]
-                    return jsonify({"status": "Bận rồi ông cháu ơi"})
 
-                try:
                     if d(resourceId="com.zing.zalo:id/btn_send_message").exists:
                         d(resourceId="com.zing.zalo:id/btn_send_message").click()
                     eventlet.sleep(0.2)
-                except Exception:
-                    pass
 
-                try:
                     ntd = d(
                         resourceId="com.zing.zalo:id/action_bar_title")
                     name_ntd = ntd.get_text()
@@ -2250,45 +2295,40 @@ def api_find_new_friend():
 
                 except Exception as e:
                     print(e)
-                    dict_status_zalo[num_message] = ""
+                    dict_status_zalo[num_phone_zalo] = ""
                     del dict_queue_device[id_device][0]
+                    if len(dict_queue_device[id_device]) == 0:
+                        dict_id_chat[id_device] = ""
                     return jsonify({"status": "Bận rồi ông cháu ơi"})
-                try:
-                    iv = d(
-                        resourceId="com.zing.zalo:id/rounded_avatar_frame")
-                    eventlet.sleep(1.0)
 
-                    img = iv.screenshot()
-                    max_w, max_h = 200, 200
-                    img.thumbnail((max_w, max_h),
-                                  resample=Image.BILINEAR)
-                    buf = io.BytesIO()
-                    img.save(buf, format="JPEG",
-                             optimize=True, quality=75)
-                    avatar_64 = base64.b64encode(
-                        buf.getvalue()).decode("ascii")
-                except Exception as e:
-                    avatar_64 = ""
-                d(resourceId="android:id/home").click()
+                iv = d(
+                    resourceId="com.zing.zalo:id/rounded_avatar_frame")
                 eventlet.sleep(1.0)
+
+                img = iv.screenshot()
+                max_w, max_h = 200, 200
+                img.thumbnail((max_w, max_h),
+                            resample=Image.BILINEAR)
+                buf = io.BytesIO()
+                img.save(buf, format="JPEG",
+                        optimize=True, quality=75)
+                avatar_64 = base64.b64encode(
+                    buf.getvalue()).decode("ascii")
+
+                d(resourceId="android:id/home").click()
+                eventlet.sleep(0.2)
+
                 btn = d(resourceId="com.zing.zalo:id/tv_function_privacy")
-
-                try:
-
-                    if d(text="Đã gửi lời mời kết bạn").exists:
-                        friend_or_not = "added"
+                if d(text="Đã gửi lời mời kết bạn").exists:
+                    friend_or_not = "added"
+                else:
+                    btn = d(
+                        resourceId="com.zing.zalo:id/tv_function_privacy")
+                    kb = d.xpath('//*[@text="Kết bạn"]')
+                    if btn.exists or kb.exists:
+                        friend_or_not = "no"
                     else:
-
-                        btn = d(
-                            resourceId="com.zing.zalo:id/tv_function_privacy")
-                        kb = d.xpath('//*[@text="Kết bạn"]')
-                        if btn.exists or kb.exists:
-                            friend_or_not = "no"
-                        else:
-                            friend_or_not = "yes"
-                except Exception as e:
-                    friend_or_not = "yes"
-                    print(e)
+                        friend_or_not = "yes"
 
                 check = False
                 for id in range(len(list_prior_chat_boxes)):
@@ -2298,9 +2338,10 @@ def api_find_new_friend():
                         list_prior_chat_boxes[id]['friend_or_not'] = friend_or_not
                         check = True
                         break
-                #if not check:
-                #    list_prior_chat_boxes.append(
-                #        {"name": name_ntd, "phone": num_send_phone_zalo, "ava": avatar_64, "time": "", "friend_or_not": friend_or_not, "message": "", "status": "seen",  "data_chat_box": []})
+                if not check:
+                    #list_prior_chat_boxes.append(
+                    #    {"name": name_ntd, "phone": num_send_phone_zalo, "ava": avatar_64, "time": "", "friend_or_not": friend_or_not, "message": "", "status": "seen",  "data_chat_box": []})
+                    dict_new_friend[name_ntd] = {"phone": num_send_phone_zalo, "ava": avatar_64, "time": "", "friend_or_not": friend_or_not, "message": "", "status": "seen",  "data_chat_box": []}
                 if check:
                     data_update = {"num_phone_zalo": num_phone_zalo,
                             "list_prior_chat_boxes": list_prior_chat_boxes}
@@ -2326,6 +2367,7 @@ def api_find_new_friend():
                     "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
         except Exception as e:
             print(e)
+            pass
 
         dict_status_zalo[num_phone_zalo] = ""
         dict_status_update_pvp[num_phone_zalo] = 0
@@ -2333,6 +2375,8 @@ def api_find_new_friend():
 
         with open(f'C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json', 'r') as f:
             device_status = json.load(f)
+        if len(dict_queue_device[id_device]) == 0:
+            dict_id_chat[id_device] = ""
         if device_status['active'] and len(dict_queue_device[id_device]) == 0:
             device_status['active'] = False
             print("Có set về false không")
@@ -2347,8 +2391,9 @@ def api_switch_account():
     # print(data)
     # list_socket_call.append("open_chat_pvp")
     #    room = data["id_chat"]
-    # room = data['id_chat']
+
     data = request.form
+    room = data.get('id_chat', '')
     num_phone_zalo = data.get('num_phone_zalo')
     num_send_phone_zalo = data.get('num_send_phone_zalo')
     # global now_phone_zalo
@@ -2368,6 +2413,9 @@ def api_switch_account():
 
 # docs giờ là một list chứa mọi document tìm được
     id_device = document['id_device']
+    if dict_id_chat[id_device] != "" and dict_id_chat[id_device] != room:
+        return jsonify({'status': "Thiết bị đang có người sử dụng"})
+    dict_id_chat[id_device] = room
     dict_process_id[id_device] += 1
     id_process = dict_process_id[id_device]
     dict_queue_device[id_device].append(id_process)
@@ -2429,6 +2477,8 @@ def api_switch_account():
                 del dict_queue_device[id_device][0]
                 with open(f'C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json', 'r') as f:
                     device_status = json.load(f)
+                if len(dict_queue_device[id_device]) == 0:
+                    dict_id_chat[id_device] = ""
                 if device_status['active'] and len(dict_queue_device[id_device]) == 0:
                     device_status['active'] = False
                     print("Có set về false không")
@@ -2441,6 +2491,8 @@ def api_switch_account():
                 dict_status_zalo[num_phone_zalo] = ""
                 dict_status_update_pvp[num_phone_zalo] = 0
                 del dict_queue_device[id_device][0]
+                if len(dict_queue_device[id_device]) == 0:
+                    dict_id_chat[id_device] = ""
                 if device_status['active'] and len(dict_queue_device[id_device]) == 0:
                     device_status['active'] = False
                 return jsonify({"status": "Chuyển tài khoản thất bại"})
@@ -2601,7 +2653,7 @@ def get_data_chat_boxes_u2(d: u2.Device, gr_or_pvp: str, time_and_mes, max_scrol
                 if raw in seen:
                     continue
 
-            if "Tin nhắn đã được thu hồi" in raw or "Gọi điện" in raw:
+            if "Tin nhắn đã được thu hồi" in raw:
                 continue
 
             print(time_and_mes)
@@ -2617,8 +2669,8 @@ def get_data_chat_boxes_u2(d: u2.Device, gr_or_pvp: str, time_and_mes, max_scrol
                 bounds = items[num-id].info['bounds']
                 width, height = bounds['right'] - \
                     bounds['left'], bounds['bottom'] - bounds['top']
-                if height <= 400:
-                    continue
+                #if height <= 400:
+                #    continue
             formatted = date.today().strftime("%d/%m/%Y")
             raw = raw.replace("Hôm nay", formatted)
 
@@ -3426,9 +3478,6 @@ def get_data_chat_boxes_u2(d: u2.Device, gr_or_pvp: str, time_and_mes, max_scrol
                                     chat[f'{name_sender}'].append(
                                         {"time": time_str, "type": "text", "data": message})
 
-        # Kiểm tra có cần scroll thêm
-    #     if nm >= max_scroll:
-    #        break
         if not check:
             data_chat_box.append(chat)
             break
@@ -3451,6 +3500,18 @@ def get_data_chat_boxes_u2(d: u2.Device, gr_or_pvp: str, time_and_mes, max_scrol
         # Cuộn lên (kéo từ trên xuống dưới)
         d.swipe(w // 2, int(h * 0.2), w // 2, int(h * 0.8), duration=0.8)
         eventlet.sleep(scroll_delay)
+    
+    if check:
+        ck_a = False
+        for k in chat.keys():
+            try:
+                if chat[k]:
+                    ck_a = True
+            except Exception as e:
+                print(e)
+    
+        if ck_a:
+            data_chat_box.append(chat)
 
     rever_data_chat_box = data_chat_box[::-1]
     for i in range(len(rever_data_chat_box)):
@@ -4117,6 +4178,7 @@ def get_data_chat_boxes_gr_u2(d: u2.Device, time_and_mes, list_mems, max_scroll:
 #    if len(chat[f'{name_sender}']) > 0:
 #        data_chat_box.append(chat)
     if len(list_data_chat) > 0:
+        ck_sender = True
         data_chat_box = list_data_chat
         rever_data_chat_box = data_chat_box[::-1]
     else:
@@ -4236,7 +4298,7 @@ def api_update_data_one_chat_box(data, gr_or_pvp="pvp", on_chat=False, update=Fa
                             d(text="Tìm kiếm").click()
                             eventlet.sleep(1.0)
                             d.send_keys(data_ntd, clear=True)
-                            print("Sao lại in hai lần")
+                            #print("Sao lại in hai lần")
                             eventlet.sleep(1.0)
                             '''
                             elements = d(
@@ -4522,7 +4584,7 @@ def api_update_data_gr_chat_box(d: u2.Device, data, document):
                 # retr = result
 
                 if len(result) > 0:
-                    if ck_sender:
+                    if not ck_sender:
                         for res in result:
                             list_prior_chat_boxes[pick]['data_chat_box'].append(
                                 res)
@@ -4684,6 +4746,8 @@ def api_update_list_mems_one_group(data, on_chat=False, update=False):
                 # for id in range(len(list_group)):
                     if list_group[pick]['name'] == data_ntd and len(result) > 0:
                         # if not update:
+                        if 'list_mems' not in list_group[pick].keys():
+                            list_group[pick]['list_mems'] = []
                         list_group[pick]['list_mems'] = list_group[pick]['list_mems'] + result
                         # else:
                         #    list_group[pick]['list_mems'] = result
@@ -4825,6 +4889,12 @@ def handle_send_message_chat_pvp(data):
 
 # docs giờ là một list chứa mọi document tìm được
     id_device = document['id_device']
+    if dict_id_chat[id_device] != "" and dict_id_chat[id_device] != room:
+        join_room(room)
+        emit("receive_device_status", {
+                "status": "Thiết bị đang có người sử dụng", 'name_ntd': name}, room=room)
+        return False
+    dict_id_chat[id_device] = room
     dict_process_id[id_device] += 1
     id_process = dict_process_id[id_device]
     dict_queue_device[id_device].append(id_process)
@@ -4871,12 +4941,17 @@ def handle_send_message_chat_pvp(data):
         try:
             try:
                 d = u2.connect(id_device)
+                device_connect[id_device] = True
             except Exception as e:
                 print("Thiết bị đã ngắt kết nối")
-                emit("busy", {
-                    "status": dict_status_zalo[num_phone_zalo], 'name_ntd': name}, room=room)
+                device_connect[id_device] = False
+                join_room(room)
+                emit("receive_device_status", {
+                    "status": "Thiết bị đã ngắt kết nối", 'name_ntd': name}, room=room)
                 dict_status_zalo[num_phone_zalo] = ""
                 del dict_queue_device[id_device][0]
+                if len(dict_queue_device[id_device]) == 0:
+                    dict_id_chat[id_device] = ""
                 return False
             if not device_status['active']:
                 device_status['active'] = True
@@ -4889,10 +4964,14 @@ def handle_send_message_chat_pvp(data):
                         eventlet.sleep(0.05)
                 except Exception as e:
                     print("Thiết bị đã ngắt kết nối")
-                    emit("busy", {
-                        "status": dict_status_zalo[num_phone_zalo], 'name_ntd': name}, room=room)
+                    device_connect[id_device] = False
+                    join_room(room)
+                    emit("receive_device_status", {
+                        "status": "Thiết bị đã ngắt kết nối", 'name_ntd': name}, room=room)
                     dict_status_zalo[num_phone_zalo] = ""
                     del dict_queue_device[id_device][0]
+                    if len(dict_queue_device[id_device]) == 0:
+                        dict_id_chat[id_device] = ""
                     return False
 
                 # eventlet.sleep(1.0)
@@ -4914,8 +4993,10 @@ def handle_send_message_chat_pvp(data):
                                 timeout=1)
                         except Exception as e:
                             print(e)
-                            dict_status_zalo[num_message] = ""
+                            dict_status_zalo[num_phone_zalo] = ""
                             del dict_queue_device[id_device][0]
+                            if len(dict_queue_device[id_device]) == 0:
+                                dict_id_chat[id_device] = ""
                             emit("receive_chat_view_status", {
                                  "status": "Mở chat thất bại, hãy thử mở lại", "name_ntd": name}, room=room)
                             return False
@@ -4938,13 +5019,15 @@ def handle_send_message_chat_pvp(data):
                                     print("Có trùng khớp")
                                     item.click()
                                     break
-                            eventlet.sleep(1.0)
+                            eventlet.sleep(0.5)
                             print("Nhấn được chat  chưa")
                         except Exception:
                             emit("receive status", {
                                  "status": "Tài khoản không tồn tại"}, room=room)
                             dict_status_zalo[num_phone_zalo] = ""
                             del dict_queue_device[id_device][0]
+                            if len(dict_queue_device[id_device]) == 0:
+                                dict_id_chat[id_device] = ""
                             print("Có lỗi à cậu")
                             return False
 
@@ -4953,13 +5036,15 @@ def handle_send_message_chat_pvp(data):
                                 resourceId="com.zing.zalo:id/btn_send_message")
                             if btn.exists:
                                 btn.click()
-                                eventlet.sleep(1.0)
+                                eventlet.sleep(0.5)
                         except Exception:
                             print("Lỗi có ở đây không")
                             pass
                 except Exception as e:
                     print(e)
                 # if d is None:
+            
+
 
             if type == 'image':
                 avatar = base64.b64decode(image_data)
@@ -5042,6 +5127,8 @@ def handle_send_message_chat_pvp(data):
                     print(e)
                     dict_status_zalo[num_phone_zalo] = ""
                     del dict_queue_device[id_device][0]
+                    if len(dict_queue_device[id_device]) == 0:
+                        dict_id_chat[id_device] = ""
                     emit("receive_send_message_status", {
                         "status": "Gửi tin nhắn thất bại",  "name_ntd": name, "message": message}, room=room)
                     return False
@@ -5106,6 +5193,8 @@ def handle_send_message_chat_pvp(data):
                     print(e)
                     dict_status_zalo[num_phone_zalo] = ""
                     del dict_queue_device[id_device][0]
+                    if len(dict_queue_device[id_device]) == 0:
+                        dict_id_chat[id_device] = ""
                     emit("receive_send_message_status", {
                         "status": "Gửi tin nhắn thất bại",  "name_ntd": name, "message": message}, room=room)
                     return False
@@ -5122,6 +5211,8 @@ def handle_send_message_chat_pvp(data):
                     print(e)
                     dict_status_zalo[num_phone_zalo] = ""
                     del dict_queue_device[id_device][0]
+                    if len(dict_queue_device[id_device]) == 0:
+                        dict_id_chat[id_device] = ""
                     emit("receive_send_message_status", {
                         "status": "Gửi tin nhắn thất bại",  "name_ntd": name, "message": message}, room=room)
                     return False
@@ -5145,6 +5236,8 @@ def handle_send_message_chat_pvp(data):
                     print(e)
                     dict_status_zalo[num_phone_zalo] = ""
                     del dict_queue_device[id_device][0]
+                    if len(dict_queue_device[id_device]) == 0:
+                        dict_id_chat[id_device] = ""
                     emit("receive_send_message_status", {
                         "status": "Gửi tin nhắn thất bại",  "name_ntd": name, "message": message}, room=room)
                     return False
@@ -5210,34 +5303,42 @@ def handle_send_message_chat_pvp(data):
                     # pick = id
             if not check:
                 data_chat_box = []
+                ava = ""
+                phone = ""
+                friend_or_not = "no"
+                if name in dict_new_friend.keys():
+                    ava = dict_new_friend[name]['ava']
+                    phone = dict_new_friend[name]['phone']
+                    friend_or_not = dict_new_friend[name]['friend_or_not']
+                    del dict_new_friend[name]
                 if type == 'text':
                     num = message.split(" ")
                     if num > 10:
                         num = num[:10]
                         message = " ".join(num)
                     list_prior_chat_boxes.append(
-                        {"name": name, "time": time_str, "message": message, "status": "seen", "data_chat_box": []})
+                        {"name": name, "ava": ava, "phone": phone, "friend_or_not": friend_or_not, "time": time_str, "message": message, "status": "seen", "data_chat_box": []})
                     list_prior_chat_boxes[-1]['data_chat_box'].append(
                         {"you": [{'time': time_str, 'type': "text", "data": message}]})
                     list_prior_chat_boxes.insert(
                         0, list_prior_chat_boxes.pop(-1))
                 elif type == 'image':
                     list_prior_chat_boxes.append(
-                        {"name": name, "time": time_str, "message": f"image{image_number+1}.jpg", "status": "seen", "data_chat_box": []})
+                        {"name": name, "ava": ava, "phone": phone, "friend_or_not": friend_or_not, "time": time_str, "message": f"image{image_number+1}.jpg", "status": "seen", "data_chat_box": []})
                     list_prior_chat_boxes[-1]['data_chat_box'].append(
                         {"you": [{'time': time_str, 'type': "image", "data": f"image{image_number+1}.jpg", "image_data": image_data}]})
                     list_prior_chat_boxes.insert(
                         0, list_prior_chat_boxes.pop(-1))
                 elif type == 'file':
                     list_prior_chat_boxes.append(
-                        {"name": name, "time": time_str, "message": f"[File]\n{file_name}\n{file_size}", "status": "seen", "data_chat_box": []})
+                        {"name": name, "ava": ava, "phone": phone, "friend_or_not": friend_or_not, "time": time_str, "message": f"[File]\n{file_name}\n{file_size}", "status": "seen", "data_chat_box": []})
                     list_prior_chat_boxes[-1]['data_chat_box'].append(
                         {"you": [{'time': time_str, 'type': "file", "data": f"[File]\n{file_name}\n{file_size}", "file_data": file_data}]})
                     list_prior_chat_boxes.insert(
                         0, list_prior_chat_boxes.pop(-1))
                 elif type == 'card':
                     list_prior_chat_boxes.append(
-                        {"name": name, "time": time_str, "message": message, "status": "seen", "data_chat_box": []})
+                        {"name": name, "ava": ava, "phone": phone, "friend_or_not": friend_or_not, "time": time_str, "message": message, "status": "seen", "data_chat_box": []})
                     list_prior_chat_boxes[-1]['data_chat_box'].append(
                         {"you": [{'time': time_str, 'type': "card", "data": message, "card_data": {"name_card": name_card, "num_phone_card": num_phone_card}}]})
                     list_prior_chat_boxes.insert(
@@ -5258,7 +5359,8 @@ def handle_send_message_chat_pvp(data):
                 "status": "Đã gửi tin nhắn thất bại"}, room=room)
             dict_status_zalo[num_phone_zalo] = ""
             del dict_queue_device[id_device][0]
-
+            if len(dict_queue_device[id_device]) == 0:
+                dict_id_chat[id_device] = ""
             dict_status_update_pvp[num_phone_zalo] = 2
             handle_chat_view(d, num_phone_zalo)
             return False
@@ -5276,6 +5378,8 @@ def handle_send_message_chat_pvp(data):
         dict_status_zalo[num_phone_zalo] = ""
         dict_status_update_pvp[num_phone_zalo] = 2
         del dict_queue_device[id_device][0]
+        if len(dict_queue_device[id_device]) == 0:
+            dict_id_chat[id_device] = ""
         # two = time.time()
         # print(two-one)
         handle_chat_view(d, num_phone_zalo)
@@ -5335,6 +5439,12 @@ def handle_share_message_chat_pvp(data):
 
 # docs giờ là một list chứa mọi document tìm được
     id_device = document['id_device']
+    if dict_id_chat[id_device] != "" and dict_id_chat[id_device] != room:
+        join_room(room)
+        emit("receive_device_status", {
+                "status": "Thiết bị đang có người sử dụng", 'name_ntd': name}, room=room)
+        return False
+    dict_id_chat[id_device] = room
     dict_process_id[id_device] += 1
     id_process = dict_process_id[id_device]
     dict_queue_device[id_device].append(id_process)
@@ -5367,12 +5477,17 @@ def handle_share_message_chat_pvp(data):
 #                    device_status = json.load(f)
         try:
             d = u2.connect(id_device)
+            device_connect[id_device] = True
         except Exception as e:
             print("Thiết bị đã ngắt kết nối")
-            emit("busy", {
-                "status": dict_status_zalo[num_phone_zalo], 'name_ntd': name}, room=room)
+            device_connect[id_device] = False
+            join_room(room)
+            emit("receive_device_status", {
+                "status": "Thiết bị đã ngắt kết nối", 'name_ntd': name}, room=room)
             dict_status_zalo[num_phone_zalo] = ""
             del dict_queue_device[id_device][0]
+            if len(dict_queue_device[id_device]) == 0:
+                dict_id_chat[id_device] = ""
             return False
         try:
 
@@ -5408,6 +5523,8 @@ def handle_share_message_chat_pvp(data):
                         except Exception as e:
                             dict_status_zalo[num_phone_zalo] = ""
                             del dict_queue_device[id_device][0]
+                            if len(dict_queue_device[id_device]) == 0:
+                                dict_id_chat[id_device] = ""
                             print(e)
                             return False
                 if not on_chat:
@@ -5444,8 +5561,10 @@ def handle_share_message_chat_pvp(data):
                                     timeout=1)
                             except Exception as e:
                                 print(e)
-                                dict_status_zalo[num_message] = ""
+                                dict_status_zalo[num_phone_zalo] = ""
                                 del dict_queue_device[id_device][0]
+                                if len(dict_queue_device[id_device]) == 0:
+                                    dict_id_chat[id_device] = ""
                                 emit("receive_chat_view_status", {
                                      "status": "Mở chat thất bại, hãy thử mở lại", "name_ntd": name}, room=room)
                                 return False
@@ -5475,6 +5594,8 @@ def handle_share_message_chat_pvp(data):
                                      "status": "Tài khoản không tồn tại"}, room=room)
                                 dict_status_zalo[num_phone_zalo] = ""
                                 del dict_queue_device[id_device][0]
+                                if len(dict_queue_device[id_device]) == 0:
+                                    dict_id_chat[id_device] = ""
                                 print("Có lỗi à cậu")
                                 return False
 
@@ -5605,6 +5726,8 @@ def handle_share_message_chat_pvp(data):
                         print("Lỗi gặp phải là: ", e)
                         dict_status_zalo[num_phone_zalo] = ""
                         del dict_queue_device[id_device][0]
+                        if len(dict_queue_device[id_device]) == 0:
+                            dict_id_chat[id_device] = ""
                         emit("receive_send_message_status", {
                             "status": "Gửi tin nhắn thất bại",  "name_ntd": name, "message": message}, room=room)
                         return False
@@ -5672,6 +5795,8 @@ def handle_share_message_chat_pvp(data):
                         print("Lỗi gặp phải là: ", e)
                         dict_status_zalo[num_phone_zalo] = ""
                         del dict_queue_device[id_device][0]
+                        if len(dict_queue_device[id_device]) == 0:
+                            dict_id_chat[id_device] = ""
                         emit("receive_send_message_status", {
                             "status": "Gửi tin nhắn thất bại",  "name_ntd": name, "message": message}, room=room)
                         return False
@@ -5688,6 +5813,8 @@ def handle_share_message_chat_pvp(data):
                         print("Lỗi gặp phải là: ", e)
                         dict_status_zalo[num_phone_zalo] = ""
                         del dict_queue_device[id_device][0]
+                        if len(dict_queue_device[id_device]) == 0:
+                            dict_id_chat[id_device] = ""
                         emit("receive_send_message_status", {
                             "status": "Gửi tin nhắn thất bại",  "name_ntd": name, "message": message}, room=room)
                         return False
@@ -5711,6 +5838,8 @@ def handle_share_message_chat_pvp(data):
                         print("Lỗi gặp phải là: ", e)
                         dict_status_zalo[num_phone_zalo] = ""
                         del dict_queue_device[id_device][0]
+                        if len(dict_queue_device[id_device]) == 0:
+                            dict_id_chat[id_device] = ""
                         emit("receive_send_message_status", {
                             "status": "Gửi tin nhắn thất bại",  "name_ntd": name, "message": message}, room=room)
 
@@ -5820,6 +5949,8 @@ def handle_share_message_chat_pvp(data):
                         print("Lỗi gặp phải là: ", e)
                         dict_status_zalo[num_phone_zalo] = ""
                         del dict_queue_device[id_device][0]
+                        if len(dict_queue_device[id_device]) == 0:
+                            dict_id_chat[id_device] = ""
                         emit("receive_send_message_status", {
                             "status": "Gửi tin nhắn thất bại",  "name_ntd": name, "message": extra_message}, room=room)
                         return False
@@ -5902,8 +6033,10 @@ def handle_share_message_chat_pvp(data):
                             d(text="Tìm kiếm").click()
                         except Exception as e:
                             print(e)
-                            dict_status_zalo[num_message] = ""
+                            dict_status_zalo[num_phone_zalo] = ""
                             del dict_queue_device[id_device][0]
+                            if len(dict_queue_device[id_device]) == 0:
+                                dict_id_chat[id_device] = ""
                             emit("receive_chat_view_status", {
                                  "status": "Mở chat thất bại, hãy thử mở lại", "name_ntd": name_share}, room=room)
                             return False
@@ -5933,6 +6066,8 @@ def handle_share_message_chat_pvp(data):
                                  "status": "Tài khoản không tồn tại"}, room=room)
                             dict_status_zalo[num_phone_zalo] = ""
                             del dict_queue_device[id_device][0]
+                            if len(dict_queue_device[id_device]) == 0:
+                                dict_id_chat[id_device] = ""
                             #print("Có lỗi à cậu")
                             print("Lỗi gặp phải là: ", e)
                             return False
@@ -5957,6 +6092,8 @@ def handle_share_message_chat_pvp(data):
             dict_status_zalo[num_phone_zalo] = ""
             dict_status_update_pvp[num_phone_zalo] = 2
             del dict_queue_device[id_device][0]
+            if len(dict_queue_device[id_device]) == 0:
+                dict_id_chat[id_device] = ""
             handle_chat_view(d, num_phone_zalo)
             return False
         num_message += 1
@@ -5971,6 +6108,8 @@ def handle_share_message_chat_pvp(data):
         dict_status_zalo[num_phone_zalo] = ""
         dict_status_update_pvp[num_phone_zalo] = 2
         del dict_queue_device[id_device][0]
+        if len(dict_queue_device[id_device]) == 0:
+            dict_id_chat[id_device] = ""
         # two = time.time()
         # print(two-one)
         handle_chat_view(d, num_phone_zalo)
@@ -5983,6 +6122,7 @@ def handle_share_message_chat_pvp(data):
 def api_add_friend_chat_pvp():
     data = request.form
     list_socket_call.append("add_friend_chat_pvp")
+    room = data.get('id_chat', '')
     num_phone_zalo = data.get('num_phone_zalo')
     name = data.get('name')
     # global now_phone_zalo
@@ -6012,6 +6152,9 @@ def api_add_friend_chat_pvp():
 
 # docs giờ là một list chứa mọi document tìm được
     id_device = document['id_device']
+    if dict_id_chat[id_device] != "" and dict_id_chat[id_device] != room:
+        return jsonify({'status': "Thiết bị đang có người sử dụng"})
+    dict_id_chat[id_device] = room
     dict_process_id[id_device] += 1
     id_process = dict_process_id[id_device]
     dict_queue_device[id_device].append(id_process)
@@ -6069,15 +6212,21 @@ def api_add_friend_chat_pvp():
                 print("Chuyển tài khoản thất bại", id_device)
                 dict_status_zalo[num_phone_zalo] = ""
                 del dict_queue_device[id_device][0] 
+                if len(dict_queue_device[id_device]) == 0:
+                    dict_id_chat[id_device] = ""
                 return jsonify({"status": "Chuyển tài khoản thất bại"})
 
 
         try:
             d = u2.connect(id_device)
+            device_connect[id_device] = True
         except Exception as e:
             print("Thiết bị đã ngắt kết nối")
+            device_connect[id_device] = False
             dict_status_zalo[num_phone_zalo] = ""
             del dict_queue_device[id_device][0]
+            if len(dict_queue_device[id_device]) == 0:
+                dict_id_chat[id_device] = ""
             return jsonify({"status": "Thiết bị đã ngắt kết nối"})
 
         if not device_status['active']:
@@ -6092,8 +6241,11 @@ def api_add_friend_chat_pvp():
                     eventlet.sleep(0.05)
             except Exception as e:
                 print("Thiết bị đã ngắt kết nối")
+                device_connect[id_device] = False
                 dict_status_zalo[num_phone_zalo] = ""
                 del dict_queue_device[id_device][0]
+                if len(dict_queue_device[id_device]) == 0:
+                    dict_id_chat[id_device] = ""
                 return jsonify({"status": "Thiết bị đã ngắt kết nối"})
                 # if d is None:
 
@@ -6106,12 +6258,13 @@ def api_add_friend_chat_pvp():
             else:
                 dict_status_zalo[num_phone_zalo] = ""
                 del dict_queue_device[id_device][0]
+                if len(dict_queue_device[id_device]) == 0:
+                    dict_id_chat[id_device] = ""
                 return jsonify({"status": "Đã gửi kết bạn trước đó hoặc đã là bạn bè"})
 
         except Exception as e:
             print("Lỗi gặp phải là: ", e)
             dict_status_zalo[num_phone_zalo] = ""
-            del dict_queue_device[id_device][0]
             return jsonify({"status": "Gửi kết bạn thất bại"})
 
         for id in range(len(list_prior_chat_boxes)):
@@ -6132,6 +6285,9 @@ def api_add_friend_chat_pvp():
             if num_phone_zalo in device_status['max_add_friend_per_day'][id].keys():
                 device_status['max_add_friend_per_day'][id][num_phone_zalo] -= 1
                 # handle_chat_view(d, num_phone_zalo)
+        
+        if len(dict_queue_device[id_device]) == 0:
+            dict_id_chat[id_device] = ""
 
         if device_status['active'] and len(dict_queue_device[id_device]) == 0:
             device_status['active'] = False
@@ -6149,6 +6305,7 @@ def api_add_create_group_chat_pvp():
     num_phone_zalo = data.get('num_phone_zalo')
     name_group = data.get('name_group')
     mem_list_str = data.get('mem_list')
+    room = data.get('id_chat', '')
     mem_list = json.loads(mem_list_str)
     #print("Danh sách thành viên nhóm là: ", mem_list)
     ava = data.get('group_avatar')
@@ -6174,6 +6331,9 @@ def api_add_create_group_chat_pvp():
 
 # docs giờ là một list chứa mọi document tìm được
     id_device = document['id_device']
+    if dict_id_chat[id_device] != "" and dict_id_chat[id_device] != room:
+        return jsonify({'status': "Thiết bị đang có người sử dụng"})
+    dict_id_chat[id_device] = room
     dict_process_id[id_device] += 1
     id_process = dict_process_id[id_device]
     dict_queue_device[id_device].append(id_process)
@@ -6239,6 +6399,8 @@ def api_add_create_group_chat_pvp():
                 print("Chuyển tài khoản thất bại", id_device)
                 dict_status_zalo[num_phone_zalo] = ""
                 del dict_queue_device[id_device][0]
+                if len(dict_queue_device[id_device]) == 0:
+                    dict_id_chat[id_device] = ""
                 return jsonify({"status": "Chuyển tài khoản thất bại"})
 
         try:
@@ -6247,8 +6409,11 @@ def api_add_create_group_chat_pvp():
             device_connect[id_device] = True
         except Exception as e:
             print("Thiết bị đã ngắt kết nối")
+            device_connect[id_device] = False
             dict_status_zalo[num_phone_zalo] = ""
             del dict_queue_device[id_device][0]
+            if len(dict_queue_device[id_device]) == 0:
+                dict_id_chat[id_device] = ""
             return jsonify({"status": "Thiết bị đã ngắt kết nối"})
 
         if not device_status['active']:
@@ -6263,8 +6428,11 @@ def api_add_create_group_chat_pvp():
                     eventlet.sleep(0.05)
             except Exception as e:
                 print("Thiết bị đã ngắt kết nối")
+                device_connect[id_device] = False
                 dict_status_zalo[num_phone_zalo] = ""
                 del dict_queue_device[id_device][0]
+                if len(dict_queue_device[id_device]) == 0:
+                    dict_id_chat[id_device] = ""
                 return jsonify({"status": "Thiết bị đã ngắt kết nối"})
                 # if d is None:
 
@@ -6340,6 +6508,8 @@ def api_add_create_group_chat_pvp():
             print("Lỗi gặp phải là: ", e)
             dict_status_zalo[num_phone_zalo] = ""
             del dict_queue_device[id_device][0]
+            if len(dict_queue_device[id_device]) == 0:
+                dict_id_chat[id_device] = ""
             try:
                 d.press('back')
                 eventlet.sleep(0.1)
@@ -6360,6 +6530,8 @@ def api_add_create_group_chat_pvp():
         dict_status_update_pvp[num_phone_zalo] = 0
         with open(f'C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json', 'r') as f:
             device_status = json.load(f)
+        if len(dict_queue_device[id_device]) == 0:
+            dict_id_chat[id_device] = ""
         if device_status['active'] and len(dict_queue_device[id_device]) == 0:
             device_status['active'] = False
             #print("Có set về false không")
@@ -6388,12 +6560,19 @@ def api_log_in_status(id_device):
         device_connect[id_device] = False
         api_log_in_status(id_device)
         return True
+    max_mes = []
+    max_add = []
     if os.path.exists(file_path):
         os.remove(file_path)  # Xóa file nếu có
+    #    with open(f'C:/Zalo_CRM/Zalo_base/device_status_{id_device}.json', 'r') as f:
+    #        old_device_status = json.load(f)
+    #    max_mes = old_device_status["max_message_per_day"]
+    #    max_add = old_device_status["max_add_friend_per_day"]
+
     device_status = {
         "active": True,
-        "max_message_per_day": [],
-        "max_add_friend_per_day": [],
+        "max_message_per_day": max_mes,
+        "max_add_friend_per_day": max_add,
         "update": False
 
     }
@@ -6540,8 +6719,6 @@ def api_log_in_status(id_device):
             dict_status_zalo[num_phone_zalo] = ""
             dict_status_update_pvp[num_phone_zalo] = 0
             dict_phone_device[num_phone_zalo] = id_device
-            dict_process_id[num_phone_zalo] = 0
-            dict_queue_device[num_phone_zalo] = []
             with open(f"C:/Zalo_CRM/Zalo_base/Zalo_data_login_path_{id_device}.json", 'w', encoding="utf-8") as f:
                 json.dump(zalo_data, f, ensure_ascii=False, indent=4)
             eventlet.sleep(5.0)
@@ -6698,6 +6875,7 @@ def background_update_1vs1_loop(id_device):
             print("Thiết bị chưa được kết nối", id_device)
             eventlet.sleep(2)
             continue
+        
         '''
 
         if now_phone_zalo[id_device] == "":
@@ -6860,6 +7038,7 @@ def background_update_1vs1_loop(id_device):
                             except Exception as e:
                                 print("Có lỗi khi cào tin nhắn nhóm: ", e)
                                 dict_status_zalo[curr_phone_zalo] = ""
+                                chat_box_on_chat = False
                             if not chat_box_on_chat:
                                 break
                             if chat_box_on_chat and len(chat_box_on_chat) > 0:
@@ -6962,13 +7141,16 @@ if __name__ == "__main__":
 
     for device_id in list(dict_device_and_phone.keys()):
         now_phone_zalo[device_id] = ""
+        dict_process_id[device_id] = 0
+        dict_queue_device[device_id] = []
+        dict_id_chat[device_id] = ""
         #socketio.start_background_task(
         #    target=api_log_in_status, id_device=device_id)
         socketio.start_background_task(
             target=background_update_1vs1_loop, id_device=device_id)
-    #socketio.run(app, host="0.0.0.0", port=8001,
-    #             debug=True, use_reloader=False)
-    
+    socketio.run(app, host="0.0.0.0", port=8001,
+                 debug=True, use_reloader=False)
+    '''
     socketio.run(
         app,
         host="0.0.0.0",
@@ -6979,4 +7161,5 @@ if __name__ == "__main__":
         keyfile="ssl/privkey.pem",
         server_side=True
     )
-    
+    '''
+
