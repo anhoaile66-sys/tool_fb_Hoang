@@ -46,10 +46,7 @@ async def check_termux_api_installed(driver):
 
 async def reset_active():
     # Đường dẫn tới thư mục chứa các file JSON
-    if os.name == 'nt':
-        folder_path = "C:/Zalo_CRM/Zalo_base"
-    else:
-        folder_path = "/mnt/c/Zalo_CRM/Zalo_base"
+    folder_path = "Zalo_CRM/Zalo_base"
 
     # Tìm tất cả các file có dạng device_status_*.json
     json_files = glob.glob(os.path.join(folder_path, "device_status_*.json"))

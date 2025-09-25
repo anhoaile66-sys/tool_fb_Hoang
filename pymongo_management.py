@@ -463,20 +463,34 @@ async def get_account_by_username(username):
 async def update_statusFB(username, statusFB):
     """Cập nhật trạng thái Facebook của thiết bị."""
     collection = get_async_collection("devices")
-    if statusFB == "Offline":
+    if statusFB == "Online":
+        result = await collection.update_one(
+            {"accounts.account": username},
+            {"$set": {
+                "current_account": username,
+                "time_logged_in": datetime.now(),
+                "accounts.$[elem].status": statusFB
+                }
+            },
+            array_filters=[{"elem.account": username}]
+        )
+    elif statusFB == "Offline":
         result = await collection.update_many(
             {"device_id": username},
             {"$set": {
                 "accounts.$[elem].status": "Offline",
-                "current_account": ""}
+                "time_logged_in": None,
+                "current_account": ""
+                }
             },
             array_filters=[{"elem.status": "Online"}]
         )
-    else:
+    elif statusFB == "Crash":
         result = await collection.update_one(
             {"accounts.account": username},
             {"$set": {
                 "accounts.$[elem].status": statusFB,
+                "time_logged_in": None,
                 "current_account": ""}
             },
             array_filters=[{"elem.account": username}]
