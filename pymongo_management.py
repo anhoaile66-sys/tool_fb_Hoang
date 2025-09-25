@@ -519,3 +519,47 @@ async def update_device_status(device_id, status):
     if result.modified_count == 0:
         return {'message': '⚠️ Trạng thái thiết bị không thay đổi'}, logging.WARNING
     return {'message': '✅ Cập nhật trạng thái thiết bị thành công'}, logging.INFO
+
+async def check_facebook_link(device_id):
+    """Kiểm tra xem đã có link facebook chưa"""
+    collection = get_async_collection("devices")
+    device = await collection.find_one({"device_id": device_id})
+    current_account = device.get("current_account") if device else None
+    if not current_account:
+        return False
+    account = next((acc for acc in device["accounts"] if acc["account"] == current_account), None) if device else None
+    if not account:
+        return False
+    return "facebook_link" in account and account["facebook_link"] != ""
+
+async def update_facebook_link(device_id, facebook_link):
+    """Cập nhật link facebook của thiết bị."""
+    collection = get_async_collection("devices")
+    device = await collection.find_one({"device_id": device_id})
+    current_account = device.get("current_account") if device else None
+    if not current_account:
+        return {'message': '❌ Thiết bị không có tài khoản đang đăng nhập'}, logging.ERROR
+    result = await collection.update_one(
+        {"device_id": device_id, "accounts.account": current_account},
+        {"$set": {"accounts.$[elem].facebook_link": facebook_link}},
+        array_filters=[{"elem.account": current_account}]
+    )
+    if result.matched_count == 0:
+        return {'message': '❌ Thiết bị hoặc tài khoản không tồn tại'}, logging.ERROR
+    if result.modified_count == 0:
+        return {'message': '⚠️ Link Facebook không thay đổi'}, logging.WARNING
+    return {'message': '✅ Cập nhật link Facebook thành công'}, logging.INFO
+
+async def get_facebook_link(user_id):
+    """Lấy link facebook của tài khoản."""
+    collection = get_async_collection("devices")
+    device = await collection.find_one({"accounts.account": user_id})
+    if not device:
+        return None
+    account = next(
+        (acc for acc in device["accounts"] if acc["account"] == user_id),
+            None
+        )
+    if not account or "facebook_link" not in account:
+        return None
+    return account["facebook_link"]

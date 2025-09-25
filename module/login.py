@@ -1,5 +1,6 @@
 import asyncio
 import logging
+import toolfacebook_lib
 from util import *
 import pymongo_management
 
@@ -135,8 +136,23 @@ async def check_logged_in(driver):
         return True
     else:
         return False
+
+async def check_facebook_link(driver):
+    if await pymongo_management.check_facebook_link(driver.serial):
+        return
+    log_message(f"[{driver.serial}] Cập nhật link facebook")
+    (await go_to_home_page(driver)).click()
+    driver(description="Xem cài đặt khác của trang cá nhân").click()
+    await asyncio.sleep(3)
+    driver.swipe_ext("up", scale=0.8)
+    
+    await toolfacebook_lib.click_template(driver, "copy_profile_link")
+    link = await toolfacebook_lib.get_clipboard_content(driver, "com.facebook.katana")
+    await pymongo_management.update_facebook_link(driver.serial, link)
+    log_message(f"[{driver.serial}] Đã cập nhật link facebook: {link}")
+
 # Hàm đăng nhập vào tài khoản đã lưu
-async def swap_account(driver, acc):
+async def swap_account(driver, acc, check_home_page=True):
     """
     Đăng nhập vào tài khoản facebook đã lưu sẵn
     
@@ -150,9 +166,11 @@ async def swap_account(driver, acc):
     password = acc['password']
 
     # Đăng xuất nếu đã đăng nhập
-    if await check_logged_in(driver):
+    if await check_logged_in(driver) and check_home_page:
         await log_out(driver)
     else:
+        driver.app_start("com.facebook.katana")
+        await asyncio.sleep(5)
         help_button = await my_find_element(driver, {("text", "Trợ giúp")}, 3)
         if help_button:
             help_button.click()
@@ -168,7 +186,7 @@ async def swap_account(driver, acc):
         account.click()
     except Exception:
         log_message(f"[{driver.serial}] Không thể đăng nhập", logging.ERROR)
-        return
+        return False
     # Tìm xem có bắt nhập mật khẩu lại không
     login = await my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đăng nhập"]')})
     if login != None:
@@ -193,13 +211,14 @@ async def swap_account(driver, acc):
         else:
             break
     
-
     # Đợi vào màn hình chính
     if await check_logged_in(driver):
         log_message(f"[{driver.serial}] Đăng nhập thành công vào tài khoản {name}")
         await pymongo_management.update_statusFB(username, "Online")
+        await check_facebook_link(driver)
         return True
     else:
         log_message(f"[{driver.serial}] Đăng nhập thất bại vào tài khoản {name}", logging.ERROR)
         await pymongo_management.update_statusFB(username, "Crash")
+        driver.press("back")
         return False

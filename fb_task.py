@@ -66,20 +66,23 @@ async def run_on_device_original(driver):
             # if (last_time != '0') and (datetime.fromisoformat(last_time) + timedelta(hours=random.randint(4,6))) < datetime.now():
                 # Đủ thời gian, chuyển tài khoản
             account_count = device['accountCount']
-            i=0
+            current_account_index=0
             for acc in device['accounts']:
-                i+=1
                 if acc['account'] == device['current_account']:
                     break
-            if i==account_count: i=0
-            for acc in device['accounts']:
-                if i==0:
-                    device['current_account'] = acc['account']
-                    this_account = acc
+                current_account_index+=1
+            next_account_index = current_account_index
+            check_home_page = True
+            while True:
+                next_account_index = (next_account_index + 1) % account_count
+                next_account = device['accounts'][next_account_index]
+                if await swap_account(driver, next_account, check_home_page):
+                    device['current_account'] = next_account['account']
                     break
-                i-=1
-            log_message(f"[{device_id}] Đang đăng nhập vào tài khoản {this_account['name']}", logging.INFO)
-            await swap_account(driver, this_account)
+                check_home_page = False
+                if next_account_index == current_account_index:
+                    log_message(f"[{device_id}] Không thể đăng nhập vào bất kỳ tài khoản nào", logging.ERROR)
+                    return
             account = device['current_account']
         # tasks nuôi fb
         await fb_natural_task(driver, crm_id, account)

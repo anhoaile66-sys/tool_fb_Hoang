@@ -3,7 +3,6 @@ import pymongo_management
 import toolfacebook_lib
 import logging
 from util import log_message
-from lxml import etree
 
 async def post_to_group(driver, command_id, user_id, group_link, content, files=None):
     if files:
@@ -41,59 +40,14 @@ async def post_to_group(driver, command_id, user_id, group_link, content, files=
             except:
                 pass
         driver(text="ĐĂNG").click()
-        log_message(f"{driver.serial} - Đăng bài lên nhóm: Đã đăng bài viết vào nhóm {group_link}", logging.INFO)
-        log_message(f"{driver.serial} - Đăng bài lên nhóm: Sau 30s sẽ kiểm tra trạng thái bài viết", logging.INFO)
+        log_message(f"[{driver.serial}] Đăng bài lên nhóm: Đã đăng bài viết vào nhóm {group_link}", logging.INFO)
+        log_message(f"[{driver.serial}] Đăng bài lên nhóm: Đợi 30s để đăng bài viết hoàn tất", logging.INFO)
         await pymongo_management.execute_command(command_id, "Đã thực hiện")
         await asyncio.sleep(30)
-        await check_post(driver, user_id)
     else:
-        log_message(f"{driver.serial} - Đăng bài lên nhóm: Không tìm thấy nút Tạo bài viết", logging.WARNING)
+        log_message(f"[{driver.serial}] Đăng bài lên nhóm: Không tìm thấy nút Tạo bài viết", logging.WARNING)
         await pymongo_management.execute_command(command_id, "Lỗi: Không tìm thấy nút Tạo bài viết")
     await toolfacebook_lib.back_to_facebook(driver)
     if files:
         for file in files:
             await toolfacebook_lib.delete_file(driver.serial, file)
-async def check_post(driver, user_id):
-    posts = await pymongo_management.get_unapproved_posts(user_id)
-    if len(posts) == 0:
-        return
-    for post in posts:
-        toolfacebook_lib.redirect_to(driver, "https://facebook.com/" + post['group_link'])
-        await asyncio.sleep(1)
-        driver(description="Bạn").click()
-        while toolfacebook_lib.is_screen_changed(driver):
-            xml = driver.dump_hierarchy()
-            tree = etree.fromstring(xml.encode("utf-8"))
-
-            # Tìm nút "Thích"
-            like_nodes = tree.xpath("//node[@text='Nút Thích. Hãy nhấn đúp và giữ để bày tỏ cảm xúc về bình luận.' or @text='Đã nhấn nút Thích. Nhấn đúp và giữ để thay đổi cảm xúc.']")
-            grandparents = []
-
-            for like in like_nodes:
-                parent = like.getparent()
-                grandparent = parent.getparent() if parent is not None else None
-
-                if grandparent is not None:
-                    grandparents.append(grandparent)
-            found = False
-            for grandparent in grandparents:
-                status = "Đang chờ duyệt"
-                for child in grandparent.iter():
-                    text = child.attrib.get("text", "")
-                    if text == post['content']:
-                        found = True
-                    if text == "Bình luận":
-                        status = "Đã đăng thành công"
-                if found:
-                    break
-            if found:
-                if post.get('link', "") == "":
-                    post_link = await toolfacebook_lib.extract_post_link(driver, grandparent)
-                else:
-                    post_link = post.get('link', "")
-                result = await pymongo_management.update_post_status(post['_id'], status, post_link)
-                log_message(f"{driver.serial} - {result[0]['message']}", result[1])
-                break
-            driver.swipe_ext("up", scale=0.8)
-    await asyncio.sleep(1)
-    await toolfacebook_lib.back_to_facebook(driver)

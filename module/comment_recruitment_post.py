@@ -1,6 +1,5 @@
 import pymongo_management
 import toolfacebook_lib
-import logging
 from util import log_message
 import asyncio
 
