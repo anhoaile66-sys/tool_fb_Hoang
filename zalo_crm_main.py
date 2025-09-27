@@ -1641,7 +1641,7 @@ def api_update_list_prior_chat_boxes(data_body, tag_name={}, data_chat_boxes={},
                         if it['status']:
                             current_phone = it['num_phone_zalo']
                             break
-
+                    '''
                     try:
                         d = switch_account(d, user_name)
                         if current_phone != "":
@@ -1652,6 +1652,7 @@ def api_update_list_prior_chat_boxes(data_body, tag_name={}, data_chat_boxes={},
                     except Exception as e:
                         print("Chuyển tài khoản thất bại", id_device)
                         return False
+                    '''
                 if scroll_or_not:
                     dict_status_zalo[num_phone_zalo] = "update_list_prior_chat_boxes"
                 try:
@@ -7865,9 +7866,9 @@ if __name__ == "__main__":
             target=api_log_in_status, id_device=device_id)
         socketio.start_background_task(
             target=background_update_1vs1_loop, id_device=device_id)
-    socketio.run(app, host="0.0.0.0", port=8001,
-                 debug=True, use_reloader=False)
-    '''
+    #socketio.run(app, host="0.0.0.0", port=8001,
+    #             debug=True, use_reloader=False)
+    
     socketio.run(
         app,
         host="0.0.0.0",
@@ -7878,5 +7879,5 @@ if __name__ == "__main__":
         keyfile="ssl/privkey.pem",
         server_side=True
     )
-    '''
+    
 

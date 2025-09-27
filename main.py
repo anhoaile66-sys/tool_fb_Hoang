@@ -333,7 +333,7 @@ async def device_supervisor(device_id: str):
             pass
     task = None
     temp_alive = True
-    device_status_path = f"Zalo_CRM/Zalo_base/device_status_{device_id}.json"
+    device_status_path = f"C:/Zalo_CRM/Zalo_base/device_status_{device_id}.json"
     await main_lib.reset_active()  # Đặt lại tất cả device về inactive khi khởi động
     while True:
         try:
@@ -372,7 +372,7 @@ async def device_supervisor(device_id: str):
                 if is_paused and task is not None:
                     if not task.done():
                         task.cancel()
-                        log_message(f"[{device_id}] ⏸️ Phát hiện tạm dừng từ file status, hủy task đang chạy.", logging.WARNING)
+                        log_message(f"[{device_id}] ⏸️ Phát hiện tạm dừng từ file status, hủy task đang chạy.{is_paused}", logging.WARNING)
                     await asyncio.sleep(2)
                     continue
                 else:

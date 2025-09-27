@@ -60,6 +60,8 @@ assets/logs/toolfacebook.log
 
 # venv
 tool_venv/
-
+.venv/
+zalo_venv/
 # base
 Zalo_CRM/
+
