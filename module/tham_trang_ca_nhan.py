@@ -19,18 +19,18 @@ async def like_post(driver, emotion="like"):
     Nhấn giữ để hiện bảng emote, kéo thả vào emote tương ứng:
     'Thích', 'Yêu thích', 'Thương Thương', 'Haha', 'Wow', 'Buồn', 'Phẫn nộ'
     """
-    log_message(f"[{driver.serial}] Bắt đầu like post")
+    log_message(f"[{DEVICE_LIST_NAME[driver.serial]}] Bắt đầu like post")
     # Tìm nút like
     like_button = await scroll_until_element_visible(driver, {("xpath", '//android.widget.Button[contains(@content-desc, "Nút Thích.")]')})
     # Đọc bài viết 1 tí
     await asyncio.sleep(random.uniform(5,15))
 
     if like_button == None:
-        log_message(f"[{driver.serial}] Không thể tìm được nút like", logging.ERROR)
+        log_message(f"[{DEVICE_LIST_NAME[driver.serial]}] Không thể tìm được nút like", logging.ERROR)
         return
     if emotion == "like":
         like_button.click()
-        log_message(f"[{driver.serial}] Đã thả cảm xúc Thích")
+        log_message(f"[{DEVICE_LIST_NAME[driver.serial]}] Đã thả cảm xúc Thích")
         return
 
     # Chờ menu cảm xúc xuất hiện
@@ -81,8 +81,8 @@ async def tham_trang_ca_nhan(driver):
                 await asyncio.sleep(random.uniform(3,5))                                                                                                           
             scroll_count -= 1
         await asyncio.sleep(random.uniform(2,5))
-        log_message(f"[{driver.serial}] Đã hoàn thành lướt facebook")
+        log_message(f"[{DEVICE_LIST_NAME[driver.serial]}] Đã hoàn thành lướt facebook")
     except Exception as e:    
-        log_message(f"[{driver.serial}] Error {e}", logging.ERROR)
+        log_message(f"[{DEVICE_LIST_NAME[driver.serial]}] Error {e}", logging.ERROR)
 
     await go_to_home_page(driver)

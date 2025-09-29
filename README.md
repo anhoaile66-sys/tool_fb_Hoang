@@ -26,3 +26,6 @@ python zalo_crm_base.py
 
 # Tool FB zalo
 python main.py
+
+#Lỗi ghi nhận
+Không kết no
