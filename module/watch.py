@@ -18,7 +18,7 @@ async def watch_story(driver, duration=random.uniform(60, 90)):
         log_message("Không thể tìm được story", logging.ERROR)
         return
     story_item.click()
-    log_message("Xem story")
+    log_message("Xem story", logging.INFO)
 
     # Kiểm tra có hiện box xác nhận không
     ok = await my_find_element(driver, {("text", "OK")})
@@ -29,7 +29,7 @@ async def watch_story(driver, duration=random.uniform(60, 90)):
     # react, gửi tin nhắn,... sẽ mở rộng sau
     # do somthing stupid
 
-    log_message("Xem story chán rồi, té thôi")
+    log_message("Xem story chán rồi, té thôi", logging.INFO)
 
     # Thoát trang story
     driver.press("back")

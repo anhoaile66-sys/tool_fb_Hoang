@@ -63,11 +63,11 @@ async def like_post(driver, emotion="like"):
     await asyncio.sleep(random.uniform(5,15))
 
     if like_button == None:
-        log_message(f"[{driver.serial}] Không thể tìm được nút like", logging.ERROR)
+        log_message(f"[{DEVICE_LIST_NAME[driver.serial]}] Không thể tìm được nút like", logging.ERROR)
         return
     if emotion == "like":
         like_button.click()
-        log_message(f"[{driver.serial}] Đã thả cảm xúc Thích")
+        log_message(f"[{DEVICE_LIST_NAME[driver.serial]}] Đã thả cảm xúc Thích")
         return
 
     # Chờ menu cảm xúc xuất hiện

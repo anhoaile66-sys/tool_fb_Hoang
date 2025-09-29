@@ -1,7 +1,6 @@
 import asyncio
 from module.fb_friends import load_facebook_friends_list_advanced
 from util import *
-from module import *
 
 # Thoát app, xóa cache khi chờ task
 async def clear_app(driver):
@@ -35,13 +34,13 @@ async def fb_natural_task(driver, crm_id:str, account: str):
     # Random hóa thứ tự các hành động
     random.shuffle(actions)
     for name, action in actions:
-        log_message(f"[{driver.serial}] Thực hiện tác vụ: {name}", logging.INFO)
+        log_message(f"[{DEVICE_LIST_NAME[driver.serial]}] Thực hiện tác vụ: {name}", logging.INFO)
         await action()
         await asyncio.sleep(random.uniform(4,6))
         # Xóa app, xóa cache sau mỗi tác vụ
         await go_to_home_page(driver)
 
-    log_message(f"[{driver.serial}] Hoàn thành 1 chuỗi task")
+    log_message(f"[{DEVICE_LIST_NAME[driver.serial]}] Hoàn thành 1 chuỗi task")
 
 # Luồng chạy chính của facebook
 async def run_on_device_original(driver):
@@ -56,7 +55,7 @@ async def run_on_device_original(driver):
         device = load_device_account(device_id)
 
         if device == {}:
-            log_message(f"[{device_id}] Không tìm thấy dữ liệu cho thiết bị", logging.WARNING)
+            log_message(f"[{DEVICE_LIST_NAME[device_id]}] Không tìm thấy dữ liệu cho thiết bị", logging.WARNING)
             crm_id = "22615833"
             account = "default"
         else:
@@ -81,11 +80,11 @@ async def run_on_device_original(driver):
                     break
                 check_home_page = False
                 if next_account_index == current_account_index:
-                    log_message(f"[{device_id}] Không thể đăng nhập vào bất kỳ tài khoản nào", logging.ERROR)
+                    log_message(f"[{DEVICE_LIST_NAME[device_id]}] Không thể đăng nhập vào bất kỳ tài khoản nào", logging.ERROR)
                     return
             account = device['current_account']
         # tasks nuôi fb
         await fb_natural_task(driver, crm_id, account)
         # await share_post(driver, text=random.choice(SHARES))
     except Exception as e:
-        log_message(f"[{driver.serial}]❌ Lỗi khi chạy luồng Facebook: {type(e).__name__}\n {e}", logging.ERROR)
+        log_message(f"[{DEVICE_LIST_NAME[driver.serial]}]❌ Lỗi khi chạy luồng Facebook: {type(e).__name__}\n {e}", logging.ERROR)

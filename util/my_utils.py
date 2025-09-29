@@ -2,6 +2,7 @@ import random
 import asyncio
 from .log import log_message
 import logging
+DEVICE_LIST_NAME = {}
 
 # Truy cập 1 trang facebook qua link
 def redirect_to(driver, link):
@@ -153,7 +154,7 @@ async def go_to_home_page(driver):
     """
     element = await my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')}, 10, back_if_not_found=True)
     if element is None:
-        log_message(f"[{driver.serial}] Không tìm được homepage sau 10 lần thử", logging.ERROR)
+        log_message(f"[{DEVICE_LIST_NAME[driver.serial]}] Không tìm được homepage sau 10 lần thử", logging.ERROR)
         return None
-    log_message(f"[{driver.serial}] Trạng thái: Homepage")
+    log_message(f"[{DEVICE_LIST_NAME[driver.serial]}] Trạng thái: Homepage")
     return element

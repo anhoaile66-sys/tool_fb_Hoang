@@ -2,7 +2,7 @@ import asyncio
 import pymongo_management
 import toolfacebook_lib
 import logging
-from util import log_message
+from util import log_message, DEVICE_LIST_NAME
 
 async def post_to_wall(driver, command_id, user_id, content, files=None):
     if files:
@@ -44,7 +44,7 @@ async def post_to_wall(driver, command_id, user_id, content, files=None):
             await pymongo_management.execute_command(command_id, "Lỗi: Không tìm thấy nút ĐĂNG")
             return
         log_message(f"{driver.serial} - Đăng bài lên tường: Đã đăng bài viết lên tường", logging.INFO)
-        log_message(f"[{driver.serial}] Đăng bài lên tường: Đợi 20s để đăng bài viết hoàn tất", logging.INFO)
+        log_message(f"[{DEVICE_LIST_NAME[driver.serial]}] Đăng bài lên tường: Đợi 20s để đăng bài viết hoàn tất", logging.INFO)
         await pymongo_management.execute_command(command_id, "Đã thực hiện")
         await asyncio.sleep(20)
     else:

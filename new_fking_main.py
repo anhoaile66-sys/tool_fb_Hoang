@@ -12,15 +12,15 @@ async def run_on_one_device(device_id):
     # Kết nối thiết bị
     try:
         driver = await asyncio.to_thread(u2.connect_usb, device_id)
-        log_message(f"[{device_id}]🔗 Đã kết nối")
+        log_message(f"[{DEVICE_LIST_NAME[device_id]}]🔗 Đã kết nối", logging.INFO)
     except ConnectError:
-        log_message(f"[{device_id}]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError", logging.ERROR)
+        log_message(f"[{DEVICE_LIST_NAME[device_id]}]⛓️‍💥 Thiết bị chưa được kết nối: ConnectionError", logging.ERROR)
         return
     except AdbError:
-        log_message(f"[{device_id}]⛓️‍💥 Ngắt kết nối thiết bị: AdbError", logging.ERROR)
+        log_message(f"[{DEVICE_LIST_NAME[device_id]}]⛓️‍💥 Ngắt kết nối thiết bị: AdbError", logging.ERROR)
         return
     except Exception as e:
-        log_message(f"[{device_id}]❌ Lỗi kết nối thiết bị:{type(e).__name__}: {e}", logging.ERROR)
+        log_message(f"[{DEVICE_LIST_NAME[device_id]}]❌ Lỗi kết nối thiết bị:{type(e).__name__}: {e}", logging.ERROR)
         return
     
     # Tách 2 thread, 1 chạy tool auto, 1 nghe device_status
@@ -31,7 +31,7 @@ async def run_on_one_device(device_id):
     try:
         await run_on_device_original(driver)
     except Exception as e:
-        log_message(f"[{device_id}]❌ Lỗi trong quá trình chạy: {type(e).__name__}: {e}", logging.ERROR)
+        log_message(f"[{DEVICE_LIST_NAME[device_id]}]❌ Lỗi trong quá trình chạy: {type(e).__name__}: {e}", logging.ERROR)
         return
 
 async def make_task_for_all_devices():

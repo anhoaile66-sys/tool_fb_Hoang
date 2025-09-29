@@ -50,7 +50,7 @@ async def ensure_1111_vpn_on_once(driver, device_id: str):
         return
     _VPN_CHECKED.add(device_id)
     try:
-        log_message(f"[{device_id}] Kiểm tra bật 1.1.1.1 (một lần)")
+        log_message(f"[{DEVICE_LIST_NAME[device_id]}] Kiểm tra bật 1.1.1.1 (một lần)", logging.INFO)
         # Mở app 1.1.1.1
         driver.app_start("com.cloudflare.onedotonedotonedotone")
         await asyncio.sleep(3.0)
@@ -67,9 +67,9 @@ async def ensure_1111_vpn_on_once(driver, device_id: str):
                 await asyncio.sleep(1.5)
 
         # Không tắt app để giữ VPN chạy nền
-        log_message(f"[{device_id}] One-time check 1.1.1.1 OK")
+        log_message(f"[{DEVICE_LIST_NAME[device_id]}] One-time check 1.1.1.1 OK", logging.INFO)
     except Exception as e:
-        log_message(f"[{device_id}] VPN one-time check lỗi: {e}", logging.WARNING)
+        log_message(f"[{DEVICE_LIST_NAME[device_id]}] VPN one-time check lỗi: {e}", logging.WARNING)
 
 async def disable_auto_rotation(driver, device_id: str):
     """
@@ -88,25 +88,25 @@ async def disable_auto_rotation(driver, device_id: str):
             return str(result).strip()
     
     try:
-        log_message(f"[{device_id}] Tắt chế độ tự động xoay màn hình hệ thống")
+        log_message(f"[{DEVICE_LIST_NAME[device_id]}] Tắt chế độ tự động xoay màn hình hệ thống", logging.INFO)
         
         # Kiểm tra trạng thái hiện tại trước
         try:
             current_result = driver.shell("settings get system accelerometer_rotation")
             current_value = parse_shell_response(current_result)
-            log_message(f"[{device_id}] Trạng thái auto-rotation hiện tại: {current_value}")
+            log_message(f"[{DEVICE_LIST_NAME[device_id]}] Trạng thái auto-rotation hiện tại: {current_value}", logging.INFO)
         except Exception as e:
-            log_message(f"[{device_id}] Không thể kiểm tra trạng thái hiện tại: {e}")
+            log_message(f"[{DEVICE_LIST_NAME[device_id]}] Không thể kiểm tra trạng thái hiện tại: {e}", logging.INFO)
             current_value = "unknown"
         
         # Tắt auto-rotation qua shell command
         try:
             driver.shell("settings put system accelerometer_rotation 0")
-            log_message(f"[{device_id}] Đã gửi lệnh tắt auto-rotation qua settings")
+            log_message(f"[{DEVICE_LIST_NAME[device_id]}] Đã gửi lệnh tắt auto-rotation qua settings", logging.INFO)
             await asyncio.sleep(1)  # Chờ settings apply
             
         except Exception as e:
-            log_message(f"[{device_id}] Lỗi tắt auto-rotation qua settings: {e}")
+            log_message(f"[{DEVICE_LIST_NAME[device_id]}] Lỗi tắt auto-rotation qua settings: {e}", logging.INFO)
         
         # Kiểm tra trạng thái sau khi tắt
         try:
@@ -115,23 +115,23 @@ async def disable_auto_rotation(driver, device_id: str):
             
             if final_value == "0":
                 status = "TẮT ✅"
-                log_message(f"[{device_id}] Auto-rotation đã được TẮT thành công!")
+                log_message(f"[{DEVICE_LIST_NAME[device_id]}] Auto-rotation đã được TẮT thành công!", logging.INFO)
             elif final_value == "1":
                 status = "BẬT ❌"
-                log_message(f"[{device_id}] Auto-rotation vẫn còn BẬT - có thể cần retry", logging.WARNING)
+                log_message(f"[{DEVICE_LIST_NAME[device_id]}] Auto-rotation vẫn còn BẬT - có thể cần retry", logging.WARNING)
             else:
                 status = f"KHÔNG XÁC ĐỊNH ({final_value})"
-                log_message(f"[{device_id}] Trạng thái auto-rotation không xác định: {final_value}", logging.WARNING)
+                log_message(f"[{DEVICE_LIST_NAME[device_id]}] Trạng thái auto-rotation không xác định: {final_value}", logging.WARNING)
             
-            log_message(f"[{device_id}] Trạng thái auto-rotation cuối: {status}")
+            log_message(f"[{DEVICE_LIST_NAME[device_id]}] Trạng thái auto-rotation cuối: {status}", logging.INFO)
             
         except Exception as e:
-            log_message(f"[{device_id}] Không thể kiểm tra trạng thái cuối: {e}")
+            log_message(f"[{DEVICE_LIST_NAME[device_id]}] Không thể kiểm tra trạng thái cuối: {e}", logging.INFO)
         
-        log_message(f"[{device_id}] Hoàn thành disable auto-rotation")
+        log_message(f"[{DEVICE_LIST_NAME[device_id]}] Hoàn thành disable auto-rotation", logging.INFO)
         
     except Exception as e:
-        log_message(f"[{device_id}] Lỗi khi tắt auto-rotation: {e}", logging.WARNING)
+        log_message(f"[{DEVICE_LIST_NAME[device_id]}] Lỗi khi tắt auto-rotation: {e}", logging.WARNING)
 
 class InactivityWatchdog:
     def __init__(
@@ -341,13 +341,13 @@ async def device_supervisor(device_id: str):
             while True:
                 still_alive = await check_driver(driver)
                 if not temp_alive and still_alive:
-                    log_message(f"[{device_id}] ✅ Kết nối thiết bị đã được khôi phục.", logging.INFO)
+                    log_message(f"[{DEVICE_LIST_NAME[device_id]}] ✅ Kết nối thiết bị đã được khôi phục.", logging.INFO)
                     await pymongo_management.update_device_status(device_id, True)
                 temp_alive = still_alive
                 if not still_alive:
                     if task is not None and not task.done():
                         task.cancel()
-                        log_message(f"[{device_id}] ❌ Mất kết nối thiết bị, hủy task đang chạy.", logging.WARNING)
+                        log_message(f"[{DEVICE_LIST_NAME[device_id]}] ❌ Mất kết nối thiết bị, hủy task đang chạy.", logging.WARNING)
                         await pymongo_management.update_device_status(device_id, False)
                     await asyncio.sleep(5.0)
                     driver = await asyncio.to_thread(u2.connect_usb, device_id)
@@ -363,15 +363,15 @@ async def device_supervisor(device_id: str):
                 except FileNotFoundError:
                     # File không tồn tại, coi như không tạm dừng, cho phép chạy
                     if not device_id in _STATUS_FILE_CHECK:
-                        log_message(f"[{device_id}] ✅ Không tìm thấy file status, tiếp tục chạy.", logging.WARNING)
+                        log_message(f"[{DEVICE_LIST_NAME[device_id]}] ✅ Không tìm thấy file status, tiếp tục chạy.", logging.WARNING)
                         _STATUS_FILE_CHECK.add(device_id)
                     pass
                 except Exception as e:
-                    log_message(f"[{device_id}] ❌ Lỗi: {e}, tiếp tục chạy.", logging.WARNING)
+                    log_message(f"[{DEVICE_LIST_NAME[device_id]}] ❌ Lỗi: {e}, tiếp tục chạy.", logging.WARNING)
                 if is_paused and task is not None:
                     if not task.done():
                         task.cancel()
-                        log_message(f"[{device_id}] ⏸️ Phát hiện tạm dừng từ file status, hủy task đang chạy.", logging.WARNING)
+                        log_message(f"[{DEVICE_LIST_NAME[device_id]}] ⏸️ Phát hiện tạm dừng từ file status, hủy task đang chạy.", logging.WARNING)
                     await asyncio.sleep(2)
                     continue
                 else:
@@ -382,12 +382,12 @@ async def device_supervisor(device_id: str):
                 task = asyncio.create_task(device_once(device_id))
             await asyncio.sleep(2.0)
         except RestartThisDevice as e:
-            log_message(f"[{device_id}] ↻ Watchdog yêu cầu RESTART — khởi động lại quy trình cho máy này.", logging.WARNING)
+            log_message(f"[{DEVICE_LIST_NAME[device_id]}] ↻ Watchdog yêu cầu RESTART — khởi động lại quy trình cho máy này.", logging.WARNING)
             await asyncio.sleep(2.0)
             continue
         except Exception as e:
             if await check_driver(driver):
-                log_message(f"[{device_id}] Lỗi không mong muốn: {e}. Sẽ thử chạy lại sau.", logging.ERROR)
+                log_message(f"[{DEVICE_LIST_NAME[device_id]}] Lỗi không mong muốn: {e}. Sẽ thử chạy lại sau.", logging.ERROR)
             await asyncio.sleep(5.0)
             continue
 

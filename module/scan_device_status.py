@@ -44,3 +44,6 @@ def scan_connected_devices():
         return []
     
 DEVICE_LIST = scan_connected_devices()
+print(DEVICE_LIST)
+for i, d in enumerate(DEVICE_LIST):
+    DEVICE_LIST_NAME[d] = f"Máy {i}"

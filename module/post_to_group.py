@@ -2,7 +2,7 @@ import asyncio
 import pymongo_management
 import toolfacebook_lib
 import logging
-from util import log_message
+from util import log_message, DEVICE_LIST_NAME
 
 async def post_to_group(driver, command_id, user_id, group_link, content, files=None):
     if files:
@@ -40,12 +40,12 @@ async def post_to_group(driver, command_id, user_id, group_link, content, files=
             except:
                 pass
         driver(text="ĐĂNG").click()
-        log_message(f"[{driver.serial}] Đăng bài lên nhóm: Đã đăng bài viết vào nhóm {group_link}", logging.INFO)
-        log_message(f"[{driver.serial}] Đăng bài lên nhóm: Đợi 30s để đăng bài viết hoàn tất", logging.INFO)
+        log_message(f"[{DEVICE_LIST_NAME[driver.serial]}] Đăng bài lên nhóm: Đã đăng bài viết vào nhóm {group_link}", logging.INFO)
+        log_message(f"[{DEVICE_LIST_NAME[driver.serial]}] Đăng bài lên nhóm: Đợi 30s để đăng bài viết hoàn tất", logging.INFO)
         await pymongo_management.execute_command(command_id, "Đã thực hiện")
         await asyncio.sleep(30)
     else:
-        log_message(f"[{driver.serial}] Đăng bài lên nhóm: Không tìm thấy nút Tạo bài viết", logging.WARNING)
+        log_message(f"[{DEVICE_LIST_NAME[driver.serial]}] Đăng bài lên nhóm: Không tìm thấy nút Tạo bài viết", logging.WARNING)
         await pymongo_management.execute_command(command_id, "Lỗi: Không tìm thấy nút Tạo bài viết")
     await toolfacebook_lib.back_to_facebook(driver)
     if files:
