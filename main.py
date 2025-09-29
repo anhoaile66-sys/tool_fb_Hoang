@@ -249,7 +249,6 @@ async def device_once(device_id: str):
     # Kiểm tra cài đặt Termux và termux-api
     result = await main_lib.check_termux_api_installed(driver)
     if not result:
-        await asyncio.sleep(60)
         return
     
     # Trạng thái pha hiện tại để watchdog biết cần resume app nào khi về HOME

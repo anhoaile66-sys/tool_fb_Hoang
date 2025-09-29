@@ -1,5 +1,4 @@
 from datetime import datetime
-from pydoc import doc
 from bson import ObjectId
 import motor.motor_asyncio
 import logging
@@ -549,17 +548,3 @@ async def update_facebook_link(device_id, facebook_link):
     if result.modified_count == 0:
         return {'message': '⚠️ Link Facebook không thay đổi'}, logging.WARNING
     return {'message': '✅ Cập nhật link Facebook thành công'}, logging.INFO
-
-async def get_facebook_link(user_id):
-    """Lấy link facebook của tài khoản."""
-    collection = get_async_collection("devices")
-    device = await collection.find_one({"accounts.account": user_id})
-    if not device:
-        return None
-    account = next(
-        (acc for acc in device["accounts"] if acc["account"] == user_id),
-            None
-        )
-    if not account or "facebook_link" not in account:
-        return None
-    return account["facebook_link"]
