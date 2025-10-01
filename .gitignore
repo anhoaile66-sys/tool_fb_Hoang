@@ -1,0 +1,64 @@
+# Environment và Credentials
+DatabaseAccounts.env
+*.env
+.env*
+
+# Log files
+assets/logs/
+*.log
+test_*.log
+test_run_on_device_original.log
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Sensitive data files
+back_up_full_account.json
+user_account.json
+*_account.json
+Zalo_data_login_path*.json
+
+# SSL certificates
+*.pem
+*.key
+*.crt
+
+# Device data
+devices/*.json
+mapping.json
+
+# Screenshots và Files tạm
+Screen Shot/
+
+# Temporary files
+clipboard.txt
+sent_log.txt
+*.tmp
+*.temp
+test.py
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+/module/__pycache__
+assets/logs/toolfacebook.log
+
+# venv
+tool_venv/
+.venv/
+zalo_venv/
+# base
+Zalo_CRM/
+
+# ipynb file
+*.ipynb
