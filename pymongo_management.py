@@ -174,7 +174,6 @@ async def get_comment(user_id):
     Comment = binh_luan_moi_nhat.get("Comment")
 
     # Thêm bản ghi vào bảng thống kê
-    print(Content)
     thong_ke_collection = get_async_collection("Thong-ke-binh-luan")
     await thong_ke_collection.insert_one({
         "Group_name": group_name,

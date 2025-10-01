@@ -3,6 +3,7 @@ import os
 from flask import Flask, jsonify, request
 from flask_socketio import SocketIO, emit, join_room, leave_room
 from flask_cors import CORS
+from util.const_values import DEVICE_STATUS_PATH, ZALO_DATA_LOGIN_PATH
 
 app = Flask(__name__)
 CORS(app)
@@ -60,9 +61,9 @@ def get_list_friend_new():
         seen.append(port)
         device_id = dp[port]
         try:
-            with open(f'C:/Zalo_CRM/Zalo_base/Zalo_data_login_path_{device_id}.json', 'r', encoding='utf-8') as f:
+            with open(ZALO_DATA_LOGIN_PATH(device_id), 'r', encoding='utf-8') as f:
                 zalo_data = json.load(f)
-            with open(f'C:/Zalo_CRM/Zalo_base/device_status_{device_id}.json', 'r') as f:
+            with open(DEVICE_STATUS_PATH(device_id), 'r') as f:
                 device_status = json.load(f)
                 if 'update' in device_status.keys():
                     status = device_status['update']

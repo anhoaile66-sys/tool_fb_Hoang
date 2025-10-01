@@ -28,6 +28,7 @@ from uiautomator2.exceptions import XPathElementNotFoundError
 from uiautomator2 import Direction
 from flask import Flask, request, jsonify, abort
 from flask_cors import CORS
+from util.const_values import DEVICE_STATUS_PATH, ZALO_DATA_LOGIN_PATH, ZALO_IMAGE_PATH, ZALO_BASE_PATH
 # from sending_message_and_adding_friend import already_sent, log_sent, LOG_FILE, file_lock
 # import ssl
 
@@ -1590,7 +1591,7 @@ def api_update_list_unseen_chat_boxes(data):
                         "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                     try:
                         #        print(document)
-                        with open(f'C:/Zalo_CRM/Zalo_base/Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}.json', 'r', encoding='utf-8') as f:
+                        with open(ZALO_DATA_LOGIN_PATH(dict_phone_device[num_phone_zalo]), 'r', encoding='utf-8') as f:
                             data = json.load(f)
                         for id in range(len(data)):
                             #            print(document[domain])
@@ -1599,7 +1600,7 @@ def api_update_list_unseen_chat_boxes(data):
                                     if data[id]['list_prior_chat_boxes'][it]['name'] in unseen_boxes:
                                         data[id]['list_prior_chat_boxes'][it]['status'] = "unseen"
 #        print(data)
-                        with open(f'C:/Zalo_CRM/Zalo_base/Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}.json', 'w', encoding='utf-8') as f:
+                        with open(ZALO_DATA_LOGIN_PATH(dict_phone_device[num_phone_zalo]), 'w', encoding='utf-8') as f:
                             json.dump(data, f, ensure_ascii=False, indent=4)
                             print(
                                 f"Đã lưu vào database Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}: {data[0]['list_friend'][0]}")
@@ -1794,11 +1795,11 @@ def handle_chat_pvp(data):
                     dict_status_zalo[num_phone_zalo] = ""
                     return False
                 
-                with open(f'C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json', 'r') as f:
+                with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'r') as f:
                     device_status = json.load(f)
                 if not device_status['active']:
                     device_status['active'] = True
-                    with open(f"C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json", 'w') as f:
+                    with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'w') as f:
                         json.dump(device_status, f, indent=4)
                     eventlet.sleep(0.3)
                     d.app_start("com.zing.zalo", stop=True)
@@ -2723,11 +2724,11 @@ def api_find_new_friend():
                     dict_status_zalo[num_phone_zalo] = ""
                     return jsonify({"status": "Thiết bị đã ngắt kết nối"})
                 
-                with open(f'C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json', 'r') as f:
+                with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'r') as f:
                     device_status = json.load(f)
                 if not device_status['active']:
                     device_status['active'] = True
-                    with open(f"C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json", 'w') as f:
+                    with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'w') as f:
                         json.dump(device_status, f, indent=4)
                     eventlet.sleep(0.1)
                     d.app_start("com.zing.zalo", stop=True)
@@ -2905,12 +2906,12 @@ def handle_chat_view(d: u2.Device,  num_phone_zalo):
                 except Exception as e:
                     print(e)
                     dict_status_zalo[num_phone_zalo] = ""
-            with open(f'C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json', 'r') as f:
+            with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'r') as f:
                 device_status = json.load(f)
             if device_status['active']:
                 device_status['active'] = False
                 print("Có set về false không")
-                with open(f"C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json", 'w') as f:
+                with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'w') as f:
                     json.dump(device_status, f, indent=4)
             break
         eventlet.sleep(2)
@@ -5410,7 +5411,7 @@ def handle_send_message_chat_pvp(data):
     global num_message
     global max_message_per_day
     global image_number
-    with open(f'C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json', 'r') as f:
+    with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'r') as f:
         device_status = json.load(f)
 
     for id in range(len(device_status['max_message_per_day'])):
@@ -5481,7 +5482,7 @@ def handle_send_message_chat_pvp(data):
                                                        "num_phone_zalo": num_phone_zalo, "status": True})
                 '''
                 dict_status_zalo[num_phone_zalo] = "send_message_chat_pvp"
-                # with open(f'C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json', 'r') as f:
+                # with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'r') as f:
                 #    device_status = json.load(f)
                 try:
                     d = u2.connect(id_device)
@@ -5493,7 +5494,7 @@ def handle_send_message_chat_pvp(data):
                     return False
                 if not device_status['active']:
                     device_status['active'] = True
-                    with open(f"C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json", 'w') as f:
+                    with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'w') as f:
                         json.dump(device_status, f, indent=4)
                     eventlet.sleep(0.1)
                     d.app_start("com.zing.zalo", stop=True)
@@ -5501,14 +5502,14 @@ def handle_send_message_chat_pvp(data):
 
                 if type == 'image':
                     avatar = base64.b64decode(image_data)
-                    with open(f'C:/Zalo_CRM/Zalo_base/image{image_number}.jpg', 'wb') as f:
+                    with open(ZALO_IMAGE_PATH(image_number), 'wb') as f:
                         f.write(avatar)
                     print(
                         f"Đã lưu vào thư mục Zalo_base/image{image_number}.jpg")
-                    d.push(f'C:/Zalo_CRM/Zalo_base/image{image_number}.jpg',
+                    d.push(ZALO_IMAGE_PATH(image_number),
                            f'/sdcard/Download/image{image_number}.jpg')
-                    # d.push('C:/Zalo_CRM/Zalo_base/image.jpg', f'/sdcard/DCIM/Zalo/image{image_number}.jpg')
-                    # d.push('C:/Zalo_CRM/Zalo_base/image.jpg', f'/sdcard/Pictures/Zalo/image{image_number}.jpg')
+                    # d.push('{ZALO_BASE_PATH}image.jpg', f'/sdcard/DCIM/Zalo/image{image_number}.jpg')
+                    # d.push('{ZALO_BASE_PATH}image.jpg', f'/sdcard/Pictures/Zalo/image{image_number}.jpg')
                     eventlet.sleep(0.1)
                     image_number -= 1
                     print("Đã click vào chưa")
@@ -5585,28 +5586,28 @@ def handle_send_message_chat_pvp(data):
                     file_decode = base64.b64decode(file_data)
                     '''
                     if "word" in file_type:
-                        with open(f'C:/Zalo_CRM/Zalo_base/{file_name}.docx', 'wb') as f:
+                        with open(f'{ZALO_BASE_PATH}{file_name}.docx', 'wb') as f:
                            f.write(file_decode)
-                        d.push(f'C:/Zalo_CRM/Zalo_base/{file_name}.docx', f'/sdcard/Download/{file_name}.docx')
+                        d.push(f'{ZALO_BASE_PATH}{file_name}.docx', f'/sdcard/Download/{file_name}.docx')
                     elif "pdf" in file_type:
-                        with open(f'C:/Zalo_CRM/Zalo_base/{file_name}.pdf', 'wb') as f:
+                        with open(f'{ZALO_BASE_PATH}{file_name}.pdf', 'wb') as f:
                            f.write(file_decode)
-                        d.push(f'C:/Zalo_CRM/Zalo_base/{file_name}.pdf', f'/sdcard/Download/{file_name}.pdf')
+                        d.push(f'{ZALO_BASE_PATH}{file_name}.pdf', f'/sdcard/Download/{file_name}.pdf')
                     elif "sheet" in file_type:
-                        with open(f'C:/Zalo_CRM/Zalo_base/{file_name}.xlsx', 'wb') as f:
+                        with open(f'{ZALO_BASE_PATH}{file_name}.xlsx', 'wb') as f:
                            f.write(file_decode)
-                        d.push(f'C:/Zalo_CRM/Zalo_base/{file_name}.xlsx', f'/sdcard/Download/xlsx{image_number}.xlsx')
+                        d.push(f'{ZALO_BASE_PATH}{file_name}.xlsx', f'/sdcard/Download/xlsx{image_number}.xlsx')
                     elif "present" in file_type:
-                        with open(f'C:/Zalo_CRM/Zalo_base/present{image_number}.ppt', 'wb') as f:
+                        with open(f'{ZALO_BASE_PATH}present{image_number}.ppt', 'wb') as f:
                            f.write(file_decode)
-                        d.push(f'C:/Zalo_CRM/Zalo_base/present{image_number}.ppt', f'/sdcard/Download/present{image_number}.ppt')
+                        d.push(f'{ZALO_BASE_PATH}present{image_number}.ppt', f'/sdcard/Download/present{image_number}.ppt')
                     '''
-                    with open(f'C:/Zalo_CRM/Zalo_base/{file_name}', 'wb') as f:
+                    with open(f'{ZALO_BASE_PATH}{file_name}', 'wb') as f:
                         f.write(file_decode)
-                    d.push(f'C:/Zalo_CRM/Zalo_base/{file_name}',
+                    d.push(f'{ZALO_BASE_PATH}{file_name}',
                            f'/sdcard/Download/{file_name}')
-                    # d.push('C:/Zalo_CRM/Zalo_base/image.jpg', f'/sdcard/DCIM/Zalo/image{image_number}.jpg')
-                    # d.push('C:/Zalo_CRM/Zalo_base/image.jpg', f'/sdcard/Pictures/Zalo/image{image_number}.jpg')
+                    # d.push('{ZALO_BASE_PATH}image.jpg', f'/sdcard/DCIM/Zalo/image{image_number}.jpg')
+                    # d.push('{ZALO_BASE_PATH}image.jpg', f'/sdcard/Pictures/Zalo/image{image_number}.jpg')
                     eventlet.sleep(0.1)
                     # image_number -= 1
                     print("Đã click vào chưa")
@@ -5804,7 +5805,7 @@ def handle_send_message_chat_pvp(data):
                 num_message += 1
                 dict_status_update_pvp[num_phone_zalo] = 2
                 handle_chat_view(d, num_phone_zalo)
-                with open(f'C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json', 'r') as f:
+                with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'r') as f:
                     device_status = json.load(f)
 
                 for id in range(len(device_status['max_message_per_day'])):
@@ -5814,7 +5815,7 @@ def handle_send_message_chat_pvp(data):
                 if device_status['active']:
                     device_status['active'] = False
                 '''
-                with open(f"C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json", 'w') as f:
+                with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'w') as f:
                     json.dump(device_status, f, indent=4)
                 
                 dict_status_zalo[num_phone_zalo] = ""
@@ -5848,7 +5849,7 @@ def handle_share_message_chat_pvp(data):
     global num_message
     global max_message_per_day
     global image_number
-    with open(f'C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json', 'r') as f:
+    with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'r') as f:
         device_status = json.load(f)
 
     for id in range(len(device_status['max_message_per_day'])):
@@ -5901,7 +5902,7 @@ def handle_share_message_chat_pvp(data):
                 dict_status_update_pvp[num_phone_zalo] = 1
 
                 dict_status_zalo[num_phone_zalo] = "share_message_chat_pvp"
-#                with open(f'C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json', 'r') as f:
+#                with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'r') as f:
 #                    device_status = json.load(f)
                 try:
                     d = u2.connect(id_device)
@@ -5914,7 +5915,7 @@ def handle_share_message_chat_pvp(data):
                 
                 if not device_status['active']:
                     device_status['active'] = True
-                    with open(f"C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json", 'w') as f:
+                    with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'w') as f:
                         json.dump(device_status, f, indent=4)
                     eventlet.sleep(0.1)
                     d.app_start("com.zing.zalo", stop=True)
@@ -6063,14 +6064,14 @@ def handle_share_message_chat_pvp(data):
                     #################################
                     if type == 'image':
                         avatar = base64.b64decode(image_data)
-                        with open(f'C:/Zalo_CRM/Zalo_base/image{image_number}.jpg', 'wb') as f:
+                        with open(ZALO_IMAGE_PATH(image_number), 'wb') as f:
                             f.write(avatar)
                         print(
                             f"Đã lưu vào thư mục Zalo_base/image{image_number}.jpg")
-                        d.push(f'C:/Zalo_CRM/Zalo_base/image{image_number}.jpg',
+                        d.push(ZALO_IMAGE_PATH(image_number),
                                f'/sdcard/Download/image{image_number}.jpg')
-                        # d.push('C:/Zalo_CRM/Zalo_base/image.jpg', f'/sdcard/DCIM/Zalo/image{image_number}.jpg')
-                        # d.push('C:/Zalo_CRM/Zalo_base/image.jpg', f'/sdcard/Pictures/Zalo/image{image_number}.jpg')
+                        # d.push('{ZALO_BASE_PATH}image.jpg', f'/sdcard/DCIM/Zalo/image{image_number}.jpg')
+                        # d.push('{ZALO_BASE_PATH}image.jpg', f'/sdcard/Pictures/Zalo/image{image_number}.jpg')
                         eventlet.sleep(0.1)
                         image_number -= 1
                         print("Đã click vào chưa")
@@ -6134,12 +6135,12 @@ def handle_share_message_chat_pvp(data):
                     elif type == 'file':
                         file_decode = base64.b64decode(file_data)
 
-                        with open(f'C:/Zalo_CRM/Zalo_base/{file_name}', 'wb') as f:
+                        with open(f'{ZALO_BASE_PATH}{file_name}', 'wb') as f:
                             f.write(file_decode)
-                        d.push(f'C:/Zalo_CRM/Zalo_base/{file_name}',
+                        d.push(f'{ZALO_BASE_PATH}{file_name}',
                                f'/sdcard/Download/{file_name}')
-                        # d.push('C:/Zalo_CRM/Zalo_base/image.jpg', f'/sdcard/DCIM/Zalo/image{image_number}.jpg')
-                        # d.push('C:/Zalo_CRM/Zalo_base/image.jpg', f'/sdcard/Pictures/Zalo/image{image_number}.jpg')
+                        # d.push('{ZALO_BASE_PATH}image.jpg', f'/sdcard/DCIM/Zalo/image{image_number}.jpg')
+                        # d.push('{ZALO_BASE_PATH}image.jpg', f'/sdcard/Pictures/Zalo/image{image_number}.jpg')
                         eventlet.sleep(0.1)
                         # image_number -= 1
                         print("Đã click vào chưa")
@@ -6488,7 +6489,7 @@ def handle_share_message_chat_pvp(data):
                 num_message += 1
                 dict_status_update_pvp[num_phone_zalo] = 2
                 handle_chat_view(d, num_phone_zalo)
-                with open(f'C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json', 'r') as f:
+                with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'r') as f:
                     device_status = json.load(f)
 
                 for id in range(len(device_status['max_message_per_day'])):
@@ -6505,7 +6506,7 @@ def handle_share_message_chat_pvp(data):
                 if device_status['active']:
                     device_status['active'] = False
                 '''
-                with open(f"C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json", 'w') as f:
+                with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'w') as f:
                     json.dump(device_status, f, indent=4)
                 
 
@@ -6520,7 +6521,7 @@ def api_add_friend_chat_pvp():
     now_phone_zalo = num_phone_zalo
     global num_add_friend
     global max_add_friend_per_day
-    with open(f'C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json', 'r') as f:
+    with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'r') as f:
         device_status = json.load(f)
 
     for id in range(len(device_status['max_add_friend_per_day'])):
@@ -6581,7 +6582,7 @@ def api_add_friend_chat_pvp():
                                                        "num_phone_zalo": num_phone_zalo, "status": True})
                 dict_status_zalo[num_phone_zalo] = "add_friend_chat_pvp"
                 '''
-                with open(f'C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json', 'r') as f:
+                with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'r') as f:
                     device_status = json.load(f)
                 '''
                 try:
@@ -6595,7 +6596,7 @@ def api_add_friend_chat_pvp():
                 
                 if not device_status['active']:
                     device_status['active'] = True
-                    with open(f"C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json", 'w') as f:
+                    with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'w') as f:
                         json.dump(device_status, f, indent=4)
                     eventlet.sleep(0.1)
                     d.app_start("com.zing.zalo", stop=True)
@@ -6626,7 +6627,7 @@ def api_add_friend_chat_pvp():
                     "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                 dict_status_zalo[num_phone_zalo] = ""
                 num_add_friend += 1
-                with open(f'C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json', 'r') as f:
+                with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'r') as f:
                     device_status = json.load(f)
 
                 for id in range(len(device_status['max_add_friend_per_day'])):
@@ -6637,7 +6638,7 @@ def api_add_friend_chat_pvp():
                 if device_status['active']:
                     device_status['active'] = False
                 '''
-                with open(f"C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json", 'w') as f:
+                with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'w') as f:
                     json.dump(device_status, f, indent=4)
                 
                 return jsonify({"status": "Gửi kết bạn thành công"})
@@ -6657,7 +6658,7 @@ def api_add_create_group_chat_pvp():
     global num_add_friend
     global max_add_friend_per_day
 
-    with open(f'C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json', 'r') as f:
+    with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'r') as f:
         device_status = json.load(f)
     '''
     for id in range(len(device_status['max_add_friend_per_day'])):
@@ -6720,7 +6721,7 @@ def api_add_create_group_chat_pvp():
                                                        "num_phone_zalo": num_phone_zalo, "status": True})
                 dict_status_zalo[num_phone_zalo] = "create_group_chat_pvp"
                 '''
-                with open(f'C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json', 'r') as f:
+                with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'r') as f:
                     device_status = json.load(f)
                 '''
                 try:
@@ -6734,7 +6735,7 @@ def api_add_create_group_chat_pvp():
                 
                 if not device_status['active']:
                     device_status['active'] = True
-                    with open(f"C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json", 'w') as f:
+                    with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'w') as f:
                         json.dump(device_status, f, indent=4)
                     eventlet.sleep(0.1)
                     d.app_start("com.zing.zalo", stop=True)
@@ -6811,7 +6812,7 @@ def api_add_create_group_chat_pvp():
                     "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                 dict_status_zalo[num_phone_zalo] = ""
                 num_add_friend += 1
-                with open(f'C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json', 'r') as f:
+                with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'r') as f:
                     device_status = json.load(f)
 
                 for id in range(len(device_status['max_add_friend_per_day'])):
@@ -6829,14 +6830,14 @@ def api_add_create_group_chat_pvp():
                 #if device_status['active']:
                 #    device_status['active'] = False
                 #
-                #with open(f"C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[num_phone_zalo]}.json", 'w') as f:
+                #with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'w') as f:
                 #    json.dump(device_status, f, indent=4)
                 return jsonify({"status": "Tạo nhóm thành công"})
 
 def api_log_in_status(id_device):
     print("Bắt đầu cào dữ liệu và lấy dữ liệu người dùng")
 
-    file_path = f"C:/Zalo_CRM/Zalo_base/device_status_{id_device}.json"
+    file_path = DEVICE_STATUS_PATH(id_device)
     global device_connect
     print("Id của máy là ", id_device)
     try:
@@ -6857,12 +6858,12 @@ def api_log_in_status(id_device):
 
     }
 
-    with open(f"C:/Zalo_CRM/Zalo_base/device_status_{id_device}.json", 'w') as f:
+    with open(DEVICE_STATUS_PATH(id_device), 'w') as f:
         json.dump(device_status, f, indent=4)
 
-    file_path_new = f"C:/Zalo_CRM/Zalo_base/Zalo_data_login_path_{id_device}.json"
+    file_path_new = ZALO_DATA_LOGIN_PATH(id_device)
     if os.path.exists(file_path_new):
-        with open(f'C:/Zalo_CRM/Zalo_base/Zalo_data_login_path_{id_device}.json', 'r', encoding='utf-8') as f:
+        with open(file_path_new, 'r', encoding='utf-8') as f:
             zalo_data = json.load(f)
             for i in range(len(zalo_data)):
                 zalo_data[i]['status'] = False
@@ -6985,7 +6986,7 @@ def api_log_in_status(id_device):
             dict_status_zalo[num_phone_zalo] = ""
             dict_status_update_pvp[num_phone_zalo] = 0
             dict_phone_device[num_phone_zalo] = id_device
-            with open(f"C:/Zalo_CRM/Zalo_base/Zalo_data_login_path_{id_device}.json", 'w', encoding="utf-8") as f:
+            with open(ZALO_DATA_LOGIN_PATH(id_device), 'w', encoding="utf-8") as f:
                 json.dump(zalo_data, f, ensure_ascii=False, indent=4)
             eventlet.sleep(5.0)
 
@@ -7053,7 +7054,7 @@ def api_log_in_status(id_device):
                 d = switch_account(d, name_zalos[id+1])
                 status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{id_device}", {
                     "num_phone_zalo": num_phone_zalo, "status": False})
-                with open(f'C:/Zalo_CRM/Zalo_base/Zalo_data_login_path_{id_device}.json', 'r', encoding='utf-8') as f:
+                with open(ZALO_DATA_LOGIN_PATH(id_device), 'r', encoding='utf-8') as f:
                     zalo_data = json.load(f)
             
             
@@ -7065,7 +7066,7 @@ def api_log_in_status(id_device):
         return True
     
     print("Cào dữ liệu thành công")
-    with open(f'C:/Zalo_CRM/Zalo_base/device_status_{id_device}.json', 'r') as f:
+    with open(DEVICE_STATUS_PATH(id_device), 'r') as f:
         device_status = json.load(f)
     d.app_start("com.zing.zalo", stop=True)
     eventlet.sleep(2.0)
@@ -7074,8 +7075,8 @@ def api_log_in_status(id_device):
     for phone in dict_device_and_phone[id_device]:
         device_status['max_message_per_day'].append({phone: 10})
         device_status['max_add_friend_per_day'].append({phone: 5})
-    
-    with open(f"C:/Zalo_CRM/Zalo_base/device_status_{id_device}.json", 'w') as f:
+
+    with open(DEVICE_STATUS_PATH(id_device), 'w') as f:
         json.dump(device_status, f, indent=4)
     print("Tiến trình bắt đầu")
     # return [result1, result2, result3, result4, result5, result6]
@@ -7095,7 +7096,7 @@ def background_get_unseen_loop():
         id = 0
         on_chat = False
         # update = False
-        docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[now_phone_zalo]}", {
+        docs = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", ZALO_DATA_LOGIN_PATH(dict_phone_device[now_phone_zalo]), {
                                      "num_phone_zalo": now_phone_zalo})
         if len(docs) > 0:
             document = docs[0]
@@ -7338,7 +7339,7 @@ def background_update_1vs1_loop():
                     # Dừng ở đây thôi
                     # last_name_ntd = name_ntd
                     print(name_ntd)
-                    with open(f'C:/Zalo_CRM/Zalo_base/device_status_{dict_phone_device[curr_phone_zalo]}.json', 'r') as f:
+                    with open(DEVICE_STATUS_PATH(dict_phone_device[curr_phone_zalo]), 'r') as f:
                         device_status = json.load(f)
                     if device_status['active']:
                         print("Có active không")
