@@ -1,5 +1,6 @@
 import subprocess
 from util import *
+import pymongo_management
 
 def scan_connected_devices():
     """
@@ -44,6 +45,8 @@ def scan_connected_devices():
         return []
     
 DEVICE_LIST = scan_connected_devices()
-print(DEVICE_LIST)
+log_message(f"📱 Danh sách thiết bị: {DEVICE_LIST}")
 for i, d in enumerate(DEVICE_LIST):
-    DEVICE_LIST_NAME[d] = f"Máy {i}"
+    device_name = asyncio.run(pymongo_management.get_device_name_by_id(d))
+    DEVICE_LIST_NAME[d] = f"Máy {device_name}"
+    log_message(f"📱 Thiết bị {d} có tên là: Máy {device_name}")

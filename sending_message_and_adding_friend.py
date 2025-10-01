@@ -19,6 +19,8 @@ from datetime import datetime
 from util import log_message
 import logging
 import pymongo_management
+from util.const_values import DEVICE_STATUS_PATH, ZALO_DATA_LOGIN_PATH, ZALO_IMAGE_PATH, ZALO_BASE_PATH
+from util.my_utils import DEVICE_LIST_NAME
 
 # ===================== CẤU HÌNH / HẰNG SỐ =====================
 # {device_id: [list tên tài khoản đã dùng trong phiên chạy]}
@@ -329,7 +331,7 @@ class DeviceHandler:
 
     async def connect(self):
         try:
-            log_message(f"[{self.device_id}] Kết nối thiết bị: Thành công.")
+            log_message(f"[{DEVICE_LIST_NAME[self.device_id]}] Kết nối thiết bị: Thành công.")
             self.d.press("home")
             await asyncio.sleep(1)
             self.cleanup_background_apps()

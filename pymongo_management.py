@@ -443,6 +443,14 @@ async def save_post_comment(post_link, commenter, comment, time, level=0, parent
 
 #-------------------------------------------------------------------------------------------------------------------------------
 # Lệnh liên quan tới collection "devices"
+async def get_device_name_by_id(device_id):
+    """Lấy tên thiết bị theo device_id."""
+    collection = get_async_collection("devices")
+    device = await collection.find_one({"device_id": device_id})
+    if device:
+        return device.get("device_name")
+    return "Unknown Device"
+
 async def get_account_by_username(username):
     """Lấy tài khoản theo username."""
     collection = get_async_collection("devices")
