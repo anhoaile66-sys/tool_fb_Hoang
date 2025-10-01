@@ -67,7 +67,7 @@ class WebSocketTaskHandler:
                 if not account:
                     log_message(f"{driver.serial} - Thực hiện lệnh từ CRM: Không có user_id trong message", logging.WARNING)
                     return
-                if not account['status']:
+                if not account['status'] == "Online":
                     acc = {
                         'name': account['name'],
                         'account': account['account'],
