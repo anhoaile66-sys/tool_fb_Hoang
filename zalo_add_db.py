@@ -1,5 +1,7 @@
 import json
 import os
+from util.const_values import DEVICE_STATUS_PATH
+
 dict_device_and_phone = {
     "TSPNH6GYZLPJBY6X": ['0971335869', '0978025150', '0967791241'], #A03
     "9PAM7DIFW87DOBEU": ['0869773496', '0395459520', '0988003410'], #A09
@@ -31,5 +33,5 @@ for id_device in dict_device_and_phone.keys():
     for phone in dict_device_and_phone[id_device]:
         device_status['max_message_per_day'].append({phone: 10})
         device_status['max_add_friend_per_day'].append({phone: 1})
-    with open(f"C:/Zalo_CRM/Zalo_base/device_status_{id_device}.json", 'w') as f:
+    with open(DEVICE_STATUS_PATH(id_device), 'w') as f:
         json.dump(device_status, f, indent=4)

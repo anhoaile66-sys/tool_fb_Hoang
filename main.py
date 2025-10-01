@@ -332,7 +332,7 @@ async def device_supervisor(device_id: str):
             pass
     task = None
     temp_alive = True
-    device_status_path = f"C:/Zalo_CRM/Zalo_base/device_status_{device_id}.json"
+    device_status_path = DEVICE_STATUS_PATH(device_id)
     await main_lib.reset_active()  # Đặt lại tất cả device về inactive khi khởi động
     while True:
         try:

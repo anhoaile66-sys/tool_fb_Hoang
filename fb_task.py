@@ -1,5 +1,5 @@
 import asyncio
-from module.fb_friends import load_facebook_friends_list_advanced
+from module import *
 from util import *
 
 # Thoát app, xóa cache khi chờ task

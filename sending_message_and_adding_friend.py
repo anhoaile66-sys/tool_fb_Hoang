@@ -1003,7 +1003,7 @@ class DeviceHandler:
         """Chạy chính trên thiết bị này: LẤY CÔNG VIỆC TỪ HÀNG ĐỢI CHUNG THEO DATABASE"""
         while rounds > 0 and not STOP_EVENT.is_set():
 #            # ✅ Bổ sung: Kiểm tra trạng thái thiết bị từ file JSON
-            # device_status_path = f"E:/Github/Zalo Application/tool-fb-mobile-main/Zalo_base/device_status_{self.device_id}.json"
+            # device_status_path = DEVICE_STATUS_PATH(self.device_id)
             # try:
             #     with open(device_status_path, 'r', encoding='utf-8') as f:
             #         device_status = json.load(f)
