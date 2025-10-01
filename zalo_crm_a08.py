@@ -129,7 +129,7 @@ try:
     print("Pinged your deployment. You successfully connected to MongoDB!")
 except Exception as e:
     print(e)
-db = client["C:/Zalo_CRM/Zalo_base"]
+db = client[ZALO_BASE_PATH]
 avatar_db = client['zalo_data']
 status_auto_send = {}
 collection = db["Zalo_data_login_path"]
@@ -750,7 +750,7 @@ def handle_join(data):
     # os.makedirs(os.path.join(folder_data_zalo, 'data'), exist_ok=True)
     join_room(room)
     # print(f"Client {request.sid} joined room {room}")
-    # res =  update_port_base_id_chat("C:/Zalo_CRM/Zalo_base", "Zalo_data_login_port",room)
+    # res =  update_port_base_id_chat(ZALO_BASE_PATH, "Zalo_data_login_port",room)
     emit("status_update_list_chat", {"status": "1"}, room=room)
     # print ("update_port_base_id_chat------------------", res )
 
@@ -775,7 +775,7 @@ def api_get_list_friend(data_body):
     num_phone_zalo = new_id
     print(num_phone_zalo)
 
-    docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+    docs = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                  "num_phone_zalo": num_phone_zalo})
     print(docs)
     if len(docs) > 0:
@@ -803,7 +803,7 @@ def api_get_list_friend(data_body):
             return False
         else:
             docs = get_base_id_zalo_json(
-                "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
             check_busy = False
             for doc in docs:
                 if doc['num_phone_zalo'] != "":
@@ -816,23 +816,23 @@ def api_get_list_friend(data_body):
                 return False
             else:
                 one = time.time()
-                doc = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                doc = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                             "num_phone_zalo": num_phone_zalo})[0]
                 two = time.time()
                 print(two-one)
                 if not doc['status']:
                     docs = get_base_id_zalo_json(
-                        "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                        ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
                     current_phone = ""
                     for it in docs:
                         if it['status']:
                             current_phone = it['num_phone_zalo']
                             break
                     if current_phone != "":
-                        status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                        status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                            "num_phone_zalo": current_phone, "status": False})
                     d = switch_account(d, user_name)
-                    status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                    status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                        "num_phone_zalo": num_phone_zalo, "status": True})
                 dict_status_zalo[num_phone_zalo] = "get_list_friend"
                 try:
@@ -844,7 +844,7 @@ def api_get_list_friend(data_body):
                     data_update = {"list_friend": result,
                                    "num_phone_zalo": num_phone_zalo}
                     update_base_document_json(
-                        "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                        ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                 # collection_data_login_path.update_one(result[room][id_driver])
                 # print ("danh sach fr :" , result)
                 # emit("list_friend", {"num_phone_zalo": num_phone_zalo, "list_friend":result}, room=room)
@@ -868,7 +868,7 @@ def api_get_list_group(data_body):
     # now_phone_zalo = num_phone_zalo
     print(num_phone_zalo)
 
-    docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+    docs = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                  "num_phone_zalo": num_phone_zalo})
     if len(docs) > 0:
         document = docs[0]
@@ -891,7 +891,7 @@ def api_get_list_group(data_body):
             # emit("busy",{"status":dict_status_zalo[num_phone_zalo]},room=room)
         else:
             docs = get_base_id_zalo_json(
-                "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
             check_busy = False
             for doc in docs:
                 if doc['num_phone_zalo'] != "":
@@ -903,23 +903,23 @@ def api_get_list_group(data_body):
                 # emit("busy",{"status":dict_status_zalo[num_phone_zalo]},room=room)
             else:
                 one = time.time()
-                doc = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                doc = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                             "num_phone_zalo": num_phone_zalo})[0]
                 two = time.time()
                 print(two-one)
                 if not doc['status']:
                     docs = get_base_id_zalo_json(
-                        "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                        ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
                     current_phone = ""
                     for it in docs:
                         if it['status']:
                             current_phone = it['num_phone_zalo']
                             break
                     if current_phone != "":
-                        status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                        status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                            "num_phone_zalo": current_phone, "status": False})
                     d = switch_account(d, user_name)
-                    status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                    status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                        "num_phone_zalo": num_phone_zalo, "status": True})
                 dict_status_zalo[num_phone_zalo] = "get_list_friend"
                 try:
@@ -927,7 +927,7 @@ def api_get_list_group(data_body):
                     data_update = {"list_group": result,
                                    "num_phone_zalo": num_phone_zalo}
                     update_base_document_json(
-                        "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                        ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                 except Exception as e:
                     result = []
                 dict_status_zalo[num_phone_zalo] = ""
@@ -947,7 +947,7 @@ def api_get_list_invite_friend(data_body):
     # now_phone_zalo = num_phone_zalo
     print(num_phone_zalo)
 
-    docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+    docs = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                  "num_phone_zalo": num_phone_zalo})
     if len(docs) > 0:
         document = docs[0]
@@ -970,7 +970,7 @@ def api_get_list_invite_friend(data_body):
             # emit("busy",{"status":dict_status_zalo[num_phone_zalo]},room=room)
         else:
             docs = get_base_id_zalo_json(
-                "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
             check_busy = False
             for doc in docs:
                 if doc['num_phone_zalo'] != "":
@@ -982,25 +982,25 @@ def api_get_list_invite_friend(data_body):
                 # emit("busy",{"status":dict_status_zalo[num_phone_zalo]},room=room)
             else:
                 one = time.time()
-                doc = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                doc = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                             "num_phone_zalo": num_phone_zalo})[0]
                 two = time.time()
                 print(two-one)
                 if not doc['status']:
                     docs = get_base_id_zalo_json(
-                        "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                        ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
                     current_phone = ""
                     for it in docs:
                         if it['status']:
                             current_phone = it['num_phone_zalo']
                             break
                     if current_phone != "":
-                        status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                        status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                            "num_phone_zalo": current_phone, "status": False})
 
                     d = switch_account(d, user_name)
 
-                    status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                    status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                        "num_phone_zalo": num_phone_zalo, "status": True})
                 dict_status_zalo[num_phone_zalo] = "get_list_friend"
                 try:
@@ -1008,7 +1008,7 @@ def api_get_list_invite_friend(data_body):
                     data_update = {"list_invite_friend": result,
                                    "num_phone_zalo": num_phone_zalo}
                     update_base_document_json(
-                        "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                        ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                 except Exception as e:
                     result = []
                 dict_status_zalo[num_phone_zalo] = ""
@@ -1027,7 +1027,7 @@ def get_list_friend_new():
     list_socket_call.append("get_list_friend")
     print(num_phone_zalo)
 
-    docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+    docs = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                  "num_phone_zalo": num_phone_zalo})
     if len(docs) > 0:
         document = docs[0]
@@ -1050,7 +1050,7 @@ def get_list_group_new():
     now_phone_zalo = new_id
     print(num_phone_zalo)
 
-    docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+    docs = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                  "num_phone_zalo": num_phone_zalo})
     if len(docs) > 0:
         document = docs[0]
@@ -1073,7 +1073,7 @@ def get_list_invite_friend_new():
     now_phone_zalo = new_id
     print(num_phone_zalo)
 
-    docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+    docs = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                  "num_phone_zalo": num_phone_zalo})
     if len(docs) > 0:
         document = docs[0]
@@ -1442,7 +1442,7 @@ def api_update_list_prior_chat_boxes(data_body, max_chat_boxes=1000, scroll_or_n
     global device_connect
     print(num_phone_zalo)
 
-    docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+    docs = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                  "num_phone_zalo": num_phone_zalo})
     if len(docs) > 0:
         document = docs[0]
@@ -1466,7 +1466,7 @@ def api_update_list_prior_chat_boxes(data_body, max_chat_boxes=1000, scroll_or_n
             return False
         else:
             docs = get_base_id_zalo_json(
-                "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
             check_busy = False
             for doc in docs:
                 if doc['num_phone_zalo'] != "":
@@ -1479,13 +1479,13 @@ def api_update_list_prior_chat_boxes(data_body, max_chat_boxes=1000, scroll_or_n
                 return False
             else:
                 one = time.time()
-                doc = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                doc = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                             "num_phone_zalo": num_phone_zalo})[0]
                 two = time.time()
                 print(two-one)
                 if not doc['status']:
                     docs = get_base_id_zalo_json(
-                        "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                        ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
                     current_phone = ""
                     for it in docs:
                         if it['status']:
@@ -1494,9 +1494,9 @@ def api_update_list_prior_chat_boxes(data_body, max_chat_boxes=1000, scroll_or_n
 
                     d = switch_account(d, user_name)
                     if current_phone != "":
-                        status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                        status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                            "num_phone_zalo": current_phone, "status": False})
-                    status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                    status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                        "num_phone_zalo": num_phone_zalo, "status": True})
                 if scroll_or_not:
                     dict_status_zalo[num_phone_zalo] = "update_list_prior_chat_boxes"
@@ -1507,7 +1507,7 @@ def api_update_list_prior_chat_boxes(data_body, max_chat_boxes=1000, scroll_or_n
                         data_update = {"list_prior_chat_boxes": result,
                                        "num_phone_zalo": num_phone_zalo}
                         update_base_document_json(
-                            "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                            ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                 except Exception as e:
                     result = []
                 dict_status_zalo[num_phone_zalo] = ""
@@ -1526,7 +1526,7 @@ def api_update_list_unseen_chat_boxes(data):
     num_phone_zalo = new_id
     print(num_phone_zalo)
 
-    docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+    docs = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                  "num_phone_zalo": num_phone_zalo})
     if len(docs) > 0:
         document = docs[0]
@@ -1549,7 +1549,7 @@ def api_update_list_unseen_chat_boxes(data):
             # emit("busy",{"status":dict_status_zalo[num_phone_zalo]},room=room)
         else:
             docs = get_base_id_zalo_json(
-                "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
             check_busy = False
             for doc in docs:
                 if doc['num_phone_zalo'] != "":
@@ -1562,23 +1562,23 @@ def api_update_list_unseen_chat_boxes(data):
                 return False
             else:
                 one = time.time()
-                doc = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                doc = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                             "num_phone_zalo": num_phone_zalo})[0]
                 two = time.time()
                 print(two-one)
                 if not doc['status']:
                     docs = get_base_id_zalo_json(
-                        "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                        ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
                     current_phone = ""
                     for it in docs:
                         if it['status']:
                             current_phone = it['num_phone_zalo']
                             break
                     if current_phone != "":
-                        status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                        status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                            "num_phone_zalo": current_phone, "status": False})
                     d = switch_account(d, user_name)
-                    status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                    status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                        "num_phone_zalo": num_phone_zalo, "status": True})
                 dict_status_zalo[num_phone_zalo] = "update_list_unseen_chat_boxes"
                 try:
@@ -1588,7 +1588,7 @@ def api_update_list_unseen_chat_boxes(data):
                     data_update = {"list_unseen_chat_boxes": result,
                                    "num_phone_zalo": num_phone_zalo}
                     update_base_document_json(
-                        "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                        ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                     try:
                         #        print(document)
                         with open(ZALO_DATA_LOGIN_PATH(dict_phone_device[num_phone_zalo]), 'r', encoding='utf-8') as f:
@@ -1626,7 +1626,7 @@ def get_list_prior_chat_boxes_new():
     list_socket_call.append("get_list_prior_chat_boxes")
     print(num_phone_zalo)
 
-    docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+    docs = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                  "num_phone_zalo": num_phone_zalo})
     
     if len(docs) > 0:
@@ -1661,7 +1661,7 @@ def get_click_tag():
     list_socket_call.append("click_tag")
     print(num_phone_zalo)
 
-    docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+    docs = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                  "num_phone_zalo": num_phone_zalo})
     if len(docs) > 0:
         document = docs[0]
@@ -1688,7 +1688,7 @@ def get_click_tag():
                 data_update = {"num_phone_zalo": num_phone_zalo,
                                "list_prior_chat_boxes": list_prior_chat_boxes}
                 update_base_document_json(
-                    "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                    ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
             break
     return jsonify({"status": "Đã click tag thành công"}), 200
 
@@ -1703,7 +1703,7 @@ def get_list_unseen_chat_boxes_new():
     list_socket_call.append("get_list_unseen_chat_boxes")
     print(num_phone_zalo)
 
-    docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+    docs = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                  "num_phone_zalo": num_phone_zalo})
     if len(docs) > 0:
         document = docs[0]
@@ -1729,7 +1729,7 @@ def handle_chat_pvp(data):
     one = time.time()
     name = data['name']
 #    ava = data['ava']
-    docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+    docs = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                  "num_phone_zalo": num_phone_zalo})
     if len(docs) > 0:
         document = docs[0]
@@ -1751,7 +1751,7 @@ def handle_chat_pvp(data):
             return False
         else:
             docs = get_base_id_zalo_json(
-                "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
             check_busy = False
             for doc in docs:
                 if doc['num_phone_zalo'] != "":
@@ -1765,23 +1765,23 @@ def handle_chat_pvp(data):
                 return False
             else:
                 dict_status_update_pvp[num_phone_zalo] = 1
-                doc = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                doc = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                             "num_phone_zalo": num_phone_zalo})[0]
                 if not doc['status']:
                     docs = get_base_id_zalo_json(
-                        "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                        ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
                     current_phone = ""
                     for it in docs:
                         if it['status']:
                             current_phone = it['num_phone_zalo']
                             break
                     if current_phone != "":
-                        status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                        status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                            "num_phone_zalo": current_phone, "status": False})
                     # Hàm switching (chuyển đổi tài khoản)
                     d = u2.connect(id_device)
                     d = switch_account(d, user_name)
-                    status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                    status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                        "num_phone_zalo": num_phone_zalo, "status": True})
                 dict_status_zalo[num_phone_zalo] = "handle_chat_pvp"
                 try:
@@ -1929,7 +1929,7 @@ def handle_chat_pvp(data):
                         data_update = {"num_phone_zalo": num_phone_zalo,
                                        "list_prior_chat_boxes": list_prior_chat_boxes}
                         update_base_document_json(
-                            "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                            ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                     else:
                         for id in range(len(list_prior_chat_boxes)):
                             if list_prior_chat_boxes[id]['name'] == name_ntd:
@@ -1938,7 +1938,7 @@ def handle_chat_pvp(data):
                                     data_update = {"num_phone_zalo": num_phone_zalo,
                                                    "list_prior_chat_boxes": list_prior_chat_boxes}
                                     update_base_document_json(
-                                        "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                                        ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                                 break
                     join_room(room)
                     # emit("receive_chat_view_status",{"status":"Cuộc hội thoại bắt đầu", "name_ntd": name_ntd}, room=room)
@@ -2075,7 +2075,7 @@ def handle_chat_pvp(data):
                             data_update = {"num_phone_zalo": num_phone_zalo,
                                            "list_prior_chat_boxes": list_prior_chat_boxes}
                             update_base_document_json(
-                                "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                                ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                     else:
                         for id in range(len(list_prior_chat_boxes)):
                             if list_prior_chat_boxes[id]['name'] == name:
@@ -2084,7 +2084,7 @@ def handle_chat_pvp(data):
                                     data_update = {"num_phone_zalo": num_phone_zalo,
                                                    "list_prior_chat_boxes": list_prior_chat_boxes}
                                     update_base_document_json(
-                                        "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                                        ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                                 break
 
                     join_room(room)
@@ -2119,7 +2119,7 @@ def handle_chat_pvp_v2(data):
     one = time.time()
     name = data['name']
 #    ava = data['ava']
-    docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+    docs = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                  "num_phone_zalo": num_phone_zalo})
     if len(docs) > 0:
         document = docs[0]
@@ -2141,7 +2141,7 @@ def handle_chat_pvp_v2(data):
             return False
         else:
             docs = get_base_id_zalo_json(
-                "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
             check_busy = False
             for doc in docs:
                 
@@ -2155,23 +2155,23 @@ def handle_chat_pvp_v2(data):
                 return False
             else:
                 dict_status_update_pvp[num_phone_zalo] = 1
-                doc = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                doc = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                             "num_phone_zalo": num_phone_zalo})[0]
                 if not doc['status']:
                     docs = get_base_id_zalo_json(
-                        "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                        ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
                     current_phone = ""
                     for it in docs:
                         if it['status']:
                             current_phone = it['num_phone_zalo']
                             break
                     if current_phone != "":
-                        status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                        status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                            "num_phone_zalo": current_phone, "status": False})
                     # Hàm switching (chuyển đổi tài khoản)
                     d = u2.connect(id_device)
                     d = switch_account(d, user_name)
-                    status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                    status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                        "num_phone_zalo": num_phone_zalo, "status": True})
                 dict_status_zalo[num_phone_zalo] = "handle_chat_pvp_v2"
                 two = time.time()
@@ -2298,7 +2298,7 @@ def handle_chat_pvp_v2(data):
                         data_update = {"num_phone_zalo": num_phone_zalo,
                                        "list_prior_chat_boxes": list_prior_chat_boxes}
                         update_base_document_json(
-                            "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                            ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                     else:
                         for id in range(len(list_prior_chat_boxes)):
                             if list_prior_chat_boxes[id]['name'] == name_ntd:
@@ -2307,7 +2307,7 @@ def handle_chat_pvp_v2(data):
                                     data_update = {"num_phone_zalo": num_phone_zalo,
                                                    "list_prior_chat_boxes": list_prior_chat_boxes}
                                     update_base_document_json(
-                                        "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                                        ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                                 break
                     join_room(room)
                     # emit("receive_chat_view_status",{"status":"Cuộc hội thoại bắt đầu", "name_ntd": name_ntd}, room=room)
@@ -2429,7 +2429,7 @@ def handle_chat_pvp_v2(data):
                             data_update = {"num_phone_zalo": num_phone_zalo,
                                            "list_prior_chat_boxes": list_prior_chat_boxes}
                             update_base_document_json(
-                                "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                                ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                     else:
                         for id in range(len(list_prior_chat_boxes)):
                             if list_prior_chat_boxes[id]['name'] == name:
@@ -2438,7 +2438,7 @@ def handle_chat_pvp_v2(data):
                                     data_update = {"num_phone_zalo": num_phone_zalo,
                                                    "list_prior_chat_boxes": list_prior_chat_boxes}
                                     update_base_document_json(
-                                        "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                                        ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                                 break
 
                     join_room(room)
@@ -2473,7 +2473,7 @@ def handle_chat_pvp_test():
     one = time.time()
     # name = data.get('name')
 #    ava = data['ava']
-    docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+    docs = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                  "num_phone_zalo": num_phone_zalo})
     if len(docs) > 0:
         document = docs[0]
@@ -2493,7 +2493,7 @@ def handle_chat_pvp_test():
             return jsonify({"status": "Đã bận"})
         else:
             docs = get_base_id_zalo_json(
-                "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
             check_busy = False
             for doc in docs:
                 if dict_status_zalo[doc['num_phone_zalo']] != "":
@@ -2504,23 +2504,23 @@ def handle_chat_pvp_test():
                 return jsonify({"status": "Đã bận"})
             else:
                 dict_status_update_pvp[num_phone_zalo] = 1
-                doc = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                doc = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                             "num_phone_zalo": num_phone_zalo})[0]
                 if not doc['status']:
                     docs = get_base_id_zalo_json(
-                        "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                        ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
                     current_phone = ""
                     for it in docs:
                         if it['status']:
                             current_phone = it['num_phone_zalo']
                             break
                     if current_phone != "":
-                        status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                        status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                            "num_phone_zalo": current_phone, "status": False})
                     # Hàm switching (chuyển đổi tài khoản)
                     d = u2.connect(id_device)
                     d = switch_account(d, user_name)
-                    status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                    status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                        "num_phone_zalo": num_phone_zalo, "status": True})
                 dict_status_zalo[num_phone_zalo] = "handle_chat_pvp"
                 two = time.time()
@@ -2631,7 +2631,7 @@ def handle_chat_pvp_test():
                         data_update = {"num_phone_zalo": num_phone_zalo,
                                        "list_prior_chat_boxes": list_prior_chat_boxes}
                         update_base_document_json(
-                            "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                            ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                     # emit("receive_chat_view_status",{"status":"Cuộc hội thoại bắt đầu", "name_ntd": name_ntd}, room=room)
                     dict_status_zalo[num_phone_zalo] = ""
                     print("Cuộc hội thoại bắt đầu chưa")
@@ -2661,7 +2661,7 @@ def api_find_new_friend():
     one = time.time()
     # name = data.get('name')
 #    ava = data['ava']
-    docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+    docs = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                  "num_phone_zalo": num_phone_zalo})
     if len(docs) > 0:
         document = docs[0]
@@ -2681,7 +2681,7 @@ def api_find_new_friend():
             return jsonify({"status": "Bận rồi ông cháu ơi"})
         else:
             docs = get_base_id_zalo_json(
-                "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
             check_busy = False
             for doc in docs:
                 if doc['num_phone_zalo'] != "":
@@ -2693,26 +2693,26 @@ def api_find_new_friend():
                 return jsonify({"status": "Bận rồi ông cháu ơi"})
             else:
                 dict_status_update_pvp[num_phone_zalo] = 1
-                doc = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                doc = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                             "num_phone_zalo": num_phone_zalo})[0]
                 if not doc['status']:
                     docs = get_base_id_zalo_json(
-                        "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                        ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
                     current_phone = ""
                     for it in docs:
                         if it['status']:
                             current_phone = it['num_phone_zalo']
                             break
                     # if current_phone != "":
-                    #    status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                    #    status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                     #                                       "num_phone_zalo": current_phone, "status": False})
                     # Hàm switching (chuyển đổi tài khoản)
                     d = u2.connect(id_device)
                     d = switch_account(d, user_name)
-                    status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                    status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                        "num_phone_zalo": num_phone_zalo, "status": True})
                     if current_phone != "":
-                        status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                        status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                            "num_phone_zalo": current_phone, "status": False})
                 dict_status_zalo[num_phone_zalo] = "find_new_friend"
                 try:
@@ -2856,7 +2856,7 @@ def api_find_new_friend():
                     data_update = {"num_phone_zalo": num_phone_zalo,
                                    "list_prior_chat_boxes": list_prior_chat_boxes}
                     update_base_document_json(
-                        "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                        ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                     if not already_sent(num_send_phone_zalo):
                         log_sent(num_send_phone_zalo)
 
@@ -2874,7 +2874,7 @@ def api_find_new_friend():
                     data_update = {"num_phone_zalo": num_phone_zalo,
                                    "list_prior_chat_boxes": list_prior_chat_boxes}
                     update_base_document_json(
-                        "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                        ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
 
                 dict_status_zalo[num_phone_zalo] = ""
                 dict_status_update_pvp[num_phone_zalo] = 2
@@ -2927,7 +2927,7 @@ def open_again_chat_pvp(data):
     one = time.time()
     name = data['name']
 #    ava = data['ava']
-    docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+    docs = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                  "num_phone_zalo": num_phone_zalo})
     if len(docs) > 0:
         document = docs[0]
@@ -2946,7 +2946,7 @@ def open_again_chat_pvp(data):
             return False
         else:
             docs = get_base_id_zalo_json(
-                "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
             check_busy = False
             for doc in docs:
                 if dict_status_zalo[doc['num_phone_zalo']] != "":
@@ -2958,21 +2958,21 @@ def open_again_chat_pvp(data):
                 return False
             else:
                 dict_status_update_pvp[num_phone_zalo] = 1
-                doc = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                doc = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                             "num_phone_zalo": num_phone_zalo})[0]
                 if not doc['status']:
                     docs = get_base_id_zalo_json(
-                        "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                        ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
                     current_phone = ""
                     for it in docs:
                         if it['status']:
                             current_phone = it['num_phone_zalo']
                             break
                     if current_phone != "":
-                        status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                        status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                            "num_phone_zalo": current_phone, "status": False})
                     # Hàm switching (chuyển đổi tài khoản)
-                    status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                    status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                        "num_phone_zalo": num_phone_zalo, "status": True})
                 dict_status_zalo[num_phone_zalo] = "open_again_chat_pvp"
                 two = time.time()
@@ -3058,7 +3058,7 @@ def open_again_chat_pvp(data):
                         data_update = {"num_phone_zalo": num_phone_zalo,
                                        "list_prior_chat_boxes": list_prior_chat_boxes}
                         update_base_document_json(
-                            "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                            ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                     # join_room(room)
                     # emit("receive status",{"status":"Cuộc hội thoại bắt đầu", "name_ntd": name_ntd}, room=room)
                     dict_status_zalo[num_phone_zalo] = ""
@@ -3110,7 +3110,7 @@ def open_again_chat_pvp(data):
                         data_update = {"num_phone_zalo": num_phone_zalo,
                                        "list_prior_chat_boxes": list_prior_chat_boxes}
                         update_base_document_json(
-                            "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                            ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                     # join_room(room)
                     # emit("receive status",{"status":"Cuộc hội thoại bắt đầu"}, room=room)
                     dict_status_zalo[num_phone_zalo] = ""
@@ -4755,7 +4755,7 @@ def api_update_data_one_chat_box(data, gr_or_pvp="pvp", on_chat=False, update=Fa
     global device_connect
     print(num_phone_zalo)
 
-    docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+    docs = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                  "num_phone_zalo": num_phone_zalo})
     if len(docs) > 0:
         document = docs[0]
@@ -4784,7 +4784,7 @@ def api_update_data_one_chat_box(data, gr_or_pvp="pvp", on_chat=False, update=Fa
             return False
         else:
             docs = get_base_id_zalo_json(
-                "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
             check_busy = False
             for doc in docs:
                 if doc['num_phone_zalo'] != "":
@@ -4797,23 +4797,23 @@ def api_update_data_one_chat_box(data, gr_or_pvp="pvp", on_chat=False, update=Fa
                 return False
             else:
                 one = time.time()
-                doc = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                doc = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                             "num_phone_zalo": num_phone_zalo})[0]
                 two = time.time()
                 print(two-one)
                 if not doc['status']:
                     docs = get_base_id_zalo_json(
-                        "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                        ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
                     current_phone = ""
                     for it in docs:
                         if it['status']:
                             current_phone = it['num_phone_zalo']
                             break
                     if current_phone != "":
-                        status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                        status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                            "num_phone_zalo": current_phone, "status": False})
                     d = switch_account(d, user_name)
-                    status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                    status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                        "num_phone_zalo": num_phone_zalo, "status": True})
                 dict_status_zalo[num_phone_zalo] = "get_data_one_box_chat"
                 list_friend = document['list_friend']
@@ -4928,7 +4928,7 @@ def api_update_data_one_chat_box(data, gr_or_pvp="pvp", on_chat=False, update=Fa
                                            "list_prior_chat_boxes": list_prior_chat_boxes}
                             if len(result) > 0:
                                 update_base_document_json(
-                                    "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                                    ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                             break
                 except Exception as e:
                     print(e)
@@ -4955,7 +4955,7 @@ def api_update_data_1vs1_chat_box(d: u2.Device, data, document):
             return False
         else:
             docs = get_base_id_zalo_json(
-                "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
             check_busy = False
             for doc in docs:
                 if doc['num_phone_zalo'] != "":
@@ -4969,16 +4969,16 @@ def api_update_data_1vs1_chat_box(d: u2.Device, data, document):
             else:
                 '''
                 if not document['status']:
-                     docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "id_device", "Zalo_data_login_path", {"id_device": id_device})
+                     docs = get_base_id_zalo_json(ZALO_BASE_PATH, "id_device", "Zalo_data_login_path", {"id_device": id_device})
                      current_phone = ""
                      for it in docs:
                         if it['status']:
                             current_phone = it['num_phone_zalo']
                             break
                      if current_phone != "":
-                        status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", "Zalo_data_login_path", {"num_phone_zalo": current_phone, "status" : False})
+                        status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", "Zalo_data_login_path", {"num_phone_zalo": current_phone, "status" : False})
                      d = switch_account(d, user_name)
-                     status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", "Zalo_data_login_path", {"num_phone_zalo": num_phone_zalo, "status" : True})
+                     status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", "Zalo_data_login_path", {"num_phone_zalo": num_phone_zalo, "status" : True})
                 '''
                 # dict_status_zalo[num_phone_zalo] = "get_data_one_box_chat"
                 if 'list_prior_chat_boxes' not in document.keys():
@@ -5035,7 +5035,7 @@ def api_update_data_1vs1_chat_box(d: u2.Device, data, document):
                     data_update = {"num_phone_zalo": num_phone_zalo,
                                    "list_prior_chat_boxes": list_prior_chat_boxes}
                     update_base_document_json(
-                        "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                        ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                     # retr =  {"result": result}
                 # dict_status_zalo[num_phone_zalo] = ""
                 # print(result)
@@ -5068,7 +5068,7 @@ def api_update_data_gr_chat_box(d: u2.Device, data, document):
             return False
         else:
             docs = get_base_id_zalo_json(
-                "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
             check_busy = False
             for doc in docs:
                 if doc['num_phone_zalo'] != "":
@@ -5082,16 +5082,16 @@ def api_update_data_gr_chat_box(d: u2.Device, data, document):
             else:
                 '''
                 if not document['status']:
-                     docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "id_device", "Zalo_data_login_path", {"id_device": id_device})
+                     docs = get_base_id_zalo_json(ZALO_BASE_PATH, "id_device", "Zalo_data_login_path", {"id_device": id_device})
                      current_phone = ""
                      for it in docs:
                         if it['status']:
                             current_phone = it['num_phone_zalo']
                             break
                      if current_phone != "":
-                        status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", "Zalo_data_login_path", {"num_phone_zalo": current_phone, "status" : False})
+                        status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", "Zalo_data_login_path", {"num_phone_zalo": current_phone, "status" : False})
                      d = switch_account(d, user_name)
-                     status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", "Zalo_data_login_path", {"num_phone_zalo": num_phone_zalo, "status" : True})
+                     status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", "Zalo_data_login_path", {"num_phone_zalo": num_phone_zalo, "status" : True})
                 '''
                 # dict_status_zalo[num_phone_zalo] = "get_data_one_box_chat"
                 if 'list_prior_chat_boxes' not in document.keys():
@@ -5150,7 +5150,7 @@ def api_update_data_gr_chat_box(d: u2.Device, data, document):
                     data_update = {"num_phone_zalo": num_phone_zalo,
                                    "list_prior_chat_boxes": list_prior_chat_boxes}
                     update_base_document_json(
-                        "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                        ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                     # retr =  {"result": result}
                 # dict_status_zalo[num_phone_zalo] = ""
                 # print(result)
@@ -5169,7 +5169,7 @@ def api_update_list_mems_one_group(data, on_chat=False, update=False):
     num_phone_ntd = None
     print(num_phone_zalo)
 
-    docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+    docs = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                  "num_phone_zalo": num_phone_zalo})
     if len(docs) > 0:
         document = docs[0]
@@ -5196,7 +5196,7 @@ def api_update_list_mems_one_group(data, on_chat=False, update=False):
             return False
         else:
             docs = get_base_id_zalo_json(
-                "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
             check_busy = False
             for doc in docs:
                 if doc['num_phone_zalo'] != "":
@@ -5209,23 +5209,23 @@ def api_update_list_mems_one_group(data, on_chat=False, update=False):
                 return False
             else:
                 one = time.time()
-                doc = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                doc = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                             "num_phone_zalo": num_phone_zalo})[0]
                 two = time.time()
                 print(two-one)
                 if not doc['status']:
                     docs = get_base_id_zalo_json(
-                        "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                        ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
                     current_phone = ""
                     for it in docs:
                         if it['status']:
                             current_phone = it['num_phone_zalo']
                             break
                     if current_phone != "":
-                        status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                        status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                            "num_phone_zalo": current_phone, "status": False})
                     d = switch_account(d, user_name)
-                    status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                    status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                        "num_phone_zalo": num_phone_zalo, "status": True})
                 dict_status_zalo[num_phone_zalo] = "get_data_one_box_chat"
                 list_friend = document['list_friend']
@@ -5299,7 +5299,7 @@ def api_update_list_mems_one_group(data, on_chat=False, update=False):
                                        "list_group": list_group}
                         if len(result) > 0:
                             update_base_document_json(
-                                "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                                ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                 except Exception as e:
                     print(e)
 
@@ -5319,7 +5319,7 @@ def get_data_one_chat_box():
     list_socket_call.append("get_list_prior_chat_boxes")
     print(num_phone_zalo)
     result = []
-    docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+    docs = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                  "num_phone_zalo": num_phone_zalo})
     if len(docs) > 0:
         document = docs[0]
@@ -5359,7 +5359,7 @@ def get_data_one_chat_box(data):
     print(num_phone_zalo)
     result = []
     friend_or_not = "yes"
-    docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+    docs = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                  "num_phone_zalo": num_phone_zalo})
     if len(docs) > 0:
         document = docs[0]
@@ -5428,7 +5428,7 @@ def handle_send_message_chat_pvp(data):
 
 #    ava = data['ava']
     dict_status_update_pvp[num_phone_zalo] = 1
-    docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+    docs = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                  "num_phone_zalo": num_phone_zalo})
     if len(docs) > 0:
         document = docs[0]
@@ -5449,7 +5449,7 @@ def handle_send_message_chat_pvp(data):
             return False
         else:
             docs = get_base_id_zalo_json(
-                "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
             check_busy = False
             for doc in docs:
                 if dict_status_zalo[doc['num_phone_zalo']] != "":
@@ -5463,22 +5463,22 @@ def handle_send_message_chat_pvp(data):
             else:
                 dict_status_update_pvp[num_phone_zalo] = 1
                 '''
-                doc = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                doc = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                             "num_phone_zalo": num_phone_zalo})[0]
                 if not doc['status']:
                     docs = get_base_id_zalo_json(
-                        "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                        ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
                     current_phone = ""
                     for it in docs:
                         if it['status']:
                             current_phone = it['num_phone_zalo']
                             break
                     if current_phone != "":
-                        status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                        status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                            "num_phone_zalo": current_phone, "status": False})
                     # Hàm switching (chuyển đổi tài khoản)
                     d = switch_account(d, user_name)
-                    status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                    status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                        "num_phone_zalo": num_phone_zalo, "status": True})
                 '''
                 dict_status_zalo[num_phone_zalo] = "send_message_chat_pvp"
@@ -5796,7 +5796,7 @@ def handle_send_message_chat_pvp(data):
                 data_update = {"num_phone_zalo": num_phone_zalo,
                                "list_prior_chat_boxes": list_prior_chat_boxes}
                 update_base_document_json(
-                    "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                    ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                 emit("receive status", {
                      "status": "Đã gửi tin nhắn thành công"}, room=room)
                 emit('receive_list_prior_chat_box', {
@@ -5865,7 +5865,7 @@ def handle_share_message_chat_pvp(data):
         return False
 #    ava = data['ava']
     dict_status_update_pvp[num_phone_zalo] = 1
-    docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+    docs = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                  "num_phone_zalo": num_phone_zalo})
     if len(docs) > 0:
         document = docs[0]
@@ -5886,7 +5886,7 @@ def handle_share_message_chat_pvp(data):
             return False
         else:
             docs = get_base_id_zalo_json(
-                "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
             check_busy = False
             for doc in docs:
                 if doc['num_phone_zalo'] != "":
@@ -6047,7 +6047,7 @@ def handle_share_message_chat_pvp(data):
                             data_update = {"num_phone_zalo": num_phone_zalo,
                                            "list_prior_chat_boxes": list_prior_chat_boxes}
                             update_base_document_json(
-                                "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                                ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                         '''
                     else:
                         for id in range(len(list_prior_chat_boxes)):
@@ -6058,7 +6058,7 @@ def handle_share_message_chat_pvp(data):
                                     data_update = {"num_phone_zalo": num_phone_zalo,
                                            "list_prior_chat_boxes": list_prior_chat_boxes}
                                     update_base_document_json(
-                                           "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                                           ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                                     '''
                                 break
                     #################################
@@ -6335,7 +6335,7 @@ def handle_share_message_chat_pvp(data):
                 data_update = {"num_phone_zalo": num_phone_zalo,
                                "list_prior_chat_boxes": list_prior_chat_boxes}
                 update_base_document_json(
-                    "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                    ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                 if True:
                     on_chat = False
                     btn = d(resourceId="com.zing.zalo:id/action_bar_title")
@@ -6459,7 +6459,7 @@ def handle_share_message_chat_pvp(data):
                             data_update = {"num_phone_zalo": num_phone_zalo,
                                            "list_prior_chat_boxes": list_prior_chat_boxes}
                             update_base_document_json(
-                                "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                                ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                         '''
                     '''
                     else:
@@ -6471,7 +6471,7 @@ def handle_share_message_chat_pvp(data):
                                     data_update = {"num_phone_zalo": num_phone_zalo,
                                            "list_prior_chat_boxes": list_prior_chat_boxes}
                                     update_base_document_json(
-                                           "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                                           ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                                     
                                 break
                     '''
@@ -6479,7 +6479,7 @@ def handle_share_message_chat_pvp(data):
                 data_update = {"num_phone_zalo": num_phone_zalo,
                                "list_prior_chat_boxes": list_prior_chat_boxes}
                 update_base_document_json(
-                    "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                    ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                 '''
                 emit("receive_share_status", {
                     "status": "Đã chia sẻ tin nhắn thành công"}, room=room)
@@ -6532,7 +6532,7 @@ def api_add_friend_chat_pvp():
         return jsonify({"status": "Đã đạt giới hạn kết bạn một ngày"})
 #    ava = data['ava']
     dict_status_update_pvp[num_phone_zalo] = 1
-    docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+    docs = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                  "num_phone_zalo": num_phone_zalo})
     if len(docs) > 0:
         document = docs[0]
@@ -6551,7 +6551,7 @@ def api_add_friend_chat_pvp():
             return jsonify({"status": "Bận rồi ông cháu ơi"})
         else:
             docs = get_base_id_zalo_json(
-                "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
             check_busy = False
             for doc in docs:
                 if doc['num_phone_zalo'] != "":
@@ -6563,22 +6563,22 @@ def api_add_friend_chat_pvp():
                 return jsonify({"status": "Bận rồi ông cháu ơi"})
             else:
                 dict_status_update_pvp[num_phone_zalo] = 1
-                doc = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                doc = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                             "num_phone_zalo": num_phone_zalo})[0]
                 if not doc['status']:
                     docs = get_base_id_zalo_json(
-                        "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                        ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
                     current_phone = ""
                     for it in docs:
                         if it['status']:
                             current_phone = it['num_phone_zalo']
                             break
                     if current_phone != "":
-                        status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                        status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                            "num_phone_zalo": current_phone, "status": False})
                     # Hàm switching (chuyển đổi tài khoản)
                     d = switch_account(d, user_name)
-                    status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                    status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                        "num_phone_zalo": num_phone_zalo, "status": True})
                 dict_status_zalo[num_phone_zalo] = "add_friend_chat_pvp"
                 '''
@@ -6624,7 +6624,7 @@ def api_add_friend_chat_pvp():
                 data_update = {"num_phone_zalo": num_phone_zalo,
                                "list_prior_chat_boxes": list_prior_chat_boxes}
                 update_base_document_json(
-                    "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                    ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                 dict_status_zalo[num_phone_zalo] = ""
                 num_add_friend += 1
                 with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'r') as f:
@@ -6670,7 +6670,7 @@ def api_add_create_group_chat_pvp():
     '''
     #ava = data.get('ava')
     dict_status_update_pvp[num_phone_zalo] = 1
-    docs = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+    docs = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                  "num_phone_zalo": num_phone_zalo})
     if len(docs) > 0:
         document = docs[0]
@@ -6690,7 +6690,7 @@ def api_add_create_group_chat_pvp():
             return jsonify({"status": "Tạo nhóm thất bại"})
         else:
             docs = get_base_id_zalo_json(
-                "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
             check_busy = False
             for doc in docs:
                 if doc['num_phone_zalo'] != "":
@@ -6702,22 +6702,22 @@ def api_add_create_group_chat_pvp():
                 return jsonify({"status": "Tạo nhóm thất bại"})
             else:
                 dict_status_update_pvp[num_phone_zalo] = 1
-                doc = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                doc = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                             "num_phone_zalo": num_phone_zalo})[0]
                 if not doc['status']:
                     docs = get_base_id_zalo_json(
-                        "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
+                        ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {"id_device": id_device})
                     current_phone = ""
                     for it in docs:
                         if it['status']:
                             current_phone = it['num_phone_zalo']
                             break
                     if current_phone != "":
-                        status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                        status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                            "num_phone_zalo": current_phone, "status": False})
                     # Hàm switching (chuyển đổi tài khoản)
                     d = switch_account(d, user_name)
-                    status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
+                    status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", {
                                                        "num_phone_zalo": num_phone_zalo, "status": True})
                 dict_status_zalo[num_phone_zalo] = "create_group_chat_pvp"
                 '''
@@ -6805,11 +6805,11 @@ def api_add_create_group_chat_pvp():
                 data_update = {"num_phone_zalo": num_phone_zalo,
                                "list_prior_chat_boxes": list_prior_chat_boxes}
                 update_base_document_json(
-                    "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                    ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                 data_update = {"num_phone_zalo": num_phone_zalo,
                                "list_group": list_group}
                 update_base_document_json(
-                    "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
+                    ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[num_phone_zalo]}", data_update)
                 dict_status_zalo[num_phone_zalo] = ""
                 num_add_friend += 1
                 with open(DEVICE_STATUS_PATH(dict_phone_device[num_phone_zalo]), 'r') as f:
@@ -7052,7 +7052,7 @@ def api_log_in_status(id_device):
             
             if id < len(zalo_data)-1:
                 d = switch_account(d, name_zalos[id+1])
-                status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{id_device}", {
+                status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{id_device}", {
                     "num_phone_zalo": num_phone_zalo, "status": False})
                 with open(ZALO_DATA_LOGIN_PATH(id_device), 'r', encoding='utf-8') as f:
                     zalo_data = json.load(f)
@@ -7204,11 +7204,11 @@ def background_update_1vs1_loop():
             continue
 
         print("Số điện thoại hiện tại là: ", now_phone_zalo)
-        document = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[now_phone_zalo]}", {
+        document = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[now_phone_zalo]}", {
             "num_phone_zalo": now_phone_zalo})[0]
         id_device = document['id_device']
         documents = get_base_id_zalo_json(
-            "C:/Zalo_CRM/Zalo_base", "id_device", f"Zalo_data_login_path_{dict_phone_device[now_phone_zalo]}", {"id_device": id_device})
+            ZALO_BASE_PATH, "id_device", f"Zalo_data_login_path_{dict_phone_device[now_phone_zalo]}", {"id_device": id_device})
         current_phone = ""
         for it in documents:
             if it['status']:
@@ -7332,7 +7332,7 @@ def background_update_1vs1_loop():
                         if ck_noti:
                             print("Đã gửi socket chưa")
                             update_base_document_json(
-                                "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[curr_phone_zalo]}", data_update)
+                                ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[curr_phone_zalo]}", data_update)
                             socketio.emit('receive_list_prior_chat_box', {
                                 'user_name': user_name, 'list_prior_chat_boxes': list_prior_chat_boxes, 'status': "Có dữ liệu mới từ khách hàng gửi đến"})
 
@@ -7360,7 +7360,7 @@ def background_update_1vs1_loop():
                             if not chat_box_on_chat:
                                 break
                             if chat_box_on_chat and len(chat_box_on_chat) > 0:
-                                document = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[curr_phone_zalo]}", {
+                                document = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[curr_phone_zalo]}", {
                                     "num_phone_zalo": curr_phone_zalo})[0]
                                 list_prior_chat_boxes = document['list_prior_chat_boxes']
                                 # print("Lịch sử box chat được thêm vào là:",
@@ -7370,7 +7370,7 @@ def background_update_1vs1_loop():
                                 socketio.emit('receive_list_prior_chat_box', {
                                     'user_name': user_name, 'list_prior_chat_boxes': list_prior_chat_boxes, 'status': "Có dữ liệu mới từ khách hàng gửi đến"})
                         else:
-                            document = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[curr_phone_zalo]}", {
+                            document = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[curr_phone_zalo]}", {
                                 "num_phone_zalo": curr_phone_zalo})[0]
                             if curr_phone_zalo != now_phone_zalo:
                                 print(
@@ -7385,7 +7385,7 @@ def background_update_1vs1_loop():
                             if not chat_box_on_chat:
                                 break
                             if chat_box_on_chat and len(chat_box_on_chat) > 0:
-                                document = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[curr_phone_zalo]}", {
+                                document = get_base_id_zalo_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[curr_phone_zalo]}", {
                                     "num_phone_zalo": curr_phone_zalo})[0]
                                 list_prior_chat_boxes = document['list_prior_chat_boxes']
                                 # print("Lịch sử box chat được thêm vào là:",
@@ -7458,7 +7458,7 @@ def background_update_1vs1_loop():
             if ck_noti:
                 print("Có gọi socket phiên bản 2 không")
                 update_base_document_json(
-                    "C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[curr_phone_zalo]}", data_update)
+                    ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{dict_phone_device[curr_phone_zalo]}", data_update)
                 socketio.emit('receive_list_prior_chat_box', {
                     'user_name': user_name, 'list_prior_chat_boxes': list_prior_chat_boxes, 'status': "Có dữ liệu mới từ khách hàng gửi đến"})
 
