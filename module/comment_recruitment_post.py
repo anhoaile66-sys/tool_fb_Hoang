@@ -1,11 +1,11 @@
 import pymongo_management
 import toolfacebook_lib
-from util import log_message
+from util import log_message, DEVICE_LIST_NAME
 import asyncio
 
 async def comment_recruitment_post(driver, user_id):
     comment = await pymongo_management.get_comment(user_id)
-    log_message(f"{driver.serial} - {comment[0]['message']}", comment[1])
+    log_message(f"{DEVICE_LIST_NAME[driver.serial]} - {comment[0]['message']}", comment[1])
     if 'comment' in comment[0]:
         comment = comment[0]
         link = comment.get("link")

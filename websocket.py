@@ -37,7 +37,7 @@ class WebSocketTaskHandler:
                 if command['type'] == 'post_to_wall':
                     await post_to_wall(driver, command['_id'], user_id, params.get("content", ""), params.get("files", []))
             except Exception as e:
-                log_message(f"{driver.serial} - Lỗi khi thực hiện lệnh {command['type']}: {e}", logging.ERROR)
+                log_message(f"{DEVICE_LIST_NAME[driver.serial]} - Lỗi khi thực hiện lệnh {command['type']}: {e}", logging.ERROR)
                 await pymongo_management.execute_command(command['_id'], f"Lỗi: {e}")
             await asyncio.sleep(random.uniform(4, 6))
 
@@ -65,7 +65,7 @@ class WebSocketTaskHandler:
                     await asyncio.sleep(5)
                 await self.update_device_status(driver, True)
                 if not account:
-                    log_message(f"{driver.serial} - Thực hiện lệnh từ CRM: Không có user_id trong message", logging.WARNING)
+                    log_message(f"{DEVICE_LIST_NAME[driver.serial]} - Thực hiện lệnh từ CRM: Không có user_id trong message", logging.WARNING)
                     return
                 if not account['status']:
                     acc = {
@@ -82,7 +82,7 @@ class WebSocketTaskHandler:
                 await self.run_commands(driver, account['account'])
                 await self.update_device_status(driver, False)
         except Exception as e:
-            log_message(f"{driver.serial} - Lỗi xử lý message từ server: {e}", logging.ERROR)
+            log_message(f"{DEVICE_LIST_NAME[driver.serial]} - Lỗi xử lý message từ server: {e}", logging.ERROR)
             await self.update_device_status(driver, False)
 
     async def send_response(self, data: dict):

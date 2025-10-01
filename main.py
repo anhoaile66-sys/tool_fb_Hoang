@@ -202,20 +202,20 @@ class InactivityWatchdog:
                 self._home_since = None  # tránh spam
                 if self.on_resume:
                     phase = self.phase_provider()
-                    self.log(f"HOME >12s → mở lại app theo phase='{phase}'")
+                    self.log(f"[{DEVICE_LIST_NAME[self.device_id]}]HOME >12s → mở lại app theo phase='{phase}'")
                     try:
                         await self.on_resume(phase)
                     except Exception as e:
-                        self.log(f"Lỗi on_resume: {e}", logging.WARNING)
+                        self.log(f"[{DEVICE_LIST_NAME[self.device_id]}]Lỗi on_resume: {e}", logging.WARNING)
 
             # Nếu KHÔNG thấy Zalo/Facebook >= idle_seconds -> yêu cầu restart
             if now - self._last_seen_target >= self.idle_seconds:
-                self.log(f"Không thấy Zalo/Facebook ≥ {self.idle_seconds}s → yêu cầu RESTART", logging.WARNING)
+                self.log(f"[{DEVICE_LIST_NAME[self.device_id]}]Không thấy Zalo/Facebook ≥ {self.idle_seconds}s → yêu cầu RESTART", logging.WARNING)
                 if self.on_restart:
                     try:
                         await self.on_restart()
                     except Exception as e:
-                        self.log(f"Lỗi on_restart: {e}", logging.ERROR)
+                        self.log(f"[{DEVICE_LIST_NAME[self.device_id]}]Lỗi on_restart: {e}", logging.ERROR)
                 # Sau khi báo restart thì dừng watchdog
                 break
 
@@ -291,23 +291,26 @@ async def device_once(device_id: str):
     await pymongo_management.update_device_status(device_id, True)  # Cập nhật thiết bị thành online
     try:
 
-        # ===== PHA FACEBOOK =====
-        current_phase["value"] = "facebook"
-        # Chạy flow Facebook như thường lệ
-        await run_on_device_original(driver)
-
-        if restart_event.is_set():
-            raise RestartThisDevice("RESTART_THIS_DEVICE (sau pha Facebook)")
-        
         # ===== PHA ZALO =====
         current_phase["value"] = "zalo"
         # Đảm bảo đang mở Zalo trước khi chạy
         driver.app_start(ZALO_PKG)
         await asyncio.sleep(2.0)
+        # Chạy các tác vụ zalo
         await asyncio.to_thread(handler.run, 1)
 
         if restart_event.is_set():
             raise RestartThisDevice("RESTART_THIS_DEVICE (sau pha Zalo)")
+        
+        # # ===== PHA FACEBOOK =====
+        # current_phase["value"] = "facebook"
+        # # Chạy flow Facebook như thường lệ
+        # await run_on_device_original(driver)
+
+        # if restart_event.is_set():
+        #     raise RestartThisDevice("RESTART_THIS_DEVICE (sau pha Facebook)")
+        
+
 
     finally:
         await watchdog.stop()

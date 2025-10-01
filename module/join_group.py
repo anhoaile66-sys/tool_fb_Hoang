@@ -1,7 +1,7 @@
 import pymongo_management
 import toolfacebook_lib
 import xml.etree.ElementTree as ET
-from util import log_message
+from util import log_message, DEVICE_LIST_NAME
 import asyncio
 import logging
 
@@ -11,7 +11,7 @@ async def join_group(driver, command_id, user_id, group_link, back_to_facebook =
     joined_group = driver(textContains="đã tham gia nhóm")
     if joined_group.exists:
         result = await pymongo_management.update_joined_accounts(user_id, group_link)
-        log_message(f"{driver.serial} - {result[0]['message']}", result[1])
+        log_message(f"{DEVICE_LIST_NAME[driver.serial]} - {result[0]['message']}", result[1])
         await pymongo_management.execute_command(command_id, "Đã thực hiện")
         if back_to_facebook:
             await toolfacebook_lib.back_to_facebook(driver)
@@ -27,14 +27,14 @@ async def join_group(driver, command_id, user_id, group_link, back_to_facebook =
         await asyncio.sleep(5)
         if joined_group.exists:
             result = await pymongo_management.update_joined_accounts(user_id, group_link)
-            log_message(f"{driver.serial} - {result[0]['message']}", result[1])
+            log_message(f"{DEVICE_LIST_NAME[driver.serial]} - {result[0]['message']}", result[1])
             await pymongo_management.execute_command(command_id, "Đã thực hiện")
             if back_to_facebook:
                 await toolfacebook_lib.back_to_facebook(driver)
             return
 
     if not await toolfacebook_lib.click_template(driver, "answer_question") and not join_button_clicked:
-        log_message(f"{driver.serial} - Nhóm đang chờ duyệt: {group_link}", logging.INFO)
+        log_message(f"{DEVICE_LIST_NAME[driver.serial]} - Nhóm đang chờ duyệt: {group_link}", logging.INFO)
         await pymongo_management.execute_command(command_id, "Đã thực hiện")
         if back_to_facebook:
             await toolfacebook_lib.back_to_facebook(driver)
@@ -64,7 +64,7 @@ async def join_group(driver, command_id, user_id, group_link, back_to_facebook =
                 answers.append(visible_texts[j])
             await pymongo_management.upload_question(group_link, visible_texts[indexes[i] - 1], visible_texts[indexes[i]], answers)
             answer, log = await pymongo_management.get_answer(group_link, visible_texts[indexes[i] - 1])
-            log_message(f"{driver.serial} - {answer['message']}", log)
+            log_message(f"{DEVICE_LIST_NAME[driver.serial]} - {answer['message']}", log)
             if "answer" in answer:
                 if visible_texts[indexes[i]] == "Viết câu trả lời...":
                     bounds = nodes[indexes[i]].attrib.get("bounds")
@@ -90,7 +90,7 @@ async def join_group(driver, command_id, user_id, group_link, back_to_facebook =
     if all_questions_answered:
         driver(description="Gửi").click()
         result = await pymongo_management.update_temp_joined_accounts(user_id, group_link)
-        log_message(f"{driver.serial} - {result[0]['message']}", result[1])
+        log_message(f"{DEVICE_LIST_NAME[driver.serial]} - {result[0]['message']}", result[1])
     else:
         driver(resourceId="com.android.systemui:id/back").click()
         driver(resourceId="com.facebook.katana:id/(name removed)", text="THOÁT").click()
