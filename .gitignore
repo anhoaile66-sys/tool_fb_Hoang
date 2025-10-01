@@ -37,11 +37,6 @@ mapping.json
 
 # Screenshots và Files tạm
 Screen Shot/
-Files/
-*.jpg
-*.png
-*.jpeg
-*.gif
 
 # Temporary files
 clipboard.txt
@@ -63,3 +58,6 @@ tool_venv/
 
 # base
 Zalo_CRM/
+
+# ipynb file
+*.ipynb
