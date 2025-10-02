@@ -40,15 +40,15 @@ async def post_to_wall(driver, command_id, user_id, content, files=None):
         if driver(text="ĐĂNG").exists:
             driver(text="ĐĂNG").click()
         else:
-            log_message(f"{driver.serial} - Đăng bài lên tường: Không tìm thấy nút ĐĂNG", logging.WARNING)
+            log_message(f"{DEVICE_LIST_NAME[driver.serial]} - Đăng bài lên tường: Không tìm thấy nút ĐĂNG", logging.WARNING)
             await pymongo_management.execute_command(command_id, "Lỗi: Không tìm thấy nút ĐĂNG")
             return
-        log_message(f"{driver.serial} - Đăng bài lên tường: Đã đăng bài viết lên tường", logging.INFO)
+        log_message(f"{DEVICE_LIST_NAME[driver.serial]} - Đăng bài lên tường: Đã đăng bài viết lên tường", logging.INFO)
         log_message(f"[{DEVICE_LIST_NAME[driver.serial]}] Đăng bài lên tường: Đợi 20s để đăng bài viết hoàn tất", logging.INFO)
         await pymongo_management.execute_command(command_id, "Đã thực hiện")
         await asyncio.sleep(20)
     else:
-        log_message(f"{driver.serial} - Đăng bài lên tường: Không tìm thấy nút Tạo bài viết", logging.WARNING)
+        log_message(f"{DEVICE_LIST_NAME[driver.serial]} - Đăng bài lên tường: Không tìm thấy nút Tạo bài viết", logging.WARNING)
         await pymongo_management.execute_command(command_id, "Lỗi: Không tìm thấy nút Tạo bài viết")
     if files:
         for file in files:

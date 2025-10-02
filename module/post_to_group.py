@@ -13,7 +13,7 @@ async def post_to_group(driver, command_id, user_id, group_link, content, files=
     await asyncio.sleep(2)
     joined_group = driver(textContains="đã tham gia nhóm")
     if not joined_group.exists:
-        log_message(f"{driver.serial} - Đăng bài lên nhóm: Chưa tham gia nhóm {group_link}", logging.WARNING)
+        log_message(f"{DEVICE_LIST_NAME[driver.serial]} - Đăng bài lên nhóm: Chưa tham gia nhóm {group_link}", logging.WARNING)
         await toolfacebook_lib.back_to_facebook(driver)
         await pymongo_management.execute_command(command_id, "Lỗi: Chưa tham gia nhóm")
         return
