@@ -10,6 +10,7 @@ from util import log_message
 import logging
 from util import go_to_home_page
 from util.const_values import *
+import json
 
 # Truy cập 1 trang facebook qua link
 def redirect_to(driver, link):
@@ -305,3 +306,12 @@ async def change_comment_display_mode(driver, base_mode="Phù hợp nhất", mod
     mode_selector.click()
     driver(descriptionContains=mode).click()
     await asyncio.sleep(1)
+
+# Cập nhật trạng thái activate
+async def update_device_status(driver, status: bool):
+    # Cập nhật status vào file json tại thư mục Zalo_base
+    with open(DEVICE_STATUS_PATH(driver.serial), 'r') as f:
+        data = json.load(f)
+        data['active'] = status
+    with open(DEVICE_STATUS_PATH(driver.serial), 'w') as f:
+        json.dump(data, f)

@@ -29,6 +29,8 @@ class WebSocketTaskHandler:
         commands = await self.get_commands(user_id)
         for command in commands:
             try:    
+                driver.app_start("com.facebook.katana")
+                await asyncio.sleep(5)
                 params = command.get("params", {})
                 if command['type'] == 'post_to_group':
                     await post_to_group(driver, command['_id'], user_id, params.get("group_link", ""), params.get("content", ""), params.get("files", []))
@@ -47,14 +49,6 @@ class WebSocketTaskHandler:
             device_status = json.load(f).get('active', False)
         return not device_status
     
-    async def update_device_status(self, driver, status: bool):
-        # Cập nhật status vào file json tại thư mục Zalo_base
-        with open(DEVICE_STATUS_PATH(driver.serial), 'r') as f:
-            data = json.load(f)
-            data['active'] = status
-        with open(DEVICE_STATUS_PATH(driver.serial), 'w') as f:
-            json.dump(data, f)
-
     async def handle_server_message(self, account, driver, message_type):
         try:
             """Xử lý message từ server và tạo task tương ứng"""
@@ -63,7 +57,7 @@ class WebSocketTaskHandler:
                     if await self.check_device_status(driver):
                         break
                     await asyncio.sleep(5)
-                await self.update_device_status(driver, True)
+                await toolfacebook_lib.update_device_status(driver, True)
                 if not account:
                     log_message(f"{DEVICE_LIST_NAME[driver.serial]} - Thực hiện lệnh từ CRM: Không có user_id trong message", logging.WARNING)
                     return
@@ -75,15 +69,15 @@ class WebSocketTaskHandler:
                     }
                     success = await login.swap_account(driver, acc)
                     if not success:
-                        await pymongo_management
-                        await self.update_device_status(driver, False)
+                        await toolfacebook_lib.update_device_status(driver, False)
+                        log_message(f"{DEVICE_LIST_NAME[driver.serial]} - Thực hiện lệnh từ CRM: Đăng nhập thất bại", logging.ERROR)
                         return
                 # Nhận và thực hiện lệnh
                 await self.run_commands(driver, account['account'])
-                await self.update_device_status(driver, False)
+                await toolfacebook_lib.update_device_status(driver, False)
         except Exception as e:
             log_message(f"{DEVICE_LIST_NAME[driver.serial]} - Lỗi xử lý message từ server: {e}", logging.ERROR)
-            await self.update_device_status(driver, False)
+            await toolfacebook_lib.update_device_status(driver, False)
 
     async def send_response(self, data: dict):
         """Gửi response về server"""
@@ -139,7 +133,7 @@ class WebSocketTaskHandler:
                             asyncio.create_task(self.handle_server_message(account, driver, message_type))
                         except Exception as e:
                             log_message(f"Error handling message: {e}", logging.ERROR)
-                            await self.update_device_status(driver, False)
+                            await toolfacebook_lib.update_device_status(driver, False)
             except websockets.exceptions.ConnectionClosed:
                 log_message("WebSocket connection bị đóng. Sẽ thử kết nối lại...", logging.WARNING)
                 self.connected = False

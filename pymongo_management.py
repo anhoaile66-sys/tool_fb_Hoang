@@ -313,12 +313,24 @@ async def get_answer(group_link, question):
 async def get_commands(user_id, status="Chưa xử lý"):
     """Lấy thông tin lệnh từ cơ sở dữ liệu."""
     collection = get_async_collection("Commands")
-    commands = await collection.find({"user_id": user_id, "Status": status}).to_list(length=None)
+
+    # Điều kiện lọc: user_id, status, và time < hiện tại
+    print(datetime.now().timestamp())
+    query = {
+        "user_id": user_id,
+        "Status": status,
+        "time": { "$lt": datetime.now().timestamp() + 120 } # Cho phép lấy lệnh trong vòng 2 phút kể từ thời gian hiện tại
+    }
+
+    commands = await collection.find(query).to_list(length=None)
+    
+    # Cập nhật trạng thái nếu là "Chưa xử lý"
     if status == "Chưa xử lý":
-        collection.update_many(
-            {"user_id": user_id, "Status": status},
-            {"$set": {"Status": "Đang thực hiện"}}
+        await collection.update_many(
+            query,
+            { "$set": { "Status": "Đang thực hiện" } }
         )
+
     return commands
 
 async def execute_command(command_id, status):

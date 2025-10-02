@@ -290,7 +290,7 @@ async def device_once(device_id: str):
     await pymongo_management.update_device_status(device_id, True)  # Cập nhật thiết bị thành online
     try:
                 
-        # # ===== PHA FACEBOOK =====
+        # ===== PHA FACEBOOK =====
         current_phase["value"] = "facebook"
         # Chạy flow Facebook như thường lệ
         await run_on_device_original(driver)
@@ -304,7 +304,7 @@ async def device_once(device_id: str):
         driver.app_start(ZALO_PKG)
         await asyncio.sleep(2.0)
         # Chạy các tác vụ zalo
-        await asyncio.to_thread(handler.run, 1)
+        await handler.run()
 
         if restart_event.is_set():
             raise RestartThisDevice("RESTART_THIS_DEVICE (sau pha Zalo)")

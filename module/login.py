@@ -131,6 +131,7 @@ async def check_logged_in(driver):
     """
     # Mở ứng dụng Facebook
     driver.app_start("com.facebook.katana")
+    await asyncio.sleep(10)
     home = await my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Đi tới trang cá nhân"]')}, 10, back_if_not_found=True)
     if home is not None:
         return True
@@ -181,6 +182,9 @@ async def swap_account(driver, acc, check_home_page=True):
 
     # Đăng nhập
     log_message(f"[{DEVICE_LIST_NAME[driver.serial]}] Bắt đầu đăng nhập vào tài khoản {name}")
+    
+    # Ấn vào vùng bên trên của màn hình để tắt trình quản lý mật khẩu của google(nếu có)
+    driver.click(100, 100)
     account = await my_find_element(driver, {("xpath", f'//android.view.View[@content-desc="{name}"]')}, 20)
     try:
         account.click()
