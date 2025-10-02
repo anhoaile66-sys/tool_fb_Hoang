@@ -37,11 +37,6 @@ mapping.json
 
 # Screenshots và Files tạm
 Screen Shot/
-Files/
-*.jpg
-*.png
-*.jpeg
-*.gif
 
 # Temporary files
 clipboard.txt
@@ -60,6 +55,10 @@ assets/logs/toolfacebook.log
 
 # venv
 tool_venv/
-
+.venv/
+zalo_venv/
 # base
 Zalo_CRM/
+
+# ipynb file
+*.ipynb

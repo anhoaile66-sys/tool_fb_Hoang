@@ -1,5 +1,4 @@
 from datetime import datetime
-from pydoc import doc
 from bson import ObjectId
 import motor.motor_asyncio
 import logging
@@ -175,7 +174,6 @@ async def get_comment(user_id):
     Comment = binh_luan_moi_nhat.get("Comment")
 
     # Thêm bản ghi vào bảng thống kê
-    print(Content)
     thong_ke_collection = get_async_collection("Thong-ke-binh-luan")
     await thong_ke_collection.insert_one({
         "Group_name": group_name,
@@ -444,6 +442,14 @@ async def save_post_comment(post_link, commenter, comment, time, level=0, parent
 
 #-------------------------------------------------------------------------------------------------------------------------------
 # Lệnh liên quan tới collection "devices"
+async def get_device_name_by_id(device_id):
+    """Lấy tên thiết bị theo device_id."""
+    collection = get_async_collection("devices")
+    device = await collection.find_one({"device_id": device_id})
+    if device:
+        return device.get("device_name")
+    return "Unknown Device"
+
 async def get_account_by_username(username):
     """Lấy tài khoản theo username."""
     collection = get_async_collection("devices")
@@ -549,17 +555,3 @@ async def update_facebook_link(device_id, facebook_link):
     if result.modified_count == 0:
         return {'message': '⚠️ Link Facebook không thay đổi'}, logging.WARNING
     return {'message': '✅ Cập nhật link Facebook thành công'}, logging.INFO
-
-async def get_facebook_link(user_id):
-    """Lấy link facebook của tài khoản."""
-    collection = get_async_collection("devices")
-    device = await collection.find_one({"accounts.account": user_id})
-    if not device:
-        return None
-    account = next(
-        (acc for acc in device["accounts"] if acc["account"] == user_id),
-            None
-        )
-    if not account or "facebook_link" not in account:
-        return None
-    return account["facebook_link"]

@@ -17,7 +17,7 @@ from uiautomator2 import Direction
 from datetime import datetime, timedelta
 import xml.etree.ElementTree as ET
 import re
-
+from util.const_values import ZALO_BASE_PATH, ZALO_IMAGE_PATH, DEVICE_STATUS_PATH, ZALO_DATA_LOGIN_PATH
 
 # ===================== CẤU HÌNH / HẰNG SỐ =====================
 # {device_id: [list tên tài khoản đã dùng trong phiên chạy]}
@@ -633,7 +633,7 @@ class DeviceHandler:
                    resourceId="com.zing.zalo:id/title_list_me_tab").get_text()
                 time.sleep(0.5)
                 self.switch_account()
-                status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{self.device_id}", {
+                status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{self.device_id}", {
                 "name": name_zalo, "status": False})
 
             # Đọc tên tài khoản zalo hiện tại
@@ -643,7 +643,7 @@ class DeviceHandler:
             name_zalo = self.d(
                 resourceId="com.zing.zalo:id/title_list_me_tab").get_text()
             time.sleep(0.5)
-            status = update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{self.device_id}", {
+            status = update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{self.device_id}", {
                 "name": name_zalo, "status": True})
             self.d(resourceId="com.zing.zalo:id/maintab_message").click()
             time.sleep(0.5)
@@ -912,7 +912,7 @@ class DeviceHandler:
                 phone_number, contact_info)
 
             # 4) Ghi ra file JSON phục vụ CRM
-            document = get_base_id_zalo_json("C:/Zalo_CRM/Zalo_base", "name", f"Zalo_data_login_path_{self.device_id}", {
+            document = get_base_id_zalo_json(ZALO_BASE_PATH, "name", f"Zalo_data_login_path_{self.device_id}", {
                 "name": name_zalo})[0]
             #print("Phần tử được lấy ra là: ", document)
             print("Đã lấy file base thành công ", f"Zalo_data_login_path_{self.device_id}")
@@ -972,7 +972,7 @@ class DeviceHandler:
             data_update = {"name": name_zalo,
                            "list_prior_chat_boxes": list_prior_chat_boxes}
             update_base_document_json(
-                "C:/Zalo_CRM/Zalo_base", "name", f"Zalo_data_login_path_{self.device_id}", data_update)
+                ZALO_BASE_PATH, "name", f"Zalo_data_login_path_{self.device_id}", data_update)
             print("Đã lưu vào database ", f"Zalo_data_login_path_{self.device_id}")
 
             # 5) Ghi JSON NGAY (upsert)
@@ -1034,7 +1034,7 @@ class DeviceHandler:
         account_data = None
         try:
             # 📌 Path tuyệt đối tới thư mục Zalo_base
-            base_dir = r"C:/Zalo_CRM/Zalo_base"
+            base_dir = rZALO_BASE_PATH
             json_file = os.path.join(base_dir, f"Zalo_data_login_path_{self.device_id}.json")
             print(f"[{self.device_id}] 🔎 Đang đọc dữ liệu từ: {json_file}")
 
@@ -1303,7 +1303,7 @@ class DeviceHandler:
         """
         start_ts = time.time()
         max_seconds = duration_minutes * 60
-        base_dir = r"C:/Zalo_CRM/Zalo_base"
+        base_dir = rZALO_BASE_PATH
         device_json_file = os.path.join(base_dir, f"Zalo_data_login_path_{self.device_id}.json")
         print(f"[{self.device_id}] 🔎 Đọc dữ liệu từ: {device_json_file}")
 
@@ -1580,7 +1580,7 @@ class DeviceHandler:
                 self.d(resourceId="com.zing.zalo:id/maintab_metab").click()
                 time.sleep(0.5)
                 name_zalo = self.d(resourceId="com.zing.zalo:id/title_list_me_tab").get_text()
-                update_base_document_json("C:/Zalo_CRM/Zalo_base", "num_phone_zalo", f"Zalo_data_login_path_{self.device_id}", {
+                update_base_document_json(ZALO_BASE_PATH, "num_phone_zalo", f"Zalo_data_login_path_{self.device_id}", {
                     "name": name_zalo, "status": False
                 })
             except Exception as e:
@@ -1594,7 +1594,7 @@ class DeviceHandler:
                 self.d(resourceId="com.zing.zalo:id/maintab_metab").click()
                 time.sleep(0.5)
                 new_name_zalo = self.d(resourceId="com.zing.zalo:id/title_list_me_tab").get_text()
-                update_base_document_json("C:/Zalo_CRM/Zalo_base", "name", f"Zalo_data_login_path_{self.device_id}", {
+                update_base_document_json(ZALO_BASE_PATH, "name", f"Zalo_data_login_path_{self.device_id}", {
                     "name": new_name_zalo, "status": True
                 })
                 self.d(resourceId="com.zing.zalo:id/maintab_message").click()
