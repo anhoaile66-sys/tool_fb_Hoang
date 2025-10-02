@@ -733,3 +733,118 @@ Có chạy đến hàm lưu dữ liệu không
 [⏳] Đợi 4.50 giây...
 [⏳] Đợi 6.55 giây...
 [⏳] Đợi 1.96 giây...
+
+====================================================================================================
+
+Active code page: 65001
+2025-10-01 15:51:29,439 - INFO - Đọc danh sách thiết bị kết nối qua ADB
+2025-10-01 15:51:29,475 - INFO - 📱 Lấy thành công 1 devices từ ADB
+['R8YY70F5MKN']
+2025-10-01 15:51:30,877 - WARNING - [Máy 0] ✅ Không tìm thấy file status, tiếp tục chạy.
+2025-10-01 15:51:31,024 - INFO - [Máy 0] Kết nối thiết bị: Thành công.
+2025-10-01 15:51:35,050 - INFO - [Máy 0] Tắt chế độ tự động xoay màn hình hệ thống
+2025-10-01 15:51:35,161 - INFO - [Máy 0] Trạng thái auto-rotation hiện tại: 1
+2025-10-01 15:51:35,254 - INFO - [Máy 0] Đã gửi lệnh tắt auto-rotation qua settings
+2025-10-01 15:51:36,354 - INFO - [Máy 0] Auto-rotation đã được TẮT thành công!
+2025-10-01 15:51:36,355 - INFO - [Máy 0] Trạng thái auto-rotation cuối: TẮT ✅
+2025-10-01 15:51:36,355 - INFO - [Máy 0] Hoàn thành disable auto-rotation
+2025-10-01 15:51:36,355 - INFO - [Máy 0] Kiểm tra bật 1.1.1.1 (một lần)
+2025-10-01 15:51:40,250 - INFO - [Máy 0] One-time check 1.1.1.1 OK
+2025-10-01 15:51:40,251 - INFO - [Máy 0] Kiểm tra cài đặt Termux
+
+[Máy 0]===== LẤY VIỆC TỪ DATABASE 22615833 - Ngô Dung =====
+[Máy 0 - DB 22615833] 🔄 Nạp dữ liệu vào hàng đợi...
+22615833
+[Máy 0] ✅ Đã nạp 2 mục vào hàng đợi của emp_id: 22615833.
+2025-10-01 15:51:44,553 - INFO - Máy 0 Bắt đầu xử lý số điện thoại 0379508534
+2025-10-01 15:51:44,554 - INFO - [Máy 0] Bắt đầu gửi kết bạn/gửi tin nhắn đến 0379508534
+Lần 1
+[Errno 2] No such file or directory: 'Zalo_base/Zalo_data_login_path_Máy 0.json'
+Lần 2
+[Máy 0] Đang lấy tin nhắn từ API cho chuyên viên 22615833...
+[Máy 0] ✅ Lấy tin nhắn từ API thành công.
+[Máy 0][!] Chưa gửi lời mời kết bạn sđt 0379508534
+[Máy 0][✓] Đã gửi lời mời kết bạn tới 0379508534
+Tên tài khoản hiện tại:  Linh Sơn
+Có chạy đến hàm lưu dữ liệu không
+
+[Máy 0][*] Bắt đầu trích xuất thông tin cho 0379508534...
+[Máy 0][i] Đã tìm thấy tên trên Zalo: Nguyễn hồng
+[Máy 0][i] Đã xử lý và mã hóa avatar thành công.
+[Máy 0][❌] Lỗi tổng khi xử lý 0379508534: 'bool' object is not subscriptable
+
+[Máy 0]🎉 Hoàn tất một vòng xử lý (hàng đợi chung, không trùng số).
+2025-10-01 15:53:06,011 - INFO - [Máy 0] Kết nối thiết bị: Thành công.
+[⚠️] Lỗi khi dọn app chạy ngầm: device 'R8YY70F5MKN' not found
+[❌] Không thể kết nối với thiết bị Máy 0. Lỗi: device 'R8YY70F5MKN' not found
+2025-10-01 15:53:09,028 - WARNING - [Máy 0] ❌ Mất kết nối thiết bị, hủy task đang chạy.
+[!] Dừng bằng bàn phím (KeyboardInterrupt)
+
+C:\Users\Admin\Documents\GitHub\tool-fb-mobile>py main.py
+2025-10-01 16:02:02,676 - INFO - Đọc danh sách thiết bị kết nối qua ADB
+2025-10-01 16:02:02,714 - INFO - 📱 Lấy thành công 1 devices từ ADB
+['R8YY70F5MKN']
+2025-10-01 16:02:04,262 - WARNING - [Máy 0] ✅ Không tìm thấy file status, tiếp tục chạy.
+2025-10-01 16:02:04,438 - INFO - [Máy 0] Kết nối thiết bị: Thành công.
+2025-10-01 16:02:08,438 - INFO - [Máy 0] Tắt chế độ tự động xoay màn hình hệ thống
+2025-10-01 16:02:08,547 - INFO - [Máy 0] Trạng thái auto-rotation hiện tại: 1
+2025-10-01 16:02:08,671 - INFO - [Máy 0] Đã gửi lệnh tắt auto-rotation qua settings
+2025-10-01 16:02:09,810 - INFO - [Máy 0] Auto-rotation đã được TẮT thành công!
+2025-10-01 16:02:09,810 - INFO - [Máy 0] Trạng thái auto-rotation cuối: TẮT ✅
+2025-10-01 16:02:09,810 - INFO - [Máy 0] Hoàn thành disable auto-rotation
+2025-10-01 16:02:09,811 - INFO - [Máy 0] Kiểm tra bật 1.1.1.1 (một lần)
+2025-10-01 16:02:13,704 - INFO - [Máy 0] One-time check 1.1.1.1 OK
+2025-10-01 16:02:13,706 - INFO - [Máy 0] Kiểm tra cài đặt Termux
+
+[Máy 0]===== LẤY VIỆC TỪ DATABASE 22615833 - Ngô Dung =====
+[Máy 0 - DB 22615833] 🔄 Nạp dữ liệu vào hàng đợi...
+22615833
+[❌] Lỗi khi gọi API: HTTPSConnectionPool(host='api.timviec365.vn', port=443): Max retries exceeded with url: /api/crm/customer/getNTDByEmpIdToGetPhoneNumber (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000002446BB97430>, 'Connection to api.timviec365.vn timed out. (connect timeout=None)'))
+[DB 22615833] ⚠️ Không có dữ liệu để nạp.
+[Máy 0][22615833] ⏳ Hết việc tạm thời (lần 1).
+[Máy 0 - DB 22615833] 🔄 Nạp dữ liệu vào hàng đợi...
+22615833
+[Máy 0] ✅ Đã nạp 2 mục vào hàng đợi của emp_id: 22615833.
+
+[Máy 0]🎉 Hoàn tất một vòng xử lý (hàng đợi chung, không trùng số).
+2025-10-01 16:02:50,169 - INFO - [Máy 0] Kết nối thiết bị: Thành công.
+2025-10-01 16:02:54,197 - INFO - [Máy 0] Tắt chế độ tự động xoay màn hình hệ thống
+2025-10-01 16:02:54,308 - INFO - [Máy 0] Trạng thái auto-rotation hiện tại: 1
+2025-10-01 16:02:54,448 - INFO - [Máy 0] Đã gửi lệnh tắt auto-rotation qua settings
+2025-10-01 16:02:55,592 - INFO - [Máy 0] Auto-rotation đã được TẮT thành công!
+2025-10-01 16:02:55,592 - INFO - [Máy 0] Trạng thái auto-rotation cuối: TẮT ✅
+2025-10-01 16:02:55,592 - INFO - [Máy 0] Hoàn thành disable auto-rotation
+2025-10-01 16:02:55,593 - INFO - [Máy 0] Kiểm tra cài đặt Termux
+
+[Máy 0]===== LẤY VIỆC TỪ DATABASE 22615833 - Ngô Dung =====
+2025-10-01 16:02:59,600 - INFO - Máy 0 Bắt đầu xử lý số điện thoại 0915559979
+2025-10-01 16:02:59,601 - INFO - [Máy 0] Bắt đầu gửi kết bạn/gửi tin nhắn đến 0915559979
+Lần 1
+[Errno 2] No such file or directory: 'Zalo_base/Zalo_data_login_path_R8YY70F5MKN.json'
+Lần 2
+[Máy 0] Đang lấy tin nhắn từ API cho chuyên viên 22615833...
+[Máy 0] ✅ Lấy tin nhắn từ API thành công.
+[Máy 0][!] Chưa gửi lời mời kết bạn sđt 0915559979
+[Máy 0][✓] Đã gửi lời mời kết bạn tới 0915559979
+Tên tài khoản hiện tại:  Linh Sơn
+Có chạy đến hàm lưu dữ liệu không
+
+[Máy 0][*] Bắt đầu trích xuất thông tin cho 0915559979...
+[Máy 0][i] Đã tìm thấy tên trên Zalo: Linh Le
+[Máy 0][i] Đã xử lý và mã hóa avatar thành công.
+2025-10-01 16:04:11,436 - INFO - [Máy 0] Trích xuất thông tin thành công từ sđt 0915559979
+[Máy 0][❌] Lỗi tổng khi xử lý 0915559979: 'bool' object is not subscriptable
+
+[Máy 0]🎉 Hoàn tất một vòng xử lý (hàng đợi chung, không trùng số).
+2025-10-01 16:04:21,040 - INFO - [Máy 0] Kết nối thiết bị: Thành công.
+2025-10-01 16:04:25,177 - INFO - [Máy 0] Tắt chế độ tự động xoay màn hình hệ thống
+2025-10-01 16:04:25,201 - INFO - [Máy 0] Không thể kiểm tra trạng thái hiện tại: closed
+2025-10-01 16:04:25,240 - INFO - [Máy 0] Lỗi tắt auto-rotation qua settings: device 'R8YY70F5MKN' not found
+2025-10-01 16:04:25,271 - INFO - [Máy 0] Không thể kiểm tra trạng thái cuối: device 'R8YY70F5MKN' not found
+2025-10-01 16:04:25,274 - INFO - [Máy 0] Hoàn thành disable auto-rotation
+2025-10-01 16:04:25,274 - INFO - [Máy 0] Kiểm tra cài đặt Termux
+2025-10-01 16:04:25,366 - INFO - [Máy 0] Cài đặt Termux
+adb.ex: device 'R8YY70F5MKN' not found
+adb.ex: device 'R8YY70F5MKN' not found
+2025-10-01 16:04:25,611 - ERROR - [Máy 0] Lỗi cài đặt Termux
+2025-10-01 16:04:25,691 - WARNING - [Máy 0] ❌ Mất kết nối thiết bị, hủy task đang ch

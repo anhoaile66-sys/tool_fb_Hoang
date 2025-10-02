@@ -1,5 +1,5 @@
 from fb_task import *
-from sending_message_and_adding_friend import DeviceHandler
+from sending_message_and_adding_friend import DeviceHandler, NUM_PHONE
 import uiautomator2 as u2
 import asyncio
 import logging
@@ -296,7 +296,7 @@ async def device_once(device_id: str):
         driver.app_start(ZALO_PKG)
         await asyncio.sleep(2.0)
         # Chạy các tác vụ zalo
-        await asyncio.to_thread(handler.run, 1)
+        await asyncio.to_thread(handler.run, NUM_PHONE)
 
         if restart_event.is_set():
             raise RestartThisDevice("RESTART_THIS_DEVICE (sau pha Zalo)")
