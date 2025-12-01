@@ -5,121 +5,145 @@ from util import *
 # Tạo bài post mới
 async def new_post(driver, text, images={}):
     """
-    Tạo bài đăng mới, bài đăng bao gồm text, ảnh(nếu có)
-
-    image: truyền vào {"","",...} tên ảnh/video (không có đuôi định dạng)
+    Tạo bài đăng mới, bài đăng bao gồm text, ảnh (nếu có)
+    images: danh sách tên ảnh/video (không có đuôi định dạng)
     """
 
-    # Hàm tìm nút hủy
-    def huy():
-        huy = my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Hủy"]')})
-        if huy == None:
+    # === Các hàm phụ ===
+    async def huy():
+        huy = await my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Hủy"]')})
+        if huy is None:
             log_message("Không tìm được nút hủy\n Bất lực", logging.ERROR)
             return
         huy.click()
-    # Hàm tìm nút back
-    def back():
-        back = my_find_element(driver, {("xpath", '//android.widget.ImageView[@content-desc="Quay lại"]')})
-        if back == None:
+
+    async def back():
+        back = await my_find_element(driver, {("xpath", '//android.widget.ImageView[@content-desc="Quay lại"]')})
+        if back is None:
             log_message("Không tìm được nút quay lại\n Bất lực", logging.ERROR)
             return
         back.click()
-    # Hàm tìm nút bỏ bài viết
-    def bo():
-        bo = my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Bỏ bài viết"]')})
-        if bo == None:
+
+    async def bo():
+        bo = await my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Bỏ bài viết"]')})
+        if bo is None:
             log_message("Không tìm được nút bỏ\n Bất lực", logging.ERROR)
             return
         bo.click()
 
+    # === Bắt đầu ===
     log_message("Bắt đầu tạo bài đăng mới")
+
     # Về đầu trang
     top_page = await go_to_home_page(driver)
-    if top_page == None:
+    if top_page is None:
         log_message("Không ở trang chủ hoặc không thể về trang chủ", logging.ERROR)
         return
-    await asyncio.sleep(5)
+    await asyncio.sleep(2)
 
     # Tìm ô tạo bài đăng
-    make_post = my_find_element(driver, {("xpath", '//android.view.ViewGroup[@content-desc="Viết bài trên Facebook"]')})
-    if make_post == None:
+    selectors = [
+    ("xpath", '//android.view.ViewGroup[@content-desc="Viết bài trên Facebook"]'),
+    ("xpath", '//android.view.ViewGroup[@content-desc="Bạn đang nghĩ gì?"]'),
+    ("xpath", '//android.view.ViewGroup[@content-desc="Bạn đang nghĩ gì thế?"]'),
+    ("xpath", '//android.view.ViewGroup[@content-desc="Bạn đang nghĩ gì vậy?"]'),
+    ("xpath", '//android.widget.EditText[@text="Bạn đang nghĩ gì?"]'),
+    ("textContains", "Bạn đang nghĩ gì"),
+    ("textContains", "Viết bài"),
+    ("descriptionContains", "Viết bài"),
+    ("descriptionContains", "Tạo bài viết"),
+    ("descriptionContains", "What's on your mind"),
+    ]
+
+    make_post = None
+    for selector_type, selector_value in selectors:
+        try:
+            if selector_type == "xpath":
+                make_post = await my_find_element(driver, {("xpath", selector_value)})
+            elif selector_type == "textContains":
+                make_post = await my_find_element(driver, {("textContains", selector_value)})
+            elif selector_type == "descriptionContains":
+                make_post = await my_find_element(driver, {("descriptionContains", selector_value)})
+
+            if make_post:
+                break
+        except Exception:
+            continue
+    if make_post is None:
         log_message("Không tìm được ô tạo bài đăng", logging.ERROR)
         return
     make_post.click()
     log_message("Vào giao diện tạo bài đăng")
     await asyncio.sleep(1)
 
-    # Nếu có ảnh thì chọn ảnh theo tên
+    # === Thêm ảnh nếu có ===
     if images:
-        add_image = my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Ảnh/video"]')})
-        if add_image == None:
+        add_image = await my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Ảnh/video"]')})
+        if add_image is None:
             log_message("Không thêm được ảnh")
-            back()
+            await back()
             return
         add_image.click()
         log_message("Vào giao diện chọn ảnh")
         await asyncio.sleep(1)
 
-        # Tìm nút thêm nhiều (dù chỉ có 1 ảnh cũng chọn)
-        multi_choice = my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Chọn nhiều file"]')})
-        if multi_choice == None:
+        multi_choice = await my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Chọn nhiều file"]')})
+        if multi_choice is None:
             log_message("Không tìm được nút multichoice", logging.ERROR)
-            huy()
-            back()
+            await huy()
+            await back()
             return
         multi_choice.click()
         log_message("Giao diện thêm ảnh")
         await asyncio.sleep(1)
 
-        # Vòng lặp
         first = True
         for image_path in images:
-            image = my_find_element(driver, {("xpath", f'//android.widget.Button[contains(@content-desc, "{image_path}")]')})
-            if image == None:
+            image = await my_find_element(driver, {("xpath", f'//android.widget.Button[contains(@content-desc, "{image_path}")]')})
+            if image is None:
                 log_message(f"Không tìm được hình ảnh: {image_path}", logging.ERROR)
-                huy()
-                back()
+                await huy()
+                await back()
                 if not first:
-                    bo()
+                    await bo()
                 return
             log_message(f"Tìm được ảnh: {image_path}")
             image.click()
             first = False
         log_message("Đã thêm toàn bộ ảnh")
 
-        # Tìm nút tiếp để chuyển về nhập text
-        tiep = my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Tiếp"]')})
-        if tiep == None:
+        tiep = await my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="Tiếp"]')})
+        if tiep is None:
             log_message("Không tìm thấy nút tiếp tục", logging.ERROR)
-            huy()
-            back()
-            bo()
+            await huy()
+            await back()
+            await bo()
             return
         log_message("Trở về nhập text")
         tiep.click()
         await asyncio.sleep(1)
 
-    # Nhập text
+    # === Nhập text ===
     log_message("Về giao diện nhập text")
-    text_input = my_find_element(driver, {("xpath", '//android.widget.AutoCompleteTextView')})
-    if text_input == None:
+    text_input = await my_find_element(driver, {("xpath", '//android.widget.AutoCompleteTextView')})
+    if text_input is None:
         log_message("Không tìm được ô nhập text", logging.ERROR)
-        back()
+        await back()
         if images:
-            bo()
+            await bo()
         return
     await asyncio.sleep(1)
     text_input.set_text(text)
     log_message("Nhập xong text")
     await asyncio.sleep(1)
 
-    # Đăng
-    dang = my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="ĐĂNG"]')})
-    if dang == None:
+    # === Đăng ===
+    dang = await my_find_element(driver, {("xpath", '//android.widget.Button[@content-desc="ĐĂNG"]')})
+    if dang is None:
         log_message("Không tìm được nút đăng", logging.ERROR)
-        back()
+        await back()
         if images:
-            bo()
+            await bo()
         return
     dang.click()
-    log_message("Đăng thành công")
+    log_message("Đăng thành công ✅")

@@ -1,6 +1,6 @@
 WINDOW_ADB_PATH = "platform-tools/adb"
 LINUX_ADB_PATH = "adb"
-ZALO_BASE_PATH = "C:/Zalo_CRM/Zalo_base/"
+ZALO_BASE_PATH = "D:/VSC/auto_post_fb/tool-fb-mobile/Zalo_CRM/Zalo_base/"
 
 def DEVICE_STATUS_PATH(device_id: str) -> str:
     return f"{ZALO_BASE_PATH}device_status_{device_id}.json"

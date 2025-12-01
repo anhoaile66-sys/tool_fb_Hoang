@@ -151,10 +151,10 @@ def update_base_document_json(database_name, domain, collection_name, document):
                     data[id][key] = document[key]
                     # print(document[key])
                 break
-#        print(data)
+        #        print(data)
         with open(f'{database_name}/{collection_name}.json', 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
-        # print(
+        #       print(
         #    f"Đã lưu vào database {collection_name}: {data[0]['list_friend'][0]}")
     except Exception as e:
         print(e)
@@ -1034,7 +1034,7 @@ class DeviceHandler:
         account_data = None
         try:
             # 📌 Path tuyệt đối tới thư mục Zalo_base
-            base_dir = rZALO_BASE_PATH
+            base_dir = ZALO_BASE_PATH
             json_file = os.path.join(base_dir, f"Zalo_data_login_path_{self.device_id}.json")
             print(f"[{self.device_id}] 🔎 Đang đọc dữ liệu từ: {json_file}")
 
@@ -1303,7 +1303,7 @@ class DeviceHandler:
         """
         start_ts = time.time()
         max_seconds = duration_minutes * 60
-        base_dir = rZALO_BASE_PATH
+        base_dir = ZALO_BASE_PATH
         device_json_file = os.path.join(base_dir, f"Zalo_data_login_path_{self.device_id}.json")
         print(f"[{self.device_id}] 🔎 Đọc dữ liệu từ: {device_json_file}")
 
@@ -1389,13 +1389,68 @@ class DeviceHandler:
                 self.d(resourceId="com.zing.zalo:id/btn_search_result").click()
                 time.sleep(1.2)
 
-                if self.d(resourceId="com.zing.zalo:id/action_bar_title").exists:
-                    try:
-                        self.d(resourceId="com.zing.zalo:id/action_bar_title").click()
-                        time.sleep(1.2)
-                    except Exception:
-                        pass
+                                                
+                            # ===== BƯỚC 2: TÌM NÚT TÊN BẠN BÈ TRONG KHUNG CHAT =====
+                title_selectors = [
+                    ("com.zing.zalo:id/action_bar_title", "id"),
+                    ("com.zing.zalo:id/tvName", "id"),
+                    ("com.zing.zalo:id/txtTitle", "id"),
+                    ("android.widget.TextView", "class"),  # fallback theo class
+                ]
 
+                title_node = None
+
+                for val, mode in title_selectors:
+                    if mode == "id":
+                        node = self.d(resourceId=val)
+                    else:
+                        node = self.d(className=val)
+
+                    # Check node tồn tại + text phải khớp tên bạn bè
+                    if node.exists and friend_name.lower() in node.get_text().lower():
+                        title_node = node
+                        break
+
+                # Nếu vẫn không tìm thấy — dùng TextView đầu tiên phía trên cùng
+                if not title_node:
+                    text_nodes = self.d(className="android.widget.TextView")
+                    for t in text_nodes:
+                        try:
+                            t_text = t.get_text()
+                            if friend_name.lower() in t_text.lower():
+                                title_node = t
+                                break
+                        except:
+                            pass
+
+                if not title_node:
+                    print(f"[{self.device_id}] ❌ Không tìm thấy tên bạn bè trong UI chat.")
+                    continue
+
+                time.sleep(0.8)
+                # ===== BƯỚC 3: CLICK TÊN ĐỂ MỞ POPUP =====
+                try:
+                    title_node.click()
+                    time.sleep(0.8)
+                    print(f"[{self.device_id}] 🎯 Đã mở menu chat của '{friend_name}'.")
+                except:
+                    print(f"[{self.device_id}] ❌ Không click được vào tên.")
+                    continue
+
+                # 2️⃣ Trong popup xuất hiện → chọn "Trang cá nhân"
+                profile_btn = self.d(text="Trang cá nhân")
+
+                if profile_btn.exists:
+                    try:
+                        profile_btn.click()
+                        time.sleep(1.5)
+                        print(f"[{self.device_id}] 🎯 Đã mở trang cá nhân của {friend_name}.")
+                    except:
+                        print(f"[{self.device_id}] ❌ Lỗi khi mở trang cá nhân của {friend_name}.")
+                        continue
+                else:
+                    print(f"[{self.device_id}] ❌ Không thấy nút 'Trang cá nhân'. Có thể bạn chưa kết bạn hoặc UI thay đổi.")
+                    continue
                 # Bắt đầu lướt profile
                 no_post_consecutive = 0
                 scrolls = 0
@@ -1467,6 +1522,7 @@ class DeviceHandler:
             print(f"[{self.device_id}] ✅ Đã chuyển đến tab Nhật ký.")
 
             # === PHA 3: VÒNG LẶP LƯỚT VÀ TƯƠNG TÁC TỰ ĐỘNG ===
+            
             session_minutes = random.randint(3, 5)
             end_time = time.time() + session_minutes * 60
             print(f"[{self.device_id}] ⏳ Phiên lướt sẽ kéo dài trong {session_minutes} phút.")
@@ -1532,7 +1588,11 @@ class DeviceHandler:
 
     def run(self, rounds=1):
         """
-        Chạy luồng Zalo: (1) Lướt khám phá -> (2) Tìm SĐT & nhắn tin kết bạn -> (3) Lướt trang cá nhân bạn bè -> Đổi TK
+        Chạy luồng Zalo:
+            (1) Lướt khám phá
+         -> (2) Tìm SĐT & nhắn tin kết bạn 
+         -> (3) Lướt trang cá nhân bạn bè 
+         -> Đổi TK
         """
         if rounds > 0 and not STOP_EVENT.is_set():
             # Tính năng chúc mừng SN (giữ nguyên như cũ)
@@ -1543,9 +1603,20 @@ class DeviceHandler:
             sender_name = DATABASE_MAPPING.get(current_db, "Nhân viên")
             print(f"[{self.device_id}] Lấy việc từ database {current_db} ({sender_name})")
 
+               # PHA 3: Lướt trang cá nhân bạn bè (mỗi account 10 phút tối đa)
+            try:
+                print(f"[{self.device_id}] ▶️ Bắt đầu lướt trang cá nhân bạn bè...")
+                self.surf_friends_profiles(duration_minutes=10)
+                print(f"[{self.device_id}] ✅ Hoàn tất lướt bạn bè.")
+            except Exception as e:
+                print(f"[{self.device_id}] ⚠️ Lỗi khi lướt profile bạn bè: {e}")
+
+
             # PHA 1: Lướt khám phá (Timeline)
             try:
+                print(f"[{self.device_id}] ▶️ Bắt đầu lướt khám phá...")
                 self.surf_zalo_timeline()
+                print(f"[{self.device_id}] ✅ Hoàn tất lướt khám phá.")
             except Exception as e:
                 print(f"[{self.device_id}] ⚠️ Lỗi khi lướt khám phá: {e}")
 
@@ -1563,11 +1634,7 @@ class DeviceHandler:
             except Exception as e:
                 print(f"[{self.device_id}] Lỗi khi xử lý SĐT: {e}")
 
-            # PHA 3: Lướt trang cá nhân bạn bè (mỗi account 10 phút tối đa)
-            try:
-                self.surf_friends_profiles(duration_minutes=10)
-            except Exception as e:
-                print(f"[{self.device_id}] ⚠️ Lỗi khi lướt profile bạn bè: {e}")
+         
 
             # PHA 4: Đổi tài khoản như cũ
             print(f"[{self.device_id}] Chu trình xong, chuẩn bị đổi tài khoản.")

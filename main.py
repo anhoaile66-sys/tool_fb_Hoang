@@ -1,5 +1,7 @@
 from fb_task import *
-from sending_message_and_adding_friend import DeviceHandler, NUM_PHONE
+# from sending_message_and_adding_friend 
+from Zalo_Phase import DeviceHandler
+from popup_post import launch_post_popup
 import uiautomator2 as u2
 import asyncio
 import logging
@@ -13,6 +15,12 @@ from module import *
 from util import *
 import main_lib
 import pymongo_management
+from asyncio import Queue
+
+POST_TASK_QUEUE = Queue()
+
+ACTIVE_DRIVERS = {}
+
 
 # ======================= CẤU HÌNH =======================
 HOME_PACKAGES = {
@@ -102,7 +110,12 @@ async def disable_auto_rotation(driver, device_id: str):
         # Tắt auto-rotation qua shell command
         try:
             driver.shell("settings put system accelerometer_rotation 0")
-            log_message(f"[{DEVICE_LIST_NAME[device_id]}] Đã gửi lệnh tắt auto-rotation qua settings", logging.INFO)
+            # log_message(f"[{DEVICE_LIST_NAME[device_id]}] Đã gửi lệnh tắt auto-rotation qua settings", logging.INFO)
+            
+            # Ép màn hình về portrait
+            driver.shell("settings put system user_rotation 0")
+            log_message(f"[{DEVICE_LIST_NAME[device_id]}] Đã ép màn hình về hướng dọc (portrait)", logging.INFO)
+
             await asyncio.sleep(1)  # Chờ settings apply
             
         except Exception as e:
@@ -235,10 +248,14 @@ async def device_once(device_id: str):
       - Watchdog chạy nền
       - Pha 'zalo' (một vòng) -> Pha 'facebook'
     """
+
+    
     # Kết nối thiết bị
     driver = await asyncio.to_thread(u2.connect_usb, device_id)
+    ACTIVE_DRIVERS[device_id] = driver  # ✅ Lưu driver vào danh sách
     handler = DeviceHandler(driver, device_id)
-    await handler.connect()
+    #await 
+    handler.connect()
     
     # Tắt chế độ tự động xoay màn hình
     await disable_auto_rotation(driver, device_id)
@@ -290,29 +307,35 @@ async def device_once(device_id: str):
     await pymongo_management.update_device_status(device_id, True)  # Cập nhật thiết bị thành online
     try:
 
+        
         # ===== PHA ZALO =====
         current_phase["value"] = "zalo"
         # Đảm bảo đang mở Zalo trước khi chạy
         driver.app_start(ZALO_PKG)
         await asyncio.sleep(2.0)
         # Chạy các tác vụ zalo
-        await asyncio.to_thread(handler.run, NUM_PHONE)
+        await asyncio.to_thread(handler.run)
 
         if restart_event.is_set():
             raise RestartThisDevice("RESTART_THIS_DEVICE (sau pha Zalo)")
         
-        # # ===== PHA FACEBOOK =====
-        # current_phase["value"] = "facebook"
-        # # Chạy flow Facebook như thường lệ
-        # await run_on_device_original(driver)
+        # ===== PHA FACEBOOK =====
+        current_phase["value"] = "facebook"
+        # Chạy flow Facebook như thường lệ
+        await run_on_device_original(driver)
 
-        # if restart_event.is_set():
-        #     raise RestartThisDevice("RESTART_THIS_DEVICE (sau pha Facebook)")
+        if restart_event.is_set():
+            raise RestartThisDevice("RESTART_THIS_DEVICE (sau pha Facebook)")
         
+
+        
+
 
 
     finally:
         await watchdog.stop()
+        ACTIVE_DRIVERS.pop(device_id, None)
+
 
 async def check_driver(driver):
     try:
@@ -401,12 +424,109 @@ async def run_all_devices():
     await asyncio.gather(*tasks)
 
 
+# === Chạy chương trình chính ===
 if __name__ == "__main__":
+    import threading
+    from asyncio import Queue
+
+    # Hàng đợi dùng để nhận lệnh đăng bài từ popup
+    POST_TASK_QUEUE = Queue()
+    MAIN_LOOP = None  # Giữ tham chiếu tới event loop chính
+
+    # === Callback khi người dùng nhấn "Đăng bài" trong popup ===
+    def on_popup_post(content, target_device, images):
+        if MAIN_LOOP is None:
+            print("[Warning] Event loop chính chưa sẵn sàng, không thể đăng bài.")
+            return
+
+        def enqueue():
+            try:
+                asyncio.run_coroutine_threadsafe(
+                    POST_TASK_QUEUE.put((content, target_device, images)),
+                    MAIN_LOOP
+                )
+                print(f"[Success] Đã gửi yêu cầu đăng bài: {content[:40]}...")
+            except Exception as e:
+                print(f"[Error] Không thể gửi yêu cầu đăng bài: {e}")
+
+        threading.Thread(target=enqueue, daemon=True).start()
+
+    # === Hàm lấy danh sách thiết bị hiện tại ===
+    def get_devices():
+        return list(ACTIVE_DRIVERS.keys())
+
+    # === Worker xử lý yêu cầu đăng bài ===
+    async def post_worker():
+        from module.new_post import new_post
+        while True:
+            content, target_device, images = await POST_TASK_QUEUE.get()
+            try:
+                print(f"[Post] Nhận yêu cầu đăng bài: {content[:40]}...")
+
+                if not ACTIVE_DRIVERS:
+                    print("[Warning] Không có thiết bị nào đang hoạt động.")
+                    continue
+
+                if target_device is None:
+                    tasks = [new_post(d, content, images) for d in ACTIVE_DRIVERS.values()]
+                    await asyncio.gather(*tasks, return_exceptions=True)
+                else:
+                    d = ACTIVE_DRIVERS.get(target_device)
+                    if d:
+                        await new_post(d, content, images)
+                    else:
+                        print(f"[Error] Thiết bị {target_device} không khả dụng.")
+
+            except Exception as e:
+                log_message(f"Lỗi khi đăng bài: {e}", logging.ERROR)
+
+    # === Hàm chính ===
+    async def main():
+        global MAIN_LOOP
+        MAIN_LOOP = asyncio.get_running_loop()  # Lưu loop để dùng trong thread
+
+        await asyncio.sleep(2)
+
+        # Mở popup điều khiển trong thread riêng
+        threading.Thread(
+            target=launch_post_popup,
+            args=(on_popup_post, get_devices),
+            daemon=True
+        ).start()
+
+        # Chạy automation và worker đăng bài song song
+        await asyncio.gather(
+            run_all_devices(),
+            post_worker()
+        )
+
+    # === CHẠY VỚI XỬ LÝ DỪNG SẠCH ===
     try:
-        asyncio.run(run_all_devices())
+        asyncio.run(main())
     except KeyboardInterrupt:
-        print("[!] Dừng bằng bàn phím (KeyboardInterrupt)")
-        asyncio.run(pymongo_management.update_device_status(None, False))  # Cập nhật tất cả thiết bị thành offline
-    except Exception as e:
-        log_message(f"Lỗi chạy chính: {e}", logging.ERROR)
-        asyncio.run(pymongo_management.update_device_status(None, False))  # Cập nhật tất cả thiết bị thành offline
+        print("\n[Stop] Nhận lệnh dừng từ bàn phím (Ctrl+C)...")
+        print("[Info] Đang dọn dẹp và cập nhật trạng thái thiết bị...")
+
+        # Dừng tất cả thiết bị (gửi lệnh offline)
+        try:
+            # Gọi hàm cập nhật trạng thái (không dùng asyncio.run)
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            loop.run_until_complete(pymongo_management.update_device_status(None, False))
+            loop.close()
+        except Exception as e:
+            print(f"[Warning] Lỗi khi cập nhật trạng thái MongoDB: {e}")
+
+        # Dừng tất cả driver
+        for device_id, driver in list(ACTIVE_DRIVERS.items()):
+            try:
+                driver.app_stop(ZALO_PKG)
+                driver.app_stop(FACEBOOK_PKG)
+                print(f"[Cleanup] Đã dừng app trên {DEVICE_LIST_NAME.get(device_id, device_id)}")
+            except:
+                pass
+
+        print("[Success] Đã dừng tool thành công! Tạm biệt.")
+        # Thoát hoàn toàn
+        import sys
+        sys.exit(0)

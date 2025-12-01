@@ -12,7 +12,7 @@ def get_client_name(Type="Base"):
         data = json.load(file).get(Type, {})
     username = urllib.parse.quote_plus(data["username"])
     password = urllib.parse.quote_plus(data["pwd"])
-    return f"mongodb://{username}:{password}@123.24.206.25:27017/?authSource=admin"
+    return f"mongodb://{username}:{password}@222.252.22.121:27017/?authSource=admin"
 
 def get_async_collection(collection_name, client_name=get_client_name(), db_name="Facebook"):
     """Tạo async collection client"""

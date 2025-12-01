@@ -1,7 +1,6 @@
 import asyncio
 from module import *
 from util import *
-from module import *
 
 # Thoát app, xóa cache khi chờ task
 async def clear_app(driver):

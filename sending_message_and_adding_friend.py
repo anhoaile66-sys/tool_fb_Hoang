@@ -19,6 +19,7 @@ from datetime import datetime
 from util import log_message, DEVICE_LIST_NAME
 import logging
 import pymongo_management
+from zalo_message_extension import *
 
 # ===================== CẤU HÌNH / HẰNG SỐ =====================
 # {device_id: [list tên tài khoản đã dùng trong phiên chạy]}
